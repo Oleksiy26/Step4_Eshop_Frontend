@@ -1,10 +1,11 @@
 import "./App.scss";
-import PageHome from "../src/pages/PageHome/index";
 import Rout from "./routes/Rout";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <>
+      <Header/>
       <Rout />
     </>
   );
