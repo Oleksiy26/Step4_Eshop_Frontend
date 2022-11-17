@@ -11,7 +11,7 @@ const Banner = () => {
         <div className={styles.banner}>
             <SlickSlider/>
         </div>
-        <div className={styles.block}>
+        {/* <div className={styles.block}>
             <div className={styles.block_f}>
                 <p>handmade</p>
             </div>
@@ -19,7 +19,7 @@ const Banner = () => {
                 <p>LINGERIE</p>
                 <p>for women </p>
             </div>    
-        </div>
+        </div> */}
        
         </>
 
