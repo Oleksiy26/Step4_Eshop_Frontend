@@ -1,9 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styles from './Menu.module.scss'
 import { ReactComponent as Close } from "./svg/close.svg";
 
 const Menu = (props) => {
     const {closeFunc} = props;
+
     return(
         <>
         <div className={styles.menu__back}></div>
@@ -12,13 +14,13 @@ const Menu = (props) => {
                 <Close onClick={closeFunc}/>
             </div>
             <div className={styles.menu__body_list}>
-                <ul>
-                    <li>New lingerie</li>
-                    <li>Sales</li>
-                    <li>Profile</li>
-                    <li>Catalogue</li>
-                    <li>Contact</li>
-                </ul>
+                <div>
+                    <NavLink to="/">New lingerie</NavLink>
+                    <NavLink to="/">Sales</NavLink>
+                    <NavLink to="/">Profile</NavLink>
+                    <NavLink to="/">Catalogue</NavLink>
+                    <NavLink to="/">Contact</NavLink>
+                </div>
             </div>
 
         </div>

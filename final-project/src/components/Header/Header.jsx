@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { NavLink } from "react-router-dom"; 
 import {ReactComponent as User} from "./svg/user.svg"
 import {ReactComponent as Cart} from "./svg/cart.svg"
