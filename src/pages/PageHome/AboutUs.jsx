@@ -1,5 +1,6 @@
 import React from "react";
-import Title from "../../components/HomePage/Title";
+import Title from "../../components/Title";
+
 
 const AboutUs = () => {
   return (
