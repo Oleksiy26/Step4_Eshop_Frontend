@@ -1,0 +1,37 @@
+.banner {
+    position: relative;
+    margin-top: 30px;
+}
+.block {
+    position: absolute;
+    color: #2D4153;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    left: 50%;
+    top: 35%;
+    transform: translateX(-50%);
+    &_f {
+        p {
+            font-weight: 400;
+            font-size: 60px;
+            line-height: 76px;
+        }
+    }
+    &_s {
+        text-align: end;
+        p {
+            font-size: 72px;
+            line-height: 92px;
+            margin: 0;
+            &:first-child {
+                font-size: 72px;
+                line-height: 92px;
+                letter-spacing: 0.04em;
+            }
+            &:last-child {
+                margin-right: -55px;
+            }
+        } 
+    }
+}
