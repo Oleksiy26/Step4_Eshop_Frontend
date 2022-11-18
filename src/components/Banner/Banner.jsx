@@ -23,6 +23,7 @@ const Banner = () => {
                 <Button
                     text= "Go to catalog"
                     className={styles.btn}
+                    to="/"
                 />
             </div>
         </>
