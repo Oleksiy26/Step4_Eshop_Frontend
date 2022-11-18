@@ -7,10 +7,10 @@ import Menu from "./Menu";
 const index = () => {
   return (
     <>
-    <Menu/>
-    <Banner/>   
-    <AboutUs />
-    <Instagram />
+      <Menu />
+      <Banner />
+      <AboutUs />
+      <Instagram />
     </>
   );
 };

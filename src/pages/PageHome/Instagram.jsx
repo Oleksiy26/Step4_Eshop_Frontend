@@ -12,25 +12,25 @@ const Instagram = () => {
       </div>
       <div className="d-flex gap-4 flex-column flex-md-row">
         <img
-          class="img-fluid overflow-auto flex-grow-1"
+          className="img-fluid overflow-auto flex-grow-1"
           src="./images/home/inst_img.png"
           alt=""
         />
         <div className="d-flex gap-4">
           <img
-            class="img-fluid overflow-auto flex-grow-1"
+            className="img-fluid overflow-auto flex-grow-1"
             src="./images/home/inst_img-1.png"
             alt=""
           />
 
           <img
-            class="img-fluid overflow-auto flex-grow-1"
+            className="img-fluid overflow-auto flex-grow-1"
             src="./images/home/inst_img-2.png"
             alt=""
           />
         </div>
         <img
-          class="img-fluid overflow-auto flex-grow-1"
+          className="img-fluid overflow-auto flex-grow-1"
           src="./images/home/inst_img-3.png"
           alt=""
         />
