@@ -18,7 +18,7 @@ const AboutUs = () => {
             This campaign carries a valuable message of the importance of
             escaping unwanted captivity to achieve the highest good of all.
           </p>
-          <div className="d-flex gap-4">
+          <div className="d-flex gap-4 aboutImg">
             <img
               className="img-fluid overflow-auto"
               src="./images/home/about1.png"
@@ -39,12 +39,13 @@ const AboutUs = () => {
             Therefore, the understanding of the concept of this campaign is a
             major point in the brand's intentions.
           </p>
-
-          <img
-            className="img-fluid"
-            src="./images/home/about3.png"
-            alt="about3"
-          />
+          <div className="d-flex gap-4 aboutImg">
+            <img
+              className="img-fluid h-100 w-100"
+              src="./images/home/about3.png"
+              alt="about3"
+            />
+          </div>
         </div>
       </div>
     </section>
