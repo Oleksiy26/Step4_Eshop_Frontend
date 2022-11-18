@@ -1,11 +1,15 @@
 import "./App.scss";
-import PageHome from "../src/pages/PageHome/index";
+import Rout from "./routes/Rout";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
-    <div>
-      <PageHome />
-    </div>
+    <>
+      <Header/>
+      <Rout/>
+      <Footer/>
+    </>
   );
 }
 
