@@ -1,16 +1,30 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./Button.scss"
 
 const Button = (props) => {
-    const { text, onClick, className, type} = props;
+    const { text, onClick, className, type, to, href} = props;
+
+    let Component;
+
+    if (href) {
+        Component = "a"
+    } else if (to) {
+        Component = NavLink
+    } else {
+        Component = "button"
+    }
+
     return(
-        <button 
-            className = {className}
+        <Component
+            className = {'btn ' + className}
+            href={href}
+            to={to}
             onClick = {onClick}
-            type= {type}
+            type={href || to ? undefined : type}
         >
             {text}
-        </button>
+        </Component>
     )
 
 }

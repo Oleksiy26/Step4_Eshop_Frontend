@@ -20,7 +20,7 @@ const SlickSlider = () => {
             <Slider {...settings}>
                 <img src="https://i.ibb.co/SdzJ3PY/banner1.jpg" style={{height: '864px', width: '1296px'}}/>   
                 <img src="https://i.ibb.co/qd3K1Bc/banner2.jpg" style={{height: '864px', width: '1296px'}}/>   
-                {/* <img src="https://i.ibb.co/LtfjWwv/banner3.jpg" style={{height: '864px', width: '1296px'}}/>    */}
+                <img src="https://i.ibb.co/NNqS3xf/banner3-1.jpg" style={{height: '864px', width: '1296px'}}/>   
             </Slider>                
         </div>
     )
