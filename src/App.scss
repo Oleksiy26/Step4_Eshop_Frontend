@@ -13,6 +13,14 @@ a {
   color: #97a9ba;
 }
 
+.aboutImg {
+  height: 427px;
+
+  img {
+    object-fit: cover;
+  }
+}
+
 .sectionTitle {
   font-size: 64px;
 }
