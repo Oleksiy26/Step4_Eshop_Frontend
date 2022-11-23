@@ -9,7 +9,11 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    sendRequest();
+    sendRequest('products');
+  }, []);
+
+  useEffect(() => {
+    sendRequest('slides');
   }, []);
 
   return (
