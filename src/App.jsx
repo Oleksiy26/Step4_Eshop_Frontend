@@ -1,19 +1,15 @@
-import './App.scss';
-import Rout from './routes/Rout';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import { useEffect, useState } from 'react';
-import { sendRequest } from './serverrequest/sendRequest';
+import "./App.scss";
+import Rout from "./routes/Rout";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import { useEffect, useState } from "react";
+import { getProducts } from "./api/index";
 
 function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    sendRequest('products');
-  }, []);
-
-  useEffect(() => {
-    sendRequest('slides');
+    getProducts("products");
   }, []);
 
   return (
