@@ -22,6 +22,9 @@
         }
         &_menu {
             display: none;
+            &_page {
+                cursor: pointer;
+            }
             @media (max-width: 992px) {
                 display: block;
                 height: 100%;
@@ -56,7 +59,6 @@
             justify-content: end;
             height: 100%;
             align-items: center;
-            // border-right: 1px solid #DEE6ED;
             a {
                 margin: 0 15px;
                 &:last-child {
