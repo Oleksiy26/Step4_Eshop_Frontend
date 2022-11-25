@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom"; 
+import { NavLink, useLocation } from "react-router-dom"; 
 import {ReactComponent as User} from "./svg/user.svg"
 import {ReactComponent as Cart} from "./svg/cart.svg"
 import {ReactComponent as Fav} from "./svg/fav.svg"
@@ -10,9 +10,32 @@ import Menu from "./Menu/Menu";
 
 const Header = () => {
     const [menu, setMenu] = useState(false);
+    const location = useLocation()
 
     const clickMenu = () => {
         setMenu(!menu);
+    }
+
+    const checkLocation = () => {
+        if (location.pathname !== "/") {
+            return (
+                <div className={styles.header__block_menu_page}>
+                <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            )
+        } else {
+            return (
+                <div className={styles.header__block_menu}>
+                <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            )
+        }
     }
     return(
         <>
@@ -27,19 +50,14 @@ const Header = () => {
                     <NavLink to="/">
                         <Search/>
                     </NavLink>
-                    <NavLink to="/">
+                    <NavLink to="/fav">
                         <Fav/>
                     </NavLink>
                     <NavLink to="/">
                         <Cart/>
                     </NavLink>
                 </div>
-                <div className={styles.header__block_menu}>
-                    <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
+                {checkLocation()}
             </header>
             {menu && <Menu closeFunc={() => clickMenu()}/>}
         </>
