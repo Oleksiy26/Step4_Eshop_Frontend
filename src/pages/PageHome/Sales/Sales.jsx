@@ -1,34 +1,32 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import DiscoverLink from "../../../components/DiscoverLink/DiscoverLink";
 import ProductCard from "../../../components/ProductCard";
 import Title from "../../../components/Title";
 import "./index.scss";
 
 const Sales = () => {
+  const products = useSelector((state) => state.products);
+
+
   return (
     <div className="container">
       <Title title="Sales and promotions" subtitle="Catch the best price" />
       <section className="sales">
-        <ProductCard
-          price={65}
-          photoUrl={"https://i.ibb.co/MDtGZQp/ard51.jpg"}
-          subClass={"sales-item1"}
-        />
-        <ProductCard
-          price={75}
-          photoUrl={"https://i.ibb.co/FDvLLVq/ard70.jpg"}
-          subClass={"sales-item2"}
-        />
-        <ProductCard
-          price={55}
-          photoUrl={"https://i.ibb.co/rdh8K3g/ard63.jpg"}
-          subClass={"sales-item3"}
-        />
-        <ProductCard
-          price={55}
-          photoUrl={"https://i.ibb.co/zXkMHpH/ard9662.jpg"}
-          subClass={"sales-item4"}
-        />
+        {products.length !== 0 ? (
+          <>
+          {products
+            .slice(12,16)
+            .map((item, index) => 
+              <ProductCard
+                price={item.price}
+                photoUrl={item.imageUrls[0]}
+                subClass={"sales-item"}
+                key={index}
+              />
+            )}
+          </>
+        ) : null}
         <DiscoverLink subClass={"sales-link "} />
       </section>
     </div>
