@@ -5,8 +5,12 @@ export const getProducts = (route) =>
   axios
     .get(`${API_URL}/${route}`)
     .then((data) => {
-      console.log(data);
+      return data;
     })
     .catch((err) => {
-      console.log(err);
+      return {
+        products: err.data,
+        status: err.status,
+        statusText: err.statusText,
+      };
     });

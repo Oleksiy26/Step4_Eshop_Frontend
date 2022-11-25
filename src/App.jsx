@@ -2,14 +2,21 @@ import "./App.scss";
 import Rout from "./routes/Rout";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getProducts } from "./api/index";
+import { useSelector, useDispatch } from "react-redux";
+import { loadProducts } from "./store/products/productSlice";
 
 function App() {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const loadItems = async () => {
+    const prod = await getProducts("products");
+    dispatch(loadProducts(prod));
+  };
 
   useEffect(() => {
-    getProducts("products");
+    loadItems();
   }, []);
 
   return (
