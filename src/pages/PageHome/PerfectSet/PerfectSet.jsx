@@ -17,12 +17,16 @@ const PerfectSet = () => {
           {(products
             .slice(0,3)
             .map((item, index) => 
+            <>
               <ProductCard
                 price={item.price}
                 photoUrl={item.imageUrls[0]}
                 subClass={"set-item"}
                 key={index}
+                id={item._id}
               />
+              {/* {console.log(item._id)} */}
+              </>
             ))}
           </>
         ) : null}
