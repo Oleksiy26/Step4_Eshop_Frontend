@@ -8,6 +8,22 @@
   background-color: #878787;
 }
 
+.image {
+  &-wrapper {
+    position: relative;
+    padding: 30% 0 100% 0;
+  }
+
+  &-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .text-wrapper {
   display: flex;
   justify-content: space-between;
