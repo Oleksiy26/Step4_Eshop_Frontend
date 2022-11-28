@@ -3,7 +3,7 @@
     margin-top: 60px;
     margin-bottom: 60px;
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-columns: 2fr 2fr 1.5fr;
     gap: 50px;
     align-items: flex-end;
   }
@@ -34,7 +34,7 @@
   &__button {
     text-align: center;
   }
-}
-span {
-  color: #ee0c0c;
+  &__text_heart {
+    color: #ee0c0c;
+  }
 }

@@ -11,7 +11,7 @@ function Page404() {
           <h1 className="page__title">404</h1>
           <p className="page__text">Sorry, page was not found.</p>
           <p className="page__text">
-            Choose something else from our catalog <span>&#10084;</span>
+            Choose something else from our catalog <span className='page__text_heart'>&#10084;</span>
           </p>
           <Link to="/">
             <Button text="Go to Catalog" className="page__button" />
