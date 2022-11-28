@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { useEffect } from "react";
 import { getProducts } from "./api/index";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadProducts } from "./store/products/productSlice";
 
 function App() {

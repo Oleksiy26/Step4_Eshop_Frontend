@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../../api";
+import { loadSlides } from "../../../store/slides/slides";
 
 const SlickSlider = () => {
+    const dispatch = useDispatch();
+    const slides = useSelector((state) => state.slides)
+
     const settings = {
         dots: false,
         infinite: true,
@@ -14,15 +20,26 @@ const SlickSlider = () => {
         adaptiveHeight: true,
         arrows: false
     };
+    
+    const slidesRequest = async () => {
+        const getSlides = await getProducts("slides");
+        dispatch(loadSlides(getSlides));
+    };
+
+    useEffect(() => {
+        slidesRequest();
+    }, [])
 
     return (
         <div className="container">
             <Slider {...settings}>
-                <img src="https://i.ibb.co/SdzJ3PY/banner1.jpg" style={{height: '864px', width: '1296px'}}/>   
-                <img src="https://i.ibb.co/qd3K1Bc/banner2.jpg" style={{height: '864px', width: '1296px'}}/>   
-                <img src="https://i.ibb.co/NNqS3xf/banner3-1.jpg" style={{height: '864px', width: '1296px'}}/>   
-            </Slider>                
+                {slides && slides.map((item) => 
+                    item.imageUrl.map((url) => 
+                        <img src={url}/>
+                ))}
+            </Slider>  
         </div>
+       
     )
 }
 
