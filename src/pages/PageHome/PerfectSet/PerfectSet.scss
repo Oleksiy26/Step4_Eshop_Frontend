@@ -6,19 +6,19 @@
   grid-gap: 50px;
   grid-template-columns: repeat(4, 1fr);
 
-  &-item1 {
+  &-item:nth-child(1) {
     grid-column: 1/3;
     grid-row: 1/3;
   }
 
-  &-item2 {
+  &-item:nth-child(2) {
     grid-column: 3/4;
   }
-  &-item3 {
+  &-item:nth-child(3) {
     grid-column: 4/5;
   }
 
-  &-item4 {
+  &-item:nth-child(4) {
     grid-column: 4/5;
     grid-row: 4/2;
     justify-self: flex-end;
@@ -40,17 +40,17 @@
 
   @include for-large-up {
     grid-template-columns: repeat(3, 1fr);
-    &-item1 {
+    &-item:nth-child(1) {
       grid-column: 1/2;
       grid-row: unset;
     }
-    &-item2 {
+    &-item:nth-child(2) {
       grid-column: 2/3;
     }
-    &-item3 {
+    &-item:nth-child(3) {
       grid-column: 3/4;
     }
-    &-item4 {
+    &-item:nth-child(4) {
       grid-column: 3/3;
       grid-row: unset;
       top: 0;
@@ -62,17 +62,17 @@
   @include for-small-up {
     grid-template-columns: repeat(2, 1fr);
 
-    &-item1 {
+    &-item:nth-child(1) {
       grid-column: 1/3;
       grid-row: unset;
     }
-    &-item2 {
+    &-item:nth-child(2) {
       grid-column: 2/1;
     }
-    &-item3 {
+    &-item:nth-child(3) {
       grid-column: 2/3;
     }
-    &-item4 {
+    &-item:nth-child(4) {
       grid-column: 1/3;
       grid-row: unset;
     }
