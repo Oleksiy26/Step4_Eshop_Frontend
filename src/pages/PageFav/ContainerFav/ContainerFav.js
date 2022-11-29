@@ -1,0 +1,24 @@
+import React from "react";
+import ProductCard from "../../../components/ProductCard";
+
+const ContainerFav = ({items}) => {
+
+    return(
+        <section className="container py-5">
+            <div className="d-flex gap-4 flex-column flex-md-row">
+                {items.map((item) => 
+                    <ProductCard 
+                        price={item.price}
+                        photoUrl={item.imageUrls[0]}
+                        subClass={'set-item img-fluid overflow-auto flex-grow-1'}
+                        key={item._id}
+                        id={items._id}
+                    />)}
+                    {console.log(items)}
+            </div>
+        </section>
+
+    ) 
+}
+
+export default ContainerFav;

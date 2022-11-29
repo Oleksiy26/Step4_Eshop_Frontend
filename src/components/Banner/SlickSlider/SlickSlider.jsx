@@ -21,14 +21,15 @@ const SlickSlider = () => {
         arrows: false
     };
     
+    useEffect(() => {
+        slidesRequest();
+    }, [])
     const slidesRequest = async () => {
         const getSlides = await getProducts("slides");
         dispatch(loadSlides(getSlides));
     };
 
-    useEffect(() => {
-        slidesRequest();
-    }, [])
+
 
     return (
         <div className="container">

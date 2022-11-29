@@ -14,16 +14,15 @@ const PerfectSet = () => {
       <section className="set">
         {products.length !== 0 ? (
           <>
-            {products.slice(0, 3).map((item, index) => (
+            {products.slice(0, 3).map((item) => (
               <>
                 <ProductCard
                   price={item.price}
                   photoUrl={item.imageUrls[0]}
                   subClass={'set-item'}
-                  key={index}
+                  key={item._id}
                   id={item._id}
                 />
-                {/* {console.log(item._id)} */}
               </>
             ))}
           </>

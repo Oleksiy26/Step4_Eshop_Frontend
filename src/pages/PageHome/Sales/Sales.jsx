@@ -17,12 +17,13 @@ const Sales = () => {
           <>
           {products
             .slice(12,16)
-            .map((item, index) => 
+            .map((item) => 
               <ProductCard
                 price={item.price}
                 photoUrl={item.imageUrls[0]}
                 subClass={"sales-item"}
-                key={index}
+                key={item._id}
+                id={item._id}
               />
             )}
           </>

@@ -7,6 +7,7 @@ import { getProducts } from "./api/index";
 import { useDispatch } from "react-redux";
 import { loadProducts } from "./store/products/productSlice";
 
+
 function App() {
   const dispatch = useDispatch();
 
@@ -18,6 +19,7 @@ function App() {
   useEffect(() => {
     loadItems();
   }, []);
+
 
   return (
     <>

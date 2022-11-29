@@ -40,7 +40,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: end;
+        align-items: flex-end;
         div {
           height: 1.5px;
           background-color: #2d4153;
@@ -56,11 +56,12 @@
     &_svg {
       flex: 1;
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       height: 100%;
       align-items: center;
       a {
         margin: 0 15px;
+        position: relative;
         &:last-child {
           margin-right: 30px;
         }
@@ -75,4 +76,17 @@
       }
     }
   }
+}
+.count {
+  background-color: #387BB9;
+  border-radius: 50%;
+  position: absolute;
+    right: -4px;
+    bottom: 0;
+    font-weight: 400;
+    font-size: 6px;
+    line-height: 8px;
+    color: #F5F8FA;
+    padding: 3px 4px;
+  
 }
