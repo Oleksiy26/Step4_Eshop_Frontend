@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as Favorit } from './svg/favorit.svg';
 import { ReactComponent as FavoritCheck } from './svg/favoritCheck.svg';
 import './ProductCard.scss';
@@ -9,8 +9,9 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
   const [inFav, setInFav] = useState();
   useSelector((state) => state.location)
   const dispatch = useDispatch();
+  useSelector((state) => state.location)
 
-  useState(() => {
+  useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('fav'));
     if (favorite) {
       dispatch(checkInFav(favorite.length))
@@ -20,7 +21,7 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
             }
         })
     }
-  }, [])
+  }, []);
 
 
 

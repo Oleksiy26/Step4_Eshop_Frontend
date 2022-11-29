@@ -6,7 +6,7 @@ const ContainerFav = ({items}) => {
     return(
         <section className="container py-5">
             <div className="d-flex gap-4 flex-column flex-md-row">
-                {items.map((item) => 
+                {items && items.map((item) => 
                     <ProductCard 
                         price={item.price}
                         photoUrl={item.imageUrls[0]}
@@ -14,10 +14,8 @@ const ContainerFav = ({items}) => {
                         key={item._id}
                         id={items._id}
                     />)}
-                    {console.log(items)}
             </div>
         </section>
-
     ) 
 }
 
