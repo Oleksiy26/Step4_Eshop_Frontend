@@ -1,33 +1,39 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom"; 
+import { NavLink } from "react-router-dom"; 
 import {ReactComponent as User} from "./svg/user.svg"
 import {ReactComponent as Cart} from "./svg/cart.svg"
 import {ReactComponent as Fav} from "./svg/fav.svg"
 import {ReactComponent as Search} from "./svg/search.svg"
 import {ReactComponent as Logo} from "./svg/logo.svg"
+import { useSelector } from "react-redux";
 import styles from './Header.module.scss'
 import Menu from "./Menu/Menu";
 
 const Header = () => {
     const [menu, setMenu] = useState(false);
-    const location = useLocation()
+    const counerInFav = useSelector((state) => state.counter.inFav);
+    const locationMain = useSelector((state) => state.location.locationMain);
 
     const clickMenu = () => {
         setMenu(!menu);
     }
 
+    const checkCounterInFav = () => {
+        return counerInFav !==0 ? <span className={styles.count}>{counerInFav}</span> : null;
+    }
+
     const checkLocation = () => {
-        if (location.pathname !== "/") {
-            return (
+        return !locationMain ? 
+             (
                 <div className={styles.header__block_menu_page}>
                 <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
                     <div></div>
                     <div></div>
                 </div>
             </div>
-            )
-        } else {
-            return (
+            ) 
+            :
+            (
                 <div className={styles.header__block_menu}>
                 <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
                     <div></div>
@@ -35,8 +41,9 @@ const Header = () => {
                 </div>
             </div>
             )
-        }
+        
     }
+
     return(
         <>
             <header className={styles.header}>
@@ -52,6 +59,7 @@ const Header = () => {
                     </NavLink>
                     <NavLink to="/fav">
                         <Fav/>
+                        {checkCounterInFav()}
                     </NavLink>
                     <NavLink to="/">
                         <Cart/>

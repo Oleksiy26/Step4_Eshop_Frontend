@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as Favorit } from './svg/favorit.svg';
 import { ReactComponent as FavoritCheck } from './svg/favoritCheck.svg';
 import './ProductCard.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkInFav } from '../../store/counter/counter';
 
 const ProductCard = ({ price, photoUrl, subClass, id }) => {
-  const [inFav, setInFav] = useState(false);
+  const [inFav, setInFav] = useState();
+  useSelector((state) => state.location)
+  const dispatch = useDispatch();
+  useSelector((state) => state.location)
 
-  const checkValue = (value) => {
-    return value != null;
-  };
+  useEffect(() => {
+    const favorite = JSON.parse(localStorage.getItem('fav'));
+    if (favorite) {
+      dispatch(checkInFav(favorite.length))
+        favorite.forEach(item => {
+            if (item === id) {
+              setInFav(true);
+            }
+        })
+    }
+  }, []);
+
+
 
   const clickFav = (id) => {
     if (localStorage.getItem('fav')) {
@@ -17,21 +32,27 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
         fav.push(id);
         localStorage.setItem('fav', JSON.stringify(fav));
         setInFav(true);
+        dispatch(checkInFav(fav.length))
       } else {
         const newFav = fav.map((item) => {
-          if (item !== id) {
-            return item;
-          }
-        });
+          return item !== id ? item : null
+        })
         const filter = newFav.filter(checkValue);
+        dispatch(checkInFav(filter.length))
         localStorage.setItem('fav', JSON.stringify(filter));
         setInFav(false);
       }
     } else {
       localStorage.setItem('fav', JSON.stringify([id]));
       setInFav(true);
+      dispatch(checkInFav(1))
     }
   };
+
+  const checkValue = (value) => {
+    return value != null;
+  };
+
 
   const checkFavIcon = () => {
     return inFav ? (
