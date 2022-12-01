@@ -7,23 +7,21 @@ import { checkInFav } from '../../store/counter/counter';
 
 const ProductCard = ({ price, photoUrl, subClass, id }) => {
   const [inFav, setInFav] = useState();
-  useSelector((state) => state.location)
+  useSelector((state) => state.location);
   const dispatch = useDispatch();
-  useSelector((state) => state.location)
+  useSelector((state) => state.location);
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('fav'));
     if (favorite) {
-      dispatch(checkInFav(favorite.length))
-        favorite.forEach(item => {
-            if (item === id) {
-              setInFav(true);
-            }
-        })
+      dispatch(checkInFav(favorite.length));
+      favorite.forEach((item) => {
+        if (item === id) {
+          setInFav(true);
+        }
+      });
     }
   }, []);
-
-
 
   const clickFav = (id) => {
     if (localStorage.getItem('fav')) {
@@ -32,27 +30,26 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
         fav.push(id);
         localStorage.setItem('fav', JSON.stringify(fav));
         setInFav(true);
-        dispatch(checkInFav(fav.length))
+        dispatch(checkInFav(fav.length));
       } else {
         const newFav = fav.map((item) => {
-          return item !== id ? item : null
-        })
+          return item !== id ? item : null;
+        });
         const filter = newFav.filter(checkValue);
-        dispatch(checkInFav(filter.length))
+        dispatch(checkInFav(filter.length));
         localStorage.setItem('fav', JSON.stringify(filter));
         setInFav(false);
       }
     } else {
       localStorage.setItem('fav', JSON.stringify([id]));
       setInFav(true);
-      dispatch(checkInFav(1))
+      dispatch(checkInFav(1));
     }
   };
 
   const checkValue = (value) => {
     return value != null;
   };
-
 
   const checkFavIcon = () => {
     return inFav ? (
@@ -76,9 +73,9 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
       </div>
 
       <div className="colors-wrapper">
-        <div className="wite"></div>
-        <div className="black"></div>
-        <div className="gray"></div>
+        <div className="color-square white"></div>
+        <div className="color-square black"></div>
+        <div className="color-square gray"></div>
       </div>
 
       <div className="set-hover">

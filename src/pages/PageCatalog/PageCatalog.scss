@@ -1,0 +1,54 @@
+.form-check-label {
+  display: flex;
+  gap: 8px;
+}
+
+.creme {
+  background-color: #ffe2c1;
+}
+.beige {
+  background-color: #fff5be;
+}
+.red {
+  background-color: #ff0000;
+}
+.darkred {
+  background-color: #8b0000;
+}
+
+.page {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  &-nav_list {
+    display: flex;
+    gap: 13px;
+  }
+
+  &-wrapper {
+    display: grid;
+    grid-template: 1fr / minmax(auto, 300px) minmax(auto, 1fr);
+  }
+}
+
+.content {
+  display: grid;
+  &-sort {
+    justify-self: end;
+  }
+  &-sort-list {
+    display: none;
+    justify-self: end;
+  }
+
+  &-list {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
+  }
+  &-button {
+    width: 300px;
+    grid-column: 2/3;
+    justify-self: center;
+    margin-top: 32px;
+  }
+}
