@@ -46,9 +46,35 @@
     grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
   }
   &-button {
-    width: 300px;
+    width: 280px;
     grid-column: 2/3;
     justify-self: center;
     margin-top: 32px;
+  }
+  &-sort {
+    cursor: pointer;
+    position: relative;
+    padding-right: 30px;
+  }
+
+  &-sort::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 2px;
+    transform: rotate(45deg);
+    top: 13px;
+    left: 52px;
+    background-color:#2D4153;;
+  }
+  &-sort::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 2px;
+    top: 13px;
+    left: 56px;
+    transform: rotate(-45deg);
+    background-color:#2D4153;;
   }
 }

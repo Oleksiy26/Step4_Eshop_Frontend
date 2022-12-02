@@ -154,7 +154,7 @@ const PageCatalog = () => {
                 </label>
               </div>
             </li>
-            <p className="more-colors">More colors</p>
+            <p className="more-colors pseudo">More colors</p>
           </ul>
           <TitleSmall title="Sizes" />
           <ul className="page-sizes_list">
@@ -236,9 +236,9 @@ const PageCatalog = () => {
                 </label>
               </div>
             </li>
-            <p className="more-sizes">More sizes</p>
+            <p className="more-sizes pseudo">More sizes</p>
           </ul>
-          <Button text="Filter" className="page__button" />
+          <Button text="Filter" className="page__button content-button" />
         </aside>
         <section className="content">
           <p className="content-sort">Sort by </p>
