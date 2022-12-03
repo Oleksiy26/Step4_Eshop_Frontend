@@ -32,12 +32,23 @@
 
 .content {
   display: grid;
+  &.cards {
+    position: relative;
+  }
   &-sort {
     justify-self: end;
   }
   &-sort-list {
-    display: none;
+    // display: none;
     justify-self: end;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    top: 39px;
+    padding: 10px 11px;
+    & li {
+      margin-bottom: 20px;
+    }
   }
 
   &-list {
