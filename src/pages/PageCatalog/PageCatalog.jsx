@@ -1,10 +1,9 @@
 import React from 'react';
-import TitleBig from '../../components/TitleBig';
-import TitleSmall from '../../components/TitleSmall';
 import Button from '../../components/Button';
 import ProductCard from '../../components/ProductCard';
 import { useSelector } from 'react-redux';
 import './PageCatalog.scss';
+import Title from '../../components/Title/Title';
 
 const PageCatalog = () => {
   const products = useSelector((state) => state.products);
@@ -16,10 +15,10 @@ const PageCatalog = () => {
           <li className="page-nav_item">Catalogue</li>
         </ul>
       </nav>
-      <TitleBig subtitle="Catalogue" />
+      <Title subtitle="Catalogue" />
       <div className="page-wrapper">
         <aside className="page-sidebar">
-          <TitleSmall title="Category" />
+          <Title title="Category" />
           <ul className="page-filter_list">
             <li className="page-filter_item">
               <div className="form-check">
@@ -61,7 +60,7 @@ const PageCatalog = () => {
               </div>
             </li>
           </ul>
-          <TitleSmall title="Colors" />
+          <Title title="Colors" />
           <ul className="page-colors_list">
             <li className="page-colors_item">
               <div className="form-check">
@@ -156,7 +155,7 @@ const PageCatalog = () => {
             </li>
             <p className="more-colors pseudo">More colors</p>
           </ul>
-          <TitleSmall title="Sizes" />
+          <Title title="Sizes" />
           <ul className="page-sizes_list">
             <li className="page-sizes_item">
               <div className="form-check">
