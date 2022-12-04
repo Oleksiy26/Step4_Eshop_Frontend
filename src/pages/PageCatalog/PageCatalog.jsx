@@ -1,13 +1,28 @@
 import React from 'react';
+import { useState } from 'react';
 import TitleBig from '../../components/TitleBig';
 import TitleSmall from '../../components/TitleSmall';
 import Button from '../../components/Button';
 import ProductCard from '../../components/ProductCard';
+import SortList from '../../components/SortList';
 import { useSelector } from 'react-redux';
+
 import './PageCatalog.scss';
 
 const PageCatalog = () => {
   const products = useSelector((state) => state.products);
+  const sortOptions = [
+    { value: 'Featured' },
+    { value: 'Price: Low to High' },
+    { value: 'Price: High to Low' },
+    { value: 'Costumer Review' },
+    { value: 'Newest Arrivals' },
+  ];
+
+  const [sortActive, setSortActive] = useState(false);
+
+  const handleSortOptions = () => setSortActive(!sortActive);
+
   return (
     <div className="container page">
       <nav className="page-nav">
@@ -154,7 +169,7 @@ const PageCatalog = () => {
                 </label>
               </div>
             </li>
-            <p className="more-colors pseudo">More colors</p>
+            <p className="more-colors pseudo colors">More colors</p>
           </ul>
           <TitleSmall title="Sizes" />
           <ul className="page-sizes_list">
@@ -236,26 +251,26 @@ const PageCatalog = () => {
                 </label>
               </div>
             </li>
-            <p className="more-sizes pseudo">More sizes</p>
+            <p className="more-sizes pseudo sizes">More sizes</p>
           </ul>
           <Button text="Filter" className="page__button content-button" />
         </aside>
         <section className="content">
-          <p className="content-sort">Sort by </p>
+          <p className="content-sort" onClick={handleSortOptions}>
+            Sort by
+          </p>
 
-          <ul className="content-sort-list">
-            <li className="content-sort-item">Featured</li>
-            <li className="content-sort-item">Price: Low to High</li>
-            <li className="content-sort-item">Price: High to Low</li>
-            <li className="content-sort-item">Costumer Review</li>
-            <li className="content-sort-item">Newest Arrivals</li>
-          </ul>
+          <SortList
+            active={sortActive}
+            setActive={setSortActive}
+            sortOptions={sortOptions}
+          />
 
           <ul className="content-list">
             {products.length !== 0 ? (
               <>
                 {products.slice(0, 12).map((item) => (
-                  <>
+                  <li>
                     <ProductCard
                       price={item.price}
                       photoUrl={item.imageUrls[0]}
@@ -263,7 +278,7 @@ const PageCatalog = () => {
                       key={item._id}
                       id={item._id}
                     />
-                  </>
+                  </li>
                 ))}
               </>
             ) : null}

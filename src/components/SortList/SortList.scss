@@ -1,0 +1,16 @@
+.content {
+  &-sort-list {
+    // display: none;
+    opacity: 0;
+    justify-self: end;
+    // transform: translateY(-100%);
+    transition-duration: 2s;
+    transition: cubic-bezier(0.95, 0.05, 0.795, 0.035) 0.4s;
+
+  }
+  &-sort-list.active {
+    // display: block;
+    // transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -34,11 +34,9 @@
   display: grid;
   &-sort {
     justify-self: end;
+    z-index: 50;
   }
-  &-sort-list {
-    display: none;
-    justify-self: end;
-  }
+  
 
   &-list {
     display: grid;
@@ -65,7 +63,7 @@
     transform: rotate(45deg);
     top: 13px;
     left: 52px;
-    background-color:#2D4153;;
+    background-color: #2d4153;
   }
   &-sort::after {
     content: '';
@@ -75,6 +73,41 @@
     top: 13px;
     left: 56px;
     transform: rotate(-45deg);
-    background-color:#2D4153;;
+    background-color: #2d4153;
   }
+}
+
+.pseudo {
+  cursor: pointer;
+  position: relative;
+}
+
+.pseudo::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 2px;
+
+  top: 12px;
+  left: 70px;
+  background-color: #2d4153;
+}
+.pseudo::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  top: 12px;
+  left: 70px;
+  transform: rotate(90deg);
+  background-color: #2d4153;
+}
+
+
+.colors::before{
+   left: 76px;
+}
+
+.colors::after{
+   left: 76px;
 }

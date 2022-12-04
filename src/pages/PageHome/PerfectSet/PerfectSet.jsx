@@ -12,7 +12,7 @@ const PerfectSet = () => {
     <div className="container">
       <Title title="new arrivals" subtitle="Choose your perfect set" />
       <section className="set">
-        {products.length !== 0 ? (
+        {products.length ? (
           <>
             {products.slice(0, 3).map((item) => (
               <>
