@@ -15,14 +15,10 @@ const Header = () => {
     const [menu, setMenu] = useState(false);
     const counerInFav = useSelector((state) => state.counter.inFav);
     const counerInCart = useSelector((state) => state.counter.inCart);
-
+    
 
     const clickMenu = () => {
         setMenu(!menu);
-    }
-
-    const checkCounterInFav = () => {
-        return counerInFav ? <span className={styles.count}>{counerInFav}</span> : null;
     }
 
     return(

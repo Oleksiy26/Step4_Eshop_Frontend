@@ -12,10 +12,8 @@ const PerfectSet = () => {
     <div className="container">
       <Title title="new arrivals" subtitle="Choose your perfect set" />
       <section className="set">
-        {products.length ? (
-          <>
-            {products.slice(0, 3).map((item) => (
-              <>
+        {products ? (
+            products.products.slice(0, 3).map((item) => (
                 <ProductCard
                   price={item.price}
                   photoUrl={item.imageUrls[0]}
@@ -23,9 +21,7 @@ const PerfectSet = () => {
                   key={item._id}
                   id={item._id}
                 />
-              </>
-            ))}
-          </>
+            ))
         ) : null}
         <DiscoverLink subClass={'set-link set-item'} />
       </section>
