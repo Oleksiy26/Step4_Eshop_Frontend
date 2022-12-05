@@ -33,7 +33,6 @@ export const slidesSlice = createSlice({
     [fetchSlides.fulfilled]: (state, action) => {
       state.status = "resolved";
       state.slides = action.payload;
-      console.log(state.slides);
     },
     [fetchSlides.rejected]: (state, action) => {
       state.status = "rejected";
