@@ -32,11 +32,12 @@
 
 .content {
   display: grid;
+  &.cards {
+    position: relative;
+  }
   &-sort {
     justify-self: end;
-    z-index: 50;
   }
-  
 
   &-list {
     display: grid;
@@ -103,11 +104,10 @@
   background-color: #2d4153;
 }
 
-
-.colors::before{
-   left: 76px;
+.colors::before {
+  left: 76px;
 }
 
-.colors::after{
-   left: 76px;
+.colors::after {
+  left: 76px;
 }
