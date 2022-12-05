@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkbox from '../Checkbox';
-import './Category.scss';
+// import './Category.scss';
 
 const Colors = ({ colorsArray }) => {
   return (

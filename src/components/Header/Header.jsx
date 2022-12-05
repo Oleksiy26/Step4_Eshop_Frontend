@@ -8,11 +8,11 @@ import {ReactComponent as Logo} from "./svg/logo.svg"
 import { useSelector } from "react-redux";
 import styles from './Header.module.scss'
 import Menu from "./Menu/Menu";
+import Burger from "./Burger";
 
 const Header = () => {
     const [menu, setMenu] = useState(false);
     const counerInFav = useSelector((state) => state.counter.inFav);
-    const locationMain = useSelector((state) => state.location.locationMain);
 
     const clickMenu = () => {
         setMenu(!menu);
@@ -20,28 +20,6 @@ const Header = () => {
 
     const checkCounterInFav = () => {
         return counerInFav !==0 ? <span className={styles.count}>{counerInFav}</span> : null;
-    }
-
-    const checkLocation = () => {
-        return !locationMain ? 
-             (
-                <div className={styles.header__block_menu_page}>
-                <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-            ) 
-            :
-            (
-                <div className={styles.header__block_menu}>
-                <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-            )
-        
     }
 
     return(
@@ -65,7 +43,7 @@ const Header = () => {
                         <Cart/>
                     </NavLink>
                 </div>
-                {checkLocation()}
+                <Burger onClick={() => clickMenu()}/>
             </header>
             {menu && <Menu closeFunc={() => clickMenu()}/>}
         </>
