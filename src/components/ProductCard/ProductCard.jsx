@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ReactComponent as Favorit } from './svg/favorit.svg';
-import { ReactComponent as FavoritCheck } from './svg/favoritCheck.svg';
 import './ProductCard.scss';
 import { useDispatch } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
