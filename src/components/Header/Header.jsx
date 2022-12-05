@@ -38,7 +38,7 @@ const Header = () => {
                         <Fav/>
                         {counerInFav ? <Count count={counerInFav}/> : null}
                     </NavLink>
-                    <NavLink to="/">
+                    <NavLink to="/cart">
                         <Cart/>
                         {counerInCart ? <Count count={counerInCart}/> : null}
                     </NavLink>

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { ReactComponent as Favorit } from './svg/favorit.svg';
 import { ReactComponent as FavoritCheck } from './svg/favoritCheck.svg';
 import './ProductCard.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
+import Favicon from './Favicon/Favicon';
 
 const ProductCard = ({ price, photoUrl, subClass, id }) => {
   const [inFav, setInFav] = useState(false);
@@ -74,17 +75,6 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
     return value != null;
   };
 
-  const checkFavIcon = () => {
-    return inFav ? (
-      <FavoritCheck
-        className="set-addfavorit_img"
-        onClick={() => clickFav(id)}
-      />
-    ) : (
-      <Favorit className="set-addfavorit_img" onClick={() => clickFav(id)} />
-    );
-  };
-
   return (
     <div className={`set-card ${subClass}`}>
       <div className="image-wrapper">
@@ -105,7 +95,12 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
         <button className="set-addcart" onClick={() => clickToCart(id)}>
           {!inCart ? "Add to cart" : "Delate from cart"}
         </button>
-        <div className="set-addfavorit">{checkFavIcon()}</div>
+        <div className="set-addfavorit">
+          <Favicon
+          onClick={() => clickFav(id)}
+          inFav={inFav}
+          />
+          </div>
       </div>
     </div>
   );
