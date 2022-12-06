@@ -2,7 +2,8 @@ import React from 'react';
 import Checkbox from '../Checkbox';
 import './Sizes.scss';
 
-const Sizes = ({ sizesArray }) => {
+const Sizes = () => {
+  const sizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   return (
     <ul className="page-sizes_list">
       {sizesArray &&
