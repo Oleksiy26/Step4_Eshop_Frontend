@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import ProductCard from '../../components/ProductCard';
 import SortList from '../../components/SortList';

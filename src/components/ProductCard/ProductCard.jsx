@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { ReactComponent as Favorit } from './svg/favorit.svg';
-import { ReactComponent as FavoritCheck } from './svg/favoritCheck.svg';
 import './ProductCard.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkInFav } from '../../store/counter/counter';
+import { useDispatch } from 'react-redux';
+import { checkInCart, checkInFav } from '../../store/counter/counter';
+import Favicon from './Favicon/Favicon';
 
 const ProductCard = ({ price, photoUrl, subClass, id }) => {
-  const [inFav, setInFav] = useState();
-  useSelector((state) => state.location);
+  const [inFav, setInFav] = useState(false);
+  const [inCart, setInCart] = useState(false);
   const dispatch = useDispatch();
-  useSelector((state) => state.location);
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('fav'));
@@ -47,19 +45,32 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
     }
   };
 
+  const clickToCart = () => {
+    if (localStorage.getItem('cart')) {
+      const cart = JSON.parse(localStorage.getItem('cart'));
+      if (!cart.includes(id)) {
+        cart.push(id);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        setInCart(true);
+        dispatch(checkInCart(cart.length));
+      } else {
+        const newCart = cart.map((item) => {
+          return item !== id ? item : null;
+        });
+        const filter = newCart.filter(checkValue);
+        dispatch(checkInCart(filter.length));
+        localStorage.setItem('cart', JSON.stringify(filter));
+        setInCart(false);
+      }
+    } else {
+      localStorage.setItem('cart', JSON.stringify([id]));
+      setInCart(true);
+      dispatch(checkInCart(1));
+    }
+  }
+
   const checkValue = (value) => {
     return value != null;
-  };
-
-  const checkFavIcon = () => {
-    return inFav ? (
-      <FavoritCheck
-        className="set-addfavorit_img"
-        onClick={() => clickFav(id)}
-      />
-    ) : (
-      <Favorit className="set-addfavorit_img" onClick={() => clickFav(id)} />
-    );
   };
 
   return (
@@ -79,8 +90,15 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
       </div>
 
       <div className="set-hover">
-        <button className="set-addcart">Add to cart</button>
-        <div className="set-addfavorit">{checkFavIcon()}</div>
+        <button className="set-addcart" onClick={() => clickToCart(id)}>
+          {!inCart ? "Add to cart" : "Delate from cart"}
+        </button>
+        <div className="set-addfavorit">
+          <Favicon
+          onClick={() => clickFav(id)}
+          inFav={inFav}
+          />
+          </div>
       </div>
     </div>
   );

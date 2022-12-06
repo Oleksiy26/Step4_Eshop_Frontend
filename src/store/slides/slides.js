@@ -1,17 +1,44 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = [];
+export const fetchSlides = createAsyncThunk(
+  'slides/fetchSlides',
+  async function(_, {rejectWithValue}) {
+    try {
+      const respons = await fetch('http://localhost:5000/api/slides');
+      if (!respons.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await respons.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+const initialState = {
+  slides: [],
+  status: null,
+  error: null
+};
 
 export const slidesSlice = createSlice({
   name: "slides",
   initialState,
-  reducers: {
-    loadSlides: (state, action) => {
-      state.push(...action.payload.data);
+  extraReducers: {
+    [fetchSlides.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
     },
-  },
+    [fetchSlides.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.slides = action.payload;
+    },
+    [fetchSlides.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    }
+  }
 });
-
-export const { loadSlides } = slidesSlice.actions;
 
 export default slidesSlice.reducer;

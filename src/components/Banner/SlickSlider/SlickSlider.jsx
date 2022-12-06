@@ -3,8 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../api";
-import { loadSlides } from "../../../store/slides/slides";
+import { fetchSlides } from "../../../store/slides/slides";
 
 const SlickSlider = () => {
     const dispatch = useDispatch();
@@ -22,19 +21,14 @@ const SlickSlider = () => {
     };
     
     useEffect(() => {
-        slidesRequest();
+        dispatch(fetchSlides())
     }, [])
-    const slidesRequest = async () => {
-        const getSlides = await getProducts("slides");
-        dispatch(loadSlides(getSlides));
-    };
-
 
 
     return (
         <div className="container">
             <Slider {...settings}>
-                {slides && slides.map((item) => 
+                {slides && slides.slides.map((item) => 
                     item.imageUrl.map((url) => 
                         <img src={url}/>
                 ))}
