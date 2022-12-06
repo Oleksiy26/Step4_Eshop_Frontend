@@ -8,40 +8,17 @@ import {ReactComponent as Logo} from "./svg/logo.svg"
 import { useSelector } from "react-redux";
 import styles from './Header.module.scss'
 import Menu from "./Menu/Menu";
+import Burger from "./Burger";
+import Count from "./Count";
 
 const Header = () => {
     const [menu, setMenu] = useState(false);
     const counerInFav = useSelector((state) => state.counter.inFav);
-    const locationMain = useSelector((state) => state.location.locationMain);
+    const counerInCart = useSelector((state) => state.counter.inCart);
+    
 
     const clickMenu = () => {
         setMenu(!menu);
-    }
-
-    const checkCounterInFav = () => {
-        return counerInFav !==0 ? <span className={styles.count}>{counerInFav}</span> : null;
-    }
-
-    const checkLocation = () => {
-        return !locationMain ? 
-             (
-                <div className={styles.header__block_menu_page}>
-                <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-            ) 
-            :
-            (
-                <div className={styles.header__block_menu}>
-                <div className={styles.header__block_menu_btn} onClick={() => clickMenu()}>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-            )
-        
     }
 
     return(
@@ -59,13 +36,14 @@ const Header = () => {
                     </NavLink>
                     <NavLink to="/fav">
                         <Fav/>
-                        {checkCounterInFav()}
+                        {counerInFav ? <Count count={counerInFav}/> : null}
                     </NavLink>
-                    <NavLink to="/">
+                    <NavLink to="/cart">
                         <Cart/>
+                        {counerInCart ? <Count count={counerInCart}/> : null}
                     </NavLink>
                 </div>
-                {checkLocation()}
+                <Burger onClick={() => clickMenu()}/>
             </header>
             {menu && <Menu closeFunc={() => clickMenu()}/>}
         </>

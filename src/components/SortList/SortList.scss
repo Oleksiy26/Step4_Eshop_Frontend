@@ -1,0 +1,17 @@
+.content {
+  &-sort-list {
+    // display: none;
+    justify-self: end;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    top: 39px;
+    padding: 10px 11px;
+    & li {
+      margin-bottom: 20px;
+    }
+  }
+  &-sort-list.active {
+    // display: block;
+  }
+}

@@ -17,7 +17,7 @@ const PageFav = () => {
     const findItemsFav = () => {
         const itemsCart = JSON.parse(localStorage.getItem('fav'));
 
-        return products.reduce((arrayCart, item) => {
+        return products.products.reduce((arrayCart, item) => {
             if (Array.isArray(itemsCart)) {
                 if (itemsCart.includes(item._id)) {
                     arrayCart.push(item)

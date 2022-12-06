@@ -13,9 +13,12 @@ export const counterSlice = createSlice({
     checkInFav: (state, action) => {
       state.inFav = action.payload
     },
+    checkInCart: (state, action) => {
+      state.inCart = action.payload
+    }
   },
 });
 
-export const { checkInFav } = counterSlice.actions;
+export const { checkInFav, checkInCart } = counterSlice.actions;
 
 export default counterSlice.reducer;
