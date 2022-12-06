@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import ProductCard from '../../components/ProductCard';
 import SortList from '../../components/SortList';
@@ -52,7 +52,7 @@ const PageCatalog = () => {
           <Title title="Category" />
           <Category categoryArray={categoryArray} />
           <Title title="Colors" />
-          <Colors colorsArray={colorsArray} />
+          <Colors  />
           <Title title="Sizes" />
           <Sizes sizesArray={sizesArray} />
           <Button text="Filter" className="page__button content-button" />
@@ -71,7 +71,7 @@ const PageCatalog = () => {
           <ul className="content-list">
             {products.length ? (
               <>
-                {products.slice(0, 12).map((item) => (
+                {products.products.slice(0, 12).map((item) => (
                   <li>
                     <ProductCard
                       price={item.price}
