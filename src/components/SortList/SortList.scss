@@ -1,17 +1,17 @@
 .content {
   &-sort-list {
-    // display: none;
+    display: none;
     justify-self: end;
     position: absolute;
-    z-index: 100;
+    z-index: 10000;
     background-color: white;
     top: 39px;
     padding: 10px 11px;
-    & li {
+    &-sort-item {
       margin-bottom: 20px;
     }
   }
   &-sort-list.active {
-    // display: block;
+    display: block;
   }
 }

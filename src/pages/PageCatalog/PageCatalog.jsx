@@ -39,7 +39,7 @@ const PageCatalog = () => {
   };
 
   return (
-    <div className="container page">
+    <div className="container page" onClick={hadlerSortBtn}>
       <nav className="page-nav">
         <ul className="page-nav_list">
           <li className="page-nav_item">Home</li>
@@ -61,18 +61,16 @@ const PageCatalog = () => {
           <p className="content-sort" onClick={hadlerSortBtn}>
             Sort by
           </p>
-
           <SortList
             active={sortActive}
-            setActive={setSortActive}
+            setActive={hadlerSortBtn}
             sortOptions={sortOptions}
           />
-
           <ul className="content-list">
             {products.length ? (
               <>
                 {products.slice(0, 12).map((item) => (
-                  <li>
+                  <li key={item._id}>
                     <ProductCard
                       price={item.price}
                       photoUrl={item.imageUrls[0]}

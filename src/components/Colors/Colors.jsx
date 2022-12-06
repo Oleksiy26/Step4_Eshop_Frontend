@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkbox from '../Checkbox';
-import './Category.scss';
+import './Colors.scss';
 
 const Colors = ({ colorsArray }) => {
   return (
@@ -18,7 +18,7 @@ const Colors = ({ colorsArray }) => {
             </li>
           );
         })}
-      <p className="more-colors pseudo">More colors</p>
+      <p className="more-colors pseudo colors">More colors</p>
     </ul>
   );
 };
