@@ -12,7 +12,7 @@ const ContainerFav = ({items}) => {
                         photoUrl={item.imageUrls[0]}
                         subClass={'set-item img-fluid overflow-auto flex-grow-1'}
                         key={item._id}
-                        id={items._id}
+                        id={item._id}
                     />)}
             </div>
         </section>

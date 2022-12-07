@@ -2,7 +2,8 @@ import React from 'react';
 import Checkbox from '../Checkbox';
 import './Category.scss';
 
-const Category = ({ categoryArray, active, setActive }) => {
+const Category = () => {
+  const categoryArray = ['Lingerie', 'Swimwear', 'Homewear'];
   return (
     <ul className="page-filter_list">
       {categoryArray &&

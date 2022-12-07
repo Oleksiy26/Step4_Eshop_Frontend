@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../components/Button';
-import ProductCard from '../../components/ProductCard';
+import Galery from '../../components/Galery';
 import SortList from '../../components/SortList';
-import { useSelector } from 'react-redux';
 
 import './PageCatalog.scss';
 import Title from '../../components/Title/Title';
@@ -11,31 +10,15 @@ import Colors from '../../components/Colors';
 import Sizes from '../../components/Sizes';
 
 const PageCatalog = () => {
-  const products = useSelector((state) => state.products);
   const [sortActive, setSortActive] = useState(false);
-
-  const categoryArray = ['Lingerie', 'Swimwear', 'Homewear'];
-  const colorsArray = [
-    'Black',
-    'White',
-    'Creme',
-    'Beige',
-    'Red',
-    'Gray',
-    'DarkRed',
-  ];
-  const sizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-
-  const sortOptions = [
-    { value: 'Featured' },
-    { value: 'Price: Low to High' },
-    { value: 'Price: High to Low' },
-    { value: 'Costumer Review' },
-    { value: 'Newest Arrivals' },
-  ];
+  const [numOfElem, setnumOfElem] = useState(12);
 
   const hadlerSortBtn = () => {
     setSortActive(!sortActive);
+  };
+
+  const LoadMore = () => {
+    setnumOfElem(numOfElem + 3);
   };
 
   return (
@@ -50,45 +33,24 @@ const PageCatalog = () => {
       <div className="page-wrapper">
         <aside className="page-sidebar">
           <Title title="Category" />
-          <Category categoryArray={categoryArray} />
+          <Category />
           <Title title="Colors" />
-          <Colors colorsArray={colorsArray} />
+          <Colors />
           <Title title="Sizes" />
-          <Sizes sizesArray={sizesArray} />
+          <Sizes />
           <Button text="Filter" className="page__button content-button" />
         </aside>
         <section className="content cards">
           <p className="content-sort" onClick={hadlerSortBtn}>
             Sort by
           </p>
-
-          <SortList
-            active={sortActive}
-            setActive={setSortActive}
-            sortOptions={sortOptions}
-          />
-
-          <ul className="content-list">
-            {products.length ? (
-              <>
-                {products.slice(0, 12).map((item) => (
-                  <li>
-                    <ProductCard
-                      price={item.price}
-                      photoUrl={item.imageUrls[0]}
-                      // subClass={'image-wrapper'}
-                      key={item._id}
-                      id={item._id}
-                    />
-                  </li>
-                ))}
-              </>
-            ) : null}
-          </ul>
+          <SortList active={sortActive} setActive={setSortActive} />
+          <Galery numOfElem={numOfElem} />
         </section>
         <Button
           text="Load more beauty"
           className="page__button content-button"
+          onClick={LoadMore}
         />
       </div>
     </div>

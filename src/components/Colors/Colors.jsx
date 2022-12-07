@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Checkbox from '../Checkbox';
-// import './Category.scss';
+import './Colors.scss';
 
-const Colors = ({ colorsArray }) => {
+const Colors = () => {
+  const products = useSelector((state) => state.products);
+  const [colorsArray, setColorsArray] = useState([]);
+
+  useEffect(() => {
+    const colorsArray = products.products.map((item) => item.color);
+    const uniqueColors = new Set(colorsArray)
+    setColorsArray(Array.from(uniqueColors))
+  }, [products])
+
   return (
     <ul className="page-colors_list">
       {colorsArray &&
@@ -18,7 +28,7 @@ const Colors = ({ colorsArray }) => {
             </li>
           );
         })}
-      <p className="more-colors pseudo">More colors</p>
+      <p className="more-colors pseudo colors">More colors</p>
     </ul>
   );
 };
