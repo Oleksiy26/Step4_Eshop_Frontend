@@ -6,12 +6,11 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "./store/products/productSlice";
 
-
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts())
+    dispatch(fetchProducts());
   }, []);
 
   return (
