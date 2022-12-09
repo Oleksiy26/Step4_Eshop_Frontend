@@ -1,0 +1,30 @@
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.secondaryColor {
+  color: #97a9ba;
+}
+
+.aboutImg {
+  height: 427px;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.sectionTitle {
+  font-size: 64px;
+}
+
+.aboutImg {
+  height: 340px;
+}
