@@ -40,17 +40,27 @@ const LoginSignIn = () => {
         }
     }
 
+    const loginValues = [
+        {valueInput: loginForm.loginOrEmail, placeholder: 'loginOrEmail', name: 'loginOrEmail' },
+        {valueInput: loginForm.password, placeholder: 'password', name: 'password' },
+    ]
+
     return (
         <div>
             <form onSubmit={toSubmit}>
                 <div>
-                    {/*{loginValues.map((value) => {*/}
-                    {/*    return (*/}
-                    {/*        <MyInput value={value} changeValue={changeLoginValues} />*/}
-                    {/*    )*/}
-                    {/*})}*/}
-                    <MyInput value={loginForm.loginOrEmail} changeValue={changeLoginValues} />
-                    <MyInput value={loginForm.password} changeValue={changeLoginValues} />
+                    {loginValues.map((value) => {
+                        const { valueInput, placeholder, name } = value
+                        return (
+                            <MyInput
+                                key={placeholder}
+                                name={name}
+                                placeholder={placeholder}
+                                value={valueInput}
+                                changeValue={changeLoginValues}
+                            />
+                        )
+                    })}
                     <button
                         style={{ marginTop: '35px' }}
                         disabled={loading}
