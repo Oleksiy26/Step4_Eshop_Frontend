@@ -1,0 +1,300 @@
+[
+  {
+    "imageUrls": [
+      "https://i.ibb.co/qp2LMJ4/card11.jpg",
+      "https://i.ibb.co/q51ZSHJ/card12.jpg",
+      "https://i.ibb.co/8zcFFvF/card13.jpgt",
+      "https://i.ibb.co/7zSG6cb/card14.jpg",
+      "https://i.ibb.co/C07n7PG/card15.jpg"
+    ],
+    "color": "pink",
+    "setName": "Penelope Pink",
+    "price": "85",
+    "size": ["S", "L", "XL"],
+    "collection": "Hiding Beauty",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/MMxK19N/card2.jpg",
+      "https://i.ibb.co/MMxK19N/card2.jpg",
+      "https://i.ibb.co/BwD74dc/card23.jpg",
+      "https://i.ibb.co/bJJ8t0P/card24.jpg",
+      "https://i.ibb.co/C2xwtt0/card25.jpg"
+    ],
+    "color": "black",
+    "setName": "Sicilia Black",
+    "price": "65",
+    "size": ["S", "L", "XL"],
+    "collection": "Sporty basics",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/zVkT9fy/ard31.jpg",
+      "https://i.ibb.co/Wpcgf0Y/ard32.jpg",
+      "https://i.ibb.co/XXFy6jV/ard33.jpg",
+      "https://i.ibb.co/cCzYkqx/ard34.jpg",
+      "https://i.ibb.co/FWC8zz9/ard35.jpg"
+    ],
+    "color": "nude",
+    "setName": "Sicilia Nude",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Lace of Temptation",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/fMHs1jt/ard41.jpg",
+      "https://i.ibb.co/2kg3bp4/ard42.jpg",
+      "https://i.ibb.co/9GRZNQW/ard43.jpg",
+      "https://i.ibb.co/0ZrJkrr/ard44.jpg",
+      "https://i.ibb.co/XVg4wMx/ard45.jpg"
+    ],
+    "color": "violet",
+    "setName": "Violet",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hypnotism",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/MDtGZQp/ard51.jpg",
+      "https://i.ibb.co/LZJx8Lj/ard52.jpg",
+      "https://i.ibb.co/BqtDgtf/ard53.jpg",
+      "https://i.ibb.co/CtgkzB2/ard54.jpg",
+      "https://i.ibb.co/pvFH7BB/ard55.jpg"
+    ],
+    "color": "white",
+    "setName": "Fatality White",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Sporty basics",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/D1bP2rf/ard61.jpg",
+      "https://i.ibb.co/C03vwK7/ard62.jpg",
+      "https://i.ibb.co/Y0Sn4X6/ard63.jpg",
+      "https://i.ibb.co/ftB8Nnf/ard64.jpg",
+      "https://i.ibb.co/fQmhBH4/ard65.jpg"
+    ],
+    "color": "black",
+    "setName": "Sicilia Black",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Lace of Templation",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/FDvLLVq/ard70.jpg",
+      "https://i.ibb.co/LgGCv1f/ard71.jpg",
+      "https://i.ibb.co/Hd2xnm1/ard72.jpg",
+      "https://i.ibb.co/M7xdmbd/ard73.jpg",
+      "https://i.ibb.co/rfq8f1Y/ard74.jpg"
+    ],
+    "color": "black",
+    "setName": "Hanna",
+    "price": "95",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hiding Beauty",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/S6nbnwM/ard81.jpg",
+      "https://i.ibb.co/1KbVXg5/ard82.jpg",
+      "https://i.ibb.co/dcpT7HL/ard83.jpg",
+      "https://i.ibb.co/0cWTWTT/ard84.jpg",
+      "https://i.ibb.co/0cWTWTT/ard84.jpg"
+    ],
+    "color": "red",
+    "setName": "Reyne",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hypnotism",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/Pz3JGRf/ard9611.jpg",
+      "https://i.ibb.co/8KmXcBB/ard9612.jpg",
+      "https://i.ibb.co/tCRy8N5/ard9613.jpg",
+      "https://i.ibb.co/5MS9wJW/ard9614.jpg",
+      "https://i.ibb.co/prcs823/ard9615.jpg"
+    ],
+    "color": "black",
+    "setName": "Unnamed black",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "The Magic of Transparency",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/9sjkHFG/ard91.jpg",
+      "https://i.ibb.co/VN3fFbZ/ard92.jpg",
+      "https://i.ibb.co/bXjK1GJ/ard93.jpg",
+      "https://i.ibb.co/z6rHR0H/ard94.jpg",
+      "https://i.ibb.co/2YzNQSS/ard95.jpg"
+    ],
+    "color": "red",
+    "setName": "Fantasy",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hiding Beauty",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/XyQHR0Y/ard9621.jpg",
+      "https://i.ibb.co/35Kw6vB/ard9622.jpg",
+      "https://i.ibb.co/qn793sC/ard9623.jpg",
+      "https://i.ibb.co/T8nXTzN/ard9624.jpg",
+      "https://i.ibb.co/Y2k5Ym4/ard9625.jpg"
+    ],
+    "color": "red",
+    "setName": "Passion",
+    "price": "95",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hypnotism",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/3hv5q7V/ard9631.jpg",
+      "https://i.ibb.co/ccdJN15/ard9632.jpg",
+      "https://i.ibb.co/F4L1DXh/ard9633.jpg",
+      "https://i.ibb.co/YNW1nnr/ard9634.jpg",
+      "https://i.ibb.co/mhzFYrJ/ard9635.jpg"
+    ],
+    "color": "black",
+    "setName": "Emmy",
+    "price": "95",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hypnotism",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/pdY2Hd1/ard9641.jpg",
+      "https://i.ibb.co/XYwh3t4/ard9642.jpg",
+      "https://i.ibb.co/7rHmyps/ard9643.jpg",
+      "https://i.ibb.co/5nttZZK/ard9644.jpg",
+      "https://i.ibb.co/tBWT2rr/ard9645.jpg"
+    ],
+    "color": "black",
+    "setName": "Transparency",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "The Magic of Transparency",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/YyFYg1r/ard9651.jpg",
+      "https://i.ibb.co/QpHBJhp/ard9652.jpg",
+      "https://i.ibb.co/khPbzpP/ard9653.jpg",
+      "https://i.ibb.co/QjfvjDV/ard9654.jpg",
+      "https://i.ibb.co/FhG5VdV/ard9655.jpg"
+    ],
+    "color": "nude",
+    "setName": "Unnamed nude",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "The Magic of Transparency",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/Yp8Vktn/ard9661.jpg",
+      "https://i.ibb.co/y639BtB/ard9662.jpg",
+      "https://i.ibb.co/7pQYvKL/ard9663.jpg",
+      "https://i.ibb.co/M5mCXDm/ard9664.jpg",
+      "https://i.ibb.co/TtXZ5Zv/ard9665.jpg"
+    ],
+    "color": "black",
+    "setName": "Goldy",
+    "price": "95",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hypnotism",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/HKLKy6M/ard9671.jpg",
+      "https://i.ibb.co/tCDLTX2/ard9672.jpg",
+      "https://i.ibb.co/2dVSpPt/ard9673.jpg",
+      "https://i.ibb.co/xJJnSVp/ard9674.jpg",
+      "https://i.ibb.co/ss8DwcG/ard9675.jpg"
+    ],
+    "color": "white",
+    "setName": "Sicilia White",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Lace of Temptation",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/R2yyqRN/ard9681.jpg",
+      "https://i.ibb.co/Mg7kwjq/ard9682.jpg",
+      "https://i.ibb.co/hX37WVz/ard9683.jpg",
+      "https://i.ibb.co/0p7dqhj/ard9684.jpg",
+      "https://i.ibb.co/3dKXL8f/ard9685.jpg"
+    ],
+    "color": "white",
+    "setName": "Silver",
+    "price": "85",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hiding Beauty",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/r0C2DX2/ard9691.jpg",
+      "https://i.ibb.co/hXRtq8Q/ard9692.jpg",
+      "https://i.ibb.co/mbhX3Ks/ard9693.jpg",
+      "https://i.ibb.co/zfYgJnY/ard9694.jpg",
+      "https://i.ibb.co/CnQWnK7/ard9695.jpg"
+    ],
+    "color": "red",
+    "setName": "Ripe Cherry",
+    "price": "75",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Hypnotism",
+    "quantity": "10"
+  },
+  {
+    "imageUrls": [
+      "https://i.ibb.co/sVH2qty/ard9711.jpg",
+      "https://i.ibb.co/HV56z5k/ard9712.jpg",
+      "https://i.ibb.co/6Bckdrw/ard9713.jpg",
+      "https://i.ibb.co/R4pDB7R/ard9714.jpg",
+      "https://i.ibb.co/ZJMLbjJ/ard9715.jpg"
+    ],
+    "color": "black",
+    "setName": "Souple",
+    "price": "65",
+    "size": ["S", "M", "L", "XL"],
+    "collection": "Sporty basics",
+    "quantity": "10"
+  }
+]
+
+  
+
+
+
+
+
+
+
+
+
+
+
