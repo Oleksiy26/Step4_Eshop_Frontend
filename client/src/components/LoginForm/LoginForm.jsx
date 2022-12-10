@@ -43,40 +43,29 @@ const Form = () => {
         } catch (e) {}
     }
 
+    const values = [
+        {valueOfInput: formValues.firstName, placeholder: 'firstName', name: 'firstName' },
+        {valueOfInput: formValues.lastName, placeholder: 'lastName', name: 'lastName' },
+        {valueOfInput: formValues.login, placeholder: 'login', name: 'login' },
+        {valueOfInput: formValues.email, placeholder: 'email', name: 'email' },
+        {valueOfInput: formValues.password, placeholder: 'password', name: 'password' },
+    ]
+
     return (
         <form onSubmit={toSubmit}>
             <div>
-                {/*{values.map((val) => {*/}
-                {/*    return (*/}
-                {/*       <MyInput value={val} changeValue={changeValue} />*/}
-                {/*    )*/}
-                {/*})}*/}
-                {/*<input type="text" value={formValues.firstName} changeValue={changeValue} />*/}
-               <MyInput
-                   placeholder='firstName'
-                   value={formValues.firstName}
-                   changeValue={changeValue}
-               />
-               <MyInput
-                   placeholder='lastName'
-                   value={formValues.lastName}
-                   changeValue={changeValue}
-               />
-               <MyInput
-                   placeholder='login'
-                   value={formValues.login}
-                   changeValue={changeValue}
-               />
-               <MyInput
-                   placeholder='email'
-                   value={formValues.email}
-                   changeValue={changeValue}
-               />
-               <MyInput
-                   placeholder='password'
-                   value={formValues.password}
-                   changeValue={changeValue}
-               />
+                {values.map((val) => {
+                    const { valueOfInput, placeholder, name } = val
+                    return (
+                       <MyInput
+                           key={placeholder}
+                           name={name}
+                           placeholder={placeholder}
+                           value={valueOfInput}
+                           changeValue={changeValue}
+                       />
+                    )
+                })}
                 <button
                     style={{ marginTop: '35px' }}
                     disabled={loading}
