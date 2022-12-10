@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MyInput = ({ value, changeValue, placeholder }) => {
+const MyInput = ({ value, changeValue, placeholder, name }) => {
     return (
         <div>
             <input
                type='text'
+               name={name}
                placeholder={placeholder}
-               value={value}
+               defaultValue={value}
                onChange={changeValue}
             />
         </div>
@@ -16,7 +17,9 @@ const MyInput = ({ value, changeValue, placeholder }) => {
 
 MyInput.propTypes = {
     value: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     changeValue: PropTypes.func.isRequired,
+    placeholder: PropTypes.string.isRequired,
 }
 
 export default MyInput;
