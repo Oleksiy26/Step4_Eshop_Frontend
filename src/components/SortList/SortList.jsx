@@ -8,16 +8,9 @@ const SortList = ({ active, setActive }) => {
   ];
 
   return (
-    <ul
-      className={active ? 'content-sort-list active' : 'content-sort-list '}
-      
-    >
+    <ul className={active ? 'content-sort-list active' : 'content-sort-list '}>
       {sortOptions.map((item, index) => (
-        <li
-          className="content-sort-item"
-          key={index}
-          onClick={(e) => e.stopPropagation()}
-        >
+        <li className="content-sort-item" key={index}>
           {item.value}
         </li>
       ))}

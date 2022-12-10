@@ -14,4 +14,9 @@
   &-sort-list.active {
     display: block;
   }
+  &-sort-item:hover{
+    background-color:  #476785;
+    color: white;
+
+  }
 }
