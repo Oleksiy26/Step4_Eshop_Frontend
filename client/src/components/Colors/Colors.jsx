@@ -10,6 +10,7 @@ const Colors = () => {
   useEffect(() => {
     const colorsArray = products.products.map((item) => item.color);
     const uniqueColors = new Set(colorsArray)
+   
     setColorsArray(Array.from(uniqueColors))
   }, [products])
 

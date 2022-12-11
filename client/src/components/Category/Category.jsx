@@ -5,15 +5,13 @@ import './Category.scss';
 
 const Category = () => {
   const products = useSelector(state => state.products);
-  const [categoryArr, setcategoryArr] = useState([]);
-  console.log(products.products);
+  const [categoryArr, setCategoryArr] = useState([]);
 
   useEffect(() => {
-    const categoryArr = products.products.map(item => item.category);
+    const categoryArr = products.products.map(item => item.categories);
 
-    console.log(categoryArr);
     const existingCategory = new Set(categoryArr);
-    setcategoryArr(Array.from(existingCategory));
+    setCategoryArr(Array.from(existingCategory));
   }, [products]);
 
   return (
