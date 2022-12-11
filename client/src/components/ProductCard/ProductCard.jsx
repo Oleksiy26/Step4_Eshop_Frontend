@@ -3,11 +3,17 @@ import './ProductCard.scss';
 import { useDispatch } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
 import Favicon from './Favicon/Favicon';
+import {useNavigate, useParams} from "react-router-dom";
 
-const ProductCard = ({ price, photoUrl, subClass, id }) => {
+const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
+  console.log('ident', ident)
+  console.log(photoUrl)
+  console.log(price)
+  console.log(id)
   const [inFav, setInFav] = useState(false);
   const [inCart, setInCart] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('fav'));
@@ -73,8 +79,15 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
     return value != null;
   };
 
+  const redirectToCardPage = () => {
+    navigate(`/catalog/${ident}`)
+  }
+
   return (
-    <div className={`set-card ${subClass}`}>
+    <div
+        className={`set-card ${subClass}`}
+        onClick={redirectToCardPage}
+    >
       <div className="image-wrapper">
         <img src={photoUrl} alt="girl" className="set-img" />
       </div>
