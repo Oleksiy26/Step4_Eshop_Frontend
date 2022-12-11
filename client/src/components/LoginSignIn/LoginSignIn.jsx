@@ -49,6 +49,7 @@ const LoginSignIn = () => {
         <div>
             <form onSubmit={toSubmit}>
                 <div>
+                     {/*new login*/}
                     {loginValues.map((value) => {
                         const { valueInput, placeholder, name } = value
                         return (

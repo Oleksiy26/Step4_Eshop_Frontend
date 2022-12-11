@@ -54,6 +54,7 @@ const Form = () => {
     return (
         <form onSubmit={toSubmit}>
             <div>
+                {/*new login*/}
                 {values.map((val) => {
                     const { valueOfInput, placeholder, name } = val
                     return (

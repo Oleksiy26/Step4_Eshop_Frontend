@@ -31,9 +31,9 @@ function App() {
           }}
       >
     <>
-      { isAuthenticated && <Header />}
+      { isAuthenticated && <Header /> }
       <AppRouter isAuthenticated={isAuthenticated} />
-      { isAuthenticated &&  <Footer />}
+      { isAuthenticated &&  <Footer /> }
     </>
       </AuthContext.Provider>
   );
