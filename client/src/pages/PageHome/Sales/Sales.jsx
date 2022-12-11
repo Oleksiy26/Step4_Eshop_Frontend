@@ -12,20 +12,20 @@ const Sales = () => {
     <div className="container">
       <Title title="Sales and promotions" subtitle="Catch the best price" />
       <section className="sales">
-        {products ? (
-          products.products
-            .slice(12,16)
-            .map((item) => 
-              <ProductCard
-                price={item.price}
-                photoUrl={item.imageUrls[0]}
-                subClass={"sales-item"}
-                key={item._id}
-                id={item._id}
-              />
-            )
-        ) : null}
-        <DiscoverLink subClass={"sales-link "} />
+        {products
+          ? products.products
+              .slice(12, 16)
+              .map(item => (
+                <ProductCard
+                  currentPrice={item.currentPrice}
+                  photoUrl={item.imageUrls[0]}
+                  subClass={'sales-item'}
+                  key={item._id}
+                  id={item._id}
+                />
+              ))
+          : null}
+        <DiscoverLink subClass={'sales-link '} />
       </section>
     </div>
   );
