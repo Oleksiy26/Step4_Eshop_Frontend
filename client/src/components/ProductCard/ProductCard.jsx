@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './ProductCard.scss';
 import { useDispatch } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
-import Favicon from './Favicon/Favicon';
+import AddCartFavorit from '../AddCartFavorit';
 
-const ProductCard = ({ price, photoUrl, subClass, id }) => {
+const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
   const [inFav, setInFav] = useState(false);
   const [inCart, setInCart] = useState(false);
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
     const favorite = JSON.parse(localStorage.getItem('fav'));
     if (favorite) {
       dispatch(checkInFav(favorite.length));
-      favorite.forEach((item) => {
+      favorite.forEach(item => {
         if (item === id) {
           setInFav(true);
         }
@@ -21,7 +21,7 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
     }
   }, []);
 
-  const clickFav = (id) => {
+  const clickFav = id => {
     if (localStorage.getItem('fav')) {
       const fav = JSON.parse(localStorage.getItem('fav'));
       if (!fav.includes(id)) {
@@ -30,7 +30,7 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
         setInFav(true);
         dispatch(checkInFav(fav.length));
       } else {
-        const newFav = fav.map((item) => {
+        const newFav = fav.map(item => {
           return item !== id ? item : null;
         });
         const filter = newFav.filter(checkValue);
@@ -54,7 +54,7 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
         setInCart(true);
         dispatch(checkInCart(cart.length));
       } else {
-        const newCart = cart.map((item) => {
+        const newCart = cart.map(item => {
           return item !== id ? item : null;
         });
         const filter = newCart.filter(checkValue);
@@ -67,9 +67,9 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
       setInCart(true);
       dispatch(checkInCart(1));
     }
-  }
+  };
 
-  const checkValue = (value) => {
+  const checkValue = value => {
     return value != null;
   };
 
@@ -80,7 +80,7 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
       </div>
       <div className="text-wrapper">
         <h3 className="set-title">White lace set</h3>
-        <p className="set-price">{price} &euro;</p>
+        <p className="set-price">{currentPrice} &euro;</p>
       </div>
 
       <div className="colors-wrapper">
@@ -88,18 +88,13 @@ const ProductCard = ({ price, photoUrl, subClass, id }) => {
         <div className="color-square black"></div>
         <div className="color-square gray"></div>
       </div>
-
-      <div className="set-hover">
-        <button className="set-addcart" onClick={() => clickToCart(id)}>
-          {!inCart ? "Add to cart" : "Delate from cart"}
-        </button>
-        <div className="set-addfavorit">
-          <Favicon
-          onClick={() => clickFav(id)}
-          inFav={inFav}
-          />
-          </div>
-      </div>
+      <AddCartFavorit
+        cardId={id}
+        inFav={inFav}
+        inCart={inCart}
+        onClickFav={clickFav}
+        onClickToCart={clickToCart}
+      />
     </div>
   );
 };
