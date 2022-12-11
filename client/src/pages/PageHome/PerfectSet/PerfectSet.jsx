@@ -6,23 +6,25 @@ import Title from '../../../components/Title';
 import './index.scss';
 
 const PerfectSet = () => {
-  const products = useSelector((state) => state.products);
+  const products = useSelector(state => state.products);
 
   return (
     <div className="container">
       <Title title="new arrivals" subtitle="Choose your perfect set" />
       <section className="set">
-        {products ? (
-            products.products.slice(0, 3).map((item) => (
+        {products
+          ? products.products
+              .slice(0, 3)
+              .map(item => (
                 <ProductCard
-                  price={item.price}
+                  currentPrice={item.currentPrice}
                   photoUrl={item.imageUrls[0]}
                   subClass={'set-item'}
                   key={item._id}
                   id={item._id}
                 />
-            ))
-        ) : null}
+              ))
+          : null}
         <DiscoverLink subClass={'set-link set-item'} />
       </section>
     </div>
