@@ -11,6 +11,7 @@ const PageFav = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const favCounter = useSelector((state) => state.counter)
+    console.log(favCounter)
   
     useEffect(() => {
       dispatch(checkLocation(location.pathname))

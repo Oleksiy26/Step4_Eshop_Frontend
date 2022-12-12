@@ -6,10 +6,6 @@ import Favicon from './Favicon/Favicon';
 import {useNavigate, useParams} from "react-router-dom";
 
 const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
-  console.log('ident', ident)
-  console.log(photoUrl)
-  console.log(price)
-  console.log(id)
   const [inFav, setInFav] = useState(false);
   const [inCart, setInCart] = useState(false);
   const dispatch = useDispatch();
@@ -27,7 +23,8 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
     }
   }, []);
 
-  const clickFav = (id) => {
+  const clickFav = (e, id) => {
+    e.stopPropagation()
     if (localStorage.getItem('fav')) {
       const fav = JSON.parse(localStorage.getItem('fav'));
       if (!fav.includes(id)) {
@@ -83,6 +80,14 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
     navigate(`/catalog/${ident}`)
   }
 
+  const handleAddToFav = () => {
+    clickFav(id)
+  }
+
+  const handleAddToCart = () => {
+    clickToCart(id)
+  }
+
   return (
     <div
         className={`set-card ${subClass}`}
@@ -103,12 +108,16 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
       </div>
 
       <div className="set-hover">
-        <button className="set-addcart" onClick={() => clickToCart(id)}>
+        <button
+            className="set-addcart"
+            // onClick={() => clickCart(id)}
+            onClick={handleAddToCart}>
           {!inCart ? "Add to cart" : "Delate from cart"}
         </button>
         <div className="set-addfavorit">
           <Favicon
-          onClick={() => clickFav(id)}
+          onClick={handleAddToFav}
+          // onClick={() => clickFav(id)}
           inFav={inFav}
           />
           </div>

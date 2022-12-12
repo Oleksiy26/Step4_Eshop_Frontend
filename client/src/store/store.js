@@ -5,6 +5,7 @@ import productSlice from "./products/productSlice";
 import slidesSlice  from "./slides/slides";
 import userSlice from "./user/userSlice";
 import cardSlice from "./card/CardSlice";
+import wishlistSlice from "./wishlist/WishlistSlice";
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   slides: slidesSlice,
   location: locationSlice,
   counter: counterSlice,
-  card: cardSlice
+  card: cardSlice,
+  wishlist: wishlistSlice
 });
 
 export const store = configureStore({
