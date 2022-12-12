@@ -7,7 +7,7 @@ import './index.scss';
 
 const PerfectSet = () => {
   const products = useSelector((state) => state.products);
-
+  console.log(products)
   return (
     <div className="container">
       <Title title="new arrivals" subtitle="Choose your perfect set" />
@@ -15,6 +15,7 @@ const PerfectSet = () => {
         {products ? (
             products.products.slice(0, 3).map((item) => (
                 <ProductCard
+                  ident={item.itemNo}
                   price={item.price}
                   photoUrl={item.imageUrls[0]}
                   subClass={'set-item'}

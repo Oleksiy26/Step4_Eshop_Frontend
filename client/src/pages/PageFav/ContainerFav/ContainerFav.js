@@ -4,7 +4,6 @@ import {useSelector} from "react-redux";
 
 const ContainerFav = ({items}) => {
 
-
     return(
         <section className="container py-5">
             <div className="d-flex gap-4 flex-column flex-md-row">

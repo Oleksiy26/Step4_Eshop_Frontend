@@ -17,6 +17,7 @@ const Sales = () => {
             .slice(12,16)
             .map((item) => 
               <ProductCard
+                ident={item.itemNo}
                 price={item.price}
                 photoUrl={item.imageUrls[0]}
                 subClass={"sales-item"}

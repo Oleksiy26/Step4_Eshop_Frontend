@@ -13,10 +13,14 @@ export const PageItem = () => {
   const dispatch = useDispatch()
   const products = useSelector((state) => state.products);
   // // const product = useSelector((state) => state.products.products[id]);
+
+  console.log(products)
   const { card, isCardLoading, cardError } = useSelector((state) => state.card)
 
   const { imageUrls, name, currentPrice, sizes, color } = card
   console.log(card)
+  console.log('sizes: ', sizes)
+
 
   useEffect(() => {
     dispatch(fetchCard(itemNo))
@@ -54,8 +58,9 @@ export const PageItem = () => {
           <div className="d-flex gap-4">
             <p>Available Sizes: </p>
             <div className="d-flex gap-4">
-              {card !== undefined &&
-                sizes?.map((el) => <p key={el + itemNo}>{el}</p>)}
+              {/*{card !== undefined &&*/}
+              {/*  sizes?.map((el) => <p key={el + itemNo}>{el}</p>)}*/}
+              {sizes}
             </div>
           </div>
           <div className="d-flex align-items-center">
