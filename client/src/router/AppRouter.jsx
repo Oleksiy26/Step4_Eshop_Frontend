@@ -1,8 +1,8 @@
 import React from 'react'
-import { privateRoutes, publicRoutes } from '../router'
 import { Route, Routes } from 'react-router-dom'
 import PageLogin from '../pages/PageLogin/PageLogin'
 import Page404 from "../pages/Page404";
+import { privateRoutes, publicRoutes } from './Pages';
 
 const AppRouter = ({ isAuthenticated }) => {
     return isAuthenticated ? (

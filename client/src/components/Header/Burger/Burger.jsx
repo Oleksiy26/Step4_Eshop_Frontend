@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Burger.module.scss";
 
+
 const Burger = ({onClick}) => {
     const locationMain = useSelector((state) => state.location.locationMain);
 
