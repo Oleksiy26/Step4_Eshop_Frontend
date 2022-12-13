@@ -14,12 +14,12 @@ export const PageItem = () => {
   const products = useSelector((state) => state.products);
   // // const product = useSelector((state) => state.products.products[id]);
 
-  console.log(products)
+  // console.log(products)
   const { card, isCardLoading, cardError } = useSelector((state) => state.card)
 
   const { imageUrls, name, currentPrice, sizes, color } = card
-  console.log(card)
-  console.log('sizes: ', sizes)
+  // console.log(card)
+  // console.log('sizes: ', sizes)
 
 
   useEffect(() => {

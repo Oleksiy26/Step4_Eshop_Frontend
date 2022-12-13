@@ -13,14 +13,14 @@ const Galery = ({ numOfElem }) => {
 
   const navigate = useNavigate()
   const products = useSelector((state) => state.products);
-  console.log(products)
+  // console.log(products)
 
   // const { card, isCardLoading, cardError } = useSelector((state) => state.card)
   // console.log(card)
 
   const slice = products.products.slice(0, numOfElem);
 
-  console.log(slice)
+  // console.log(slice)
 
   return (
     <ul className="content-list">

@@ -6,7 +6,6 @@ export const useBreadCrumb = () => {
     const pathNames = pathname.split('/').filter((routing) => routing)
     const reNavigate = () => {
         navigate('/')
-        console.log('Home')
     }
 
     return {

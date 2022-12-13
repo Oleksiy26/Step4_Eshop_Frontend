@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import ProductCard from "../../../components/ProductCard";
-import {useSelector} from "react-redux";
+import { AuthContext } from "../../../context/AuthContext";
 
 const ContainerFav = ({items}) => {
-
+    const auth = useContext(AuthContext)
+    const { isAuthenticated } = auth
+    console.log(items)
     return(
         <section className="container py-5">
             <div className="d-flex gap-4 flex-column flex-md-row">

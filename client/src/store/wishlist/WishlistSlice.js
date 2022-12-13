@@ -14,6 +14,11 @@ const initialState = {
 export const WishlistSlice = createSlice({
     name: 'wishlist',
     initialState,
+    reducers: {
+        addInWishlist: (state, action) => {
+            state.favItems.products.push(action.payload)
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchWishlist.fulfilled, (state, action) => {
@@ -31,5 +36,7 @@ export const WishlistSlice = createSlice({
     },
 });
 
-
+export const {
+    addInWishlist,
+} = WishlistSlice.actions
 export default WishlistSlice.reducer;

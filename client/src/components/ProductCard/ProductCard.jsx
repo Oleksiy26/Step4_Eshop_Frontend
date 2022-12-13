@@ -23,8 +23,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
     }
   }, []);
 
-  const clickFav = (e, id) => {
-    e.stopPropagation()
+  const clickFav = (id) => {
     if (localStorage.getItem('fav')) {
       const fav = JSON.parse(localStorage.getItem('fav'));
       if (!fav.includes(id)) {
@@ -48,7 +47,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
     }
   };
 
-  const clickToCart = () => {
+  const clickToCart = (id) => {
     if (localStorage.getItem('cart')) {
       const cart = JSON.parse(localStorage.getItem('cart'));
       if (!cart.includes(id)) {
@@ -80,11 +79,13 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
     navigate(`/catalog/${ident}`)
   }
 
-  const handleAddToFav = () => {
+  const addItemToWishlist = (event) => {
+    event.stopPropagation()
     clickFav(id)
   }
 
-  const handleAddToCart = () => {
+  const addItemToCart = (event) => {
+    event.stopPropagation()
     clickToCart(id)
   }
 
@@ -111,14 +112,15 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
         <button
             className="set-addcart"
             // onClick={() => clickCart(id)}
-            onClick={handleAddToCart}>
+            onClick={addItemToCart}
+        >
           {!inCart ? "Add to cart" : "Delate from cart"}
         </button>
         <div className="set-addfavorit">
           <Favicon
-          onClick={handleAddToFav}
           // onClick={() => clickFav(id)}
-          inFav={inFav}
+             onClick={addItemToWishlist}
+             inFav={inFav}
           />
           </div>
       </div>

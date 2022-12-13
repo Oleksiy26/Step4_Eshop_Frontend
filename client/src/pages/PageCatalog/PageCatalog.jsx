@@ -8,6 +8,8 @@ import Title from '../../components/Title/Title';
 import Category from '../../components/Category';
 import Colors from '../../components/Colors';
 import Sizes from '../../components/Sizes';
+import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
+import {useBreadCrumb} from "../../hooks/useBreadCrumb";
 
 const PageCatalog = () => {
   const [sortActive, setSortActive] = useState(false);
@@ -23,12 +25,13 @@ const PageCatalog = () => {
 
   return (
     <div className="container page">
-      <nav className="page-nav">
-        <ul className="page-nav_list">
-          <li className="page-nav_item">Home</li>
-          <li className="page-nav_item">Catalogue</li>
-        </ul>
-      </nav>
+      <BreadCrumbs startFrom="Home" />
+      {/*<nav className="page-nav">*/}
+      {/*  <ul className="page-nav_list">*/}
+      {/*    <li className="page-nav_item">Home</li>*/}
+      {/*    <li className="page-nav_item">Catalogue</li>*/}
+      {/*  </ul>*/}
+      {/*</nav>*/}
       <Title subtitle="Catalogue" />
       <div className="page-wrapper">
         <aside className="page-sidebar">

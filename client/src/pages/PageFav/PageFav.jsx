@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { checkLocation } from "../../store/location/location";
 import { useLocation } from "react-router-dom";
 import Title from '../../components/Title/Title';
-import { fetchWishlist } from "../../store/wishlist/ActionCreator";
+import {addToWishlist, fetchWishlist} from "../../store/wishlist/ActionCreator";
 import { AuthContext } from "../../context/AuthContext";
 
 const PageFav = () => {
@@ -13,15 +13,16 @@ const PageFav = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const favCounter = useSelector((state) => state.counter)
-    const { favItems } = useSelector((state) => state.wishlist)
+    const { favItems, isItemsLoading } = useSelector((state) => state.wishlist)
     const auth = useContext(AuthContext)
 
     const { isAuthenticated } = auth
 
-
     // console.log(location)
     // console.log(favCounter)
     console.log(favItems)
+    const { itemNo } = favItems.products
+    console.log(favItems.products)
 
     useEffect(() => {
       dispatch(checkLocation(location.pathname))
@@ -35,6 +36,10 @@ const PageFav = () => {
         }
     }
 
+    const addAuthorized = () => {
+       dispatch(addToWishlist(itemNo))
+    }
+
     useEffect(() => {
         dispatch(fetchWishlist())
     }, []);
@@ -42,13 +47,18 @@ const PageFav = () => {
     return (
         <div className="container">
             <Title subtitle={
-                favCounter.inFav ? "Your favorited cards" : "No cards in favourites"
+                favCounter.inFav ? "Your favourite cards" : "No cards in favourites"
             }/>
+            { isItemsLoading && <h1 style={{ textAlign: 'center' }}> Loading... </h1> }
             <ContainerFav
-                items={findItemsFav()}
+                items={ isAuthenticated ?  favItems.products : findItemsFav() }
+                // items={ findItemsFav() }
+                // items={ addAuthorized() }
             />
         </div>
     )
 }
+
+// isAuthenticated ? addAuthorized() :
 
 export default PageFav;
