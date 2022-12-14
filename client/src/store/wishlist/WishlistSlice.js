@@ -7,6 +7,7 @@ const initialState = {
         customerId: {},
         _id: ''
     },
+    inWishlist: 0,
     isItemsLoading: false,
     itemsError: ''
 }
@@ -17,6 +18,9 @@ export const WishlistSlice = createSlice({
     reducers: {
         addInWishlist: (state, action) => {
             state.favItems.products.push(action.payload)
+        },
+        checkinWishlist: (state, action) => {
+            state.inWishlist = action.payload
         },
     },
     extraReducers: (builder) => {
@@ -38,5 +42,6 @@ export const WishlistSlice = createSlice({
 
 export const {
     addInWishlist,
+    checkinWishlist,
 } = WishlistSlice.actions
 export default WishlistSlice.reducer;

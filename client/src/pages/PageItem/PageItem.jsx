@@ -39,7 +39,7 @@ export const PageItem = () => {
 
   return (
     <div className="container">
-      { isCardLoading && <h1>Loading...</h1>}
+      { isCardLoading && <h1 style={{ textAlign: 'center' }}>Loading...</h1>}
       { cardError && <h1>Smth wrong happened</h1> }
       <div className="my-5 d-flex gap-5 justify-content-center">
         <div className="sliderImg">

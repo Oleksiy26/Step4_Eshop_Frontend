@@ -22,9 +22,9 @@ export const fetchWishlist = createAsyncThunk(
 
 export const addToWishlist = createAsyncThunk(
     'wishlist/addCard',
-    async function(itemNo, {rejectWithValue, dispatch}) {
+    async function(id, {rejectWithValue, dispatch}) {
         try {
-            const response = await fetch(`/api/wishlist/${itemNo}`, {
+            const response = await fetch(`/api/wishlist/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `${JSON.parse(localStorage.getItem(`userToken`)).token}`,
@@ -34,7 +34,7 @@ export const addToWishlist = createAsyncThunk(
                 throw new Error('Server Error!')
             }
             const data = await response.json();
-            dispatch(addToWishlist(itemNo))
+            dispatch(addToWishlist(id))
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -44,9 +44,9 @@ export const addToWishlist = createAsyncThunk(
 
 export const deleteItemFromWishlist = createAsyncThunk(
     'wishlist/deleteCard',
-    async function(itemNo, {rejectWithValue}) {
+    async function(_id, {rejectWithValue}) {
         try {
-            const response = await fetch(`/api/wishlist/${itemNo}`, {
+            const response = await fetch(`/api/wishlist/${_id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `${JSON.parse(localStorage.getItem(`userToken`)).token}`,

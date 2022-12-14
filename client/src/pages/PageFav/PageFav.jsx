@@ -10,19 +10,19 @@ import { AuthContext } from "../../context/AuthContext";
 
 const PageFav = () => {
     const products = useSelector((state) => state.products);
-    const dispatch = useDispatch();
-    const location = useLocation();
     const favCounter = useSelector((state) => state.counter)
     const { favItems, isItemsLoading } = useSelector((state) => state.wishlist)
+    const dispatch = useDispatch();
+    const location = useLocation();
     const auth = useContext(AuthContext)
 
     const { isAuthenticated } = auth
 
     // console.log(location)
     // console.log(favCounter)
-    console.log(favItems)
-    const { itemNo } = favItems.products
-    console.log(favItems.products)
+
+    // const { _id } = favItems.products
+
 
     useEffect(() => {
       dispatch(checkLocation(location.pathname))
@@ -36,9 +36,9 @@ const PageFav = () => {
         }
     }
 
-    const addAuthorized = () => {
-       dispatch(addToWishlist(itemNo))
-    }
+    // const addAuthorized = () => {
+    //    dispatch(addToWishlist(_id))
+    // }
 
     useEffect(() => {
         dispatch(fetchWishlist())
@@ -55,12 +55,14 @@ const PageFav = () => {
             }/>
             { isItemsLoading && <h1 style={{ textAlign: 'center' }}> Loading... </h1> }
             <ContainerFav
-                items={ isAuthenticated ?  favItems.products : findItemsFav() }
+                items={ isAuthenticated ? favItems.products : findItemsFav() }
                 // items={ findItemsFav() }
                 // items={ addAuthorized() }
             />
         </div>
     )
 }
+
+// isAuthenticated ? favItems.products :
 
 export default PageFav;
