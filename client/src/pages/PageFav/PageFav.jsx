@@ -47,7 +47,11 @@ const PageFav = () => {
     return (
         <div className="container">
             <Title subtitle={
-                favCounter.inFav ? "Your favourite cards" : "No cards in favourites"
+                isAuthenticated ? (
+                   favItems.products ? "Your favourite cards" : "No cards in favourites"
+                ) : (
+                  favCounter.inFav ? "Your favourite cards" : "No cards in favourites"
+                )
             }/>
             { isItemsLoading && <h1 style={{ textAlign: 'center' }}> Loading... </h1> }
             <ContainerFav
@@ -58,7 +62,5 @@ const PageFav = () => {
         </div>
     )
 }
-
-// isAuthenticated ? addAuthorized() :
 
 export default PageFav;

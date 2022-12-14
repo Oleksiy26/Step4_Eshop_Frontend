@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "./MyInput.scss"
 
 const MyInput = ({ value, changeValue, placeholder, name }) => {
     return (
-        <div>
-            <input
-               type='text'
-               name={name}
-               placeholder={placeholder}
-               defaultValue={value}
-               onChange={changeValue}
-            />
-        </div>
+        <input
+           type='text'
+           name={name}
+           placeholder={placeholder}
+           defaultValue={value}
+           onChange={changeValue}
+        />
     );
 };
 

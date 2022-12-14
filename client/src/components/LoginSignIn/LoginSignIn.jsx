@@ -3,6 +3,7 @@ import { useFetching } from '../../hooks/useFetching'
 import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import MyInput from "../MyInput/MyInput";
+import Button from '../Button';
 
 const LoginSignIn = () => {
     const [loginForm, setLoginForm] = useState({
@@ -41,15 +42,13 @@ const LoginSignIn = () => {
     }
 
     const loginValues = [
-        {valueInput: loginForm.loginOrEmail, placeholder: 'loginOrEmail', name: 'loginOrEmail' },
-        {valueInput: loginForm.password, placeholder: 'password', name: 'password' },
+        {valueInput: loginForm.loginOrEmail, placeholder: 'Login Or Email', name: 'loginOrEmail' },
+        {valueInput: loginForm.password, placeholder: 'Password', name: 'password' },
     ]
 
     return (
-        <div>
             <form onSubmit={toSubmit}>
-                <div>
-                     {/*new login*/}
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
                     {loginValues.map((value) => {
                         const { valueInput, placeholder, name } = value
                         return (
@@ -62,16 +61,13 @@ const LoginSignIn = () => {
                             />
                         )
                     })}
-                    <button
-                        style={{ marginTop: '35px' }}
+                    <Button
+                        text="Sign in"
                         disabled={loading}
                         onClick={loginUser}
-                    >
-                        Sign In
-                    </button>
+                    />
                 </div>
             </form>
-        </div>
     )
 }
 

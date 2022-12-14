@@ -12,7 +12,7 @@ const ContainerFav = ({items}) => {
                 {items && items.map((item) =>
                     <ProductCard
                         ident={item.itemNo}
-                        price={item.price}
+                        price={item.currentPrice}
                         photoUrl={item.imageUrls[0]}
                         subClass={'set-item img-fluid overflow-auto flex-grow-1'}
                         key={item._id}

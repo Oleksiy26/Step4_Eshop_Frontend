@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useFetching } from '../../hooks/useFetching'
+import Button from '../Button';
 import MyInput from "../MyInput/MyInput";
 // import { AuthContext } from '../../context/AuthContext'
 
@@ -75,6 +76,23 @@ const Form = () => {
                     Create User
                 </button>
             </div>
+            {values.map((val) => {
+                const { valueOfInput, placeholder, name } = val
+                return (
+                   <MyInput
+                       key={placeholder}
+                       name={name}
+                       placeholder={placeholder}
+                       value={valueOfInput}
+                       changeValue={changeValue}
+                   />
+                )
+            })}
+            <Button
+                text="Create User"
+                disabled={loading}
+                onClick={registerUser}
+            />
         </form>
     )
 }

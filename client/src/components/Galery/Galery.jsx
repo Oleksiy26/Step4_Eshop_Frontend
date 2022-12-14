@@ -1,7 +1,6 @@
 import React from 'react';
 import ProductCard from '../ProductCard';
 import { useSelector } from 'react-redux';
-
 import './Galery.scss';
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -17,20 +16,20 @@ const Galery = ({ numOfElem }) => {
 
   // const { card, isCardLoading, cardError } = useSelector((state) => state.card)
   // console.log(card)
+  // console.log(slice)
 
   const slice = products.products.slice(0, numOfElem);
-
-  // console.log(slice)
 
   return (
     <ul className="content-list">
       {products.products.length ? (
         <>
-          {slice.map((item) => (
+          {slice.map(item => (
             <li key={item._id}>
               <ProductCard
                 ident={item.itemNo}
                 price={item.currentPrice}
+                currentPrice={item.currentPrice}
                 photoUrl={item.imageUrls[0]}
                 key={item._id}
                 id={item._id}

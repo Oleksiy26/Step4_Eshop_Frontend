@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { AuthContext } from './context/AuthContext';
 import { fetchProducts } from "./store/products/productSlice";
 import { useAuth } from "./hooks/useAuth";
-import AppRouter from "./components/AppRouter";
+import AppRouter from "./router/AppRouter";
 
 function App() {
   const dispatch = useDispatch();

@@ -4,7 +4,7 @@
     justify-self: end;
     position: absolute;
     z-index: 10000;
-    background-color: white;
+    background-color: #ffffff;
     top: 39px;
     padding: 10px 11px;
     &-sort-item {
@@ -13,5 +13,9 @@
   }
   &-sort-list.active {
     display: block;
+  }
+  &-sort-item:hover{
+    color: #ffffff;
+    background-color: #476785;
   }
 }

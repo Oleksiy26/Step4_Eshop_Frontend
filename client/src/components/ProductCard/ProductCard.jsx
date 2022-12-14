@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './ProductCard.scss';
 import { useDispatch } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
-import Favicon from './Favicon/Favicon';
-import {useNavigate, useParams} from "react-router-dom";
+import AddCartFavorit from '../AddCartFavorit';
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
   const [inFav, setInFav] = useState(false);
@@ -15,7 +15,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
     const favorite = JSON.parse(localStorage.getItem('fav'));
     if (favorite) {
       dispatch(checkInFav(favorite.length));
-      favorite.forEach((item) => {
+      favorite.forEach(item => {
         if (item === id) {
           setInFav(true);
         }
@@ -23,7 +23,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
     }
   }, []);
 
-  const clickFav = (id) => {
+  const clickFav = id => {
     if (localStorage.getItem('fav')) {
       const fav = JSON.parse(localStorage.getItem('fav'));
       if (!fav.includes(id)) {
@@ -32,7 +32,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
         setInFav(true);
         dispatch(checkInFav(fav.length));
       } else {
-        const newFav = fav.map((item) => {
+        const newFav = fav.map(item => {
           return item !== id ? item : null;
         });
         const filter = newFav.filter(checkValue);
@@ -56,7 +56,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
         setInCart(true);
         dispatch(checkInCart(cart.length));
       } else {
-        const newCart = cart.map((item) => {
+        const newCart = cart.map(item => {
           return item !== id ? item : null;
         });
         const filter = newCart.filter(checkValue);
@@ -69,9 +69,9 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
       setInCart(true);
       dispatch(checkInCart(1));
     }
-  }
+  };
 
-  const checkValue = (value) => {
+  const checkValue = value => {
     return value != null;
   };
 
@@ -89,42 +89,35 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident }) => {
     clickToCart(id)
   }
 
+  const addCartFavProps = {
+    addItemToCart,
+    addItemToWishlist
+  }
+
   return (
-    <div
-        className={`set-card ${subClass}`}
-        onClick={redirectToCardPage}
-    >
-      <div className="image-wrapper">
-        <img src={photoUrl} alt="girl" className="set-img" />
-      </div>
-      <div className="text-wrapper">
-        <h3 className="set-title">White lace set</h3>
-        <p className="set-price">{price} &euro;</p>
-      </div>
+      <div className={`set-card ${subClass}`} onClick={redirectToCardPage}>
+        <div className="image-wrapper">
+          <img src={photoUrl} alt="girl" className="set-img" />
+        </div>
+        <div className="text-wrapper">
+          <h3 className="set-title">White lace set</h3>
+          <p className="set-price">{ price } &euro;</p>
+        </div>
 
-      <div className="colors-wrapper">
-        <div className="color-square white"></div>
-        <div className="color-square black"></div>
-        <div className="color-square gray"></div>
+        <div className="colors-wrapper">
+          <div className="color-square white"></div>
+          <div className="color-square black"></div>
+          <div className="color-square gray"></div>
+        </div>
+        <AddCartFavorit
+            cardId={id}
+            inFav={inFav}
+            inCart={inCart}
+            onClickFav={clickFav}
+            onClickToCart={clickToCart}
+            {...addCartFavProps}
+        />
       </div>
-
-      <div className="set-hover">
-        <button
-            className="set-addcart"
-            // onClick={() => clickCart(id)}
-            onClick={addItemToCart}
-        >
-          {!inCart ? "Add to cart" : "Delate from cart"}
-        </button>
-        <div className="set-addfavorit">
-          <Favicon
-          // onClick={() => clickFav(id)}
-             onClick={addItemToWishlist}
-             inFav={inFav}
-          />
-          </div>
-      </div>
-    </div>
   );
 };
 export default ProductCard;

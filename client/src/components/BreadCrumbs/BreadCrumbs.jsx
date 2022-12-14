@@ -1,16 +1,12 @@
 import React from 'react'
-// import Breadcrumbs from '@mui/material/Breadcrumbs'
 import { Link } from "react-router-dom"
-// import Typography from '@mui/material/Typography'
 import { useBreadCrumb } from '../../hooks/useBreadCrumb'
-
-// not finished
 
 const NavigatePanel = ({ startFrom }) => {
     const { navigate, pathNames, reNavigate } = useBreadCrumb()
     return (
         <div>
-            <span
+           <span
                 style={{ cursor: 'pointer', textDecoration: 'none' }}
                 onClick={reNavigate}
             >

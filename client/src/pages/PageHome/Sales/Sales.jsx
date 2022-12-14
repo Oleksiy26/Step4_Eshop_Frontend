@@ -6,29 +6,29 @@ import Title from "../../../components/Title";
 import "./index.scss";
 
 const Sales = () => {
-  const products = useSelector((state) => state.products);
+    const products = useSelector((state) => state.products);
 
-  return (
-    <div className="container">
-      <Title title="Sales and promotions" subtitle="Catch the best price" />
-      <section className="sales">
-        {products ? (
-          products.products
-            .slice(12,16)
-            .map((item) => 
-              <ProductCard
-                ident={item.itemNo}
-                price={item.price}
-                photoUrl={item.imageUrls[0]}
-                subClass={"sales-item"}
-                key={item._id}
-                id={item._id}
-              />
-            )
-        ) : null}
-        <DiscoverLink subClass={"sales-link "} />
-      </section>
-    </div>
-  );
+    return (
+        <div className="container">
+            <Title title="Sales and promotions" subtitle="Catch the best price" />
+            <section className="sales">
+                {products ? (
+                    products.products
+                        .slice(12,16)
+                        .map((item) =>
+                            <ProductCard
+                                ident={item.itemNo}
+                                price={item.price}
+                                photoUrl={item.imageUrls[0]}
+                                subClass={"sales-item"}
+                                key={item._id}
+                                id={item._id}
+                            />
+                        )
+                ) : null}
+                <DiscoverLink subClass={"sales-link "} />
+            </section>
+        </div>
+    );
 };
 export default Sales;
