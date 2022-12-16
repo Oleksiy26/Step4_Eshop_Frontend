@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProductCard from '../ProductCard';
 import { useSelector } from 'react-redux';
+
 import './Galery.scss';
 
 const Galery = ({ numOfElem }) => {

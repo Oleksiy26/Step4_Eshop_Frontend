@@ -59,32 +59,6 @@
     justify-self: center;
     margin-top: 32px;
   }
-  &-sort {
-    cursor: pointer;
-    position: relative;
-    padding-right: 30px;
-  }
-
-  &-sort::before {
-    content: '';
-    position: absolute;
-    width: 7px;
-    height: 2px;
-    transform: rotate(45deg);
-    top: 13px;
-    left: 52px;
-    background-color: #2d4153;
-  }
-  &-sort::after {
-    content: '';
-    position: absolute;
-    width: 7px;
-    height: 2px;
-    top: 13px;
-    left: 56px;
-    transform: rotate(-45deg);
-    background-color: #2d4153;
-  }
 }
 
 .pseudo {
@@ -112,4 +86,3 @@
   transform: rotate(90deg);
   background-color: #2d4153;
 }
-
