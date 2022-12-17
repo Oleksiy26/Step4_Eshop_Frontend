@@ -4,6 +4,7 @@ import Button from '../../Button';
 import Input from "../Input";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup'; 
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
     email: '',
@@ -34,7 +35,7 @@ const validationSchema = yup.object().shape({
         .required("Login is required")
 })
 
-const Login = () => {
+const Login = ({changeAfterLogin}) => {
     const { loading, request, error, clearError } = useFetching()
 
     useEffect(() => {
@@ -50,6 +51,7 @@ const Login = () => {
                 lastName: value.lastName,
                 login: value.login
             })
+            changeAfterLogin(false)
         } catch (e) {
             console.log(e)
         }

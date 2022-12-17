@@ -12,6 +12,10 @@ const PageLogin = () => {
         setVisibleOrNot(!visibleOrNot)
     }
 
+    const changeAfterLogin = (value) => {
+        setVisibleOrNot(value)
+    }
+
     return !visibleOrNot ? (
         <div className={styles.page}>
             <div className={styles.block}>
@@ -37,7 +41,7 @@ const PageLogin = () => {
         <div className={styles.page}>
             <div className={styles.create}>
                 <Title subtitle="Edit personal information"/>
-                <Login />
+                <Login changeAfterLogin={changeAfterLogin}/>
             </div>
         </div>
     );
