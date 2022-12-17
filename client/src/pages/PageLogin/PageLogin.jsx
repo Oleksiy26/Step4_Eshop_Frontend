@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../components/Button';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
-import LoginForm from "../../components/LoginForm/LoginForm";
-import LoginSignIn from "../../components/LoginSignIn/LoginSignIn";
+import Login from '../../components/Forms/Login';
+import SignIn from '../../components/Forms/SignIn';
 import Title from '../../components/Title';
 import styles from "./PageLogin.module.scss"
 
@@ -16,12 +14,11 @@ const PageLogin = () => {
 
     return !visibleOrNot ? (
         <div className={styles.page}>
-            
             <div className={styles.block}>
                 <div className={styles.block_signin}>
                     <div className={styles.block_signin_content}>
                         <Title subtitle="Are you a user?"/>
-                        <LoginSignIn />
+                        <SignIn />
                     </div>
                 </div>
                 <div className={styles.block_login}>
@@ -40,7 +37,7 @@ const PageLogin = () => {
         <div className={styles.page}>
             <div className={styles.create}>
                 <Title subtitle="Edit personal information"/>
-                <LoginForm />
+                <Login />
             </div>
         </div>
     );
