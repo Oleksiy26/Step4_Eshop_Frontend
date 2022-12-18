@@ -11,7 +11,6 @@ import Sizes from '../../components/Sizes';
 
 const PageCatalog = () => {
   const [numOfElem, setnumOfElem] = useState(12);
-  const { sortName, sortProperty } = useSelector(state => state.filter.sort);
 
   const LoadMore = () => {
     setnumOfElem(numOfElem + 3);
