@@ -1,21 +1,23 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import counterSlice from "./counter/counter";
-import locationSlice  from "./location/location";
-import productSlice from "./products/productSlice";
-import slidesSlice  from "./slides/slides";
-import userSlice from "./user/userSlice";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import counterSlice from './counter/counter';
+import locationSlice from './location/location';
+import productSlice from './products/productSlice';
+import slidesSlice from './slides/slides';
+import userSlice from './user/userSlice';
+import filterSlice from './filter/filterSlice';
 
 const rootReducer = combineReducers({
   user: userSlice,
   products: productSlice,
   slides: slidesSlice,
   location: locationSlice,
-  counter: counterSlice
+  counter: counterSlice,
+  filter: filterSlice,
 });
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),

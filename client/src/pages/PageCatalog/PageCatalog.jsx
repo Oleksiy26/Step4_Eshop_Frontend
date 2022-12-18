@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../../components/Button';
 import Galery from '../../components/Galery';
 import SortList from '../../components/SortList';
-
+import { useSelector, useDispatch } from 'react-redux';
 import './PageCatalog.scss';
 import Title from '../../components/Title/Title';
 import Category from '../../components/Category';
@@ -10,12 +10,7 @@ import Colors from '../../components/Colors';
 import Sizes from '../../components/Sizes';
 
 const PageCatalog = () => {
-  const [sortActive, setSortActive] = useState(false);
   const [numOfElem, setnumOfElem] = useState(12);
-
-  const hadlerSortBtn = () => {
-    setSortActive(!sortActive);
-  };
 
   const LoadMore = () => {
     setnumOfElem(numOfElem + 3);
@@ -41,10 +36,7 @@ const PageCatalog = () => {
           <Button text="Filter" className="page__button content-button" />
         </aside>
         <section className="content cards">
-          <p className="content-sort" onClick={hadlerSortBtn}>
-            Sort by
-          </p>
-          <SortList active={sortActive} setActive={setSortActive} />
+          <SortList />
           <Galery numOfElem={numOfElem} />
         </section>
         <Button
