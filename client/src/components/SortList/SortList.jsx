@@ -3,7 +3,7 @@ import './SortList.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSortType } from '../../store/filter/filterSlice';
 
-const SortList = ({ selected, onChangeSortType }) => {
+const SortList = () => {
   const [sortActive, setSortActive] = useState(false);
   const dispatch = useDispatch();
   const sort = useSelector(state => state.filter.sort);

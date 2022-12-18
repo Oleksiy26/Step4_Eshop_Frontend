@@ -6,30 +6,6 @@ import { fetchProducts } from '../../store/products/productSlice';
 
 import './Galery.scss';
 
-// const Galery = ({ numOfElem }) => {
-//   const products = useSelector(state => state.products);
-//   const slice = products.products.slice(0, numOfElem);
-
-//   return (
-//     <ul className="content-list">
-//       {products.products.length ? (
-//         <>
-//           {slice.map(item => (
-//             <li key={item._id}>
-//               <ProductCard
-//                 currentPrice={item.currentPrice}
-//                 photoUrl={item.imageUrls[0]}
-//                 key={item._id}
-//                 id={item._id}
-//               />
-//             </li>
-//           ))}
-//         </>
-//       ) : null}
-//     </ul>
-//   );
-// };
-// export default Galery;
 const Galery = ({ numOfElem }) => {
   const sort = useSelector(state => state.filter.sort);
   // const products = useSelector(state => state.products);
