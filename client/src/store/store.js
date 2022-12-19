@@ -5,6 +5,7 @@ import productSlice from './products/productSlice';
 import slidesSlice from './slides/slides';
 import userSlice from './user/userSlice';
 import filterSlice from './filter/filterSlice';
+import tokenWorkSlice from './tokenWork/tokenWork';
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   location: locationSlice,
   counter: counterSlice,
   filter: filterSlice,
+  auth: tokenWorkSlice
 });
 
 export const store = configureStore({

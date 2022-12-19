@@ -6,6 +6,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Button from '../../Button';
 import Input from '../Input';
 import * as yup from 'yup'; 
+import { useDispatch } from 'react-redux';
+import { login } from '../../../store/tokenWork/tokenWork';
 
 
 const initialValues = {
@@ -27,6 +29,7 @@ const SignIn = () => {
     const { loading, request, error, clearError } = useFetching()
     const navigate = useNavigate()
     const auth = useContext(AuthContext)
+    const dispatch = useDispatch();
 
     useEffect(() => {
         clearError()
@@ -40,7 +43,8 @@ const SignIn = () => {
                 password: value.password
             })
             console.log(data.token)
-            auth.login(data.token)
+            dispatch(login(data.token))
+            // auth.login(data.token)
             navigate('/')
         } catch (e) {
             console.log(e)

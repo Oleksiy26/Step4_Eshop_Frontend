@@ -3,11 +3,13 @@ import './ProductCard.scss';
 import { useDispatch } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
 import AddCartFavorit from '../AddCartFavorit';
+import { useFetching } from '../../hooks/useFetching';
 
 const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
   const [inFav, setInFav] = useState(false);
   const [inCart, setInCart] = useState(false);
   const dispatch = useDispatch();
+  const { loading, request, error, clearError } = useFetching()
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('fav'));
@@ -45,28 +47,40 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
     }
   };
 
-  const clickToCart = () => {
-    if (localStorage.getItem('cart')) {
-      const cart = JSON.parse(localStorage.getItem('cart'));
-      if (!cart.includes(id)) {
-        cart.push(id);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        setInCart(true);
-        dispatch(checkInCart(cart.length));
-      } else {
-        const newCart = cart.map(item => {
-          return item !== id ? item : null;
-        });
-        const filter = newCart.filter(checkValue);
-        dispatch(checkInCart(filter.length));
-        localStorage.setItem('cart', JSON.stringify(filter));
-        setInCart(false);
-      }
-    } else {
-      localStorage.setItem('cart', JSON.stringify([id]));
-      setInCart(true);
-      dispatch(checkInCart(1));
-    }
+  const clickToCart = async () => {
+    // if (localStorage.getItem('cart')) {
+    //   const cart = JSON.parse(localStorage.getItem('cart'));
+    //   if (!cart.includes(id)) {
+    //     cart.push(id);
+    //     localStorage.setItem('cart', JSON.stringify(cart));
+    //     setInCart(true);
+    //     dispatch(checkInCart(cart.length));
+    //   } else {
+    //     const newCart = cart.map(item => {
+    //       return item !== id ? item : null;
+    //     });
+    //     const filter = newCart.filter(checkValue);
+    //     dispatch(checkInCart(filter.length));
+    //     localStorage.setItem('cart', JSON.stringify(filter));
+    //     setInCart(false);
+    //   }
+    // } else {
+    //   localStorage.setItem('cart', JSON.stringify([id]));
+    //   setInCart(true);
+    //   dispatch(checkInCart(1));
+    // }
+    try {
+      const data = await request('/api/cart', 'POST', {
+        "products" : [
+          {
+            "products": {id}
+          }
+        ]
+      })
+  } catch (e) {
+      console.log(e)
+  }
+    
   };
 
   const checkValue = value => {

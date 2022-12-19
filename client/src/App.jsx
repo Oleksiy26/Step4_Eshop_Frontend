@@ -3,31 +3,30 @@ import './styles/App.scss';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from './context/AuthContext';
 import { fetchProducts } from './store/products/productSlice';
-import { useAuth } from './hooks/useAuth';
 import AppRouter from './router/AppRouter';
+import { login } from './store/tokenWork/tokenWork';
 
 function App() {
   const dispatch = useDispatch();
-
-  const { token, logout, login, ready } = useAuth();
+  const token = useSelector((state) => state.auth.token);
   const isAuthenticated = !!token;
   console.log('Token: ', !!token);
+  
 
   useEffect(() => {
     dispatch(fetchProducts());
+    const data = JSON.parse(localStorage.getItem('userToken'))
+    if (data && data.token) dispatch(login(data.token))
   }, [dispatch]);
 
   return (
     <AuthContext.Provider
       value={{
         token,
-        login,
-        logout,
         isAuthenticated,
-        ready,
       }}
     >
       <>
