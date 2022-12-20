@@ -6,8 +6,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Button from '../../Button';
 import Input from '../Input';
 import * as yup from 'yup'; 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../store/tokenWork/tokenWork';
+import { fetchSignIn } from '../../../store/signIn/signIn';
 
 
 const initialValues = {
@@ -28,8 +29,8 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
     const { loading, request, error, clearError } = useFetching()
     const navigate = useNavigate()
-    const auth = useContext(AuthContext)
     const dispatch = useDispatch();
+    const token = useSelector((state) => state.signIn.signIn)
 
     useEffect(() => {
         clearError()
@@ -37,18 +38,9 @@ const SignIn = () => {
 
 
     const loginUser = async (value) => {
-        try {
-            const data = await request('/api/customers/login', 'POST', {
-                loginOrEmail: value.loginOrEmail,
-                password: value.password
-            })
-            console.log(data.token)
-            dispatch(login(data.token))
-            // auth.login(data.token)
-            navigate('/')
-        } catch (e) {
-            console.log(e)
-        }  
+        dispatch(fetchSignIn(value)) 
+        dispatch(login(token))
+        navigate('/')
     }
 
     const loginValues = [

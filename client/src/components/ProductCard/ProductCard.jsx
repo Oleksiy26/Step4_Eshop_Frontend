@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
 import AddCartFavorit from '../AddCartFavorit';
 import { useFetching } from '../../hooks/useFetching';
+import axios from "axios";
 
 const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
   const [inFav, setInFav] = useState(false);
@@ -47,7 +48,7 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
     }
   };
 
-  const clickToCart = async () => {
+  const clickToCart = async (id) => {
     // if (localStorage.getItem('cart')) {
     //   const cart = JSON.parse(localStorage.getItem('cart'));
     //   if (!cart.includes(id)) {
@@ -69,17 +70,19 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
     //   setInCart(true);
     //   dispatch(checkInCart(1));
     // }
-    try {
-      const data = await request('/api/cart', 'POST', {
-        "products" : [
-          {
-            "products": {id}
-          }
-        ]
-      })
-  } catch (e) {
-      console.log(e)
-  }
+  //   try {
+  //     const data = await request('/api/cart', 'PUT', {
+  //       "products" : [
+  //         {
+  //           "products": {id}
+  //         }
+  //       ]
+  //     })
+  // } catch (e) {
+  //     console.log(e)
+
+  // }
+
     
   };
 
