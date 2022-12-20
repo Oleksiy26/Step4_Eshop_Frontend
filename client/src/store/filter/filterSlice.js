@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  sort: { sortName: null, sortProperty: null },
+  // sort: { sortName: null, sortProperty: null },
+  sort: { sortName: 'Price: High to Low', sortProperty: '-currentPrice' },
 };
 
 export const filterSlice = createSlice({
