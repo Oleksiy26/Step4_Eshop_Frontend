@@ -5,6 +5,7 @@ import "./MyInput.scss"
 const MyInput = ({ value, changeValue, placeholder, name }) => {
     return (
         <input
+           className="my-input"
            type='text'
            name={name}
            placeholder={placeholder}

@@ -7,7 +7,6 @@ import {AuthContext} from "../../../context/AuthContext";
 
 const ContainerFav = ({items}) => {
     const { favItems } = useSelector((state) => state.wishlist)
-    // const { isAuthenticated } = useFunctionality(id)
     const auth = useContext(AuthContext)
     const { isAuthenticated } = auth
 

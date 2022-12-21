@@ -43,7 +43,7 @@ const Header = () => {
                     <NavLink to="/" className="logo"><Logo/></NavLink>
                 </div>
                 <div className={styles.header__block_svg}>
-                    <NavLink to="/">
+                    <NavLink to="/profile">
                         <User/>
                     </NavLink>
                     <NavLink to="/">

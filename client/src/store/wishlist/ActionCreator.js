@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import {addInWishlist, deleteFromWishlist} from "./WishlistSlice";
 
 export const fetchWishlist = createAsyncThunk(
     'wishlist/fetchCard',
@@ -34,7 +35,7 @@ export const addToWishlist = createAsyncThunk(
                 throw new Error('Server Error!')
             }
             const data = await response.json();
-            dispatch(addToWishlist(id))
+            dispatch(addInWishlist(id))
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -44,7 +45,7 @@ export const addToWishlist = createAsyncThunk(
 
 export const deleteItemFromWishlist = createAsyncThunk(
     'wishlist/deleteCard',
-    async function(_id, {rejectWithValue}) {
+    async function(_id, {rejectWithValue, dispatch}) {
         try {
             const response = await fetch(`/api/wishlist/${_id}`, {
                 method: 'DELETE',
@@ -56,6 +57,7 @@ export const deleteItemFromWishlist = createAsyncThunk(
                 throw new Error('Server Error!')
             }
             const data = await response.json();
+            dispatch(deleteFromWishlist(_id))
             return data;
         } catch (error) {
             return rejectWithValue(error.message);

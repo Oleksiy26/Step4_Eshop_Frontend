@@ -55,7 +55,7 @@ const PageFav = () => {
             }/>
             { isItemsLoading && <h1 style={{ textAlign: 'center' }}> Loading... </h1> }
             <ContainerFav
-                items={ isAuthenticated ? favItems.products : findItemsFav() }
+                items={findItemsFav()}
                 // items={ findItemsFav() }
                 // items={ addAuthorized() }
             />

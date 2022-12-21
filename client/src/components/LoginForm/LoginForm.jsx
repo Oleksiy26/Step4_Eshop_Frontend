@@ -54,45 +54,25 @@ const Form = () => {
 
     return (
         <form onSubmit={toSubmit}>
-            <div>
-                {/*new login*/}
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {values.map((val) => {
                     const { valueOfInput, placeholder, name } = val
                     return (
-                       <MyInput
-                           key={placeholder}
-                           name={name}
-                           placeholder={placeholder}
-                           value={valueOfInput}
-                           changeValue={changeValue}
-                       />
+                        <MyInput
+                            key={placeholder}
+                            name={name}
+                            placeholder={placeholder}
+                            value={valueOfInput}
+                            changeValue={changeValue}
+                        />
                     )
                 })}
-                <button
-                    style={{ marginTop: '35px' }}
+                <Button
+                    text="Create User"
                     disabled={loading}
                     onClick={registerUser}
-                >
-                    Create User
-                </button>
+                />
             </div>
-            {values.map((val) => {
-                const { valueOfInput, placeholder, name } = val
-                return (
-                   <MyInput
-                       key={placeholder}
-                       name={name}
-                       placeholder={placeholder}
-                       value={valueOfInput}
-                       changeValue={changeValue}
-                   />
-                )
-            })}
-            <Button
-                text="Create User"
-                disabled={loading}
-                onClick={registerUser}
-            />
         </form>
     )
 }

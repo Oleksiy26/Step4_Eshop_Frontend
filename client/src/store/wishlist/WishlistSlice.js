@@ -7,7 +7,6 @@ const initialState = {
         customerId: {},
         _id: ''
     },
-    inWishlist: 0,
     isItemsLoading: false,
     itemsError: ''
 }
@@ -19,8 +18,8 @@ export const WishlistSlice = createSlice({
         addInWishlist: (state, action) => {
             state.favItems.products.push(action.payload)
         },
-        checkinWishlist: (state, action) => {
-            state.inWishlist = action.payload
+        deleteFromWishlist: (state, action) => {
+            state.favItems.products.filter(product => product.itemNo !== action.payload.itemNo)
         },
     },
     extraReducers: (builder) => {
@@ -42,6 +41,6 @@ export const WishlistSlice = createSlice({
 
 export const {
     addInWishlist,
-    checkinWishlist,
+    deleteFromWishlist,
 } = WishlistSlice.actions
 export default WishlistSlice.reducer;

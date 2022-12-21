@@ -12,7 +12,7 @@ export const PageItem = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const products = useSelector((state) => state.products);
-  // // const product = useSelector((state) => state.products.products[id]);
+  // const product = useSelector((state) => state.products.products[id]);
 
   // console.log(products)
   const { card, isCardLoading, cardError } = useSelector((state) => state.card)

@@ -2,6 +2,7 @@ import {useContext, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { checkInCart, checkInFav } from "../store/counter/counter";
 import { AuthContext } from "../context/AuthContext";
+import { addToWishlist, deleteItemFromWishlist } from "../store/wishlist/ActionCreator";
 
 export const useFunctionality = (id) => {
     const [inFav, setInFav] = useState(false);
@@ -53,6 +54,36 @@ export const useFunctionality = (id) => {
             }
     };
 
+    // const clickFav = (id) => {
+    //     if(isAuthenticated) {
+    //
+    //     } else {
+    //         if (localStorage.getItem('fav')) {
+    //             const fav = JSON.parse(localStorage.getItem('fav'));
+    //             if (!fav.includes(id)) {
+    //                 fav.push(id);
+    //                 localStorage.setItem('fav', JSON.stringify(fav));
+    //                 setInFav(true);
+    //                 dispatch(checkInFav(fav.length));
+    //             } else {
+    //                 const newFav = fav.map(item => {
+    //                     return item !== id ? item : null;
+    //                 });
+    //                 const filter = newFav.filter(checkValue);
+    //                 dispatch(checkInFav(filter.length));
+    //                 localStorage.setItem('fav', JSON.stringify(filter));
+    //                 setInFav(false);
+    //             }
+    //         } else {
+    //             localStorage.setItem('fav', JSON.stringify([id]));
+    //             setInFav(true);
+    //             dispatch(checkInFav(1));
+    //         }
+    //     }
+    //
+    //
+    // };
+
 
     const clickToCart = id => {
         if (localStorage.getItem('cart')) {
@@ -83,5 +114,7 @@ export const useFunctionality = (id) => {
         inCart,
         clickFav,
         clickToCart,
+        isAuthenticated,
+        setInFav
     }
 }

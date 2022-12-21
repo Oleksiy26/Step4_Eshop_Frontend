@@ -1,34 +1,71 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import styles from "./Favicon.module.scss"
 import { ReactComponent as Favorit } from './svg/favorit.svg';
 import { ReactComponent as FavoritCheck } from './svg/favoritCheck.svg';
 import {AuthContext} from "../../../context/AuthContext";
 import {useSelector} from "react-redux";
+import {addToWishlist, deleteItemFromWishlist} from "../../../store/wishlist/ActionCreator";
 
 
-const Favicon = ({ inFav, onClick, inWishlist }) => {
+const Favicon = ({ inFav, onClick }) => {
+    const { favItems } = useSelector((state) => state.wishlist)
+
     const auth = useContext(AuthContext)
     const { isAuthenticated } = auth
-    // const { inWishlist } = useSelector((state) => state.wishlist)
 
     // logs
     // console.log(inFav)
+    // console.log(onClick)
     // console.log(inWishlist)
     // logs
 
-    const checkIcon = () => {
-        return inFav ?
-          <FavoritCheck
-            className={styles.img}
-            onClick={onClick}
-          />
-           :
-            <Favorit className={styles.img} onClick={onClick} />;
-      };
+    // const toggleSmth = () => {
+    //     if(isAuthenticated) {
+    //         deleteFromWish()
+    //     } else {
+    //         onClick()
+    //     }
+    // }
 
+        // const toggleEv = () => {
+    //     if(isAuthenticated) {
+    //
+    //     }
+    // }
+
+    // const checkIcon = (flag) => {
+    //     return (
+    //
+    //         )
+
+        // return (flag) ?
+        //   <FavoritCheck
+        //     className={styles.img}
+        //     onClick={onClick}
+        //   />
+        //    :
+        //     <Favorit className={styles.img} onClick={onClick} />;
+    // };
+
+        // <>
+        //   { isAuthenticated ? checkIcon(isAuthenticated) : checkIcon(inFav) }
+        // </>
     return (
-       checkIcon()
+        <>
+            {
+                 inFav ?
+                     (
+                    <FavoritCheck
+                         className={styles.img}
+                         onClick={onClick}
+                    />
+                ) : (
+                   <Favorit className={styles.img} onClick={onClick} />
+                )
+            }
+        </>
     )
 }
 
+// checkIcon(inFav)
 export default Favicon;
