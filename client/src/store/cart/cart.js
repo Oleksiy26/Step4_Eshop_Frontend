@@ -1,41 +1,78 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-
-
+import { checkInCart } from "../counter/counter";
 
 export const fetchCreateCart = createAsyncThunk(
   'createCart/fetchCreateCart',
-  async function(id, {rejectWithValue, getState}) {
+    async function(id, {rejectWithValue, getState, dispatch}) {
     const stateToken = getState().auth.token
     try {            
-      const respons = await fetch('/api/cart',  {
+      const respons = await fetch(`/api/cart/${id}`,  {
         method: 'PUT',
-        body: JSON.stringify({
-            "products" : [
-                {
-                  "product": id,
-                  'quantity': '2'
-                }
-              ]
-        }),
         headers: {
             'Authorization' : stateToken
-            // 'Authorization' : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTFkNzYyMjRiMjk4NzU2MjU0NjI5YSIsImZpcnN0TmFtZSI6IkxpbGkiLCJsYXN0TmFtZSI6IkxpbGlMaWxpIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY3MTU2MDg0MSwiZXhwIjoxNjcxNTk2ODQxfQ.ajzicrTcHlNaTSSf1glZ5CPSq7ocKcic1qgnr48aKZw"
-
+            }
         }
-        }
-      );
+        );
       if (!respons.ok) {
         throw new Error('Server Error!')
       }
       const data = await respons.json();
-      console.log(data);
+      dispatch(checkInCart(data.products.length))
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+
+export const fetchDeleteFromCart = createAsyncThunk(
+    'deleteFromCart/fetchDeleteFromCart',
+      async function(id, {rejectWithValue, getState, dispatch}) {
+      const stateToken = getState().auth.token
+      try {            
+        const respons = await fetch(`/api/cart/${id}`,  {
+          method: 'DELETE',
+          headers: {
+              'Authorization' : stateToken
+              }
+          }
+          );
+        if (!respons.ok) {
+          throw new Error('Server Error!')
+        }
+        const data = await respons.json();
+        dispatch(checkInCart(data.products.length))
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
+
+  export const fetchGetAllFromCart = createAsyncThunk(
+    'getAllFromCart/fetchGetAllFromCart',
+      async function(_, {rejectWithValue, getState, dispatch}) {
+      const stateToken = getState().auth.token
+      try {            
+        const respons = await fetch('/api/cart',  {
+          method: 'GET',
+          headers: {
+              'Authorization' : stateToken
+              }
+          }
+          );
+        if (!respons.ok) {
+          throw new Error('Server Error!')
+        }
+        const data = await respons.json();
+        dispatch(checkInCart(data.products.length))
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );  
+
 
 const initialState = {
   cart: '',
@@ -56,6 +93,30 @@ export const cartSlice = createSlice({
       state.cart = action.payload;
     },
     [fetchCreateCart.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    },
+    [fetchDeleteFromCart.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [fetchDeleteFromCart.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.cart = action.payload;
+    },
+    [fetchDeleteFromCart.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    },
+    [fetchGetAllFromCart.pending]: (state) => {
+        state.status = "loading";
+        state.error = null;
+    },
+    [fetchGetAllFromCart.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.cart = action.payload;
+    },
+    [fetchGetAllFromCart.rejected]: (state, action) => {
       state.status = "rejected";
       state.error = action.payload;
     }

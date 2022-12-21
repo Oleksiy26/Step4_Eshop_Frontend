@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
 import AddCartFavorit from '../AddCartFavorit';
 import { useFetching } from '../../hooks/useFetching';
-import axios from "axios";
-import { fetchCreateCart } from '../../store/cart/cart';
+import { fetchCreateCart, fetchDeleteFromCart } from '../../store/cart/cart';
 
 const checkValue = value => {
   return value != null;
@@ -40,6 +39,8 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
   const [inCart, setInCart] = useState(false);
   const dispatch = useDispatch();
   const { loading, request, error, clearError } = useFetching()
+  const token = useSelector((state) => state.auth.token);
+  const cardInCart = useSelector((state) => state.cart.cart)
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('fav'));
@@ -51,7 +52,8 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
         }
       });
     }
-  }, []);
+    checkCardinCart(id)
+  }, [cardInCart]);
 
   const clickFav = id => {
     if (localStorage.getItem('fav')) {
@@ -76,6 +78,20 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
       dispatch(checkInFav(1));
     }
   };
+
+  const checkCardinCart = (id) => {
+    if (cardInCart) {
+      const newArr = cardInCart.products.map((item) => {
+         return item.product
+      })
+      const dgbh = newArr.map((item) => {
+        return item._id
+      })
+      if (dgbh.includes(id)) {
+        setInCart(true)
+      }
+    }
+  }
 
   const clickToCart =  (id) => {
     // if (localStorage.getItem('cart')) {
@@ -112,7 +128,15 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
 
   // }
   // console.log(token);
-    dispatch(fetchCreateCart(id))
+  if (token) {
+    if (inCart) {
+      dispatch(fetchDeleteFromCart(id))
+      setInCart(false)
+    } else {
+      dispatch(fetchCreateCart(id))
+      setInCart(true)
+    }
+   }
 
     
   };

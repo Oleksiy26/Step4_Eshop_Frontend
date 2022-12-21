@@ -1,23 +1,24 @@
 import React from 'react';
 import ProductCard from '../../../components/ProductCard';
 
-const ContainerFav = ({ items }) => {
+const ContainerCart = ({ items }) => {
   return (
     <section className="container py-5">
       <div className="d-flex gap-4 flex-column flex-md-row">
         {items &&
           items.map(item => (
             <ProductCard
-              currentPrice={item.currentPrice}
-              photoUrl={item.imageUrls[0]}
+              currentPrice={item.product.currentPrice}
+              photoUrl={item.product.imageUrls[0]}
               subClass={'set-item img-fluid overflow-auto flex-grow-1'}
-              key={item._id}
-              id={items._id}
+              key={item.product._id}
+              id={item.product._id}
             />
-          ))}
+          )
+          )}
       </div>
     </section>
   );
 };
 
-export default ContainerFav;
+export default ContainerCart;

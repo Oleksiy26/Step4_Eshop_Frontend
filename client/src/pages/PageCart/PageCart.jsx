@@ -2,20 +2,28 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../../components/ProductCard";
 import Title from "../../components/Title/Title";
+import ContainerCart from "./ContainerCart";
 
 const PageCart = () => {
     const products = useSelector((state) => state.products)
+    const cardInCart = useSelector((state) => state.cart.cart)
 
 
     return (
         <div className="container py-5 page">
-            <Title subtitle="Your cart"/>
-            <section className="d-flex gap-3 flex-column flex-md-row">
-                <div className="flex-grow-2">
-                   
-                </div>
-                <div className="flex-grow-1"></div>
-            </section>
+            {!cardInCart ? (
+                <Title subtitle="Your shopping cart is empty"/>
+            ) : (
+            <>
+                <Title subtitle="Your cart"/>
+                {/* <section className="d-flex gap-3 flex-column flex-md-row">
+                    <div className="flex-grow-2"> */}
+                    <ContainerCart items={cardInCart.products}/>
+                     {/* </div>
+                    <div className="flex-grow-1"></div>
+                </section> */}
+            </>)}
+
             <Title subtitle="You may also like"/>
             <section className="d-flex gap-4 flex-column flex-md-row">
                 {products ? (
