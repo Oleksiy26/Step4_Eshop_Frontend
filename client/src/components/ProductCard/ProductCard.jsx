@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './ProductCard.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
 import AddCartFavorit from '../AddCartFavorit';
 import { useFetching } from '../../hooks/useFetching';
 import axios from "axios";
+import { fetchCreateCart } from '../../store/cart/cart';
 
 const checkValue = value => {
   return value != null;
@@ -76,7 +77,7 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
     }
   };
 
-  const clickToCart = async (id) => {
+  const clickToCart =  (id) => {
     // if (localStorage.getItem('cart')) {
     //   const cart = JSON.parse(localStorage.getItem('cart'));
     //   if (!cart.includes(id)) {
@@ -100,16 +101,18 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
     // }
   //   try {
   //     const data = await request('/api/cart', 'PUT', {
-  //       "products" : [
-  //         {
-  //           "products": {id}
-  //         }
-  //       ]
+        // "products" : [
+        //   {
+        //     "products": {id}
+        //   }
+        // ]
   //     })
   // } catch (e) {
   //     console.log(e)
 
   // }
+  // console.log(token);
+    dispatch(fetchCreateCart(id))
 
     
   };

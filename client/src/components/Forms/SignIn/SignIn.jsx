@@ -39,7 +39,8 @@ const SignIn = () => {
 
     const loginUser = async (value) => {
         dispatch(fetchSignIn(value)) 
-        dispatch(login(token))
+        
+        // console.log(token);
         navigate('/')
     }
 

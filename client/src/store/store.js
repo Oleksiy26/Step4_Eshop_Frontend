@@ -8,6 +8,7 @@ import filterSlice from './filter/filterSlice';
 import tokenWorkSlice from './tokenWork/tokenWork';
 import signInSlice from './signIn/signIn';
 import loginSlice from './login/login';
+import cartSlice from './cart/cart';
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   filter: filterSlice,
   auth: tokenWorkSlice,
   signIn: signInSlice,
-  login: loginSlice
+  login: loginSlice,
+  cart: cartSlice
 });
 
 export const store = configureStore({

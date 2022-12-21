@@ -11,11 +11,11 @@ const tokenWorkSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action) => {
-                state.token = action;
+                state.token = action.payload;
                 localStorage.setItem(
                     storageName,
                     JSON.stringify({
-                        token: action,
+                        token: action.payload,
                     })
                 )
         },

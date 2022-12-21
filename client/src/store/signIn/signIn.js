@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { login } from "../tokenWork/tokenWork";
 
 export const fetchSignIn = createAsyncThunk(
   'signIn/fetchSignIn',
-  async function(value, {rejectWithValue}) {
+  async function(value, {rejectWithValue, dispatch}) {
     try {
       const respons = await fetch('/api/customers/login',  {
         method: 'POST',
@@ -12,13 +13,14 @@ export const fetchSignIn = createAsyncThunk(
         }),
         headers: {
             'Content-Type' : 'application/json'
-        }
+          }
         }
       );
       if (!respons.ok) {
         throw new Error('Server Error!')
       }
       const data = await respons.json();
+      dispatch(login(data.token))
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -42,7 +44,8 @@ export const signInSlice = createSlice({
     },
     [fetchSignIn.fulfilled]: (state, action) => {
       state.status = "resolved";
-      state.signIn = action.payload;
+      state.signIn = action.payload.token;
+      
     },
     [fetchSignIn.rejected]: (state, action) => {
       state.status = "rejected";
