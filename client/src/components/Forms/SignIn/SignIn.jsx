@@ -50,7 +50,11 @@ const SignIn = () => {
     ]
 
     return (
-        <Formik initialValues={initialValues} onSubmit={loginUser} validationSchema={validationSchema}>
+        <Formik 
+            initialValues={initialValues} 
+            onSubmit={loginUser} 
+            validationSchema={validationSchema}
+        >
             {({values}) => {
                 return (
                     <Form>

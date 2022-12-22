@@ -1,14 +1,17 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import counterSlice from './counter/counter';
-import locationSlice from './location/location';
-import productSlice from './products/productSlice';
-import slidesSlice from './slides/slides';
-import userSlice from './user/userSlice';
-import filterSlice from './filter/filterSlice';
-import tokenWorkSlice from './tokenWork/tokenWork';
-import signInSlice from './signIn/signIn';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import counterSlice from "./counter/counter";
+import locationSlice  from "./location/location";
+import productSlice from "./products/productSlice";
+import slidesSlice  from "./slides/slides";
+import userSlice from "./user/userSlice";
+import cardSlice from "./card/CardSlice";
+import filterSlice from "./filter/filterSlice"
 import loginSlice from './login/login';
 import cartSlice from './cart/cart';
+import signInSlice from './signIn/signIn';
+import tokenWorkSlice from './tokenWork/tokenWork';
+import wishlistSlice from "./wishlist/WishlistSlice"
+
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -16,6 +19,8 @@ const rootReducer = combineReducers({
   slides: slidesSlice,
   location: locationSlice,
   counter: counterSlice,
+  card: cardSlice,
+  wishlist: wishlistSlice,
   filter: filterSlice,
   auth: tokenWorkSlice,
   signIn: signInSlice,

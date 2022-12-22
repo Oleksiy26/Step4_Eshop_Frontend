@@ -1,14 +1,14 @@
-import './styles/App.scss';
-// import Rout from "./router/Rout";
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from './context/AuthContext';
 import { fetchProducts } from './store/products/productSlice';
-import AppRouter from './router/AppRouter';
 import { login } from './store/tokenWork/tokenWork';
 import { fetchGetAllFromCart } from './store/cart/cart';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import AppRouter from './router/AppRouter';
+import './styles/App.scss';
+import { fetchWishlist } from './store/wishlist/ActionCreator';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,8 +21,11 @@ function App() {
     dispatch(fetchProducts());
     const data = JSON.parse(localStorage.getItem('userToken'))
     if (data && data.token) dispatch(login(data.token))
-    dispatch(fetchGetAllFromCart())
-  }, [dispatch]);
+    if (token) { 
+      dispatch(fetchGetAllFromCart()) 
+      dispatch(fetchWishlist())
+    }
+  }, [dispatch, token]);
 
   return (
     <AuthContext.Provider
@@ -32,9 +35,9 @@ function App() {
       }}
     >
       <>
-        <Header />
-        <AppRouter isAuthenticated={isAuthenticated} />
-        {isAuthenticated && <Footer />}
+      { isAuthenticated && <Header /> }
+      <AppRouter isAuthenticated={isAuthenticated} />
+      { isAuthenticated &&  <Footer /> }
       </>
     </AuthContext.Provider>
   );

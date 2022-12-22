@@ -29,15 +29,16 @@ const PageCart = () => {
             <Title subtitle="You may also like"/>
             <section className="d-flex gap-4 flex-column flex-md-row">
                 {products ? (
-                products.products.slice(13, 17).map((item) => (
-                    <ProductCard
-                    price={item.price}
-                    photoUrl={item.imageUrls[0]}
-                    subClass={'set-item img-fluid overflow-auto flex-grow-1'}
-                    key={item._id}
-                    id={item._id}
-                    />
-                ))
+                    products.products.slice(13, 17).map((item) => (
+                        <ProductCard
+                            ident={item.itemNo}
+                            price={item.currentPrice}
+                            photoUrl={item.imageUrls[0]}
+                            subClass={'set-item img-fluid overflow-auto flex-grow-1'}
+                            key={item._id}
+                            id={item._id}
+                        />
+                    ))
                 ) : null}
             </section>
         </div>
