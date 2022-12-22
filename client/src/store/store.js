@@ -5,7 +5,13 @@ import productSlice from "./products/productSlice";
 import slidesSlice  from "./slides/slides";
 import userSlice from "./user/userSlice";
 import cardSlice from "./card/CardSlice";
-import wishlistSlice from "./wishlist/WishlistSlice";
+import filterSlice from "./filter/filterSlice"
+import loginSlice from './login/login';
+import cartSlice from './cart/cart';
+import signInSlice from './signIn/signIn';
+import tokenWorkSlice from './tokenWork/tokenWork';
+import wishlistSlice from "./wishlist/WishlistSlice"
+
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -14,12 +20,17 @@ const rootReducer = combineReducers({
   location: locationSlice,
   counter: counterSlice,
   card: cardSlice,
-  wishlist: wishlistSlice
+  wishlist: wishlistSlice,
+  filter: filterSlice,
+  auth: tokenWorkSlice,
+  signIn: signInSlice,
+  login: loginSlice,
+  cart: cartSlice
 });
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),

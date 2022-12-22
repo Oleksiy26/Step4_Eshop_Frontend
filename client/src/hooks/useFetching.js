@@ -12,6 +12,7 @@ export const useFetching = () => {
                 if (body) {
                     body = JSON.stringify(body)
                     headers['Content-Type'] = 'application/json'
+                    // headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTRlNmE3ZWExZGY1MTY1ZWQ3ODFmZSIsImZpcnN0TmFtZSI6IkthdHlhIiwibGFzdE5hbWUiOiJLYXR5YUthdHlhIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY3MTQ4MzQxMSwiZXhwIjoxNjcxNTE5NDExfQ.CsIJWF2EG5frG148G6fXLOhToTMlwbbWZ6RI5c2RSqA'
                 }
 
                 // const response = await axios(url, { method, body, headers })

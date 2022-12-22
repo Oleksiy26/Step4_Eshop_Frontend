@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './ProductCard.scss';
 import AddCartFavorit from '../AddCartFavorit';
 import { useNavigate } from "react-router-dom";
 import { useFunctionality } from "../../hooks/useFunctionality";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist, deleteItemFromWishlist } from "../../store/wishlist/ActionCreator";
+import './ProductCard.scss';
+
 
 const ProductCard = ({ price, photoUrl, subClass, id, ident, item }) => {
   const { favItems } = useSelector((state) => state.wishlist)
@@ -80,4 +81,4 @@ const ProductCard = ({ price, photoUrl, subClass, id, ident, item }) => {
 // clickFav
 // isAuthenticated ? inWishlist :
 // isAuthenticated ? addAuthorized() :
-export default ProductCard;
+export default ProductCard

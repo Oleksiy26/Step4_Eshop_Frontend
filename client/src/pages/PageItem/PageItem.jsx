@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import ProductCard from "../../components/ProductCard";
-import "./PageItem.scss";
 import {fetchCard} from "../../store/card/ActionCreator";
-import {logDOM} from "@testing-library/react";
+import AddCartFavorit from "../../components/AddCartFavorit";
+import "./PageItem.scss";
 
 export const PageItem = () => {
   const { itemNo } = useParams();
@@ -64,14 +64,15 @@ export const PageItem = () => {
             </div>
           </div>
           <div className="d-flex align-items-center">
-            <p className="my-2">Color:</p>{" "}
+            <p className="my-2">Color:</p>
             <span
               style={{
                 backgroundColor: card !== undefined ? color : null,
               }}
-              className={"colorSquare"}
+              className={'colorSquare'}
             />
           </div>
+          <AddCartFavorit />
         </div>
       </div>
       <div>
@@ -80,11 +81,11 @@ export const PageItem = () => {
           {products
             ? products.products
                 .slice(0, 5)
-                .map((item) => (
+                .map(item => (
                   <ProductCard
                     price={item.price}
                     photoUrl={item.imageUrls[0]}
-                    subClass={"set-item"}
+                    subClass={'set-item'}
                     key={item._id}
                     id={item._id}
                   />

@@ -1,25 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "./MyInput.scss"
+import styles from "./Input.module.scss"
 
-const MyInput = ({ value, changeValue, placeholder, name }) => {
+const Input = ({ value, placeholder, name, id, field }) => {
     return (
         <input
-           className="my-input"
+           className={styles.input}
            type='text'
            name={name}
            placeholder={placeholder}
            defaultValue={value}
-           onChange={changeValue}
+           id={id}
+           onChange={field.onChange}
+           onBlur={field.onBlur}
         />
     );
 };
 
-MyInput.propTypes = {
+Input.propTypes = {
     value: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    changeValue: PropTypes.func.isRequired,
     placeholder: PropTypes.string.isRequired,
 }
 
-export default MyInput;
+export default Input;

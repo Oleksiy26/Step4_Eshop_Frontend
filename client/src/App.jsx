@@ -1,41 +1,41 @@
-import "./styles/App.scss";
-// import Rout from "./router/Rout";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from './context/AuthContext';
-import { fetchProducts } from "./store/products/productSlice";
-import { useAuth } from "./hooks/useAuth";
-import AppRouter from "./router/AppRouter";
+import { fetchProducts } from './store/products/productSlice';
+import { login } from './store/tokenWork/tokenWork';
+import { fetchGetAllFromCart } from './store/cart/cart';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import AppRouter from './router/AppRouter';
+import './styles/App.scss';
 
 function App() {
   const dispatch = useDispatch();
-
-  const { token, logout, login, ready } = useAuth()
-  const isAuthenticated = !!token
-  console.log('Token: ', !!token)
+  const token = useSelector((state) => state.auth.token);
+  const isAuthenticated = !!token;
+  console.log('Token: ', !!token);
+  
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+    const data = JSON.parse(localStorage.getItem('userToken'))
+    if (data && data.token) dispatch(login(data.token))
+    dispatch(fetchGetAllFromCart())
+  }, [dispatch]);
 
   return (
-      <AuthContext.Provider
-          value={{
-              token,
-              login,
-              logout,
-              isAuthenticated,
-              ready,
-          }}
-      >
-    <>
+    <AuthContext.Provider
+      value={{
+        token,
+        isAuthenticated,
+      }}
+    >
+      <>
       { isAuthenticated && <Header /> }
       <AppRouter isAuthenticated={isAuthenticated} />
       { isAuthenticated &&  <Footer /> }
-    </>
-      </AuthContext.Provider>
+      </>
+    </AuthContext.Provider>
   );
 }
 

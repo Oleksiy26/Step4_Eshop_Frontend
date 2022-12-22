@@ -1,12 +1,12 @@
 import React, {useContext} from "react";
 import ProductCard from "../../../components/ProductCard";
-import {useFunctionality} from "../../../hooks/useFunctionality";
+// import {useFunctionality} from "../../../hooks/useFunctionality";
 import {useSelector} from "react-redux";
-import {logDOM} from "@testing-library/react";
 import {AuthContext} from "../../../context/AuthContext";
 
 const ContainerFav = ({items}) => {
     const { favItems } = useSelector((state) => state.wishlist)
+    console.log('favItems:: ', favItems);
     const auth = useContext(AuthContext)
     const { isAuthenticated } = auth
 
