@@ -1,10 +1,10 @@
 import React from 'react';
 import ProductCard from '../../../components/ProductCard';
+import styles from "./ContainerCart.module.scss"
 
 const ContainerCart = ({ items }) => {
   return (
-    <section className="container py-5">
-      <div className="d-flex gap-4 flex-column flex-md-row">
+      <div className={styles.card}>
         {items &&
           items.map(item => (
             <ProductCard
@@ -17,7 +17,6 @@ const ContainerCart = ({ items }) => {
           )
           )}
       </div>
-    </section>
   );
 };
 

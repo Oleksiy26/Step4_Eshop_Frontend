@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import ProductCard from "../../components/ProductCard";
 import Title from "../../components/Title/Title";
 import ContainerCart from "./ContainerCart";
+import styles from "./PageCart.module.scss"
 
 const PageCart = () => {
     const products = useSelector((state) => state.products)
@@ -16,13 +17,14 @@ const PageCart = () => {
             ) : (
             <>
                 <Title subtitle="Your cart"/>
-                {/* <section className="d-flex gap-3 flex-column flex-md-row">
-                    <div className="flex-grow-2"> */}
-                    <ContainerCart items={cardInCart.products}/>
-                     {/* </div>
+                <section className={styles.section}>
+                    <div className={styles.section_products}>
+                        <ContainerCart items={cardInCart.products}/>
+                     </div>
                     <div className="flex-grow-1"></div>
-                </section> */}
-            </>)}
+                </section>
+            </>
+            )}
 
             <Title subtitle="You may also like"/>
             <section className="d-flex gap-4 flex-column flex-md-row">

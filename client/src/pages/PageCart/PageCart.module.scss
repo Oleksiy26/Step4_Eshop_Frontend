@@ -1,0 +1,8 @@
+.section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    &_products {
+        width: 60%;
+    }
+}
