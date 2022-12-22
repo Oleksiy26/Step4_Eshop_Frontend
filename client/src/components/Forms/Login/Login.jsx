@@ -4,7 +4,8 @@ import Button from '../../Button';
 import Input from "../Input";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup'; 
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchLogin } from '../../../store/login/login';
 
 const initialValues = {
     email: '',
@@ -37,24 +38,15 @@ const validationSchema = yup.object().shape({
 
 const Login = ({changeAfterLogin}) => {
     const { loading, request, error, clearError } = useFetching()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         clearError()
     }, [error, clearError])
 
-    const registerUser = async (value) => {
-        try {
-            const data = await request('/api/customers', 'POST', {
-                email: value.email,
-                password: value.password,
-                firstName: value.firstName,
-                lastName: value.lastName,
-                login: value.login
-            })
-            changeAfterLogin(false)
-        } catch (e) {
-            console.log(e)
-        }
+    const registerUser = (value) => {
+        dispatch(fetchLogin(value))
+        changeAfterLogin(false)
     }
 
     const SignInvalues = [

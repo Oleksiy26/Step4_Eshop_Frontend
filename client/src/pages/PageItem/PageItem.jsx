@@ -1,15 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
-import Slider from "react-slick";
-import ProductCard from "../../components/ProductCard";
-import "./PageItem.scss";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
+import Slider from 'react-slick';
+import AddCartFavorit from '../../components/AddCartFavorit';
+import ProductCard from '../../components/ProductCard';
+import './PageItem.scss';
 
 export const PageItem = () => {
-  const { id } = useParams();
+  const { itemNo } = useParams();
 
-  const products = useSelector((state) => state.products);
-  const product = useSelector((state) => state.products.products[id]);
+  const products = useSelector(state => state.products);
+  const product = useSelector(state => state.products.products).find(obj => obj.itemNo === itemNo);
 
   const settings = {
     dots: true,
@@ -26,36 +27,41 @@ export const PageItem = () => {
 
   return (
     <div className="container">
-      <div className="my-5 d-flex gap-5 justify-content-center">
-        <div className="sliderImg">
+      <div className="my-5 d-flex flex-column flex-md-row gap-5 justify-content-center">
+        <div className="slider">
           <Slider {...settings}>
-            {product !== undefined
-              ? product.imageUrls.map((el) => (
-                  <img className="sliderImg" src={el} alt="" />
-                ))
-              : null}
+            {product !== undefined ? (
+              product.imageUrls.map(el => <img className="sliderImg img-fluid " src={el} alt="" />)
+            ) : (
+              <img
+                className="sliderImg img-fluid "
+                src={'https://bitsofco.de/content/images/2018/12/broken-1.png'}
+                alt=""
+              />
+            )}
           </Slider>
         </div>
         <div>
-          <h1>{product !== undefined && product.setName}</h1>
-          <h3>Available</h3>
-          <h4 className="my-4">{product !== undefined && product.price}$</h4>
+          <h1>{(product !== undefined && product.name) || 'Unavailable'}</h1>
+          <h3>{product !== undefined && product.enabled ? 'Available' : 'Out of stock'}</h3>
+          <h4 className="my-4">{(product !== undefined && product.currentPrice) || '0'}$</h4>
           <div className="d-flex gap-4">
             <p>Available Sizes: </p>
             <div className="d-flex gap-4">
               {product !== undefined &&
-                product.size.map((el) => <p key={el + id}>{el}</p>)}
+                product.sizes.split(',').map(el => <p key={el + itemNo}>{el}</p>)}
             </div>
           </div>
           <div className="d-flex align-items-center">
-            <p className="my-2">Color:</p>{" "}
+            <p className="my-2">Color:</p>
             <span
               style={{
                 backgroundColor: product !== undefined ? product.color : null,
               }}
-              className={"colorSquare"}
+              className={'colorSquare'}
             />
           </div>
+          <AddCartFavorit />
         </div>
       </div>
       <div>
@@ -64,11 +70,11 @@ export const PageItem = () => {
           {products
             ? products.products
                 .slice(0, 5)
-                .map((item) => (
+                .map(item => (
                   <ProductCard
                     price={item.price}
                     photoUrl={item.imageUrls[0]}
-                    subClass={"set-item"}
+                    subClass={'set-item'}
                     key={item._id}
                     id={item._id}
                   />

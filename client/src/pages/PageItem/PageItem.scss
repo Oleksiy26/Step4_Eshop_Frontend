@@ -3,11 +3,16 @@
   width: 20px;
   height: 20px;
   border: 2px solid lightgray;
-  margin-left: 76px
+  margin-left: 76px;
+}
+
+.slider {
+  width: 400px;
+  height: 400px;
 }
 
 .sliderImg {
+  object-fit: cover;
   width: 400px;
   height: 400px;
-  object-fit: contain;
 }
