@@ -2,9 +2,9 @@ import React, {useContext, useState} from "react";
 import styles from "./Favicon.module.scss"
 import { ReactComponent as Favorit } from './svg/favorit.svg';
 import { ReactComponent as FavoritCheck } from './svg/favoritCheck.svg';
-import {AuthContext} from "../../../context/AuthContext";
+import {AuthContext} from "../../../../context/AuthContext";
 import {useSelector} from "react-redux";
-import {addToWishlist, deleteItemFromWishlist} from "../../../store/wishlist/ActionCreator";
+import {addToWishlist, deleteItemFromWishlist} from "../../../../store/wishlist/ActionCreator";
 
 
 const Favicon = ({ inFav, onClick }) => {

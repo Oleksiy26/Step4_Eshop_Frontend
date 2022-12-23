@@ -8,14 +8,17 @@ const ContainerCart = ({ items }) => {
         {items &&
           items.map(item => (
             <ProductCard
-              currentPrice={item.product.currentPrice}
+              price={item.product.currentPrice}
               photoUrl={item.product.imageUrls[0]}
-              subClass={'set-item img-fluid overflow-auto flex-grow-1'}
+              subClass={''}
               key={item.product._id}
               id={item.product._id}
+              nameCard={item.product.name}
+              quantity={item.cartQuantity}
+              viewForCart
             />
-          )
-          )}
+          ))
+         }
       </div>
   );
 };

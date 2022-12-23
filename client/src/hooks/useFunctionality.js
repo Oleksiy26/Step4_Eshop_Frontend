@@ -4,6 +4,8 @@ import { checkInCart, checkInFav } from "../store/counter/counter";
 import { AuthContext } from "../context/AuthContext";
 import { addToWishlist, deleteItemFromWishlist } from "../store/wishlist/ActionCreator";
 import { fetchCreateCart, fetchDeleteFromCart } from "../store/cart/cart";
+import { checkLocation } from "../store/location/location";
+import { useLocation } from "react-router-dom";
 
 export const useFunctionality = (id) => {
     const [inFav, setInFav] = useState(false);
@@ -125,12 +127,23 @@ export const useFunctionality = (id) => {
         }
     };
 
+    const clickDeleteInCart = () => {
+        dispatch(fetchDeleteFromCart(id))
+        setInCart(false)
+    }
+
+    const clickAddInCart = () => {
+        dispatch(fetchCreateCart(id))
+    }
+
     return {
         inFav,
         inCart,
         clickFav,
         clickToCart,
         isAuthenticated,
-        setInFav
+        setInFav,
+        clickDeleteInCart,
+        clickAddInCart
     }
 }

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import ProductCard from "../../components/ProductCard";
 import {fetchCard} from "../../store/card/ActionCreator";
-import AddCartFavorit from "../../components/AddCartFavorit";
+import AddCartFavorit from "../../components/ProductCard/AddCartFavorit";
 import "./PageItem.scss";
 
 export const PageItem = () => {

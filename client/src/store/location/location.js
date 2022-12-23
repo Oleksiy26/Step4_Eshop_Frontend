@@ -19,6 +19,10 @@ const locationSlice = createSlice({
                 state.locationFav = false; 
                 state.locationCart = false;
                 state.locationMain = true;
+            } else if (action.payload === '/cart') {
+                state.locationFav = false; 
+                state.locationCart = true;
+                state.locationMain = false;
             }
         }
     }

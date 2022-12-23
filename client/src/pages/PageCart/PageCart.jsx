@@ -20,6 +20,7 @@ const PageCart = () => {
                 <section className={styles.section}>
                     <div className={styles.section_products}>
                         <ContainerCart items={cardInCart.products}/>
+                        {console.log(cardInCart.products)}
                      </div>
                     <div className="flex-grow-1"></div>
                 </section>
