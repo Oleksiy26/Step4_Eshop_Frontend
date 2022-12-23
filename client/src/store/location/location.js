@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     locationFav: false,
     locationCart: false,
-    locationMain: false
+    locationMain: false,
+    locationLogin: false
 }
 
 const locationSlice = createSlice({
@@ -15,14 +16,22 @@ const locationSlice = createSlice({
                 state.locationFav = true;
                 state.locationCart = false;
                 state.locationMain = false;
+                state.locationLogin = false;
             } else if (action.payload === '/') {
                 state.locationFav = false; 
                 state.locationCart = false;
                 state.locationMain = true;
+                state.locationLogin = false;
             } else if (action.payload === '/cart') {
                 state.locationFav = false; 
                 state.locationCart = true;
                 state.locationMain = false;
+                state.locationLogin = false;
+            } else if (action.payload === '/login') {
+                state.locationFav = false; 
+                state.locationCart = false;
+                state.locationMain = false;
+                state.locationLogin = true;
             }
         }
     }

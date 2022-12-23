@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { checkInCart, checkInFav } from "../store/counter/counter";
 import { AuthContext } from "../context/AuthContext";
 import { addToWishlist, deleteItemFromWishlist } from "../store/wishlist/ActionCreator";
-import { fetchCreateCart, fetchDeleteFromCart } from "../store/cart/cart";
+import { fetchAddToCart, fetchDeleteFromCart } from "../store/cart/cart";
 import { checkLocation } from "../store/location/location";
 import { useLocation } from "react-router-dom";
 
@@ -22,17 +22,29 @@ export const useFunctionality = (id) => {
     };
 
     useEffect(() => {
-        const favorite = JSON.parse(localStorage.getItem('fav'));
-        if (favorite) {
-            dispatch(checkInFav(favorite.length));
-            favorite.forEach(item => {
-                if (item === id) {
-                   setInFav(true);
-                }
-            });
+        if (!token) {
+            const favorite = JSON.parse(localStorage.getItem('fav'));
+            if (favorite) {
+                dispatch(checkInFav(favorite.length));
+                favorite.forEach(item => {
+                    if (item === id) {
+                       setInFav(true);
+                    }
+                });
+            }
+            const inCart = JSON.parse(localStorage.getItem('cart'));
+            if (inCart) {
+                dispatch(checkInCart(inCart.length));
+                inCart.forEach(item => {
+                    if (item === id) {
+                        setInCart(true);
+                    }
+                });
+            }
+        } else {
+            checkCards(id)
         }
-        checkCards(id)
-    }, [cardInCart, cardInFav]);
+    }, [token? (cardInCart, cardInFav) : null]);
 
 
     const checkCards = (id) => {
@@ -121,7 +133,7 @@ export const useFunctionality = (id) => {
               dispatch(fetchDeleteFromCart(id))
               setInCart(false)
             } else {
-              dispatch(fetchCreateCart(id))
+              dispatch(fetchAddToCart(id))
               setInCart(true)
             }
         }
@@ -133,7 +145,16 @@ export const useFunctionality = (id) => {
     }
 
     const clickAddInCart = () => {
-        dispatch(fetchCreateCart(id))
+        if (token) {
+            dispatch(fetchAddToCart(id))
+        } else {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            cart.push(id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            dispatch(checkInCart(cart.length));
+        }
+        
+
     }
 
     return {

@@ -102,6 +102,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    .title {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      color: #97A9BA;
+      padding-left: 0;
+      width: 50px;
+      text-align: left;
+    }
     svg {
       cursor: pointer;
 
@@ -112,6 +121,9 @@
       text-align: center;
       color: #2D4153;
       padding: 0 10px;
+    }
+    div {
+      display: flex;
     }
   }
   &_price {

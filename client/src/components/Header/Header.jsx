@@ -18,6 +18,7 @@ const Header = () => {
     const counerInFav = useSelector((state) => state.counter.inFav);
     const counerInCart = useSelector((state) => state.counter.inCart);
     const { favItems } = useSelector((state) => state.wishlist)
+    const token = useSelector((state) => state.auth.token);
     
     // const dispatch = useDispatch()
     // const auth = useContext(AuthContext)
@@ -34,7 +35,7 @@ const Header = () => {
                     <NavLink to="/" className="logo"><Logo/></NavLink>
                 </div>
                 <div className={styles.header__block_svg}>
-                    <NavLink to="/profile">
+                    <NavLink to={!token ? '/login' : null}>
                         <User/>
                     </NavLink>
                     <NavLink to="/">
