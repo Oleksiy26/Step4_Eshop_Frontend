@@ -7,20 +7,16 @@ const ContainerCart = ({ items }) => {
   const token = useSelector((state) => state.auth.token);
   const path = token ? 'item.product' : 'item'
 
-  const localQuantity = () => {
+  const localQuantity = (value) => {
     const itemsinCart = JSON.parse(localStorage.getItem('cart'));
-   const res = itemsinCart.map((name) => {
-      return {count: 1, name: name}
-    })
-    .reduce((a, b) => {
-      a[b.name] = (a[b.name] || 0) + b.count
-    
-      return a
-    }, {})
+    let counter = 0;
 
-
-    // console.log(Object.keys(res).find((vsl) => {res.vsl === "2" }));
-
+    for (let elem of itemsinCart) {
+      if (elem == value) {
+         counter++;
+      }
+    }
+    return counter;
   }
 
   return (
@@ -42,11 +38,8 @@ const ContainerCart = ({ items }) => {
               />
             ))
         ) : (
-          //  localQuantity()
           items && 
             items.map((item) => (
-              <>
-             
               <ProductCard
                 price={item.currentPrice}
                 photoUrl={item.imageUrls[0]}
@@ -54,12 +47,10 @@ const ContainerCart = ({ items }) => {
                 key={item._id}
                 id={item._id}
                 nameCard={item.name}
-                // quantity={item.cartQuantity}
+                quantity={localQuantity(`${item._id}`)}
                 color={item.color}
                 viewForCart
-              />  
-              </>
-            
+              />              
             ))
         )}
       </div>
