@@ -1,25 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AddCartFavorit from './AddCartFavorit';
-import { useNavigate } from "react-router-dom";
 import { useFunctionality } from "../../hooks/useFunctionality";
-import { useDispatch, useSelector } from "react-redux";
 import './ProductCard.scss';
 import BlockForCart from './BlocForCart/BlocForCart';
 
 
-const ProductCard = ({ price, photoUrl, subClass, id, ident, nameCard, viewForCart, quantity }) => {
-  const { inFav, inCart, clickFav, clickToCart, setInFav, clickDeleteInCart, clickAddInCart } = useFunctionality(id)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, quantity }) => {
+  const { inFav, inCart, clickFav, clickToCart, clickDeleteInCart, clickAddInCart } = useFunctionality(id)
 
 
   const redirectToCardPage = () => {
-    navigate(`/catalog/${ident}`)
+    // navigate(`/catalog/${ident}`)
   }
+
+  const addItemToCart = (event) => {
+    event.stopPropagation()
+    clickToCart(id)
+ }
+
+ const addItemToWishlist = (event) => {
+    event.stopPropagation()
+    clickFav(id)
+ }
 
   return !viewForCart ? (
           <div className={`set-card ${subClass}`} 
-        //   onClick={redirectToCardPage}
+          // onClick={redirectToCardPage}
           >
               <div className="image-wrapper">
                   <img src={photoUrl} alt="girl" className="set-img" />

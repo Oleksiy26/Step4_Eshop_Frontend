@@ -11,11 +11,11 @@ const AddCartFavorit = ({ inFav, inCart, cardId, onClickToCart, onClickFav }) =>
       className="set-addcart"
       text={!inCart ? 'Add to cart' : 'Delete from cart'}
       /> */}
-      <button className="set-addcart" onClick={() => onClickToCart(cardId)}>
+      <button className="set-addcart" onClick={onClickToCart}>
         {!inCart ? 'Add to cart' : 'Delete from cart'}
       </button>
       <div className="set-addfavorit">
-        <Favicon onClick={() => onClickFav(cardId)} inFav={inFav} />
+        <Favicon onClick={onClickFav} inFav={inFav} />
       </div>
     </div>
   );

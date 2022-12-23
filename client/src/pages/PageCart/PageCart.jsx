@@ -22,7 +22,12 @@ const PageCart = () => {
                         <ContainerCart items={cardInCart.products}/>
                         {console.log(cardInCart.products)}
                      </div>
-                    <div className="flex-grow-1"></div>
+                    <div className={styles.section_totaly}>
+                        <div>
+                            <Title subtitle="Total"/>
+                            
+                        </div>
+                    </div>
                 </section>
             </>
             )}
