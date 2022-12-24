@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AddCartFavorit from './AddCartFavorit';
 import { useFunctionality } from "../../hooks/useFunctionality";
 import './ProductCard.scss';
 import BlockForCart from './BlocForCart/BlocForCart';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
-const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, quantity, color }) => {
+const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, quantity, color, ident }) => {
   const { inFav, inCart, clickFav, clickToCart, clickDeleteInCart, clickAddInCart } = useFunctionality(id)
-
+  const navigate = useNavigate()
+  const auth = useContext(AuthContext)
+  const { isAuthenticated } = auth
+  
+  // logs
+  // console.log(viewForCart)
+  // console.log(isAuthenticated);
+  // logs
 
   const redirectToCardPage = () => {
-    // navigate(`/catalog/${ident}`)
+    navigate(`/catalog/${ident}`)
   }
 
   const addItemToCart = (event) => {
-    event.stopPropagation()
-    clickToCart(id)
- }
+      event.stopPropagation()
+      clickToCart(id)
+  }
 
  const addItemToWishlist = (event) => {
     event.stopPropagation()
@@ -25,7 +34,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, qua
 
   return !viewForCart ? (
     <div className={`set-card ${subClass}`} 
-    // onClick={redirectToCardPage}
+    onClick={redirectToCardPage}
     >
       <div className="image-wrapper">
         <img src={photoUrl} alt="girl" className="set-img" />
@@ -43,8 +52,11 @@ const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, qua
         cardId={id}
         inFav={inFav}
         inCart={inCart}
-        onClickFav={() => clickFav(id)}
-        onClickToCart={() => clickToCart(id)}
+        // onClickFav={() => clickFav(id)}
+        onClickFav={addItemToWishlist}
+        // onClickToCart={() => clickToCart(id)}
+        onClickToCart={addItemToCart}
+
       />
     </div>
   ) : (
@@ -72,7 +84,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, qua
       </div>
       <div className="card_price">
         <p>{ price } &euro;</p>
-        <span onClick={() => clickToCart(id)}>Remove</span>
+        <span onClick={addItemToCart}>Remove</span>
       </div>
     </div>
   )

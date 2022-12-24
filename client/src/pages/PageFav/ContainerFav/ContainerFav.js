@@ -13,29 +13,29 @@ const ContainerFav = ({items}) => {
         <section className="container py-5">
             <div className="d-flex gap-4 flex-column flex-md-row">
                 { isAuthenticated ?
-                favItems.products.products ? (
-                    favItems.products.products.map((product) =>
-                        <ProductCard
-                            item={product}
-                            ident={product.itemNo}
-                            price={product.currentPrice}
-                            photoUrl={product.imageUrls[1]}
-                            subClass={'set-item img-fluid overflow-auto flex-grow-1'}
-                            key={product._id}
-                            id={product._id}
-                        />
-                    )) : null
+                    favItems.products.products ? (
+                        favItems.products.products.map((product) =>
+                            <ProductCard
+                                item={product}
+                                ident={product.itemNo}
+                                price={product.currentPrice}
+                                photoUrl={product.imageUrls[1]}
+                                subClass={'set-item img-fluid overflow-auto flex-grow-1'}
+                                key={product._id}
+                                id={product._id}
+                            />
+                        )) : null
                     :
-                    items && items.map((item) =>
-                        <ProductCard
-                            item={item}
-                            ident={item.itemNo}
-                            price={item.currentPrice}
-                            photoUrl={item.imageUrls[0]}
-                            subClass={'set-item img-fluid overflow-auto flex-grow-1'}
-                            key={item._id}
-                            id={item._id}
-                        />)
+                        items && items.map((item) =>
+                            <ProductCard
+                                item={item}
+                                ident={item.itemNo}
+                                price={item.currentPrice}
+                                photoUrl={item.imageUrls[0]}
+                                subClass={'set-item img-fluid overflow-auto flex-grow-1'}
+                                key={item._id}
+                                id={item._id}
+                            />)
                 }
             </div>
         </section>

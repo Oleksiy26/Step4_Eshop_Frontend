@@ -18,7 +18,9 @@ const ContainerCart = ({ items }) => {
     }
     return counter;
   }
-
+  // true
+  // console.log(viewForCart);
+  // true
   return (
       <div className={styles.card}>
         { token ? (
