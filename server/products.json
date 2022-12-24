@@ -10,7 +10,7 @@
     "color": "pink",
     "setName": "Penelope Pink",
     "price": "85",
-    "size": ["S", "L", "XL"],
+    "size": "S",
     "collection": "Hiding Beauty",
     "quantity": "10"
   },
@@ -25,7 +25,7 @@
     "color": "black",
     "setName": "Sicilia Black",
     "price": "65",
-    "size": ["S", "L", "XL"],
+    "size": "L",
     "collection": "Sporty basics",
     "quantity": "10"
   },
@@ -40,7 +40,7 @@
     "color": "nude",
     "setName": "Sicilia Nude",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "XL",
     "collection": "Lace of Temptation",
     "quantity": "10"
   },
@@ -55,7 +55,7 @@
     "color": "violet",
     "setName": "Violet",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "M",
     "collection": "Hypnotism",
     "quantity": "10"
   },
@@ -70,7 +70,7 @@
     "color": "white",
     "setName": "Fatality White",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "S",
     "collection": "Sporty basics",
     "quantity": "10"
   },
@@ -85,7 +85,7 @@
     "color": "black",
     "setName": "Sicilia Black",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "L",
     "collection": "Lace of Templation",
     "quantity": "10"
   },
@@ -100,7 +100,7 @@
     "color": "black",
     "setName": "Hanna",
     "price": "95",
-    "size": ["S", "M", "L", "XL"],
+    "size": "XL",
     "collection": "Hiding Beauty",
     "quantity": "10"
   },
@@ -115,7 +115,7 @@
     "color": "red",
     "setName": "Reyne",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "L",
     "collection": "Hypnotism",
     "quantity": "10"
   },
@@ -130,7 +130,7 @@
     "color": "black",
     "setName": "Unnamed black",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "S",
     "collection": "The Magic of Transparency",
     "quantity": "10"
   },
@@ -145,7 +145,7 @@
     "color": "red",
     "setName": "Fantasy",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "M",
     "collection": "Hiding Beauty",
     "quantity": "10"
   },
@@ -160,7 +160,7 @@
     "color": "red",
     "setName": "Passion",
     "price": "95",
-    "size": ["S", "M", "L", "XL"],
+    "size": "XL",
     "collection": "Hypnotism",
     "quantity": "10"
   },
@@ -175,7 +175,7 @@
     "color": "black",
     "setName": "Emmy",
     "price": "95",
-    "size": ["S", "M", "L", "XL"],
+    "size": "L",
     "collection": "Hypnotism",
     "quantity": "10"
   },
@@ -190,7 +190,7 @@
     "color": "black",
     "setName": "Transparency",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "S",
     "collection": "The Magic of Transparency",
     "quantity": "10"
   },
@@ -205,7 +205,7 @@
     "color": "nude",
     "setName": "Unnamed nude",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "M",
     "collection": "The Magic of Transparency",
     "quantity": "10"
   },
@@ -220,7 +220,7 @@
     "color": "black",
     "setName": "Goldy",
     "price": "95",
-    "size": ["S", "M", "L", "XL"],
+    "size": "XL",
     "collection": "Hypnotism",
     "quantity": "10"
   },
@@ -235,7 +235,7 @@
     "color": "white",
     "setName": "Sicilia White",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "M",
     "collection": "Lace of Temptation",
     "quantity": "10"
   },
@@ -250,7 +250,7 @@
     "color": "white",
     "setName": "Silver",
     "price": "85",
-    "size": ["S", "M", "L", "XL"],
+    "size": "L",
     "collection": "Hiding Beauty",
     "quantity": "10"
   },
@@ -265,7 +265,7 @@
     "color": "red",
     "setName": "Ripe Cherry",
     "price": "75",
-    "size": ["S", "M", "L", "XL"],
+    "size": "M",
     "collection": "Hypnotism",
     "quantity": "10"
   },
@@ -280,21 +280,8 @@
     "color": "black",
     "setName": "Souple",
     "price": "65",
-    "size": ["S", "M", "L", "XL"],
+    "size": "XL",
     "collection": "Sporty basics",
     "quantity": "10"
   }
 ]
-
-  
-
-
-
-
-
-
-
-
-
-
-
