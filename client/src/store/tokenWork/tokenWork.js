@@ -20,12 +20,12 @@ const tokenWorkSlice = createSlice({
                 )
         },
         logout: (state) => {
-            state.token = 'null'
+            state.token = ''
             localStorage.removeItem(storageName)
         }
     }
 }) 
 
-export const {login} = tokenWorkSlice.actions;
+export const {login, logout} = tokenWorkSlice.actions;
 
 export default tokenWorkSlice.reducer;
