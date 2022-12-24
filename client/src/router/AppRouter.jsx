@@ -5,20 +5,28 @@ import Page404 from "../pages/Page404";
 import { privateRoutes, publicRoutes } from './Pages';
 
 const AppRouter = ({ isAuthenticated }) => {
-    return isAuthenticated ? (
+    // return isAuthenticated ? (
+    //     <Routes>
+    //         {privateRoutes.map((route) => (
+    //             <Route element={<route.element />} path={route.path} key={route.path} />
+    //         ))}
+    //         <Route path="*" element={<Page404 />} />
+    //     </Routes>
+    // ) : (
+    //     <Routes>
+    //         {publicRoutes.map((route) => (
+    //             <Route element={<route.element />} path={route.path} key={route.path} />
+    //         ))}
+    //         <Route path="*" element={<PageLogin />} />
+    //     </Routes>
+    // )
+    return (
         <Routes>
-            {privateRoutes.map((route) => (
-                <Route element={<route.element />} path={route.path} key={route.path} />
-            ))}
-            <Route path="*" element={<Page404 />} />
-        </Routes>
-    ) : (
-        <Routes>
-            {publicRoutes.map((route) => (
-                <Route element={<route.element />} path={route.path} key={route.path} />
-            ))}
-            <Route path="*" element={<PageLogin />} />
-        </Routes>
+        {privateRoutes.map((route) => (
+            <Route element={<route.element />} path={route.path} key={route.path} />
+        ))}
+        <Route path="*" element={<Page404 />} />
+    </Routes>
     )
 }
 

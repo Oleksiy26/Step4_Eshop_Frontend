@@ -44,6 +44,7 @@
   &-card {
     position: relative;
     transition: box-shadow 0.3s;
+    cursor: pointer;
   }
   &-card:hover .set-hover {
     opacity: 1;
@@ -79,5 +80,77 @@
     line-height: 140%;
     padding-top: 12px;
     padding-bottom: 12px;
+  }
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 130px;
+  border: none;
+  margin: 20px 0;
+  &_img {
+    height: 100%;
+    img {
+      height: 100%;
+    }
+  }
+  &_info {
+    flex: 1;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .title {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      color: #97A9BA;
+      padding-left: 0;
+      width: 50px;
+      text-align: left;
+    }
+    svg {
+      cursor: pointer;
+
+    }
+    span {
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: #2D4153;
+      padding: 0 10px;
+    }
+    div {
+      display: flex;
+    }
+  }
+  &_price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    p {
+      font-size: 14px;
+      line-height: 18px;
+      text-align: right;
+    }
+    span {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;      
+      color: #97A9BA;
+      cursor: pointer;
+      &:hover {
+        text-decoration-line: underline;
+      }
+    }
+  }
+  h3 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #2D4153;
   }
 }

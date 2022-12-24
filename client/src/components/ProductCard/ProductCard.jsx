@@ -1,156 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import AddCartFavorit from './AddCartFavorit';
+import { useFunctionality } from "../../hooks/useFunctionality";
 import './ProductCard.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkInCart, checkInFav } from '../../store/counter/counter';
-import AddCartFavorit from '../AddCartFavorit';
-import { useFetching } from '../../hooks/useFetching';
-import { fetchCreateCart, fetchDeleteFromCart } from '../../store/cart/cart';
+import BlockForCart from './BlocForCart/BlocForCart';
 
-const checkValue = value => {
-  return value != null;
-};
 
-export const clickFav = (id, setInFav, dispatch) => {
-  if (localStorage.getItem('fav')) {
-    const fav = JSON.parse(localStorage.getItem('fav'));
-    if (!fav.includes(id)) {
-      fav.push(id);
-      localStorage.setItem('fav', JSON.stringify(fav));
-      setInFav(true);
-      dispatch(checkInFav(fav.length));
-    } else {
-      const newFav = fav.map(item => {
-        return item !== id ? item : null;
-      });
-      const filter = newFav.filter(checkValue);
-      dispatch(checkInFav(filter.length));
-      localStorage.setItem('fav', JSON.stringify(filter));
-      setInFav(false);
-    }
-  } else {
-    localStorage.setItem('fav', JSON.stringify([id]));
-    setInFav(true);
-    dispatch(checkInFav(1));
-  }
-};
+const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, quantity, color }) => {
+  const { inFav, inCart, clickFav, clickToCart, clickDeleteInCart, clickAddInCart } = useFunctionality(id)
 
-const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
-  const [inFav, setInFav] = useState(false);
-  const [inCart, setInCart] = useState(false);
-  const dispatch = useDispatch();
-  const { loading, request, error, clearError } = useFetching()
-  const token = useSelector((state) => state.auth.token);
-  const cardInCart = useSelector((state) => state.cart.cart)
 
-  useEffect(() => {
-    const favorite = JSON.parse(localStorage.getItem('fav'));
-    if (favorite) {
-      dispatch(checkInFav(favorite.length));
-      favorite.forEach(item => {
-        if (item === id) {
-          setInFav(true);
-        }
-      });
-    }
-    checkCardinCart(id)
-  }, [cardInCart]);
-
-  const clickFav = id => {
-    if (localStorage.getItem('fav')) {
-      const fav = JSON.parse(localStorage.getItem('fav'));
-      if (!fav.includes(id)) {
-        fav.push(id);
-        localStorage.setItem('fav', JSON.stringify(fav));
-        setInFav(true);
-        dispatch(checkInFav(fav.length));
-      } else {
-        const newFav = fav.map(item => {
-          return item !== id ? item : null;
-        });
-        const filter = newFav.filter(checkValue);
-        dispatch(checkInFav(filter.length));
-        localStorage.setItem('fav', JSON.stringify(filter));
-        setInFav(false);
-      }
-    } else {
-      localStorage.setItem('fav', JSON.stringify([id]));
-      setInFav(true);
-      dispatch(checkInFav(1));
-    }
-  };
-
-  const checkCardinCart = (id) => {
-    if (cardInCart) {
-      const newArr = cardInCart.products.map((item) => {
-         return item.product
-      })
-      const dgbh = newArr.map((item) => {
-        return item._id
-      })
-      if (dgbh.includes(id)) {
-        setInCart(true)
-      }
-    }
+  const redirectToCardPage = () => {
+    // navigate(`/catalog/${ident}`)
   }
 
-  const clickToCart =  (id) => {
-    // if (localStorage.getItem('cart')) {
-    //   const cart = JSON.parse(localStorage.getItem('cart'));
-    //   if (!cart.includes(id)) {
-    //     cart.push(id);
-    //     localStorage.setItem('cart', JSON.stringify(cart));
-    //     setInCart(true);
-    //     dispatch(checkInCart(cart.length));
-    //   } else {
-    //     const newCart = cart.map(item => {
-    //       return item !== id ? item : null;
-    //     });
-    //     const filter = newCart.filter(checkValue);
-    //     dispatch(checkInCart(filter.length));
-    //     localStorage.setItem('cart', JSON.stringify(filter));
-    //     setInCart(false);
-    //   }
-    // } else {
-    //   localStorage.setItem('cart', JSON.stringify([id]));
-    //   setInCart(true);
-    //   dispatch(checkInCart(1));
-    // }
-  //   try {
-  //     const data = await request('/api/cart', 'PUT', {
-        // "products" : [
-        //   {
-        //     "products": {id}
-        //   }
-        // ]
-  //     })
-  // } catch (e) {
-  //     console.log(e)
+  const addItemToCart = (event) => {
+    event.stopPropagation()
+    clickToCart(id)
+ }
 
-  // }
-  // console.log(token);
-  if (token) {
-    if (inCart) {
-      dispatch(fetchDeleteFromCart(id))
-      setInCart(false)
-    } else {
-      dispatch(fetchCreateCart(id))
-      setInCart(true)
-    }
-   }
+ const addItemToWishlist = (event) => {
+    event.stopPropagation()
+    clickFav(id)
+ }
 
-    
-  };
-
-  return (
-    <div className={`set-card ${subClass}`}>
+  return !viewForCart ? (
+    <div className={`set-card ${subClass}`} 
+    // onClick={redirectToCardPage}
+    >
       <div className="image-wrapper">
         <img src={photoUrl} alt="girl" className="set-img" />
       </div>
       <div className="text-wrapper">
-        <h3 className="set-title">White lace set</h3>
-        <p className="set-price">{currentPrice} &euro;</p>
+        <h3 className="set-title">{ nameCard }</h3>
+        <p className="set-price">{ price } &euro;</p>
       </div>
-
       <div className="colors-wrapper">
         <div className="color-square white"></div>
         <div className="color-square black"></div>
@@ -160,10 +43,39 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
         cardId={id}
         inFav={inFav}
         inCart={inCart}
-        onClickFav={clickFav}
-        onClickToCart={clickToCart}
+        onClickFav={() => clickFav(id)}
+        onClickToCart={() => clickToCart(id)}
       />
     </div>
-  );
+  ) : (
+    <div className='card'>
+      <div className="card_img">
+        <img src={photoUrl} alt={nameCard} className="set-img" />
+      </div>
+      <div className="card_info">
+        <h3>{ nameCard }</h3>
+        <div>
+          <span className='title'>Size</span>
+        </div>
+        <div>
+          <span className='title'>Color</span>
+          <div className={`color-square ${color}`}></div>
+        </div>
+        <div>
+          <span className='title'>Quantity</span>
+          <BlockForCart 
+            clickDelete={() => clickDeleteInCart(id)} 
+            clickAdd={() => clickAddInCart(id)}
+            quantity={quantity}
+          />
+        </div>
+      </div>
+      <div className="card_price">
+        <p>{ price } &euro;</p>
+        <span onClick={() => clickToCart(id)}>Remove</span>
+      </div>
+    </div>
+  )
 };
-export default ProductCard;
+
+export default ProductCard

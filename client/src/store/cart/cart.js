@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { checkInCart } from "../counter/counter";
 
-export const fetchCreateCart = createAsyncThunk(
-  'createCart/fetchCreateCart',
+export const fetchAddToCart = createAsyncThunk(
+  'createCart/fetchAddToCart',
     async function(id, {rejectWithValue, getState, dispatch}) {
     const stateToken = getState().auth.token
     try {            
@@ -17,7 +17,14 @@ export const fetchCreateCart = createAsyncThunk(
         throw new Error('Server Error!')
       }
       const data = await respons.json();
-      dispatch(checkInCart(data.products.length))
+      const total = 0;
+      const quantity = data.products.map((item) => {
+        return item.cartQuantity;
+      })
+      const calculateQuantite = quantity.reduce(
+        (accumulator, currentValue) => accumulator + currentValue, total
+      )
+      dispatch(checkInCart(calculateQuantite))
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -41,7 +48,14 @@ export const fetchDeleteFromCart = createAsyncThunk(
           throw new Error('Server Error!')
         }
         const data = await respons.json();
-        dispatch(checkInCart(data.products.length))
+        const total = 0;
+        const quantity = data.products.map((item) => {
+          return item.cartQuantity;
+        })
+        const calculateQuantite = quantity.reduce(
+          (accumulator, currentValue) => accumulator + currentValue, total
+        )
+        dispatch(checkInCart(calculateQuantite))
         return data;
       } catch (error) {
         return rejectWithValue(error.message);
@@ -65,7 +79,14 @@ export const fetchDeleteFromCart = createAsyncThunk(
           throw new Error('Server Error!')
         }
         const data = await respons.json();
-        dispatch(checkInCart(data.products.length))
+        const total = 0;
+        const quantity = data.products.map((item) => {
+          return item.cartQuantity;
+        })
+        const calculateQuantite = quantity.reduce(
+          (accumulator, currentValue) => accumulator + currentValue, total
+        )
+        dispatch(checkInCart(calculateQuantite))
         return data;
       } catch (error) {
         return rejectWithValue(error.message);
@@ -84,15 +105,15 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   extraReducers: {
-    [fetchCreateCart.pending]: (state) => {
+    [fetchAddToCart.pending]: (state) => {
       state.status = "loading";
       state.error = null;
     },
-    [fetchCreateCart.fulfilled]: (state, action) => {
+    [fetchAddToCart.fulfilled]: (state, action) => {
       state.status = "resolved";
       state.cart = action.payload;
     },
-    [fetchCreateCart.rejected]: (state, action) => {
+    [fetchAddToCart.rejected]: (state, action) => {
       state.status = "rejected";
       state.error = action.payload;
     },

@@ -9,6 +9,7 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../store/tokenWork/tokenWork';
 import { fetchSignIn } from '../../../store/signIn/signIn';
+import { fetchCreateCart } from '../../../store/cart/cart';
 
 
 const initialValues = {
@@ -39,8 +40,6 @@ const SignIn = () => {
 
     const loginUser = async (value) => {
         dispatch(fetchSignIn(value)) 
-        
-        // console.log(token);
         navigate('/')
     }
 
@@ -50,7 +49,11 @@ const SignIn = () => {
     ]
 
     return (
-        <Formik initialValues={initialValues} onSubmit={loginUser} validationSchema={validationSchema}>
+        <Formik 
+            initialValues={initialValues} 
+            onSubmit={loginUser} 
+            validationSchema={validationSchema}
+        >
             {({values}) => {
                 return (
                     <Form>

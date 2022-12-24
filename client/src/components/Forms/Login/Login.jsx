@@ -58,7 +58,11 @@ const Login = ({changeAfterLogin}) => {
     ]
 
     return (
-        <Formik initialValues={initialValues} onSubmit={registerUser} validationSchema={validationSchema}>
+        <Formik 
+            initialValues={initialValues} 
+            onSubmit={registerUser} 
+            validationSchema={validationSchema}
+        >
             {({values}) => {
                 return (
                     <Form>
