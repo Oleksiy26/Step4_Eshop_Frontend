@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { checkInCart, checkInFav } from "../store/counter/counter";
 import { AuthContext } from "../context/AuthContext";
 import { addToWishlist, deleteItemFromWishlist } from "../store/wishlist/ActionCreator";
-import { fetchAddToCart, fetchDeleteFromCart } from "../store/cart/cart";
+import { fetchAddToCart, fetchDeletaCardFromCart, fetchDeleteFromCart } from "../store/cart/cart";
 import { checkLocation } from "../store/location/location";
 import { useLocation } from "react-router-dom";
 
@@ -139,8 +139,12 @@ export const useFunctionality = (id) => {
         }
     };
 
-    const clickDeleteInCart = () => {
+    const clickDeleteInCart = (id) => {
         dispatch(fetchDeleteFromCart(id))
+    }
+
+    const clickDeleteCardInCart = (id) => {
+        dispatch(fetchDeletaCardFromCart(id))
         setInCart(false)
     }
 
@@ -165,6 +169,7 @@ export const useFunctionality = (id) => {
         isAuthenticated,
         setInFav,
         clickDeleteInCart,
-        clickAddInCart
+        clickAddInCart,
+        clickDeleteCardInCart
     }
 }

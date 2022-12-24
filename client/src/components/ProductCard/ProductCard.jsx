@@ -7,8 +7,8 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 
-const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, quantity, color, ident }) => {
-  const { inFav, inCart, clickFav, clickToCart, clickDeleteInCart, clickAddInCart } = useFunctionality(id)
+const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, quantity, color, ident, size }) => {
+  const { inFav, inCart, clickFav, clickToCart, clickDeleteInCart, clickAddInCart, clickDeleteCardInCart } = useFunctionality(id)
   const navigate = useNavigate()
   const auth = useContext(AuthContext)
   const { isAuthenticated } = auth
@@ -43,10 +43,11 @@ const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, qua
         <h3 className="set-title">{ nameCard }</h3>
         <p className="set-price">{ price } &euro;</p>
       </div>
-      <div className="colors-wrapper">
-        <div className="color-square white"></div>
-        <div className="color-square black"></div>
-        <div className="color-square gray"></div>
+      <div className="info-wrapper">
+        <div className={`color-square ${color}`}></div>
+        <span>Size: {size}</span>
+        {/* <div className="color-square black"></div>
+        <div className="color-square gray"></div> */}
       </div>
       <AddCartFavorit
         cardId={id}
@@ -68,6 +69,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, qua
         <h3>{ nameCard }</h3>
         <div>
           <span className='title'>Size</span>
+          <span>{ size }</span>
         </div>
         <div>
           <span className='title'>Color</span>
@@ -84,7 +86,7 @@ const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, qua
       </div>
       <div className="card_price">
         <p>{ price } &euro;</p>
-        <span onClick={addItemToCart}>Remove</span>
+        <span onClick={() => clickDeleteCardInCart(id)}>Remove</span>
       </div>
     </div>
   )

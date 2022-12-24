@@ -10,6 +10,7 @@ const ContainerCart = ({ items }) => {
   const localQuantity = (value) => {
     const itemsinCart = JSON.parse(localStorage.getItem('cart'));
     let counter = 0;
+    console.log(itemsinCart);
 
     for (let elem of itemsinCart) {
       if (elem == value) {
@@ -18,9 +19,7 @@ const ContainerCart = ({ items }) => {
     }
     return counter;
   }
-  // true
-  // console.log(viewForCart);
-  // true
+
   return (
       <div className={styles.card}>
         { token ? (
@@ -35,7 +34,7 @@ const ContainerCart = ({ items }) => {
                 nameCard={item.product.name}
                 quantity={item.cartQuantity}
                 color={item.product.color}
-                selectSize
+                size={item.product.size}
                 viewForCart
               />
             ))
@@ -51,6 +50,7 @@ const ContainerCart = ({ items }) => {
                 nameCard={item.name}
                 quantity={localQuantity(`${item._id}`)}
                 color={item.color}
+                size={item.size}
                 viewForCart
               />              
             ))

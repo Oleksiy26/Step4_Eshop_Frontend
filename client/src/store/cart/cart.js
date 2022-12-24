@@ -17,6 +17,7 @@ export const fetchAddToCart = createAsyncThunk(
         throw new Error('Server Error!')
       }
       const data = await respons.json();
+      console.log(data);
       const total = 0;
       const quantity = data.products.map((item) => {
         return item.cartQuantity;
@@ -37,7 +38,7 @@ export const fetchDeleteFromCart = createAsyncThunk(
       async function(id, {rejectWithValue, getState, dispatch}) {
       const stateToken = getState().auth.token
       try {            
-        const respons = await fetch(`/api/cart/${id}`,  {
+        const respons = await fetch(`/api/cart/product/${id}`,  {
           method: 'DELETE',
           headers: {
               'Authorization' : stateToken
@@ -94,6 +95,37 @@ export const fetchDeleteFromCart = createAsyncThunk(
     }
   );  
 
+  export const fetchDeletaCardFromCart = createAsyncThunk(
+    'deletaCardFromCart/fetchDeletaCardFromCart',
+      async function(id, {rejectWithValue, getState, dispatch}) {
+      const stateToken = getState().auth.token
+      try {            
+        const respons = await fetch(`/api/cart/${id}`,  {
+          method: 'DELETE',
+          headers: {
+              'Authorization' : stateToken
+              }
+          }
+          );
+        if (!respons.ok) {
+          throw new Error('Server Error!')
+        }
+        const data = await respons.json();
+        const total = 0;
+        const quantity = data.products.map((item) => {
+          return item.cartQuantity;
+        })
+        const calculateQuantite = quantity.reduce(
+          (accumulator, currentValue) => accumulator + currentValue, total
+        )
+        dispatch(checkInCart(calculateQuantite))
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  ); 
+
 
 const initialState = {
   cart: '',
@@ -138,6 +170,18 @@ export const cartSlice = createSlice({
       state.cart = action.payload;
     },
     [fetchGetAllFromCart.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    },
+    [fetchDeletaCardFromCart.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [fetchDeletaCardFromCart.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.cart = action.payload;
+    },
+    [fetchDeletaCardFromCart.rejected]: (state, action) => {
       state.status = "rejected";
       state.error = action.payload;
     }
