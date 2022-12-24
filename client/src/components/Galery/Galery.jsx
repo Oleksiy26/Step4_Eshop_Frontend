@@ -8,9 +8,18 @@ import './Galery.scss';
 
 const Galery = ({ numOfElem }) => {
   const sort = useSelector(state => state.filter.sort);
-  // const products = useSelector(state => state.products);
+  const color = useSelector(state => state.filter.colorName);
+  const category = useSelector(state => state.filter.categoryName);
+  const size = useSelector(state => state.filter.sizeName);
+
+  // const productsArr = useSelector(state => state.products);
   // const slice = products.products.slice(0, numOfElem);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+
+  const categoryFilter = category.length ? `categories=${category}` : '';
+  const colorFilter = color.length ? `color=${color}` : '';
+  const sizeFilter = size.length ? `size=${size}` : '';
+  console.log('sizes:', sizeFilter);
 
   const [products, setProducts] = useState([]);
 
@@ -18,14 +27,16 @@ const Galery = ({ numOfElem }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/filter?sort=${sort.sortProperty}`)
+      .get(
+        `http://localhost:5000/api/products/filter?${categoryFilter}&${colorFilter}&${sizeFilter}&sort=${sort.sortProperty}`,
+      )
       .then(data => {
         setProducts(data.data.products);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [sort]);
+  }, [categoryFilter, colorFilter, sizeFilter, sort]);
 
   // useEffect(() => {
   //   dispatch(fetchProducts(url));

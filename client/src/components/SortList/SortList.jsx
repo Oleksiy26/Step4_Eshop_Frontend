@@ -13,8 +13,7 @@ const SortList = () => {
     { sortName: 'Price: High to Low', sortProperty: '-currentPrice' },
   ];
   // const sortOption = sortOptions[selected].sortName;
-  // console.log(sortOption);
-
+ 
   const onSelected = sort => {
     dispatch(setSortType(sort));
     setSortActive(false);
