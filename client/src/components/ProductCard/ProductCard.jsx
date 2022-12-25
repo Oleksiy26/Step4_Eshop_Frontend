@@ -92,7 +92,6 @@ const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, qua
   )
 };
 
-
 ProductCard.defaultProps = {
     price: 15,
     nameCard: "alt",

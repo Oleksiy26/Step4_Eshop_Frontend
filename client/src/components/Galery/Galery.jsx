@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../ProductCard';
+
 import axios from 'axios'
 // import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 // import { fetchProducts } from '../../store/products/productSlice';
 import PropTypes from "prop-types";
+
 import './Galery.scss';
 
 const Galery = ({ numOfElem }) => {
