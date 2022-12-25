@@ -5,6 +5,7 @@ import {ReactComponent as Cart} from "./svg/cart.svg"
 import {ReactComponent as Fav} from "./svg/fav.svg"
 import {ReactComponent as Search} from "./svg/search.svg"
 import {ReactComponent as Logo} from "./svg/logo.svg"
+import {ReactComponent as Logout} from "./svg/logout.svg"
 import {useDispatch, useSelector} from "react-redux";
 import Menu from "./Menu/Menu";
 import Burger from "./Burger";
@@ -12,6 +13,7 @@ import Count from "./Count";
 import {AuthContext} from "../../context/AuthContext";
 import {fetchWishlist} from "../../store/wishlist/ActionCreator";
 import styles from './Header.module.scss'
+import { logout } from "../../store/tokenWork/tokenWork";
 
 const Header = () => {
     const [menu, setMenu] = useState(false);
@@ -19,6 +21,7 @@ const Header = () => {
     const counerInCart = useSelector((state) => state.counter.inCart);
     const { favItems } = useSelector((state) => state.wishlist)
     const token = useSelector((state) => state.auth.token);
+    const dispatch = useDispatch()
     
     // const dispatch = useDispatch()
     // const auth = useContext(AuthContext)
@@ -28,6 +31,10 @@ const Header = () => {
         setMenu(!menu);
     }
 
+    const logOut = () => {
+        dispatch(logout())
+    }
+
     return(
         <>
             <header className={styles.header}>
@@ -35,9 +42,11 @@ const Header = () => {
                     <NavLink to="/" className="logo"><Logo/></NavLink>
                 </div>
                 <div className={styles.header__block_svg}>
-                    <NavLink to={!token ? '/login' : null}>
-                        <User/>
-                    </NavLink>
+                    {!token ? (
+                        <NavLink to='/login'>
+                            <User/>
+                        </NavLink>
+                    ) : <Logout onClick={() => logOut()}/>}
                     <NavLink to="/">
                         <Search/>
                     </NavLink>

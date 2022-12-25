@@ -21,6 +21,8 @@ const PerfectSet = () => {
                             key={item._id}
                             id={item._id}
                             nameCard={item.name}
+                            color={item.color}
+                            size={item.size}
                         />
                     ))
                 ) : null}

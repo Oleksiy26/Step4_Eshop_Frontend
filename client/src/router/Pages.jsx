@@ -8,7 +8,7 @@ import PageProfile from "../pages/PageProfile/PageProfile";
 
 export const privateRoutes = [
     { path: '/', element: PageHome },
-    { path: '/catalog', element: PageCatalog },
+    // { path: '/catalog', element: PageCatalog },
     { path: '/cart', element: PageCart },
     { path: '/catalog', element: PageCatalog },
     { path: '/catalog/:itemNo', element: PageItem },

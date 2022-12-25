@@ -47,12 +47,10 @@ const PageFav = () => {
             }/>
             { isItemsLoading && <h1 style={{ textAlign: 'center' }}> Loading... </h1> }
             <ContainerFav
-                items={token? favItems : findItemsFav()}
+                items={ token ? favItems : findItemsFav() }
             />
         </div>
     )
 }
-
-// isAuthenticated ? favItems.products :
 
 export default PageFav;
