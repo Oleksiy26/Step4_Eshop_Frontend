@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../ProductCard';
 import axios from 'axios'
-import { useNavigate, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../../store/products/productSlice';
-
+// import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
+// import { fetchProducts } from '../../store/products/productSlice';
+import PropTypes from "prop-types";
 import './Galery.scss';
 
 const Galery = ({ numOfElem }) => {
@@ -34,7 +34,7 @@ const Galery = ({ numOfElem }) => {
   const categoryFilter = category.length ? `categories=${category}` : '';
   const colorFilter = color.length ? `color=${color}` : '';
   const sizeFilter = size.length ? `size=${size}` : '';
-  console.log('sizes:', sizeFilter);
+  // console.log('sizes:', sizeFilter);
 
   const [products, setProducts] = useState([]);
 
@@ -78,4 +78,9 @@ const Galery = ({ numOfElem }) => {
     </ul>
   );
 };
+
+Galery.propTypes = {
+  numOfElem: PropTypes.number
+}
+
 export default Galery;

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from "prop-types";
+
 
 const Checkbox = ({ id, label, colorSquare, classForSquare, onChangeCheckbox }) => {
   return (
@@ -13,5 +15,13 @@ const Checkbox = ({ id, label, colorSquare, classForSquare, onChangeCheckbox }) 
     </>
   );
 };
+
+Checkbox.propTypes = {
+    label: PropTypes.string,
+    colorSquare: PropTypes.bool,
+    id: PropTypes.string,
+    classForSquare: PropTypes.string,
+    onChangeCheckbox: PropTypes.func,
+}
 
 export default Checkbox;

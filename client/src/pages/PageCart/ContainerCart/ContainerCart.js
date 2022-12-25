@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ProductCard from '../../../components/ProductCard';
+import PropTypes from "prop-types";
 import styles from "./ContainerCart.module.scss"
+
 
 const ContainerCart = ({ items }) => {
   const token = useSelector((state) => state.auth.token);
@@ -57,6 +59,13 @@ const ContainerCart = ({ items }) => {
         )}
       </div>
   );
+};
+
+ContainerCart.propTypes = {
+  items: PropTypes.oneOfType([
+    PropTypes.array.isRequired,
+    PropTypes.object.isRequired,
+  ])
 };
 
 export default ContainerCart;

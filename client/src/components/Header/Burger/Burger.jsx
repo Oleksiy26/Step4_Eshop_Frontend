@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Burger.module.scss";
+import PropTypes from "prop-types";
 
 
 const Burger = ({onClick}) => {
@@ -15,6 +16,10 @@ const Burger = ({onClick}) => {
             </div>
         </div>  
     )
+}
+
+Burger.propTypes = {
+    onClick: PropTypes.func.isRequired,
 }
 
 export default Burger;

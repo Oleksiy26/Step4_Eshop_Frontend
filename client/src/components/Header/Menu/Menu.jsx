@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from './Menu.module.scss'
 import { ReactComponent as Close } from "./svg/close.svg";
+import PropTypes from "prop-types";
 
 const Menu = (props) => {
     const {closeFunc} = props;
@@ -26,6 +27,10 @@ const Menu = (props) => {
         </div>
         </>
     )
+}
+
+Menu.propTypes = {
+    closeFunc: PropTypes.func.isRequired,
 }
 
 export default Menu;

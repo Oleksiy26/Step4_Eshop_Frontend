@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 import { useBreadCrumb } from '../../hooks/useBreadCrumb'
+import PropTypes from "prop-types";
+
 
 const NavigatePanel = ({ startFrom }) => {
     const { navigate, pathNames, reNavigate } = useBreadCrumb()
@@ -29,6 +31,14 @@ const NavigatePanel = ({ startFrom }) => {
             })}
         </div>
     )
+}
+
+NavigatePanel.defaultProps = {
+    startFrom: "Home"
+};
+
+NavigatePanel.propTypes = {
+    startFrom: PropTypes.string.isRequired
 }
 
 export default NavigatePanel

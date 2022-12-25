@@ -1,13 +1,13 @@
 import React, {useContext} from "react";
 import ProductCard from "../../../components/ProductCard";
-// import {useFunctionality} from "../../../hooks/useFunctionality";
 import {useSelector} from "react-redux";
 import {AuthContext} from "../../../context/AuthContext";
+import PropTypes from "prop-types";
+
 
 const ContainerFav = ({items}) => {
     const { favItems } = useSelector((state) => state.wishlist)
-    const auth = useContext(AuthContext)
-    const { isAuthenticated } = auth
+    const { isAuthenticated }  = useContext(AuthContext)
 
     return(
         <section className="container py-5">
@@ -41,6 +41,15 @@ const ContainerFav = ({items}) => {
         </section>
     ) 
 }
+
+
+ContainerFav.propTypes = {
+    items: PropTypes.oneOfType([
+        PropTypes.array.isRequired,
+        PropTypes.object.isRequired,
+    ])
+};
+
 
 export default ContainerFav;
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./Button.scss"
 
 const Button = (props) => {
@@ -28,5 +29,18 @@ const Button = (props) => {
     )
 
 }
+
+Button.defaultProps = {
+    text: "text",
+};
+
+Button.propTypes = {
+    text: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    className: PropTypes.string,
+    type: PropTypes.string,
+    to: PropTypes.string,
+    href: PropTypes.string
+};
 
 export default Button;

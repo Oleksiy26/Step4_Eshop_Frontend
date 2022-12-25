@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
 const Title = ({ title, subtitle }) => {
   return (
@@ -20,5 +21,16 @@ const Title = ({ title, subtitle }) => {
     </>
   );
 };
+
+Title.defaultProps = {
+  title: "Cards",
+  subtitle: "Your cards"
+};
+
+Title.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired
+};
+
 
 export default Title;

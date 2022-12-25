@@ -5,14 +5,14 @@ import './ProductCard.scss';
 import BlockForCart from './BlocForCart/BlocForCart';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from "prop-types";
 
 
 const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, quantity, color, ident, size }) => {
   const { inFav, inCart, clickFav, clickToCart, clickDeleteInCart, clickAddInCart, clickDeleteCardInCart } = useFunctionality(id)
   const navigate = useNavigate()
-  const auth = useContext(AuthContext)
-  const { isAuthenticated } = auth
-  
+  const { isAuthenticated }= useContext(AuthContext)
+
   // logs
   // console.log(viewForCart)
   // console.log(isAuthenticated);
@@ -90,6 +90,26 @@ const ProductCard = ({ price, photoUrl, subClass, id, nameCard, viewForCart, qua
       </div>
     </div>
   )
+};
+
+
+ProductCard.defaultProps = {
+    price: 15,
+    nameCard: "alt",
+    color: "yellow"
+};
+
+ProductCard.propTypes = {
+    price: PropTypes.number,
+    photoUrl: PropTypes.string,
+    subClass: PropTypes.string,
+    id: PropTypes.string,
+    nameCard: PropTypes.string,
+    viewForCart: PropTypes.bool,
+    quantity: PropTypes.number,
+    color: PropTypes.string,
+    ident: PropTypes.string,
+    size: PropTypes.string
 };
 
 export default ProductCard

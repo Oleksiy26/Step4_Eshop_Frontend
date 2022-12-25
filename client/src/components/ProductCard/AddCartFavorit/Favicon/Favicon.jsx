@@ -1,59 +1,15 @@
-import React, {useContext, useState} from "react";
-import styles from "./Favicon.module.scss"
+import React, { useContext } from "react";
 import { ReactComponent as Favorit } from './svg/favorit.svg';
 import { ReactComponent as FavoritCheck } from './svg/favoritCheck.svg';
-import {AuthContext} from "../../../../context/AuthContext";
-import {useSelector} from "react-redux";
-import {addToWishlist, deleteItemFromWishlist} from "../../../../store/wishlist/ActionCreator";
-
+import PropTypes from "prop-types";
+import AddCartFavorit from "../AddCartFavorit";
+import styles from "./Favicon.module.scss"
 
 const Favicon = ({ inFav, onClick }) => {
-    const { favItems } = useSelector((state) => state.wishlist)
-
-    const auth = useContext(AuthContext)
-    const { isAuthenticated } = auth
-
-    // logs
-    // console.log(inFav)
-    // console.log(onClick)
-    // console.log(inWishlist)
-    // logs
-
-    // const toggleSmth = () => {
-    //     if(isAuthenticated) {
-    //         deleteFromWish()
-    //     } else {
-    //         onClick()
-    //     }
-    // }
-
-        // const toggleEv = () => {
-    //     if(isAuthenticated) {
-    //
-    //     }
-    // }
-
-    // const checkIcon = (flag) => {
-    //     return (
-    //
-    //         )
-
-        // return (flag) ?
-        //   <FavoritCheck
-        //     className={styles.img}
-        //     onClick={onClick}
-        //   />
-        //    :
-        //     <Favorit className={styles.img} onClick={onClick} />;
-    // };
-
-        // <>
-        //   { isAuthenticated ? checkIcon(isAuthenticated) : checkIcon(inFav) }
-        // </>
     return (
         <>
             {
-                 inFav ?
+               inFav ?
                      (
                     <FavoritCheck
                          className={styles.img}
@@ -67,5 +23,9 @@ const Favicon = ({ inFav, onClick }) => {
     )
 }
 
-// checkIcon(inFav)
+AddCartFavorit.propTypes = {
+    inFav: PropTypes.bool,
+    onClick: PropTypes.func,
+}
+
 export default Favicon;

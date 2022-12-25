@@ -6,6 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup'; 
 import { useDispatch } from 'react-redux';
 import { fetchLogin } from '../../../store/login/login';
+import PropTypes from "prop-types";
 
 const initialValues = {
     email: '',
@@ -39,6 +40,8 @@ const validationSchema = yup.object().shape({
 const Login = ({changeAfterLogin}) => {
     const { loading, request, error, clearError } = useFetching()
     const dispatch = useDispatch()
+
+    console.log(changeAfterLogin)
 
     useEffect(() => {
         clearError()
@@ -94,5 +97,9 @@ const Login = ({changeAfterLogin}) => {
         </Formik>
     )
 }
+
+Login.propTypes = {
+    changeAfterLogin: PropTypes.bool.isRequired,
+};
 
 export default Login

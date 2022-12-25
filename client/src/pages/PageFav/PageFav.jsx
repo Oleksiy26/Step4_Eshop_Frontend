@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { checkLocation } from "../../store/location/location";
 import { useLocation } from "react-router-dom";
 import Title from '../../components/Title/Title';
-import {addToWishlist, fetchWishlist} from "../../store/wishlist/ActionCreator";
+import { addToWishlist, fetchWishlist } from "../../store/wishlist/ActionCreator";
 import { AuthContext } from "../../context/AuthContext";
 
 const PageFav = () => {

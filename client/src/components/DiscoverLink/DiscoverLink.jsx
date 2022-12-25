@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './DiscoverLink.scss';
+import PropTypes from "prop-types";
 
 const DiscoverLink = ({ subClass }) => {
   return (
@@ -11,4 +12,9 @@ const DiscoverLink = ({ subClass }) => {
     </div>
   );
 };
+
+DiscoverLink.propTypes = {
+    subClass: PropTypes.string.isRequired,
+}
+
 export default DiscoverLink;
