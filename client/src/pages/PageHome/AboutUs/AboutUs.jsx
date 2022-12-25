@@ -1,5 +1,5 @@
-import React from "react";
-import Title from "../../../components/Title";
+import React from 'react'
+import Title from '../../../components/Title'
 
 const AboutUs = () => {
   return (
@@ -49,7 +49,7 @@ const AboutUs = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

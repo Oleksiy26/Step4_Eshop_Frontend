@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './DiscoverLink.scss';
-import PropTypes from "prop-types";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import './DiscoverLink.scss'
+import PropTypes from 'prop-types'
 
 const DiscoverLink = ({ subClass }) => {
   return (
@@ -10,11 +10,11 @@ const DiscoverLink = ({ subClass }) => {
         Discover
       </Link>
     </div>
-  );
-};
-
-DiscoverLink.propTypes = {
-    subClass: PropTypes.string.isRequired,
+  )
 }
 
-export default DiscoverLink;
+DiscoverLink.propTypes = {
+  subClass: PropTypes.string.isRequired,
+}
+
+export default DiscoverLink

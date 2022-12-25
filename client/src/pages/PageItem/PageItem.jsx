@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import Slider from "react-slick";
-import ProductCard from "../../components/ProductCard";
-import {fetchCard} from "../../store/card/ActionCreator";
-import AddCartFavorit from "../../components/ProductCard/AddCartFavorit";
-import "./PageItem.scss";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+import Slider from 'react-slick'
+import ProductCard from '../../components/ProductCard'
+import { fetchCard } from '../../store/card/ActionCreator'
+import AddCartFavorit from '../../components/ProductCard/AddCartFavorit'
+import './PageItem.scss'
 
 export const PageItem = () => {
-  const { itemNo } = useParams();
+  const { itemNo } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products)
   // const product = useSelector((state) => state.products.products[id]);
 
   // console.log(products)
@@ -20,7 +20,6 @@ export const PageItem = () => {
   const { imageUrls, name, currentPrice, sizes, color } = card
   // console.log(card)
   // console.log('sizes: ', sizes)
-
 
   useEffect(() => {
     dispatch(fetchCard(itemNo))
@@ -35,12 +34,12 @@ export const PageItem = () => {
     autoplay: true,
     adaptiveHeight: true,
     arrows: false,
-  };
+  }
 
   return (
     <div className="container">
-      { isCardLoading && <h1 style={{ textAlign: 'center' }}>Loading...</h1>}
-      { cardError && <h1>Smth wrong happened</h1> }
+      {isCardLoading && <h1 style={{ textAlign: 'center' }}>Loading...</h1>}
+      {cardError && <h1>Smth wrong happened</h1>}
       <div className="my-5 d-flex gap-5 justify-content-center">
         <div className="sliderImg">
           <Slider {...settings}>
@@ -81,7 +80,7 @@ export const PageItem = () => {
           {products
             ? products.products
                 .slice(0, 5)
-                .map(item => (
+                .map((item) => (
                   <ProductCard
                     price={item.price}
                     photoUrl={item.imageUrls[0]}
@@ -94,5 +93,5 @@ export const PageItem = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

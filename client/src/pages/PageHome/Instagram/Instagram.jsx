@@ -1,5 +1,5 @@
-import React from "react";
-import Title from "../../../components/Title";
+import React from 'react'
+import Title from '../../../components/Title'
 
 const Instagram = () => {
   return (
@@ -36,7 +36,7 @@ const Instagram = () => {
         />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Instagram;
+export default Instagram

@@ -1,21 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  uTocken: "",
-  _id: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  joinDate: "",
+  uTocken: '',
+  _id: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  joinDate: '',
   cart: [],
   // history ?
   // favorites ?
-};
+}
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {},
-});
+})
 
-export default userSlice.reducer;
+export default userSlice.reducer

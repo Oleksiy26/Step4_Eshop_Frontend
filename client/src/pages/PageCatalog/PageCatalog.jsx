@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import Button from '../../components/Button';
-import Galery from '../../components/Galery';
-import SortList from '../../components/SortList';
-import { useSelector, useDispatch } from 'react-redux';
-import './PageCatalog.scss';
-import Title from '../../components/Title/Title';
-import Category from '../../components/Category';
-import Colors from '../../components/Colors';
-import Sizes from '../../components/Sizes';
-import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs";
-import {useBreadCrumb} from "../../hooks/useBreadCrumb";
+import React, { useState, useEffect } from 'react'
+import Button from '../../components/Button'
+import Galery from '../../components/Galery'
+import SortList from '../../components/SortList'
+import { useSelector, useDispatch } from 'react-redux'
+import './PageCatalog.scss'
+import Title from '../../components/Title/Title'
+import Category from '../../components/Category'
+import Colors from '../../components/Colors'
+import Sizes from '../../components/Sizes'
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
+import { useBreadCrumb } from '../../hooks/useBreadCrumb'
 
 const PageCatalog = () => {
-  const [numOfElem, setnumOfElem] = useState(12);
+  const [numOfElem, setnumOfElem] = useState(12)
 
   const LoadMore = () => {
-    setnumOfElem(numOfElem + 3);
-  };
+    setnumOfElem(numOfElem + 3)
+  }
 
   return (
     <div className="container page">
@@ -49,7 +49,7 @@ const PageCatalog = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PageCatalog;
+export default PageCatalog

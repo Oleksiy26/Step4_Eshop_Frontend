@@ -1,26 +1,26 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setSize } from '../../store/filter/filterSlice';
-import Checkbox from '../Checkbox';
-import './Sizes.scss';
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSize } from '../../store/filter/filterSlice'
+import Checkbox from '../Checkbox'
+import './Sizes.scss'
 
 const Sizes = () => {
-  const sizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+  const sizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
 
-  const dispatch = useDispatch();
-  const size = useSelector(state => state.filter.sizeName);
+  const dispatch = useDispatch()
+  const size = useSelector((state) => state.filter.sizeName)
 
-  const handleSizeCheckbox = label => {
-    const currentIndex = size.indexOf(label);
-    const newChecked = [...size];
+  const handleSizeCheckbox = (label) => {
+    const currentIndex = size.indexOf(label)
+    const newChecked = [...size]
     if (currentIndex === -1) {
-      newChecked.push(label);
+      newChecked.push(label)
     } else {
-      newChecked.splice(currentIndex, 1);
+      newChecked.splice(currentIndex, 1)
     }
-    dispatch(setSize(newChecked));
-    console.log(newChecked);
-  };
+    dispatch(setSize(newChecked))
+    console.log(newChecked)
+  }
   return (
     <ul className="page-sizes_list">
       {sizesArray &&
@@ -33,9 +33,9 @@ const Sizes = () => {
                 onChangeCheckbox={() => handleSizeCheckbox(item)}
               />
             </li>
-          );
+          )
         })}
     </ul>
-  );
-};
-export default Sizes;
+  )
+}
+export default Sizes

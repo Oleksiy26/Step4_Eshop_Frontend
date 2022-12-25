@@ -1,57 +1,56 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchLogin = createAsyncThunk(
   'login/fetchLogin',
-  async function(value, {rejectWithValue}) {
+  async function (value, { rejectWithValue }) {
     try {
-      const respons = await fetch('/api/customers',  {
+      const respons = await fetch('/api/customers', {
         method: 'POST',
         body: JSON.stringify({
-            email: value.email,
-            password: value.password,
-            firstName: value.firstName,
-            lastName: value.lastName,
-            login: value.login
+          email: value.email,
+          password: value.password,
+          firstName: value.firstName,
+          lastName: value.lastName,
+          login: value.login,
         }),
         headers: {
-            'Content-Type' : 'application/json'
-        }
-        }
-      );
+          'Content-Type': 'application/json',
+        },
+      })
       if (!respons.ok) {
         throw new Error('Server Error!')
       }
-      const data = await respons.json();
-      return data;
+      const data = await respons.json()
+      return data
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message)
     }
   }
-);
+)
 
 const initialState = {
   login: '',
   status: null,
-  error: null
-};
+  error: null,
+}
 
 export const loginSlice = createSlice({
-  name: "login",
+  name: 'login',
   initialState,
   extraReducers: {
     [fetchLogin.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
+      state.status = 'loading'
+      state.error = null
     },
     [fetchLogin.fulfilled]: (state, action) => {
-      state.status = "resolved";
-      state.login = action.payload;
+      state.status = 'resolved'
+      state.login = action.payload
     },
     [fetchLogin.rejected]: (state, action) => {
-      state.status = "rejected";
-      state.error = action.payload;
-    }
-  }
-});
+      state.status = 'rejected'
+      state.error = action.payload
+    },
+  },
+})
 
-export default loginSlice.reducer;
+export default loginSlice.reducer
