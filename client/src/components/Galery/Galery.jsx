@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../ProductCard';
-import axios from 'axios'
-import { useNavigate, useParams } from "react-router-dom";
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../../store/products/productSlice';
 
