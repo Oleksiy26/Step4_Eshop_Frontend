@@ -6,15 +6,15 @@ import Title from '../../../components/Title'
 import './index.scss'
 
 const PerfectSet = () => {
-  const products = useSelector((state) => state.products)
+  const products = useSelector(state => state.products)
   return (
-    <div className="container">
-      <Title title="new arrivals" subtitle="Choose your perfect set" />
-      <section className="set">
+    <div className='container'>
+      <Title title='new arrivals' subtitle='Choose your perfect set' />
+      <section className='set'>
         {products
           ? products.products
               .slice(0, 3)
-              .map((item) => (
+              .map(item => (
                 <ProductCard
                   ident={item.itemNo}
                   price={item.currentPrice}

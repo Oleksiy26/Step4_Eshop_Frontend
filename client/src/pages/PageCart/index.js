@@ -1,1 +1,1 @@
-export { default } from './PageCart';
+export { default } from './PageCart'

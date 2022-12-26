@@ -14,8 +14,8 @@ import { checkLocation } from './store/location/location'
 
 function App() {
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.auth.token)
-  const locationLogin = useSelector((state) => state.location.locationLogin)
+  const token = useSelector(state => state.auth.token)
+  const locationLogin = useSelector(state => state.location.locationLogin)
   const isAuthenticated = !!token
   const location = useLocation()
 
@@ -30,20 +30,18 @@ function App() {
 
       const cards = JSON.parse(localStorage.getItem('cart'))
       if (JSON.parse(localStorage.getItem('cart'))) {
-        cards.map((item) => {
-          dispatch(fetchAddToCart(item))
-        })
+        cards.map(item => dispatch(fetchAddToCart(item)))
         localStorage.removeItem('cart')
       }
     }
-  }, [dispatch, token, locationLogin])
+  }, [dispatch, token, locationLogin, location.pathname])
 
   console.log(locationLogin)
   return (
     <AuthContext.Provider
       value={{
         token,
-        isAuthenticated,
+        isAuthenticated
       }}
     >
       <Header />

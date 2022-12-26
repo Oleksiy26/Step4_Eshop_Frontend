@@ -19,14 +19,14 @@ export const fetchProducts = createAsyncThunk(
 const initialState = {
   products: [],
   status: null,
-  error: null,
+  error: null
 }
 
 export const productSlice = createSlice({
   name: 'products',
   initialState,
   extraReducers: {
-    [fetchProducts.pending]: (state) => {
+    [fetchProducts.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
@@ -37,8 +37,8 @@ export const productSlice = createSlice({
     [fetchProducts.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
-    },
-  },
+    }
+  }
 })
 
 export default productSlice.reducer

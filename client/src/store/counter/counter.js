@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   inCart: 0,
-  inFav: 0,
+  inFav: 0
 }
 
 export const counterSlice = createSlice({
@@ -14,8 +14,8 @@ export const counterSlice = createSlice({
     },
     checkInCart: (state, action) => {
       state.inCart = action.payload
-    },
-  },
+    }
+  }
 })
 
 export const { checkInFav, checkInCart } = counterSlice.actions

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../../../components/Button/Button'
 
 const ButtonCheckout = () => {
-  const token = useSelector((state) => state.auth.token)
+  const token = useSelector(state => state.auth.token)
   const navigate = useNavigate()
 
   const navigateToLogin = () => {
@@ -12,13 +12,13 @@ const ButtonCheckout = () => {
   }
 
   return token ? (
-    <Button onClick={null} text="Proceed to checkout" />
+    <Button onClick={null} text='Proceed to checkout' />
   ) : (
     <>
       <Button
         // to="/login"
         onClick={navigateToLogin}
-        text="Proceed to checkout"
+        text='Proceed to checkout'
       />
     </>
   )

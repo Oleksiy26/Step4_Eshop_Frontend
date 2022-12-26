@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  token: '',
+  token: ''
 }
 
 const storageName = 'userToken'
@@ -15,15 +15,15 @@ const tokenWorkSlice = createSlice({
       localStorage.setItem(
         storageName,
         JSON.stringify({
-          token: action.payload,
+          token: action.payload
         })
       )
     },
-    logout: (state) => {
+    logout: state => {
       state.token = ''
       localStorage.removeItem(storageName)
-    },
-  },
+    }
+  }
 })
 
 export const { login, logout } = tokenWorkSlice.actions

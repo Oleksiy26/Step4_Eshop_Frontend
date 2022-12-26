@@ -7,17 +7,17 @@ import ContainerCart from './ContainerCart'
 import styles from './PageCart.module.scss'
 
 const PageCart = () => {
-  const products = useSelector((state) => state.products)
-  const cardInCart = useSelector((state) => state.cart.cart)
-  const cartCounter = useSelector((state) => state.counter)
-  const token = useSelector((state) => state.auth.token)
+  const products = useSelector(state => state.products)
+  const cardInCart = useSelector(state => state.cart.cart)
+  const cartCounter = useSelector(state => state.counter)
+  const token = useSelector(state => state.auth.token)
 
   const totalPrice = () => {
     const totalPrice = 0
 
     if (token) {
       if (cardInCart) {
-        const prices = cardInCart.products.map((item) => {
+        const prices = cardInCart.products.map(item => {
           return item.product.currentPrice * item.cartQuantity
         })
         const calculatePrice = prices.reduce(
@@ -29,7 +29,7 @@ const PageCart = () => {
     } else {
       if (JSON.parse(localStorage.getItem('cart'))) {
         const itemsInCart = findItemsInCart()
-        const prices = itemsInCart.map((item) => {
+        const prices = itemsInCart.map(item => {
           return item.currentPrice
         })
         const calculatePrice = prices.reduce(
@@ -44,22 +44,22 @@ const PageCart = () => {
   const findItemsInCart = () => {
     const itemsinCart = JSON.parse(localStorage.getItem('cart'))
     if (itemsinCart) {
-      return products.products.filter((item) => itemsinCart.includes(item._id))
+      return products.products.filter(item => itemsinCart.includes(item._id))
     }
   }
 
   return (
-    <div className="container py-5 page">
+    <div className='container py-5 page'>
       {token ? (
         !cardInCart ? (
-          <Title subtitle="Your shopping cart is empty" />
+          <Title subtitle='Your shopping cart is empty' />
         ) : (
-          <Title subtitle="Your cart" />
+          <Title subtitle='Your cart' />
         )
       ) : !cartCounter.inCart ? (
-        <Title subtitle="Your shopping cart is empty" />
+        <Title subtitle='Your shopping cart is empty' />
       ) : (
-        <Title subtitle="Your cart" />
+        <Title subtitle='Your cart' />
       )}
       <section className={styles.section}>
         <div className={styles.section_products}>
@@ -69,7 +69,7 @@ const PageCart = () => {
         </div>
         <div className={styles.section_totaly}>
           <div className={styles.section_totaly_content}>
-            <Title subtitle="Total" />
+            <Title subtitle='Total' />
             <div className={styles.section_totaly_content_price}>
               <p>Total price</p>
               <p>{totalPrice()} €</p>
@@ -79,12 +79,12 @@ const PageCart = () => {
         </div>
       </section>
 
-      <Title subtitle="You may also like" />
-      <section className="d-flex gap-4 flex-column flex-md-row">
+      <Title subtitle='You may also like' />
+      <section className='d-flex gap-4 flex-column flex-md-row'>
         {products
           ? products.products
               .slice(13, 17)
-              .map((item) => (
+              .map(item => (
                 <ProductCard
                   ident={item.itemNo}
                   price={item.currentPrice}

@@ -9,11 +9,11 @@ export const fetchSignIn = createAsyncThunk(
         method: 'POST',
         body: JSON.stringify({
           loginOrEmail: value.loginOrEmail,
-          password: value.password,
+          password: value.password
         }),
         headers: {
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json'
+        }
       })
       if (!respons.ok) {
         throw new Error('Server Error!')
@@ -30,14 +30,14 @@ export const fetchSignIn = createAsyncThunk(
 const initialState = {
   signIn: '',
   status: null,
-  error: null,
+  error: null
 }
 
 export const signInSlice = createSlice({
   name: 'signIn',
   initialState,
   extraReducers: {
-    [fetchSignIn.pending]: (state) => {
+    [fetchSignIn.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
@@ -48,8 +48,8 @@ export const signInSlice = createSlice({
     [fetchSignIn.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
-    },
-  },
+    }
+  }
 })
 
 export default signInSlice.reducer

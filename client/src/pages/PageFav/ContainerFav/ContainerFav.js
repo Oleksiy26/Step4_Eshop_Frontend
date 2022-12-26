@@ -5,15 +5,15 @@ import { AuthContext } from '../../../context/AuthContext'
 import PropTypes from 'prop-types'
 
 const ContainerFav = ({ items }) => {
-  const { favItems } = useSelector((state) => state.wishlist)
+  const { favItems } = useSelector(state => state.wishlist)
   const { isAuthenticated } = useContext(AuthContext)
 
   return (
-    <section className="container py-5">
-      <div className="d-flex gap-4 flex-column flex-md-row">
+    <section className='container py-5'>
+      <div className='d-flex gap-4 flex-column flex-md-row'>
         {isAuthenticated
           ? favItems.products.products
-            ? favItems.products.products.map((product) => (
+            ? favItems.products.products.map(product => (
                 <ProductCard
                   item={product}
                   ident={product.itemNo}
@@ -26,7 +26,7 @@ const ContainerFav = ({ items }) => {
               ))
             : null
           : items &&
-            items.map((item) => (
+            items.map(item => (
               <ProductCard
                 item={item}
                 ident={item.itemNo}
@@ -45,8 +45,8 @@ const ContainerFav = ({ items }) => {
 ContainerFav.propTypes = {
   items: PropTypes.oneOfType([
     PropTypes.array.isRequired,
-    PropTypes.object.isRequired,
-  ]),
+    PropTypes.object.isRequired
+  ])
 }
 
 export default ContainerFav

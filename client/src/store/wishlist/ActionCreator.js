@@ -9,8 +9,8 @@ export const fetchWishlist = createAsyncThunk(
       const response = await fetch(`/api/wishlist`, {
         method: 'GET',
         headers: {
-          Authorization: stateToken,
-        },
+          Authorization: stateToken
+        }
       })
       if (!response.ok) {
         throw new Error('Server Error!')
@@ -32,8 +32,8 @@ export const addToWishlist = createAsyncThunk(
       const response = await fetch(`/api/wishlist/${id}`, {
         method: 'PUT',
         headers: {
-          Authorization: stateToken,
-        },
+          Authorization: stateToken
+        }
       })
       if (!response.ok) {
         throw new Error('Server Error!')
@@ -55,8 +55,8 @@ export const deleteItemFromWishlist = createAsyncThunk(
       const response = await fetch(`/api/wishlist/${id}`, {
         method: 'DELETE',
         headers: {
-          Authorization: stateToken,
-        },
+          Authorization: stateToken
+        }
       })
       if (!response.ok) {
         throw new Error('Server Error!')

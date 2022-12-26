@@ -19,32 +19,32 @@ const PageCatalog = () => {
   }
 
   return (
-    <div className="container page">
-      <BreadCrumbs startFrom="Home" />
+    <div className='container page'>
+      <BreadCrumbs startFrom='Home' />
       {/*<nav className="page-nav">*/}
       {/*  <ul className="page-nav_list">*/}
       {/*    <li className="page-nav_item">Home</li>*/}
       {/*    <li className="page-nav_item">Catalogue</li>*/}
       {/*  </ul>*/}
       {/*</nav>*/}
-      <Title subtitle="Catalogue" />
-      <div className="page-wrapper">
-        <aside className="page-sidebar">
-          <Title title="Category" />
+      <Title subtitle='Catalogue' />
+      <div className='page-wrapper'>
+        <aside className='page-sidebar'>
+          <Title title='Category' />
           <Category />
-          <Title title="Colors" />
+          <Title title='Colors' />
           <Colors />
-          <Title title="Sizes" />
+          <Title title='Sizes' />
           <Sizes />
-          <Button text="Filter" className="page__button content-button" />
+          <Button text='Filter' className='page__button content-button' />
         </aside>
-        <section className="content cards">
+        <section className='content cards'>
           <SortList />
           <Galery numOfElem={numOfElem} />
         </section>
         <Button
-          text="Load more beauty"
-          className="page__button content-button"
+          text='Load more beauty'
+          className='page__button content-button'
           onClick={LoadMore}
         />
       </div>

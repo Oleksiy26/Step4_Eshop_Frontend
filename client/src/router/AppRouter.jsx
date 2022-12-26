@@ -23,16 +23,16 @@ const AppRouter = ({ isAuthenticated }) => {
   // )
   return (
     <Routes>
-      {privateRoutes.map((route) => (
+      {privateRoutes.map(route => (
         <Route element={<route.element />} path={route.path} key={route.path} />
       ))}
-      <Route path="*" element={<Page404 />} />
+      <Route path='*' element={<Page404 />} />
     </Routes>
   )
 }
 
 AppRouter.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  isAuthenticated: PropTypes.bool
 }
 
 export default AppRouter

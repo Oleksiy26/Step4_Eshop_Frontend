@@ -1,1 +1,1 @@
-export { default } from './PageFav';
+export { default } from './PageFav'

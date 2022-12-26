@@ -4,27 +4,27 @@ import { checkInCart, checkInFav } from '../store/counter/counter'
 import { AuthContext } from '../context/AuthContext'
 import {
   addToWishlist,
-  deleteItemFromWishlist,
+  deleteItemFromWishlist
 } from '../store/wishlist/ActionCreator'
 import {
   fetchAddToCart,
   fetchDeletaCardFromCart,
-  fetchDeleteFromCart,
+  fetchDeleteFromCart
 } from '../store/cart/cart'
 import { checkLocation } from '../store/location/location'
 import { useLocation } from 'react-router-dom'
 
-export const useFunctionality = (id) => {
+export const useFunctionality = id => {
   const [inFav, setInFav] = useState(false)
   const [inCart, setInCart] = useState(false)
   const auth = useContext(AuthContext)
   const { isAuthenticated } = auth
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.auth.token)
-  const cardInCart = useSelector((state) => state.cart.cart)
-  const cardInFav = useSelector((state) => state.wishlist.favItems)
+  const token = useSelector(state => state.auth.token)
+  const cardInCart = useSelector(state => state.cart.cart)
+  const cardInFav = useSelector(state => state.wishlist.favItems)
 
-  const checkValue = (value) => {
+  const checkValue = value => {
     return value != null
   }
 
@@ -33,7 +33,7 @@ export const useFunctionality = (id) => {
       const favorite = JSON.parse(localStorage.getItem('fav'))
       if (favorite) {
         dispatch(checkInFav(favorite.length))
-        favorite.forEach((item) => {
+        favorite.forEach(item => {
           if (item === id) {
             setInFav(true)
           }
@@ -42,7 +42,7 @@ export const useFunctionality = (id) => {
       const inCart = JSON.parse(localStorage.getItem('cart'))
       if (inCart) {
         dispatch(checkInCart(inCart.length))
-        inCart.forEach((item) => {
+        inCart.forEach(item => {
           if (item === id) {
             setInCart(true)
           }
@@ -53,12 +53,12 @@ export const useFunctionality = (id) => {
     }
   }, [token ? (cardInCart, cardInFav) : null])
 
-  const checkCards = (id) => {
+  const checkCards = id => {
     if (cardInCart) {
-      const arrCard = cardInCart.products.map((item) => {
+      const arrCard = cardInCart.products.map(item => {
         return item.product
       })
-      const arrCardId = arrCard.map((item) => {
+      const arrCardId = arrCard.map(item => {
         return item._id
       })
       if (arrCardId.includes(id)) {
@@ -68,7 +68,7 @@ export const useFunctionality = (id) => {
 
     if (cardInFav.products.length !== 0) {
       const arrFav = cardInFav.products
-      const arrFavId = arrFav.products.map((item) => {
+      const arrFavId = arrFav.products.map(item => {
         return item._id
       })
       if (arrFavId.includes(id)) {
@@ -77,7 +77,7 @@ export const useFunctionality = (id) => {
     }
   }
 
-  const clickFav = (id) => {
+  const clickFav = id => {
     if (!token) {
       if (localStorage.getItem('fav')) {
         const fav = JSON.parse(localStorage.getItem('fav'))
@@ -87,7 +87,7 @@ export const useFunctionality = (id) => {
           setInFav(true)
           dispatch(checkInFav(fav.length))
         } else {
-          const newFav = fav.map((item) => {
+          const newFav = fav.map(item => {
             return item !== id ? item : null
           })
           const filter = newFav.filter(checkValue)
@@ -111,7 +111,7 @@ export const useFunctionality = (id) => {
     }
   }
 
-  const clickToCart = (id) => {
+  const clickToCart = id => {
     if (!token) {
       if (localStorage.getItem('cart')) {
         const cart = JSON.parse(localStorage.getItem('cart'))
@@ -121,7 +121,7 @@ export const useFunctionality = (id) => {
           setInCart(true)
           dispatch(checkInCart(cart.length))
         } else {
-          const newCart = cart.map((item) => {
+          const newCart = cart.map(item => {
             return item !== id ? item : null
           })
           const filter = newCart.filter(checkValue)
@@ -145,11 +145,11 @@ export const useFunctionality = (id) => {
     }
   }
 
-  const clickDeleteInCart = (id) => {
+  const clickDeleteInCart = id => {
     dispatch(fetchDeleteFromCart(id))
   }
 
-  const clickDeleteCardInCart = (id) => {
+  const clickDeleteCardInCart = id => {
     dispatch(fetchDeletaCardFromCart(id))
     setInCart(false)
   }
@@ -174,6 +174,6 @@ export const useFunctionality = (id) => {
     setInFav,
     clickDeleteInCart,
     clickAddInCart,
-    clickDeleteCardInCart,
+    clickDeleteCardInCart
   }
 }
