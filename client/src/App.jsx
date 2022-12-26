@@ -7,10 +7,10 @@ import { fetchAddToCart, fetchGetAllFromCart } from './store/cart/cart'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import AppRouter from './router/AppRouter'
-import './styles/App.scss'
 import { fetchWishlist } from './store/wishlist/ActionCreator'
 import { useLocation } from 'react-router-dom'
 import { checkLocation } from './store/location/location'
+import './styles/App.scss'
 
 function App() {
   const dispatch = useDispatch()
@@ -38,7 +38,6 @@ function App() {
     }
   }, [dispatch, token, locationLogin])
 
-  console.log(locationLogin)
   return (
     <AuthContext.Provider
       value={{
@@ -54,3 +53,11 @@ function App() {
 }
 
 export default App
+
+// for EsLint
+
+// "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+// "no-console": "error"
+// "scripts": {
+//   "lint": "eslint --fix --ext .js,.jsx ."
+// }
