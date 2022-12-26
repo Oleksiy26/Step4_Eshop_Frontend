@@ -14,12 +14,8 @@ export const privateRoutes = [
   { path: '/catalog/:itemNo', element: PageItem },
   { path: '/fav', element: PageFav },
   { path: '/profile', element: PageProfile },
-<<<<<<< HEAD
-  { path: '/login', element: PageLogin }
-=======
   { path: '/login', element: PageLogin },
   { path: '/searching', element: PageSearch }
->>>>>>> c52902c45fb1b4befe57cc7b8bd717539743c9c5
 ]
 
 export const publicRoutes = [{ path: '/login', element: PageLogin }]
