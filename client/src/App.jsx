@@ -11,6 +11,7 @@ import './styles/App.scss'
 import { fetchWishlist } from './store/wishlist/ActionCreator'
 import { useLocation } from 'react-router-dom'
 import { checkLocation } from './store/location/location'
+import { addToWishlist } from './store/wishlist/ActionCreator'
 
 function App() {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ function App() {
   const locationLogin = useSelector(state => state.location.locationLogin)
   const isAuthenticated = !!token
   const location = useLocation()
+  useSelector(state => state.counter)
 
   useEffect(() => {
     dispatch(fetchProducts())
@@ -29,16 +31,22 @@ function App() {
       dispatch(fetchWishlist())
 
       const cards = JSON.parse(localStorage.getItem('cart'))
-      if (JSON.parse(localStorage.getItem('cart'))) {
+      const favs = JSON.parse(localStorage.getItem('fav'))
+      if (cards) {
         cards.map(item => {
           dispatch(fetchAddToCart(item))
         })
         localStorage.removeItem('cart')
       }
+      if (favs) {
+        favs.map(item => {
+          dispatch(addToWishlist(item))
+        })
+        localStorage.removeItem('fav')
+      }
     }
   }, [dispatch, token, locationLogin])
 
-  console.log(locationLogin)
   return (
     <AuthContext.Provider
       value={{

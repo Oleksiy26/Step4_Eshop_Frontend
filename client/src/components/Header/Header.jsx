@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { ReactComponent as User } from './svg/user.svg'
 import { ReactComponent as Cart } from './svg/cart.svg'
 import { ReactComponent as Fav } from './svg/fav.svg'
@@ -10,8 +10,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Menu from './Menu/Menu'
 import Burger from './Burger'
 import Count from './Count'
-import { AuthContext } from '../../context/AuthContext'
-import { fetchWishlist } from '../../store/wishlist/ActionCreator'
 import styles from './Header.module.scss'
 import { logout } from '../../store/tokenWork/tokenWork'
 
@@ -19,13 +17,9 @@ const Header = () => {
   const [menu, setMenu] = useState(false)
   const counerInFav = useSelector(state => state.counter.inFav)
   const counerInCart = useSelector(state => state.counter.inCart)
-  const { favItems } = useSelector(state => state.wishlist)
   const token = useSelector(state => state.auth.token)
   const dispatch = useDispatch()
-
-  // const dispatch = useDispatch()
-  // const auth = useContext(AuthContext)
-  // const { isAuthenticated } = auth
+  const navigate = useNavigate()
 
   const clickMenu = () => {
     setMenu(!menu)
@@ -33,6 +27,7 @@ const Header = () => {
 
   const logOut = () => {
     dispatch(logout())
+    navigate('/')
   }
 
   return (
