@@ -11,11 +11,11 @@ export const PageItem = () => {
   const { itemNo } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const products = useSelector((state) => state.products)
+  const products = useSelector(state => state.products)
   // const product = useSelector((state) => state.products.products[id]);
 
   // console.log(products)
-  const { card, isCardLoading, cardError } = useSelector((state) => state.card)
+  const { card, isCardLoading, cardError } = useSelector(state => state.card)
 
   const { imageUrls, name, currentPrice, sizes, color } = card
   // console.log(card)
@@ -33,19 +33,19 @@ export const PageItem = () => {
     slidesToScroll: 1,
     autoplay: true,
     adaptiveHeight: true,
-    arrows: false,
+    arrows: false
   }
 
   return (
-    <div className="container">
+    <div className='container'>
       {isCardLoading && <h1 style={{ textAlign: 'center' }}>Loading...</h1>}
       {cardError && <h1>Smth wrong happened</h1>}
-      <div className="my-5 d-flex gap-5 justify-content-center">
-        <div className="sliderImg">
+      <div className='my-5 d-flex gap-5 justify-content-center'>
+        <div className='sliderImg'>
           <Slider {...settings}>
             {card !== undefined
-              ? imageUrls?.map((el) => (
-                  <img key={el} className="sliderImg" src={el} alt="" />
+              ? imageUrls?.map(el => (
+                  <img key={el} className='sliderImg' src={el} alt='' />
                 ))
               : null}
           </Slider>
@@ -53,20 +53,20 @@ export const PageItem = () => {
         <div>
           <h1>{card !== undefined && name}</h1>
           <h3>Available</h3>
-          <h4 className="my-4">{card !== undefined && currentPrice}$</h4>
-          <div className="d-flex gap-4">
+          <h4 className='my-4'>{card !== undefined && currentPrice}$</h4>
+          <div className='d-flex gap-4'>
             <p>Available Sizes: </p>
-            <div className="d-flex gap-4">
+            <div className='d-flex gap-4'>
               {/*{card !== undefined &&*/}
               {/*  sizes?.map((el) => <p key={el + itemNo}>{el}</p>)}*/}
               {sizes}
             </div>
           </div>
-          <div className="d-flex align-items-center">
-            <p className="my-2">Color:</p>
+          <div className='d-flex align-items-center'>
+            <p className='my-2'>Color:</p>
             <span
               style={{
-                backgroundColor: card !== undefined ? color : null,
+                backgroundColor: card !== undefined ? color : null
               }}
               className={'colorSquare'}
             />
@@ -75,12 +75,12 @@ export const PageItem = () => {
         </div>
       </div>
       <div>
-        <h1 className="pt-5">You may also like</h1>
-        <div className="d-flex justify-content-around my-5">
+        <h1 className='pt-5'>You may also like</h1>
+        <div className='d-flex justify-content-around my-5'>
           {products
             ? products.products
                 .slice(0, 5)
-                .map((item) => (
+                .map(item => (
                   <ProductCard
                     price={item.price}
                     photoUrl={item.imageUrls[0]}

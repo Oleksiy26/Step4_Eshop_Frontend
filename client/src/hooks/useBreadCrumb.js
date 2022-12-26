@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 export const useBreadCrumb = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
-  const pathNames = pathname.split('/').filter((routing) => routing)
+  const pathNames = pathname.split('/').filter(routing => routing)
   const reNavigate = () => {
     navigate('/')
   }
@@ -12,6 +12,6 @@ export const useBreadCrumb = () => {
     navigate,
     pathname,
     pathNames,
-    reNavigate,
+    reNavigate
   }
 }

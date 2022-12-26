@@ -13,7 +13,7 @@ import { fetchSignIn } from '../../../store/signIn/signIn'
 
 const initialValues = {
   loginOrEmail: '',
-  password: '',
+  password: ''
 }
 
 const validationSchema = yup.object().shape({
@@ -21,27 +21,27 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .required('No password provided.')
-    .min(8, 'Password is too short'),
+    .min(8, 'Password is too short')
 })
 
 const SignIn = () => {
   const { loading, request, error, clearError } = useFetching()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.signIn.signIn)
+  const token = useSelector(state => state.signIn.signIn)
 
   useEffect(() => {
     clearError()
   }, [error, clearError])
 
-  const loginUser = async (value) => {
+  const loginUser = async value => {
     dispatch(fetchSignIn(value))
     navigate('/')
   }
 
   const loginValues = [
     { placeholder: 'Login Or Email', name: 'loginOrEmail' },
-    { placeholder: 'Password', name: 'password' },
+    { placeholder: 'Password', name: 'password' }
   ]
 
   return (
@@ -53,7 +53,7 @@ const SignIn = () => {
       {({ values }) => {
         return (
           <Form>
-            {loginValues.map((value) => {
+            {loginValues.map(value => {
               const { placeholder, name } = value
               return (
                 <>
@@ -71,9 +71,9 @@ const SignIn = () => {
               )
             })}
             <Button
-              text="Sign in"
+              text='Sign in'
               disabled={!values.name || loading}
-              type="submit"
+              type='submit'
             />
           </Form>
         )

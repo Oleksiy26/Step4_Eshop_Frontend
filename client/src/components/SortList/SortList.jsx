@@ -6,26 +6,26 @@ import { setSortType } from '../../store/filter/filterSlice'
 const SortList = () => {
   const [sortActive, setSortActive] = useState(false)
   const dispatch = useDispatch()
-  const sort = useSelector((state) => state.filter.sort)
+  const sort = useSelector(state => state.filter.sort)
 
   const sortOptions = [
     { sortName: 'Price: Low to High', sortProperty: '+currentPrice' },
-    { sortName: 'Price: High to Low', sortProperty: '-currentPrice' },
+    { sortName: 'Price: High to Low', sortProperty: '-currentPrice' }
   ]
   // const sortOption = sortOptions[selected].sortName;
 
-  const onSelected = (sort) => {
+  const onSelected = sort => {
     dispatch(setSortType(sort))
     setSortActive(false)
   }
 
   return (
     <>
-      <p className="content-sort" onClick={() => setSortActive(!sortActive)}>
+      <p className='content-sort' onClick={() => setSortActive(!sortActive)}>
         Sort by <span></span>
       </p>
       {sortActive && (
-        <ul className="content-sort-list ">
+        <ul className='content-sort-list '>
           {sortOptions.map((item, index) => (
             <li
               className={

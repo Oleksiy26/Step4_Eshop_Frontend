@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import './Button.scss'
 
-const Button = (props) => {
+const Button = props => {
   const { text, onClick, className, type, to, href } = props
 
   let Component
@@ -30,7 +30,7 @@ const Button = (props) => {
 }
 
 Button.defaultProps = {
-  text: 'text',
+  text: 'text'
 }
 
 Button.propTypes = {
@@ -39,7 +39,7 @@ Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.string,
   to: PropTypes.string,
-  href: PropTypes.string,
+  href: PropTypes.string
 }
 
 export default Button

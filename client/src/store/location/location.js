@@ -4,7 +4,7 @@ const initialState = {
   locationFav: false,
   locationCart: false,
   locationMain: false,
-  locationLogin: false,
+  locationLogin: false
 }
 
 const locationSlice = createSlice({
@@ -33,8 +33,8 @@ const locationSlice = createSlice({
         state.locationMain = false
         state.locationLogin = true
       }
-    },
-  },
+    }
+  }
 })
 
 export const { checkLocation } = locationSlice.actions

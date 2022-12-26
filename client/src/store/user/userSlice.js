@@ -7,7 +7,7 @@ const initialState = {
   lastName: '',
   email: '',
   joinDate: '',
-  cart: [],
+  cart: []
   // history ?
   // favorites ?
 }
@@ -15,7 +15,7 @@ const initialState = {
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {}
 })
 
 export default userSlice.reducer

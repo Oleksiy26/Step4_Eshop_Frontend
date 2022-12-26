@@ -12,7 +12,7 @@ const PageLogin = () => {
     setVisibleOrNot(!visibleOrNot)
   }
 
-  const changeAfterLogin = (value) => {
+  const changeAfterLogin = value => {
     setVisibleOrNot(value)
   }
 
@@ -21,18 +21,18 @@ const PageLogin = () => {
       <div className={styles.block}>
         <div className={styles.block_signin}>
           <div className={styles.block_signin_content}>
-            <Title subtitle="Are you a user?" />
+            <Title subtitle='Are you a user?' />
             <SignIn />
           </div>
         </div>
         <div className={styles.block_login}>
           <div className={styles.block_login_content}>
-            <Title subtitle="Is it your first visit?" />
+            <Title subtitle='Is it your first visit?' />
             <ul>
               <li>10% discount for newsletter sign up</li>
               <li>User cabinet with easy way to track your order</li>
             </ul>
-            <Button text="Create account" onClick={clicked} />
+            <Button text='Create account' onClick={clicked} />
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@ const PageLogin = () => {
   ) : (
     <div className={styles.page}>
       <div className={styles.create}>
-        <Title subtitle="Edit personal information" />
+        <Title subtitle='Edit personal information' />
         <Login changeAfterLogin={changeAfterLogin} />
       </div>
     </div>

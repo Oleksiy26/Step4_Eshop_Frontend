@@ -6,13 +6,13 @@ export const useAuth = () => {
   const [token, setToken] = useState(null)
   const [ready, setReady] = useState(false)
 
-  const login = useCallback((jwtToken) => {
+  const login = useCallback(jwtToken => {
     setToken(jwtToken)
 
     localStorage.setItem(
       storageName,
       JSON.stringify({
-        token: jwtToken,
+        token: jwtToken
       })
     )
   }, [])

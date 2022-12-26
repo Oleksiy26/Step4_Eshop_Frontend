@@ -6,16 +6,16 @@ import Title from '../../../components/Title'
 import './index.scss'
 
 const Sales = () => {
-  const products = useSelector((state) => state.products)
+  const products = useSelector(state => state.products)
 
   return (
-    <div className="container">
-      <Title title="Sales and promotions" subtitle="Catch the best price" />
-      <section className="sales">
+    <div className='container'>
+      <Title title='Sales and promotions' subtitle='Catch the best price' />
+      <section className='sales'>
         {products
           ? products.products
               .slice(12, 16)
-              .map((item) => (
+              .map(item => (
                 <ProductCard
                   ident={item.itemNo}
                   price={item.currentPrice}

@@ -4,7 +4,7 @@ const initialState = {
   categoryName: [],
   colorName: [],
   sizeName: '',
-  sort: { sortName: null, sortProperty: null },
+  sort: { sortName: null, sortProperty: null }
 }
 
 export const filterSlice = createSlice({
@@ -22,8 +22,8 @@ export const filterSlice = createSlice({
     },
     setSortType(state, action) {
       state.sort = action.payload
-    },
-  },
+    }
+  }
 })
 
 export const { setCategory, setColor, setSize, setSortType } =

@@ -24,10 +24,10 @@ const Galery = ({ numOfElem }) => {
   // console.log(slice)
 
   // const slice = products.products.slice(0, numOfElem);
-  const sort = useSelector((state) => state.filter.sort)
-  const color = useSelector((state) => state.filter.colorName)
-  const category = useSelector((state) => state.filter.categoryName)
-  const size = useSelector((state) => state.filter.sizeName)
+  const sort = useSelector(state => state.filter.sort)
+  const color = useSelector(state => state.filter.colorName)
+  const category = useSelector(state => state.filter.categoryName)
+  const size = useSelector(state => state.filter.sizeName)
 
   // const productsArr = useSelector(state => state.products);
   // const slice = products.products.slice(0, numOfElem);
@@ -47,10 +47,10 @@ const Galery = ({ numOfElem }) => {
       .get(
         `http://localhost:5000/api/products/filter?${categoryFilter}&${colorFilter}&${sizeFilter}&sort=${sort.sortProperty}`
       )
-      .then((data) => {
+      .then(data => {
         setProducts(data.data.products)
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err)
       })
   }, [categoryFilter, colorFilter, sizeFilter, sort])
@@ -60,10 +60,10 @@ const Galery = ({ numOfElem }) => {
   // }, [dispatch, url]);
 
   return (
-    <ul className="content-list">
+    <ul className='content-list'>
       {slice.length ? (
         <>
-          {slice.map((item) => (
+          {slice.map(item => (
             <li key={item._id}>
               <ProductCard
                 ident={item.itemNo}
@@ -82,7 +82,7 @@ const Galery = ({ numOfElem }) => {
 }
 
 Galery.propTypes = {
-  numOfElem: PropTypes.number,
+  numOfElem: PropTypes.number
 }
 
 export default Galery

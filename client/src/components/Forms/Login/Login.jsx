@@ -13,7 +13,7 @@ const initialValues = {
   password: '',
   firstName: '',
   lastName: '',
-  login: '',
+  login: ''
 }
 
 const validationSchema = yup.object().shape({
@@ -28,7 +28,7 @@ const validationSchema = yup.object().shape({
     .min(8, 'Password is too short'),
   firstName: yup.string().required('Name is required'),
   lastName: yup.string().required('LastName is required'),
-  login: yup.string().required('Login is required'),
+  login: yup.string().required('Login is required')
 })
 
 const Login = ({ changeAfterLogin }) => {
@@ -41,7 +41,7 @@ const Login = ({ changeAfterLogin }) => {
     clearError()
   }, [error, clearError])
 
-  const registerUser = (value) => {
+  const registerUser = value => {
     dispatch(fetchLogin(value))
     changeAfterLogin(false)
   }
@@ -51,7 +51,7 @@ const Login = ({ changeAfterLogin }) => {
     { placeholder: 'lastName', name: 'lastName' },
     { placeholder: 'login', name: 'login' },
     { placeholder: 'email', name: 'email' },
-    { placeholder: 'password', name: 'password' },
+    { placeholder: 'password', name: 'password' }
   ]
 
   return (
@@ -63,7 +63,7 @@ const Login = ({ changeAfterLogin }) => {
       {({ values }) => {
         return (
           <Form>
-            {SignInvalues.map((value) => {
+            {SignInvalues.map(value => {
               const { placeholder, name } = value
               return (
                 <>
@@ -81,9 +81,9 @@ const Login = ({ changeAfterLogin }) => {
               )
             })}
             <Button
-              text="Create User"
+              text='Create User'
               disabled={!values.name || loading}
-              type="submit"
+              type='submit'
             />
           </Form>
         )
@@ -93,7 +93,7 @@ const Login = ({ changeAfterLogin }) => {
 }
 
 Login.propTypes = {
-  changeAfterLogin: PropTypes.bool.isRequired,
+  changeAfterLogin: PropTypes.bool.isRequired
 }
 
 export default Login

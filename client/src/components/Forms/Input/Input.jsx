@@ -6,7 +6,7 @@ const Input = ({ value, placeholder, name, id, field }) => {
   return (
     <input
       className={styles.input}
-      type="text"
+      type='text'
       name={name}
       placeholder={placeholder}
       defaultValue={value}
@@ -18,7 +18,7 @@ const Input = ({ value, placeholder, name, id, field }) => {
 }
 
 Input.defaultProps = {
-  placeholder: 'placeholder',
+  placeholder: 'placeholder'
 }
 
 Input.propTypes = {
@@ -28,7 +28,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
-  field: PropTypes.object,
+  field: PropTypes.object
 }
 
 export default Input

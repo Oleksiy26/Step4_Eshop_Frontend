@@ -11,11 +11,11 @@ export const fetchLogin = createAsyncThunk(
           password: value.password,
           firstName: value.firstName,
           lastName: value.lastName,
-          login: value.login,
+          login: value.login
         }),
         headers: {
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json'
+        }
       })
       if (!respons.ok) {
         throw new Error('Server Error!')
@@ -31,14 +31,14 @@ export const fetchLogin = createAsyncThunk(
 const initialState = {
   login: '',
   status: null,
-  error: null,
+  error: null
 }
 
 export const loginSlice = createSlice({
   name: 'login',
   initialState,
   extraReducers: {
-    [fetchLogin.pending]: (state) => {
+    [fetchLogin.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
@@ -49,8 +49,8 @@ export const loginSlice = createSlice({
     [fetchLogin.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
-    },
-  },
+    }
+  }
 })
 
 export default loginSlice.reducer

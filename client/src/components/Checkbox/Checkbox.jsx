@@ -6,18 +6,18 @@ const Checkbox = ({
   label,
   colorSquare,
   classForSquare,
-  onChangeCheckbox,
+  onChangeCheckbox
 }) => {
   return (
     <>
-      <div className="form-check" onChange={onChangeCheckbox}>
+      <div className='form-check' onChange={onChangeCheckbox}>
         <input
-          className="form-check-input"
-          type="checkbox"
+          className='form-check-input'
+          type='checkbox'
           value={label}
           id={id}
         />
-        <label className="form-check-label" htmlFor={id}>
+        <label className='form-check-label' htmlFor={id}>
           {colorSquare && (
             <div className={'color-square ' + classForSquare}></div>
           )}
@@ -33,7 +33,7 @@ Checkbox.propTypes = {
   colorSquare: PropTypes.bool,
   id: PropTypes.string,
   classForSquare: PropTypes.string,
-  onChangeCheckbox: PropTypes.func,
+  onChangeCheckbox: PropTypes.func
 }
 
 export default Checkbox

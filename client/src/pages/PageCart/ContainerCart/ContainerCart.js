@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 import styles from './ContainerCart.module.scss'
 
 const ContainerCart = ({ items }) => {
-  const token = useSelector((state) => state.auth.token)
+  const token = useSelector(state => state.auth.token)
   const path = token ? 'item.product' : 'item'
 
-  const localQuantity = (value) => {
+  const localQuantity = value => {
     const itemsinCart = JSON.parse(localStorage.getItem('cart'))
     let counter = 0
     console.log(itemsinCart)
@@ -25,7 +25,7 @@ const ContainerCart = ({ items }) => {
     <div className={styles.card}>
       {token
         ? items &&
-          items.map((item) => (
+          items.map(item => (
             <ProductCard
               price={item.product.currentPrice}
               photoUrl={item.product.imageUrls[0]}
@@ -40,7 +40,7 @@ const ContainerCart = ({ items }) => {
             />
           ))
         : items &&
-          items.map((item) => (
+          items.map(item => (
             <ProductCard
               price={item.currentPrice}
               photoUrl={item.imageUrls[0]}
@@ -61,8 +61,8 @@ const ContainerCart = ({ items }) => {
 ContainerCart.propTypes = {
   items: PropTypes.oneOfType([
     PropTypes.array.isRequired,
-    PropTypes.object.isRequired,
-  ]),
+    PropTypes.object.isRequired
+  ])
 }
 
 export default ContainerCart

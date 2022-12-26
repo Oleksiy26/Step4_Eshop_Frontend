@@ -2,24 +2,24 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   fetchWishlist,
   addToWishlist,
-  deleteItemFromWishlist,
+  deleteItemFromWishlist
 } from './ActionCreator'
 
 const initialState = {
   favItems: {
     products: [],
     customerId: {},
-    _id: '',
+    _id: ''
   },
   isItemsLoading: false,
-  itemsError: '',
+  itemsError: ''
 }
 
 export const WishlistSlice = createSlice({
   name: 'wishlist',
   initialState,
   extraReducers: {
-    [fetchWishlist.pending]: (state) => {
+    [fetchWishlist.pending]: state => {
       state.isItemsLoading = true
     },
     [fetchWishlist.fulfilled]: (state, action) => {
@@ -31,7 +31,7 @@ export const WishlistSlice = createSlice({
       state.isItemsLoading = false
       state.itemsError = action.payload
     },
-    [addToWishlist.pending]: (state) => {
+    [addToWishlist.pending]: state => {
       state.isItemsLoading = true
     },
     [addToWishlist.fulfilled]: (state, action) => {
@@ -43,7 +43,7 @@ export const WishlistSlice = createSlice({
       state.isItemsLoading = false
       state.itemsError = action.payload
     },
-    [deleteItemFromWishlist.pending]: (state) => {
+    [deleteItemFromWishlist.pending]: state => {
       state.isItemsLoading = true
     },
     [deleteItemFromWishlist.fulfilled]: (state, action) => {
@@ -54,8 +54,8 @@ export const WishlistSlice = createSlice({
     [deleteItemFromWishlist.rejected]: (state, action) => {
       state.isItemsLoading = false
       state.itemsError = action.payload
-    },
-  },
+    }
+  }
 })
 
 export default WishlistSlice.reducer

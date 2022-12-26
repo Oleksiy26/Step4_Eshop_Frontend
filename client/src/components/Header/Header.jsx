@@ -17,10 +17,10 @@ import { logout } from '../../store/tokenWork/tokenWork'
 
 const Header = () => {
   const [menu, setMenu] = useState(false)
-  const counerInFav = useSelector((state) => state.counter.inFav)
-  const counerInCart = useSelector((state) => state.counter.inCart)
-  const { favItems } = useSelector((state) => state.wishlist)
-  const token = useSelector((state) => state.auth.token)
+  const counerInFav = useSelector(state => state.counter.inFav)
+  const counerInCart = useSelector(state => state.counter.inCart)
+  const { favItems } = useSelector(state => state.wishlist)
+  const token = useSelector(state => state.auth.token)
   const dispatch = useDispatch()
 
   // const dispatch = useDispatch()
@@ -39,26 +39,26 @@ const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles.header__block_logo}>
-          <NavLink to="/" className="logo">
+          <NavLink to='/' className='logo'>
             <Logo />
           </NavLink>
         </div>
         <div className={styles.header__block_svg}>
           {!token ? (
-            <NavLink to="/login">
-              <User />
+            <NavLink to='/login'>
+              <User style={{ cursor: 'pointer' }} />
             </NavLink>
           ) : (
-            <Logout onClick={() => logOut()} />
+            <Logout style={{ cursor: 'pointer' }} onClick={() => logOut()} />
           )}
-          <NavLink to="/">
+          <NavLink to='/'>
             <Search />
           </NavLink>
-          <NavLink to="/fav">
+          <NavLink to='/fav'>
             <Fav />
             {counerInFav ? <Count count={counerInFav} /> : null}
           </NavLink>
-          <NavLink to="/cart">
+          <NavLink to='/cart'>
             <Cart />
             {counerInCart ? <Count count={counerInCart} /> : null}
           </NavLink>

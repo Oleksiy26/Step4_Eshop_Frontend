@@ -9,8 +9,8 @@ export const fetchAddToCart = createAsyncThunk(
       const respons = await fetch(`/api/cart/${id}`, {
         method: 'PUT',
         headers: {
-          Authorization: stateToken,
-        },
+          Authorization: stateToken
+        }
       })
       if (!respons.ok) {
         throw new Error('Server Error!')
@@ -18,7 +18,7 @@ export const fetchAddToCart = createAsyncThunk(
       const data = await respons.json()
       console.log(data)
       const total = 0
-      const quantity = data.products.map((item) => {
+      const quantity = data.products.map(item => {
         return item.cartQuantity
       })
       const calculateQuantite = quantity.reduce(
@@ -41,15 +41,15 @@ export const fetchDeleteFromCart = createAsyncThunk(
       const respons = await fetch(`/api/cart/product/${id}`, {
         method: 'DELETE',
         headers: {
-          Authorization: stateToken,
-        },
+          Authorization: stateToken
+        }
       })
       if (!respons.ok) {
         throw new Error('Server Error!')
       }
       const data = await respons.json()
       const total = 0
-      const quantity = data.products.map((item) => {
+      const quantity = data.products.map(item => {
         return item.cartQuantity
       })
       const calculateQuantite = quantity.reduce(
@@ -72,15 +72,15 @@ export const fetchGetAllFromCart = createAsyncThunk(
       const respons = await fetch('/api/cart', {
         method: 'GET',
         headers: {
-          Authorization: stateToken,
-        },
+          Authorization: stateToken
+        }
       })
       if (!respons.ok) {
         throw new Error('Server Error!')
       }
       const data = await respons.json()
       const total = 0
-      const quantity = data.products.map((item) => {
+      const quantity = data.products.map(item => {
         return item.cartQuantity
       })
       const calculateQuantite = quantity.reduce(
@@ -103,15 +103,15 @@ export const fetchDeletaCardFromCart = createAsyncThunk(
       const respons = await fetch(`/api/cart/${id}`, {
         method: 'DELETE',
         headers: {
-          Authorization: stateToken,
-        },
+          Authorization: stateToken
+        }
       })
       if (!respons.ok) {
         throw new Error('Server Error!')
       }
       const data = await respons.json()
       const total = 0
-      const quantity = data.products.map((item) => {
+      const quantity = data.products.map(item => {
         return item.cartQuantity
       })
       const calculateQuantite = quantity.reduce(
@@ -129,14 +129,14 @@ export const fetchDeletaCardFromCart = createAsyncThunk(
 const initialState = {
   cart: '',
   status: null,
-  error: null,
+  error: null
 }
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   extraReducers: {
-    [fetchAddToCart.pending]: (state) => {
+    [fetchAddToCart.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
@@ -148,7 +148,7 @@ export const cartSlice = createSlice({
       state.status = 'rejected'
       state.error = action.payload
     },
-    [fetchDeleteFromCart.pending]: (state) => {
+    [fetchDeleteFromCart.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
@@ -160,7 +160,7 @@ export const cartSlice = createSlice({
       state.status = 'rejected'
       state.error = action.payload
     },
-    [fetchGetAllFromCart.pending]: (state) => {
+    [fetchGetAllFromCart.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
@@ -172,7 +172,7 @@ export const cartSlice = createSlice({
       state.status = 'rejected'
       state.error = action.payload
     },
-    [fetchDeletaCardFromCart.pending]: (state) => {
+    [fetchDeletaCardFromCart.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
@@ -183,8 +183,8 @@ export const cartSlice = createSlice({
     [fetchDeletaCardFromCart.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
-    },
-  },
+    }
+  }
 })
 
 export default cartSlice.reducer

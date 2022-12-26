@@ -9,19 +9,19 @@ const AddCartFavorit = ({
   inCart,
   cardId,
   onClickToCart,
-  onClickFav,
+  onClickFav
 }) => {
   return (
-    <div className="set-hover">
+    <div className='set-hover'>
       <Button
         onClick={onClickToCart}
-        className="set-addcart"
+        className='set-addcart'
         text={!inCart ? 'Add to cart' : 'Delete from cart'}
       />
       {/* <button className="set-addcart" onClick={onClickToCart}>
         {!inCart ? 'Add to cart' : 'Delete from cart'}
       </button> */}
-      <div className="set-addfavorit">
+      <div className='set-addfavorit'>
         <Favicon onClick={onClickFav} inFav={inFav} />
       </div>
     </div>
@@ -33,7 +33,7 @@ AddCartFavorit.propTypes = {
   inCart: PropTypes.bool,
   cardId: PropTypes.string,
   onClickToCart: PropTypes.func,
-  onClickFav: PropTypes.func,
+  onClickFav: PropTypes.func
 }
 
 export default AddCartFavorit

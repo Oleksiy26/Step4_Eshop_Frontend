@@ -26,7 +26,7 @@ const Banner = () => {
           <span>for women</span>
         </div>
         <Button
-          text="Go to catalog"
+          text='Go to catalog'
           className={styles.btn}
           onClick={redirectCatalog}
           // to="/catalog"

@@ -19,14 +19,14 @@ export const fetchSlides = createAsyncThunk(
 const initialState = {
   slides: [],
   status: null,
-  error: null,
+  error: null
 }
 
 export const slidesSlice = createSlice({
   name: 'slides',
   initialState,
   extraReducers: {
-    [fetchSlides.pending]: (state) => {
+    [fetchSlides.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
@@ -37,8 +37,8 @@ export const slidesSlice = createSlice({
     [fetchSlides.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
-    },
-  },
+    }
+  }
 })
 
 export default slidesSlice.reducer

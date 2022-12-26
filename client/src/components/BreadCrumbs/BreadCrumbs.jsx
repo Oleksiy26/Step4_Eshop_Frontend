@@ -33,11 +33,11 @@ const NavigatePanel = ({ startFrom }) => {
 }
 
 NavigatePanel.defaultProps = {
-  startFrom: 'Home',
+  startFrom: 'Home'
 }
 
 NavigatePanel.propTypes = {
-  startFrom: PropTypes.string.isRequired,
+  startFrom: PropTypes.string.isRequired
 }
 
 export default NavigatePanel
