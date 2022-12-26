@@ -4,7 +4,7 @@ import { ReactComponent as Close } from './svg/close.svg'
 import PropTypes from 'prop-types'
 import styles from './Menu.module.scss'
 
-const Menu = (props) => {
+const Menu = props => {
   const { closeFunc } = props
 
   const arr = [
@@ -12,7 +12,7 @@ const Menu = (props) => {
     { option: 'Sales', link: '/' },
     { option: 'Profile', link: '/' },
     { option: 'Catalogue', link: '/' },
-    { option: 'Contact', link: '/' },
+    { option: 'Contact', link: '/' }
   ]
 
   return (
@@ -24,7 +24,7 @@ const Menu = (props) => {
         </div>
         <div className={styles.menu__body_list}>
           <div>
-            {arr.map((value) => {
+            {arr.map(value => {
               const { option, link } = value
               return <NavLink to={link}> {option} </NavLink>
             })}
@@ -36,7 +36,7 @@ const Menu = (props) => {
 }
 
 Menu.propTypes = {
-  closeFunc: PropTypes.func.isRequired,
+  closeFunc: PropTypes.func.isRequired
 }
 
 export default Menu

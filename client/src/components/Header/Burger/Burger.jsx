@@ -4,7 +4,7 @@ import styles from './Burger.module.scss'
 import PropTypes from 'prop-types'
 
 const Burger = ({ onClick }) => {
-  const locationMain = useSelector((state) => state.location.locationMain)
+  const locationMain = useSelector(state => state.location.locationMain)
 
   return (
     <div className={!locationMain ? styles.burger_page : styles.burger}>
@@ -17,7 +17,7 @@ const Burger = ({ onClick }) => {
 }
 
 Burger.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 }
 
 export default Burger

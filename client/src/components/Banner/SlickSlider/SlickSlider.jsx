@@ -7,7 +7,7 @@ import { fetchSlides } from '../../../store/slides/slides'
 
 const SlickSlider = () => {
   const dispatch = useDispatch()
-  const slides = useSelector((state) => state.slides)
+  const slides = useSelector(state => state.slides)
 
   const settings = {
     dots: false,
@@ -17,7 +17,7 @@ const SlickSlider = () => {
     slidesToScroll: 1,
     autoplay: true,
     adaptiveHeight: true,
-    arrows: false,
+    arrows: false
   }
 
   useEffect(() => {
@@ -25,11 +25,11 @@ const SlickSlider = () => {
   }, [])
 
   return (
-    <div className="container">
+    <div className='container'>
       <Slider {...settings}>
         {slides &&
-          slides.slides.map((item) =>
-            item.imageUrl.map((url) => <img src={url} />)
+          slides.slides.map(item =>
+            item.imageUrl.map(url => <img src={url} />)
           )}
       </Slider>
     </div>

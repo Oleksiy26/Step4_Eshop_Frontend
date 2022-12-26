@@ -17,7 +17,7 @@ const ProductCard = ({
   quantity,
   color,
   ident,
-  size,
+  size
 }) => {
   const {
     inFav,
@@ -26,7 +26,7 @@ const ProductCard = ({
     clickToCart,
     clickDeleteInCart,
     clickAddInCart,
-    clickDeleteCardInCart,
+    clickDeleteCardInCart
   } = useFunctionality(id)
   const navigate = useNavigate()
   const { isAuthenticated } = useContext(AuthContext)
@@ -40,26 +40,26 @@ const ProductCard = ({
     navigate(`/catalog/${ident}`)
   }
 
-  const addItemToCart = (event) => {
+  const addItemToCart = event => {
     event.stopPropagation()
     clickToCart(id)
   }
 
-  const addItemToWishlist = (event) => {
+  const addItemToWishlist = event => {
     event.stopPropagation()
     clickFav(id)
   }
 
   return !viewForCart ? (
     <div className={`set-card ${subClass}`} onClick={redirectToCardPage}>
-      <div className="image-wrapper">
-        <img src={photoUrl} alt="girl" className="set-img" />
+      <div className='image-wrapper'>
+        <img src={photoUrl} alt='girl' className='set-img' />
       </div>
-      <div className="text-wrapper">
-        <h3 className="set-title">{nameCard}</h3>
-        <p className="set-price">{price} &euro;</p>
+      <div className='text-wrapper'>
+        <h3 className='set-title'>{nameCard}</h3>
+        <p className='set-price'>{price} &euro;</p>
       </div>
-      <div className="info-wrapper">
+      <div className='info-wrapper'>
         <div className={`color-square ${color}`}></div>
         <span>Size: {size}</span>
         {/* <div className="color-square black"></div>
@@ -76,22 +76,22 @@ const ProductCard = ({
       />
     </div>
   ) : (
-    <div className="card">
-      <div className="card_img">
-        <img src={photoUrl} alt={nameCard} className="set-img" />
+    <div className='card'>
+      <div className='card_img'>
+        <img src={photoUrl} alt={nameCard} className='set-img' />
       </div>
-      <div className="card_info">
+      <div className='card_info'>
         <h3>{nameCard}</h3>
         <div>
-          <span className="title">Size</span>
+          <span className='title'>Size</span>
           <span>{size}</span>
         </div>
         <div>
-          <span className="title">Color</span>
+          <span className='title'>Color</span>
           <div className={`color-square ${color}`}></div>
         </div>
         <div>
-          <span className="title">Quantity</span>
+          <span className='title'>Quantity</span>
           <BlockForCart
             clickDelete={() => clickDeleteInCart(id)}
             clickAdd={() => clickAddInCart(id)}
@@ -99,7 +99,7 @@ const ProductCard = ({
           />
         </div>
       </div>
-      <div className="card_price">
+      <div className='card_price'>
         <p>{price} &euro;</p>
         <span onClick={() => clickDeleteCardInCart(id)}>Remove</span>
       </div>
@@ -110,7 +110,7 @@ const ProductCard = ({
 ProductCard.defaultProps = {
   price: 15,
   nameCard: 'alt',
-  color: 'yellow',
+  color: 'yellow'
 }
 
 ProductCard.propTypes = {
@@ -123,7 +123,7 @@ ProductCard.propTypes = {
   quantity: PropTypes.number,
   color: PropTypes.string,
   ident: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.string
 }
 
 export default ProductCard

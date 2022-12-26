@@ -8,9 +8,9 @@ const Sizes = () => {
   const sizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
 
   const dispatch = useDispatch()
-  const size = useSelector((state) => state.filter.sizeName)
+  const size = useSelector(state => state.filter.sizeName)
 
-  const handleSizeCheckbox = (label) => {
+  const handleSizeCheckbox = label => {
     const currentIndex = size.indexOf(label)
     const newChecked = [...size]
     if (currentIndex === -1) {
@@ -22,14 +22,14 @@ const Sizes = () => {
     console.log(newChecked)
   }
   return (
-    <ul className="page-sizes_list">
+    <ul className='page-sizes_list'>
       {sizesArray &&
         sizesArray.map((item, index) => {
           return (
-            <li className="page-sizes_item" key={index}>
+            <li className='page-sizes_item' key={index}>
               <Checkbox
                 label={item}
-                id="flexCheckDefault"
+                id='flexCheckDefault'
                 onChangeCheckbox={() => handleSizeCheckbox(item)}
               />
             </li>

@@ -3,22 +3,23 @@ import PropTypes from 'prop-types'
 import styles from './Input.module.scss'
 
 const Input = ({ value, placeholder, name, id, field }) => {
+  const { onChange, onBlur } = field
   return (
     <input
       className={styles.input}
-      type="text"
+      type='text'
       name={name}
       placeholder={placeholder}
       defaultValue={value}
       id={id}
-      onChange={field.onChange}
-      onBlur={field.onBlur}
+      onChange={onChange}
+      onBlur={onBlur}
     />
   )
 }
 
 Input.defaultProps = {
-  placeholder: 'placeholder',
+  placeholder: 'placeholder'
 }
 
 Input.propTypes = {
@@ -28,7 +29,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
-  field: PropTypes.object,
+  field: PropTypes.object
 }
 
 export default Input

@@ -7,18 +7,18 @@ import { useLocation } from 'react-router-dom'
 import Title from '../../components/Title/Title'
 import {
   addToWishlist,
-  fetchWishlist,
+  fetchWishlist
 } from '../../store/wishlist/ActionCreator'
 import { AuthContext } from '../../context/AuthContext'
 
 const PageFav = () => {
-  const products = useSelector((state) => state.products)
-  const favCounter = useSelector((state) => state.counter)
-  const { favItems, isItemsLoading } = useSelector((state) => state.wishlist)
+  const products = useSelector(state => state.products)
+  const favCounter = useSelector(state => state.counter)
+  const { favItems, isItemsLoading } = useSelector(state => state.wishlist)
   const dispatch = useDispatch()
   const location = useLocation()
   const auth = useContext(AuthContext)
-  const token = useSelector((state) => state.auth.token)
+  const token = useSelector(state => state.auth.token)
 
   const { isAuthenticated } = auth
 
@@ -30,7 +30,7 @@ const PageFav = () => {
     const itemsFav = JSON.parse(localStorage.getItem('fav'))
 
     if (itemsFav) {
-      return products.products.filter((item) => itemsFav.includes(item._id))
+      return products.products.filter(item => itemsFav.includes(item._id))
     }
   }
 
@@ -39,7 +39,7 @@ const PageFav = () => {
   }, [])
 
   return (
-    <div className="container">
+    <div className='container'>
       <Title
         subtitle={
           isAuthenticated

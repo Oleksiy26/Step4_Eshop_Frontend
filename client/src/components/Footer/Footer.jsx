@@ -7,14 +7,14 @@ const addresses = [
   '21 Vasilkivska Street, 40611',
   'Kyiv, Ukraine',
   '098 954 11 22',
-  'femlingeriesoul@fems.ua',
+  'femlingeriesoul@fems.ua'
 ]
 
 const collections = [
   { option: 'Collections', link: '/' },
   { option: 'Catalogue', link: '/' },
   { option: 'Gift cards', link: '/' },
-  { option: 'Garment care', link: '/' },
+  { option: 'Garment care', link: '/' }
 ]
 
 const categories = [
@@ -22,13 +22,13 @@ const categories = [
   { option: 'Garment care', link: '/' },
   { option: 'Shipping  Returns', link: '/' },
   { option: 'Delivery', link: '/' },
-  { option: 'Contact', link: '/' },
+  { option: 'Contact', link: '/' }
 ]
 
 const media = [
   { option: 'INSTAGRAM', link: '/' },
   { option: 'FACEBOOK', link: '/' },
-  { option: 'TWITTER', link: '/' },
+  { option: 'TWITTER', link: '/' }
 ]
 
 const Footer = () => {
@@ -38,7 +38,7 @@ const Footer = () => {
         <div className={styles.footer__block}>
           <Logo />
           <div className={styles.footer__block_list}>
-            {addresses.map((address) => {
+            {addresses.map(address => {
               return <p key={address}> {address} </p>
             })}
           </div>
@@ -46,7 +46,7 @@ const Footer = () => {
         <div className={styles.footer__block}>
           <h3>Shop</h3>
           <div className={styles.footer__block_list}>
-            {collections.map((collection) => {
+            {collections.map(collection => {
               const { option, link } = collection
               return (
                 <NavLink key={option} to={link}>
@@ -60,7 +60,7 @@ const Footer = () => {
         <div className={styles.footer__block}>
           <h3>Customer service</h3>
           <div className={styles.footer__block_list}>
-            {categories.map((category) => {
+            {categories.map(category => {
               const { option, link } = category
               return (
                 <NavLink key={option} to={link}>
@@ -74,7 +74,7 @@ const Footer = () => {
         <div className={styles.footer__block}>
           <h3>Social</h3>
           <div className={styles.footer__block_list}>
-            {media.map((networks) => {
+            {media.map(networks => {
               const { option, link } = networks
               return (
                 <NavLink key={option} to={link}>

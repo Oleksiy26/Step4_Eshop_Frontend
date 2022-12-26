@@ -4,7 +4,7 @@ import { ReactComponent as Add } from '../svg/add.svg'
 
 const BlockForCart = ({ clickDelete, clickAdd, quantity }) => {
   return (
-    <div className="quantity">
+    <div className='quantity'>
       <Delete onClick={clickDelete} />
       <span>{quantity}</span>
       <Add onClick={clickAdd} />

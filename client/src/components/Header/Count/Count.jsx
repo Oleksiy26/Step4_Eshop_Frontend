@@ -7,7 +7,7 @@ const Count = ({ count }) => {
 }
 
 Count.propTypes = {
-  onClick: PropTypes.number,
+  onClick: PropTypes.number
 }
 
 export default Count

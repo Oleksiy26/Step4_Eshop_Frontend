@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { ReactComponent as User } from './svg/user.svg'
 import { ReactComponent as Cart } from './svg/cart.svg'
 import { ReactComponent as Fav } from './svg/fav.svg'
@@ -10,18 +10,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import Menu from './Menu/Menu'
 import Burger from './Burger'
 import Count from './Count'
-import { AuthContext } from '../../context/AuthContext'
-import { fetchWishlist } from '../../store/wishlist/ActionCreator'
-import styles from './Header.module.scss'
+// import { AuthContext } from '../../context/AuthContext'
+// import { fetchWishlist } from '../../store/wishlist/ActionCreator'
 import { logout } from '../../store/tokenWork/tokenWork'
+import styles from './Header.module.scss'
 
 const Header = () => {
   const [menu, setMenu] = useState(false)
-  const counerInFav = useSelector((state) => state.counter.inFav)
-  const counerInCart = useSelector((state) => state.counter.inCart)
-  const { favItems } = useSelector((state) => state.wishlist)
-  const token = useSelector((state) => state.auth.token)
+  const [search, setSearch] = useState(false)
+  const [value, setValue] = useState('')
+  const [query, setQuery] = useState('')
+  const [data, setData] = useState([])
+  const counerInFav = useSelector(state => state.counter.inFav)
+  const counerInCart = useSelector(state => state.counter.inCart)
+  // const { favItems } = useSelector(state => state.wishlist)
+  const token = useSelector(state => state.auth.token)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  // const { products } = favItems
 
   // const dispatch = useDispatch()
   // const auth = useContext(AuthContext)
@@ -39,26 +46,26 @@ const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles.header__block_logo}>
-          <NavLink to="/" className="logo">
+          <NavLink to='/' className='logo'>
             <Logo />
           </NavLink>
         </div>
         <div className={styles.header__block_svg}>
           {!token ? (
-            <NavLink to="/login">
-              <User />
+            <NavLink to='/login'>
+              <User style={{ cursor: 'pointer' }} />
             </NavLink>
           ) : (
-            <Logout onClick={() => logOut()} />
+            <Logout style={{ cursor: 'pointer' }} onClick={() => logOut()} />
           )}
-          <NavLink to="/">
+          <NavLink to='/searching'>
             <Search />
           </NavLink>
-          <NavLink to="/fav">
+          <NavLink to='/fav'>
             <Fav />
             {counerInFav ? <Count count={counerInFav} /> : null}
           </NavLink>
-          <NavLink to="/cart">
+          <NavLink to='/cart'>
             <Cart />
             {counerInCart ? <Count count={counerInCart} /> : null}
           </NavLink>

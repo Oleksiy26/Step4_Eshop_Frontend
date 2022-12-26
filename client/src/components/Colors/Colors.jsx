@@ -5,13 +5,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setColor } from '../../store/filter/filterSlice'
 
 const Colors = () => {
-  const products = useSelector((state) => state.products)
+  const products = useSelector(state => state.products)
   const [colorsFilters, setColorsFilters] = useState([])
 
   const dispatch = useDispatch()
-  const color = useSelector((state) => state.filter.colorName)
+  const color = useSelector(state => state.filter.colorName)
 
-  const handleColorCheckbox = (label) => {
+  const handleColorCheckbox = label => {
     const currentIndex = color.indexOf(label)
     const newChecked = [...color]
     if (currentIndex === -1) {
@@ -23,20 +23,20 @@ const Colors = () => {
   }
 
   useEffect(() => {
-    const colorsArray = products.products.map((item) => item.color)
+    const colorsArray = products.products.map(item => item.color)
     const uniqueColors = new Set(colorsArray)
     setColorsFilters(Array.from(uniqueColors))
   }, [products, setColorsFilters])
 
   return (
-    <ul className="page-colors_list">
+    <ul className='page-colors_list'>
       {colorsFilters &&
         colorsFilters.map((item, index) => {
           return (
-            <li className="page-colors_item" key={index}>
+            <li className='page-colors_item' key={index}>
               <Checkbox
                 label={item}
-                id="flexCheckDefault"
+                id='flexCheckDefault'
                 colorSquare
                 classForSquare={item.toLowerCase()}
                 onChangeCheckbox={() => handleColorCheckbox(item)}
