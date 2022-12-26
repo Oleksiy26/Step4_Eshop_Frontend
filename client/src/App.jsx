@@ -7,11 +7,10 @@ import { fetchAddToCart, fetchGetAllFromCart } from './store/cart/cart'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import AppRouter from './router/AppRouter'
-import './styles/App.scss'
 import { fetchWishlist } from './store/wishlist/ActionCreator'
 import { useLocation } from 'react-router-dom'
 import { checkLocation } from './store/location/location'
-import { addToWishlist } from './store/wishlist/ActionCreator'
+import './styles/App.scss'
 
 function App() {
   const dispatch = useDispatch()
@@ -31,11 +30,19 @@ function App() {
       dispatch(fetchWishlist())
 
       const cards = JSON.parse(localStorage.getItem('cart'))
+<<<<<<< HEAD
       const favs = JSON.parse(localStorage.getItem('fav'))
       if (cards) {
+=======
+      if (JSON.parse(localStorage.getItem('cart'))) {
+<<<<<<< HEAD
+        cards.map(item => dispatch(fetchAddToCart(item)))
+=======
+>>>>>>> 676971b7312a198d2aaaa5b2971f02c2c9d5a72d
         cards.map(item => {
           dispatch(fetchAddToCart(item))
         })
+>>>>>>> c52902c45fb1b4befe57cc7b8bd717539743c9c5
         localStorage.removeItem('cart')
       }
       if (favs) {
@@ -45,7 +52,7 @@ function App() {
         localStorage.removeItem('fav')
       }
     }
-  }, [dispatch, token, locationLogin])
+  }, [dispatch, token, locationLogin, location.pathname])
 
   return (
     <AuthContext.Provider
@@ -62,3 +69,11 @@ function App() {
 }
 
 export default App
+
+// for EsLint
+
+// "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+// "no-console": "error"
+// "scripts": {
+//   "lint": "eslint --fix --ext .js,.jsx ."
+// }
