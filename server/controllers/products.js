@@ -169,7 +169,6 @@ exports.searchProducts = async (req, res, next) => {
     .trim()
     .replace(/\s\s+/g, " ");
 
-  console.log(query);
   // Creating the array of key-words from taken string
   let queryArr = query.split(" ");
 

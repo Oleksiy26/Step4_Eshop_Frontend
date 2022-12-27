@@ -8,17 +8,16 @@ import ProductCard from '../../components/ProductCard'
 const PageSearch = () => {
   const [query, setQuery] = useState('')
   const { searchValues, isSearching } = useSelector(state => state.search)
-  console.log(searchValues)
   const dispatch = useDispatch()
 
   const changer = event => {
-    setQuery(event.target.value)
+    console.log(query)
     dispatch(searchFor(query))
-    console.log('query ...', query)
-    // console.log(event.target.value)
-    // console.log(event)
   }
 
+  const changeMeQuery = event => {
+    setQuery(event.target.value)
+  }
   // useEffect(() => {
   //   changer()
   // }, [query])
@@ -26,17 +25,14 @@ const PageSearch = () => {
   return (
     <>
       <div>
-        <form action='#'>
+        <form onSubmit={changer}>
           <input
             value={query}
-            onChange={event => setQuery(event.target.value)}
-            // onChange={changer}
+            onChange={changeMeQuery}
             type='search'
             placeholder='Search...'
           />
-          <button type='submit' onClick={changer}>
-            Search
-          </button>
+          <button type='submit'>Search</button>
         </form>
       </div>
 
