@@ -46,7 +46,7 @@ const Header = () => {
           ) : (
             <Logout style={{ cursor: 'pointer' }} onClick={() => logOut()} />
           )}
-          <NavLink to='/'>
+          <NavLink to='/searching'>
             <Search />
           </NavLink>
           <NavLink to='/fav'>
