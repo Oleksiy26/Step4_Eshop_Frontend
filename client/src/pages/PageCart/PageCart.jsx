@@ -50,13 +50,7 @@ const PageCart = () => {
 
   return (
     <div className='container py-5 page'>
-      {token ? (
-        !cardInCart ? (
-          <Title subtitle='Your shopping cart is empty' />
-        ) : (
-          <Title subtitle='Your cart' />
-        )
-      ) : !cartCounter.inCart ? (
+      {(token ? !cardInCart : !cartCounter.inCart) ? (
         <Title subtitle='Your shopping cart is empty' />
       ) : (
         <Title subtitle='Your cart' />
@@ -67,16 +61,18 @@ const PageCart = () => {
             items={token ? cardInCart.products : findItemsInCart()}
           />
         </div>
-        <div className={styles.section_totaly}>
-          <div className={styles.section_totaly_content}>
-            <Title subtitle='Total' />
-            <div className={styles.section_totaly_content_price}>
-              <p>Total price</p>
-              <p>{totalPrice()} €</p>
+        {(token ? cardInCart : cartCounter.inCart) ? (
+          <div className={styles.section_totaly}>
+            <div className={styles.section_totaly_content}>
+              <Title subtitle='Total' />
+              <div className={styles.section_totaly_content_price}>
+                <p>Total price</p>
+                <p>{totalPrice()} €</p>
+              </div>
+              <ButtonCheckout />
             </div>
-            <ButtonCheckout />
           </div>
-        </div>
+        ) : null}
       </section>
 
       <Title subtitle='You may also like' />

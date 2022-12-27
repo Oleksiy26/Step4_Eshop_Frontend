@@ -29,7 +29,7 @@ const Banner = () => {
           text='Go to catalog'
           className={styles.btn}
           onClick={redirectCatalog}
-          // to="/catalog"
+          to='/catalog'
         />
       </div>
     </>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-// import PageLogin from '../pages/PageLogin/PageLogin'
 import Page404 from '../pages/Page404'
 import { privateRoutes, publicRoutes } from './Pages'
 import PropTypes from 'prop-types'
