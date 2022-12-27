@@ -19,7 +19,6 @@ const Galery = ({ numOfElem }) => {
 
   // const { card, isCardLoading, cardError } = useSelector((state) => state.card)
   // console.log(card)
-  // console.log(slice)
 
   const products = useSelector(state => state.filter.products)
   const slice = products.slice(0, numOfElem)
@@ -49,10 +48,12 @@ const Galery = ({ numOfElem }) => {
               <ProductCard
                 ident={item.itemNo}
                 price={item.currentPrice}
-                currentPrice={item.currentPrice}
                 photoUrl={item.imageUrls[0]}
                 key={item._id}
                 id={item._id}
+                nameCard={item.name}
+                color={item.color}
+                size={item.size}
               />
             </li>
           ))}

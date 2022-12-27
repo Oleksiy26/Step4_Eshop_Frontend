@@ -74,19 +74,22 @@ export const PageItem = () => {
           <AddCartFavorit />
         </div>
       </div>
-      <div>
+      <div className='item-galery-wrapper'>
         <h1 className='pt-5'>You may also like</h1>
-        <div className='d-flex justify-content-around my-5'>
+        <div className='item-galery'>
           {products
             ? products.products
                 .slice(0, 5)
                 .map(item => (
                   <ProductCard
-                    price={item.price}
+                    ident={item.itemNo}
+                    price={item.currentPrice}
                     photoUrl={item.imageUrls[0]}
-                    subClass={'set-item'}
                     key={item._id}
                     id={item._id}
+                    nameCard={item.name}
+                    color={item.color}
+                    size={item.size}
                   />
                 ))
             : null}

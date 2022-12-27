@@ -30,13 +30,7 @@ function App() {
 
       const cards = JSON.parse(localStorage.getItem('cart'))
       if (JSON.parse(localStorage.getItem('cart'))) {
-<<<<<<< HEAD
         cards.map(item => dispatch(fetchAddToCart(item)))
-=======
-        cards.map(item => {
-          dispatch(fetchAddToCart(item))
-        })
->>>>>>> c52902c45fb1b4befe57cc7b8bd717539743c9c5
         localStorage.removeItem('cart')
       }
     }

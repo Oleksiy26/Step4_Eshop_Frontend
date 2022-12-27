@@ -22,10 +22,10 @@ const Title = ({ title, subtitle }) => {
   )
 }
 
-Title.defaultProps = {
-  title: 'Cards',
-  subtitle: 'Your cards'
-}
+// Title.defaultProps = {
+//   title: 'Cards',
+//   subtitle: 'Your cards'
+// }
 
 Title.propTypes = {
   title: PropTypes.string.isRequired,
