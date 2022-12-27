@@ -10,7 +10,6 @@ import './Galery.scss'
 const Galery = ({ numOfElem }) => {
   // const { itemNo } = useParams()
 
-  // incorrect
   // console.log(itemNo)
 
   // const navigate = useNavigate()

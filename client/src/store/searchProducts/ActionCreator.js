@@ -4,7 +4,7 @@ export const searchFor = createAsyncThunk(
   'search/searchInInput',
   async function (query, { rejectWithValue, dispatch }) {
     try {
-      const response = await fetch(`/api/products/search/`, {
+      const response = await fetch(`/api/products/search`, {
         method: 'POST',
         body: {
           query: query
