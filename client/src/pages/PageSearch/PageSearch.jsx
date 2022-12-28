@@ -7,20 +7,50 @@ import ProductCard from '../../components/ProductCard'
 
 const PageSearch = () => {
   const [query, setQuery] = useState('')
-  const { searchValues, isSearching } = useSelector(state => state.search)
-  const dispatch = useDispatch()
+  const [searchValues, setSearchValues] = useState([])
+  // const { searchValues, isSearching } = useSelector(state => state.search)
+  // const dispatch = useDispatch()
 
-  const changer = event => {
-    console.log(query)
-    dispatch(searchFor(query))
+  const changer = async (event, query) => {
+    event.stopPropagation()
+    console.log('query', query)
+    try {
+      const response = await fetch(`/api/products/search/`, {
+        method: 'POST',
+        body: JSON.stringify({
+          query: query
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${
+            JSON.parse(localStorage.getItem(`userToken`)).token
+          }`
+        }
+      })
+      if (!response.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await response.json()
+      setSearchValues(response.data)
+      // log
+      console.log('data', data)
+      // log
+      return data
+    } catch (error) {
+      console.log(error.message)
+    }
+    // dispatch(searchFor(query))
   }
 
   const changeMeQuery = event => {
     setQuery(event.target.value)
   }
+
   // useEffect(() => {
   //   changer()
   // }, [query])
+
+  console.log('searchValues', searchValues)
 
   return (
     <>
@@ -41,7 +71,7 @@ const PageSearch = () => {
           Select what to search...
         </h1>
       )}
-      {isSearching && <h1>Loading...</h1>}
+      {/*{isSearching && <h1>Loading...</h1>}*/}
       {searchValues?.map(searchValue => {
         return (
           <ProductCard

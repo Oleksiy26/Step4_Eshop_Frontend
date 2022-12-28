@@ -1,9 +1,7 @@
 import React from 'react'
 
 const PageCheckout = () => {
-    return (
-        <></>
-    )
+  return <></>
 }
 
 export default PageCheckout
