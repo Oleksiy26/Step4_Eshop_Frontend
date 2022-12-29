@@ -3,23 +3,11 @@ import { useSelector } from 'react-redux'
 import ProductCard from '../../../components/ProductCard'
 import PropTypes from 'prop-types'
 import styles from './ContainerCart.module.scss'
+import { useForCart } from '../../../hooks/useForCart'
 
 const ContainerCart = ({ items }) => {
   const token = useSelector(state => state.auth.token)
-  const path = token ? 'item.product' : 'item'
-
-  const localQuantity = value => {
-    const itemsinCart = JSON.parse(localStorage.getItem('cart'))
-    let counter = 0
-    console.log(itemsinCart)
-
-    for (let elem of itemsinCart) {
-      if (elem == value) {
-        counter++
-      }
-    }
-    return counter
-  }
+  const { localQuantity } = useForCart()
 
   return (
     <div className={styles.card}>

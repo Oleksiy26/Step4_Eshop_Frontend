@@ -1,0 +1,7 @@
+.checkout {
+    display: flex;
+    justify-content: space-between;
+    &_block {
+        width: 48%;
+    }
+}

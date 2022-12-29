@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
   auth: tokenWorkSlice,
   signIn: signInSlice,
   login: loginSlice,
-  cart: cartSlice,
+  cart: cartSlice
   // search: searchSlice
 })
 
