@@ -10,6 +10,10 @@ export const searchFor = createAsyncThunk(
           query: query
         }),
         headers: {
+          Connection: 'keep-alive',
+          'Accept-Encoding': 'gzip, deflate, br',
+          Accept: '*/*',
+          'Content-Type': 'application/json',
           Authorization: `${
             JSON.parse(localStorage.getItem(`userToken`)).token
           }`

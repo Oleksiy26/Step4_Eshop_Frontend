@@ -46,6 +46,7 @@ export const useForCart = () => {
   const localQuantity = value => {
     const itemsinCart = JSON.parse(localStorage.getItem('cart'))
     let counter = 0
+
     console.log(itemsinCart)
 
     for (let elem of itemsinCart) {

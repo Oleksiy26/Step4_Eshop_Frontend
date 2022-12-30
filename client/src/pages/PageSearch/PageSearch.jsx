@@ -1,57 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { searchFor } from '../../store/searchProducts/ActionCreator'
 import { useDispatch, useSelector } from 'react-redux'
-import './PageSearch.scss'
 import ProductCard from '../../components/ProductCard'
-// import ProductCard from '../../components/ProductCard'
+import './PageSearch.scss'
 
 const PageSearch = () => {
   const [query, setQuery] = useState('')
-  const [searchValues, setSearchValues] = useState([])
-  // const { searchValues, isSearching } = useSelector(state => state.search)
-  // const dispatch = useDispatch()
+  const { searchValues, isSearching } = useSelector(state => state.search)
+  const dispatch = useDispatch()
+  console.log('query', query)
 
-  const changer = async (event, query) => {
+  const changer = async event => {
     event.stopPropagation()
     console.log('query', query)
-    try {
-      const response = await fetch(`/api/products/search/`, {
-        method: 'POST',
-        body: JSON.stringify({
-          query: query
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `${
-            JSON.parse(localStorage.getItem(`userToken`)).token
-          }`
-        }
-      })
-      if (!response.ok) {
-        throw new Error('Server Error!')
-      }
-      const data = await response.json()
-      setSearchValues(response.data)
-      // log
-      console.log('data', data)
-      // log
-      return data
-    } catch (error) {
-      console.log(error.message)
-    }
-    // dispatch(searchFor(query))
+    dispatch(searchFor(query))
   }
+
+  console.log('query 48: ', query)
 
   const changeMeQuery = event => {
     setQuery(event.target.value)
   }
 
-  // useEffect(() => {
-  //   changer()
-  // }, [query])
-
-  console.log('searchValues', searchValues)
-
+  console.log(isSearching)
+  // debugger
   return (
     <>
       <div>
@@ -59,20 +31,21 @@ const PageSearch = () => {
           <input
             value={query}
             onChange={changeMeQuery}
-            type='search'
+            type='text'
             placeholder='Search...'
           />
-          <button type='submit'>Search</button>
+          <button type='submit' disabled={query === '' ? true : false}>
+            Search
+          </button>
         </form>
       </div>
-
       {!searchValues.length && (
         <h1 style={{ textAlign: 'center', marginTop: '20px' }}>
           Select what to search...
         </h1>
       )}
-      {/*{isSearching && <h1>Loading...</h1>}*/}
-      {searchValues?.map(searchValue => {
+      {isSearching && <h1>Loading...</h1>}
+      {searchValues.map(searchValue => {
         return (
           <ProductCard
             ident={searchValue.itemNo}
