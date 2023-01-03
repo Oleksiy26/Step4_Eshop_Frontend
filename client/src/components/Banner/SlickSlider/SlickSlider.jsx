@@ -22,7 +22,7 @@ const SlickSlider = () => {
 
   useEffect(() => {
     dispatch(fetchSlides())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className='container'>

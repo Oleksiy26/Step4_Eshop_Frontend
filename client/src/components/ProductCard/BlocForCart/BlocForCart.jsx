@@ -1,13 +1,16 @@
 import React from 'react'
 import { ReactComponent as Delete } from '../svg/delete.svg'
 import { ReactComponent as Add } from '../svg/add.svg'
+import { useSelector } from 'react-redux'
 
 const BlockForCart = ({ clickDelete, clickAdd, quantity }) => {
+  const locationCart = useSelector(state => state.location.locationCart)
+
   return (
     <div className='quantity'>
-      <Delete onClick={clickDelete} />
+      {locationCart ? <Delete onClick={clickDelete} /> : null}
       <span>{quantity}</span>
-      <Add onClick={clickAdd} />
+      {locationCart ? <Add onClick={clickAdd} /> : null}
     </div>
   )
 }

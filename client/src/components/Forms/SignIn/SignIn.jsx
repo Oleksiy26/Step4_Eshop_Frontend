@@ -25,7 +25,7 @@ const validationSchema = yup.object().shape({
 })
 
 const SignIn = () => {
-  const { loading, request, error, clearError } = useFetching()
+  const { loading, error, clearError } = useFetching()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const token = useSelector(state => state.signIn.signIn)

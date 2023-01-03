@@ -162,14 +162,14 @@ exports.searchProducts = async (req, res, next) => {
   if (!req.body.query) {
     res.status(400).json({ message: "Query string is empty" });
   }
-
+  console.log(req.body)
+  console.log('166: ', req.body.query)
   //Taking the entered value from client in lower-case and trimed
   let query = req.body.query
     .toLowerCase()
     .trim()
     .replace(/\s\s+/g, " ");
 
-  console.log(query);
   // Creating the array of key-words from taken string
   let queryArr = query.split(" ");
 

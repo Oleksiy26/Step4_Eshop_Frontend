@@ -28,8 +28,8 @@ const Title = ({ title, subtitle }) => {
 // }
 
 Title.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired
+  title: PropTypes.string,
+  subtitle: PropTypes.string
 }
 
 export default Title

@@ -4,7 +4,8 @@ const initialState = {
   locationFav: false,
   locationCart: false,
   locationMain: false,
-  locationLogin: false
+  locationLogin: false,
+  locationCheckout: false
 }
 
 const locationSlice = createSlice({
@@ -32,6 +33,12 @@ const locationSlice = createSlice({
         state.locationCart = false
         state.locationMain = false
         state.locationLogin = true
+      } else if (action.payload === '/checkout') {
+        state.locationFav = false
+        state.locationCart = false
+        state.locationMain = false
+        state.locationLogin = false
+        state.locationCheckout = true
       }
     }
   }

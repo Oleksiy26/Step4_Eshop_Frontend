@@ -7,21 +7,11 @@ const ButtonCheckout = () => {
   const token = useSelector(state => state.auth.token)
   const navigate = useNavigate()
 
-  const navigateToLogin = () => {
-    navigate('/login')
+  const navigateInCart = () => {
+    navigate(token ? '/checkout' : '/login')
   }
 
-  return token ? (
-    <Button onClick={null} text='Proceed to checkout' />
-  ) : (
-    <>
-      <Button
-        // to="/login"
-        onClick={navigateToLogin}
-        text='Proceed to checkout'
-      />
-    </>
-  )
+  return <Button onClick={navigateInCart} text='Proceed to checkout' />
 }
 
 export default ButtonCheckout

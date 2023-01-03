@@ -1,52 +1,51 @@
 import React, { useEffect, useState } from 'react'
 import { searchFor } from '../../store/searchProducts/ActionCreator'
 import { useDispatch, useSelector } from 'react-redux'
-import './PageSearch.scss'
 import ProductCard from '../../components/ProductCard'
-// import ProductCard from '../../components/ProductCard'
+import './PageSearch.scss'
 
 const PageSearch = () => {
   const [query, setQuery] = useState('')
   const { searchValues, isSearching } = useSelector(state => state.search)
-  console.log(searchValues)
   const dispatch = useDispatch()
+  console.log('query', query)
 
-  const changer = event => {
-    setQuery(event.target.value)
+  const changer = async event => {
+    event.stopPropagation()
+    console.log('query', query)
     dispatch(searchFor(query))
-    console.log('query ...', query)
-    // console.log(event.target.value)
-    // console.log(event)
   }
 
-  // useEffect(() => {
-  //   changer()
-  // }, [query])
+  console.log('query 48: ', query)
 
+  const changeMeQuery = event => {
+    setQuery(event.target.value)
+  }
+
+  console.log(isSearching)
+  // debugger
   return (
     <>
       <div>
-        <form action='#'>
+        <form onSubmit={changer}>
           <input
             value={query}
-            onChange={event => setQuery(event.target.value)}
-            // onChange={changer}
-            type='search'
+            onChange={changeMeQuery}
+            type='text'
             placeholder='Search...'
           />
-          <button type='submit' onClick={changer}>
+          <button type='submit' disabled={query === '' ? true : false}>
             Search
           </button>
         </form>
       </div>
-
       {!searchValues.length && (
         <h1 style={{ textAlign: 'center', marginTop: '20px' }}>
           Select what to search...
         </h1>
       )}
       {isSearching && <h1>Loading...</h1>}
-      {searchValues?.map(searchValue => {
+      {searchValues.map(searchValue => {
         return (
           <ProductCard
             ident={searchValue.itemNo}
