@@ -12,6 +12,7 @@ import signInSlice from './signIn/signIn'
 import tokenWorkSlice from './tokenWork/tokenWork'
 import wishlistSlice from './wishlist/WishlistSlice'
 import searchSlice from './searchProducts/searchSlice'
+import orderSlice from './order/order'
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   signIn: signInSlice,
   login: loginSlice,
   cart: cartSlice,
-  search: searchSlice
+  search: searchSlice,
+  order: orderSlice
 })
 
 export const store = configureStore({

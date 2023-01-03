@@ -18,21 +18,25 @@ const locationSlice = createSlice({
         state.locationCart = false
         state.locationMain = false
         state.locationLogin = false
+        state.locationCheckout = false
       } else if (action.payload === '/') {
         state.locationFav = false
         state.locationCart = false
         state.locationMain = true
         state.locationLogin = false
+        state.locationCheckout = false
       } else if (action.payload === '/cart') {
         state.locationFav = false
         state.locationCart = true
         state.locationMain = false
         state.locationLogin = false
+        state.locationCheckout = false
       } else if (action.payload === '/login') {
         state.locationFav = false
         state.locationCart = false
         state.locationMain = false
         state.locationLogin = true
+        state.locationCheckout = false
       } else if (action.payload === '/checkout') {
         state.locationFav = false
         state.locationCart = false
