@@ -9,23 +9,24 @@ export const fetchMakeOrder = createAsyncThunk(
       const respons = await fetch('/api/orders', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json charset=utf-8',
+          'Content-Type': 'application/json;charset=utf-8',
           Authorization: stateToken
         },
         body: JSON.stringify({
           customerId: '6394e6a7ea1df5165ed781fe',
           //   products: cardInCart.products,
           email: value.email,
-          mobile: value.mobile,
+          mobile: value.phone,
           letterSubject: 'sdfs',
           letterHtml: 'sfedfs',
           shipping: 'Kiev 50UAH',
           paymentInfo: 'Credit card',
           status: 'not shipped',
+          canceled: false,
           deliveryAddress: {
             country: value.country,
             city: value.city,
-            adress: value.adress,
+            address: value.adress,
             postal: value.zipCode
           }
         })

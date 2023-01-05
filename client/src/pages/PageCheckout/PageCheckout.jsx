@@ -14,7 +14,7 @@ const PageCheckout = () => {
   const dispatch = useDispatch()
   const token = useSelector(state => state.auth.token)
 
-  const createOrder = value => {
+  const createOrder = async value => {
     // const products = cardInCart.products
     dispatch(fetchMakeOrder({ value, cardInCart }))
     // console.log(value)
