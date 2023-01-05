@@ -12,6 +12,7 @@ import signInSlice from './signIn/signIn'
 import tokenWorkSlice from './tokenWork/tokenWork'
 import wishlistSlice from './wishlist/WishlistSlice'
 import searchSlice from './searchProducts/searchSlice'
+// import trySearchSlice from './trySearch/trySearchSlice'
 import orderSlice from './order/order'
 
 const rootReducer = combineReducers({
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   login: loginSlice,
   cart: cartSlice,
   search: searchSlice,
+  // searchThem: trySearchSlice,
   order: orderSlice
 })
 
