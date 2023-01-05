@@ -22,8 +22,8 @@ export const searchFor = createAsyncThunk(
       if (!response.ok) {
         throw new Error('Server Error!')
       }
-      const data = await response.json()
-      return data
+      const result = await response.json()
+      return result
     } catch (error) {
       return rejectWithValue(error.message)
     }
