@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { searchFor } from '../../store/searchProducts/ActionCreator'
+// import { searchIt } from '../../store/trySearch/ActionCreator'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard'
 import './PageSearch.scss'
@@ -7,23 +8,27 @@ import './PageSearch.scss'
 const PageSearch = () => {
   const [query, setQuery] = useState('')
   const { searchValues, isSearching } = useSelector(state => state.search)
+  // const { searchValues, isSearching } = useSelector(state => state.searchThem)
   const dispatch = useDispatch()
-  console.log('query', query)
+  // console.log('query', query)
 
   const changer = async event => {
-    event.stopPropagation()
-    console.log('query', query)
+    event.preventDefault()
+    // console.log('query', query)
+    // dispatch(searchIt(query))
     dispatch(searchFor(query))
   }
 
-  console.log('query 48: ', query)
+  // console.log('query 48: ', query)
 
   const changeMeQuery = event => {
     setQuery(event.target.value)
   }
 
-  console.log(isSearching)
-  // debugger
+  console.log(!searchValues.length)
+  console.log(searchValues.length)
+  console.log('searchValues', searchValues)
+
   return (
     <>
       <div>
@@ -32,26 +37,27 @@ const PageSearch = () => {
             value={query}
             onChange={changeMeQuery}
             type='text'
-            placeholder='Search...'
+            placeholder='Type what to search...'
           />
           <button type='submit' disabled={query === '' ? true : false}>
             Search
           </button>
         </form>
       </div>
-      {!searchValues.length && (
+      {isSearching && <h1 style={{ textAlign: 'center' }}>Loading...</h1>}
+      {!isSearching &&
+      (searchValues.length === undefined) | !searchValues.length ? (
         <h1 style={{ textAlign: 'center', marginTop: '20px' }}>
-          Select what to search...
+          No categorie like that: {query === '' ? <span>' '</span> : query}
         </h1>
-      )}
-      {isSearching && <h1>Loading...</h1>}
+      ) : null}
       {searchValues.map(searchValue => {
         return (
           <ProductCard
             ident={searchValue.itemNo}
             price={searchValue.currentPrice}
             currentPrice={searchValue.currentPrice}
-            photoUrl={searchValue.imageUrls[0]}
+            photoUrl={searchValue.imageUrls[1]}
             key={searchValue._id}
             id={searchValue._id}
           />

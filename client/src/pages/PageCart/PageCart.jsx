@@ -1,10 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard'
 import Title from '../../components/Title/Title'
 import { useForCart } from '../../hooks/useForCart'
 import SectionOrder from './SectionOrder'
 import './Other.scss'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { checkLocation } from '../../store/location/location'
 
 const PageCart = () => {
   const products = useSelector(state => state.products)
