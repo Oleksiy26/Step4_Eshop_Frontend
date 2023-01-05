@@ -1,1 +1,1 @@
-export { default } from './Count';
+export { default } from './Count'

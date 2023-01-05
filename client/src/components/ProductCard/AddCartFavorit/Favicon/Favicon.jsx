@@ -18,7 +18,7 @@ const Favicon = ({ inFav, onClick }) => {
 
 Favicon.propTypes = {
   inFav: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 }
 
 export default Favicon

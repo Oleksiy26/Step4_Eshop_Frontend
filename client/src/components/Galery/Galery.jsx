@@ -20,6 +20,7 @@ const Galery = ({ numOfElem }) => {
   // console.log(card)
 
   const products = useSelector(state => state.filter.products)
+  console.log(products)
   const slice = products.slice(0, numOfElem)
   const sort = useSelector(state => state.filter.sort.sortProperty)
   const color = useSelector(state => state.filter.colorName)
@@ -67,3 +68,5 @@ Galery.propTypes = {
 }
 
 export default Galery
+
+// productsQuantity

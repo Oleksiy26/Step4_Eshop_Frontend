@@ -1,1 +1,1 @@
-export { default } from './SlickSlider';
+export { default } from './SlickSlider'
