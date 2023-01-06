@@ -17,7 +17,8 @@ const PageCheckout = () => {
 
   const createOrder = async value => {
     dispatch(fetchMakeOrder({ value, cardInCart }))
-    if (secuessOrder === 'resolved') navigate('/thanksfororder')
+    // if (secuessOrder === 'resolved') navigate('/thanksfororder')
+    // navigate('/thanksfororder')
   }
   return (
     <div className='container'>
