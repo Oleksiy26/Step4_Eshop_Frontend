@@ -29,7 +29,6 @@ const rootReducer = combineReducers({
   login: loginSlice,
   cart: cartSlice,
   search: searchSlice,
-  // searchThem: trySearchSlice,
   order: orderSlice
 })
 

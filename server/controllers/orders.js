@@ -12,7 +12,6 @@ const uniqueRandom = require("unique-random");
 const rand = uniqueRandom(1000000, 9999999);
 
 exports.placeOrder = async (req, res, next) => {
-  console.log(req.body)
   try {
     const order = _.cloneDeep(req.body);
     order.orderNo = String(rand());
@@ -34,6 +33,7 @@ exports.placeOrder = async (req, res, next) => {
       order.customerId = req.body.customerId;
 
       cartProducts = await subtractProductsFromCart(order.customerId);
+      console.log(cartProducts)
     }
 
     if (
@@ -46,9 +46,10 @@ exports.placeOrder = async (req, res, next) => {
     }
 
     if (cartProducts.length > 0) {
+      console.log(cartProducts)
       order.products = _.cloneDeep(cartProducts);
     } else {
-      order.products = JSON.parse(req.body.products);
+     order.products = JSON.parse(req.body.products);
     }
 
     order.totalSum = order.products.reduce(
@@ -101,12 +102,19 @@ exports.placeOrder = async (req, res, next) => {
       newOrder
         .save()
         .then(async (order) => {
-          const mailResult = await sendMail(
-            subscriberMail,
-            letterSubject,
-            letterHtml,
-            res
-          );
+          console.log(order)
+          let mailResult = ''
+
+          try{
+            mailResult = await sendMail(
+              subscriberMail,
+              letterSubject,
+              letterHtml,
+              res
+            );
+          } catch(err){
+            console.log(`Error happened with email send: "${err}" `)
+          }
 
           for (item of order.products) {
             const id = item.product._id;
@@ -114,17 +122,21 @@ exports.placeOrder = async (req, res, next) => {
             const productQuantity = product.quantity;
             await Product.findOneAndUpdate(
               { _id: id },
-              { quantity: productQuantity - item.product.quantity },
+              { quantity: productQuantity - item.cartQuantity },
               { new: true }
             );
           }
 
-          res.json({ order, mailResult });
+          res.json({ 
+            order, 
+            mailResult 
+          });
         })
-        .catch((err) =>
+        .catch((err) => {
           res.status(400).json({
             message: `Error happened on server: "${err}" `,
           })
+        }
         );
     }
   } catch (err) {

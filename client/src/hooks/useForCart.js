@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 export const useForCart = () => {
   const products = useSelector(state => state.products)
   const cardInCart = useSelector(state => state.cart.cart)
-  const cartCounter = useSelector(state => state.counter)
   const token = useSelector(state => state.auth.token)
 
   const totalPrice = () => {
@@ -46,8 +45,6 @@ export const useForCart = () => {
   const localQuantity = value => {
     const itemsinCart = JSON.parse(localStorage.getItem('cart'))
     let counter = 0
-
-    console.log(itemsinCart)
 
     for (let elem of itemsinCart) {
       if (elem == value) {

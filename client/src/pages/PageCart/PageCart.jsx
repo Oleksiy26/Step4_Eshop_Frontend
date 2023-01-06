@@ -1,13 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard'
 import Title from '../../components/Title/Title'
 import { useForCart } from '../../hooks/useForCart'
 import SectionOrder from './SectionOrder'
 import './Other.scss'
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { checkLocation } from '../../store/location/location'
 
 const PageCart = () => {
   const products = useSelector(state => state.products)
@@ -25,7 +22,7 @@ const PageCart = () => {
       )}
       <SectionOrder
         items={token ? cardInCart.products : findItemsInCart()}
-        totalPrice={totalPrice}
+        totalPrice={totalPrice()}
         check={token ? cardInCart : cartCounter.inCart}
       />
       <Title subtitle='You may also like' />

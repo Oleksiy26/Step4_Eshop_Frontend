@@ -12,6 +12,7 @@ import { fetchWishlist } from './store/wishlist/ActionCreator'
 import { useLocation } from 'react-router-dom'
 import { checkLocation } from './store/location/location'
 import { addToWishlist } from './store/wishlist/ActionCreator'
+import { fetchGetUser } from './store/user/userSlice'
 
 function App() {
   const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function App() {
     if (token) {
       dispatch(fetchGetAllFromCart())
       dispatch(fetchWishlist())
+      dispatch(fetchGetUser())
 
       const cards = JSON.parse(localStorage.getItem('cart'))
       if (JSON.parse(localStorage.getItem('cart'))) {

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Order from '../../components/Forms/Order'
 import Title from '../../components/Title'
 import { useForCart } from '../../hooks/useForCart'
@@ -12,13 +12,12 @@ const PageCheckout = () => {
   const cardInCart = useSelector(state => state.cart.cart)
   const { totalPrice } = useForCart()
   const dispatch = useDispatch()
-  const token = useSelector(state => state.auth.token)
+  const navigate = useNavigate()
+  const secuessOrder = useSelector(state => state.order.status)
 
   const createOrder = async value => {
-    // const products = cardInCart.products
     dispatch(fetchMakeOrder({ value, cardInCart }))
-    // console.log(value)
-    // console.log(cardInCart)
+    if (secuessOrder === 'resolved') navigate('/thanksfororder')
   }
   return (
     <div className='container'>
