@@ -20,7 +20,10 @@ const Galery = ({ numOfElem }) => {
   // console.log(card)
 
   const products = useSelector(state => state.filter.products)
-  console.log(products)
+  const startPage = useSelector(state => state.filter.startPage)
+  const perPage = useSelector(state => state.filter.perPage)
+  const totalCount = products.length
+  console.log(totalCount)
   const slice = products.slice(0, numOfElem)
   const sort = useSelector(state => state.filter.sort.sortProperty)
   const color = useSelector(state => state.filter.colorName)

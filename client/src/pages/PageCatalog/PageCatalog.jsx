@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Button from '../../components/Button'
+
 import Galery from '../../components/Galery'
 import SortList from '../../components/SortList'
 import { useSelector, useDispatch } from 'react-redux'
@@ -10,6 +11,7 @@ import Colors from '../../components/Colors'
 import Sizes from '../../components/Sizes'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import { useBreadCrumb } from '../../hooks/useBreadCrumb'
+import Pagination from '../../components/Pagination'
 
 const PageCatalog = () => {
   const [numOfElem, setnumOfElem] = useState(12)
@@ -42,11 +44,14 @@ const PageCatalog = () => {
           <SortList />
           <Galery numOfElem={numOfElem} />
         </section>
-        <Button
-          text='Load more beauty'
-          className='page__button content-button'
-          onClick={LoadMore}
-        />
+        <section className='page-controls'>
+          <Button
+            text='Load more beauty'
+            className='page__button content-button'
+            onClick={LoadMore}
+          />
+          <Pagination />
+        </section>
       </div>
     </div>
   )

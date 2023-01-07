@@ -37,6 +37,14 @@
     display: grid;
     grid-template: 1fr / minmax(auto, 300px) minmax(auto, 1fr);
   }
+  &-controls {
+    margin-top: 32px;
+    grid-template-columns: repeat(2 1fr);
+    display: grid;
+    align-items: center;
+    gap: 50px;
+    justify-content: center;
+  }
 }
 
 .content {
@@ -55,9 +63,6 @@
   }
   &-button {
     width: 280px;
-    grid-column: 2/3;
-    justify-self: center;
-    margin-top: 32px;
   }
 }
 
