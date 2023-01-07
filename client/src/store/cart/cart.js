@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { checkInCart } from '../counter/counter'
 
 export const fetchAddToCart = createAsyncThunk(
-  'createCart/fetchAddToCart',
+  'cart/fetchAddToCart',
   async function (id, { rejectWithValue, getState, dispatch }) {
     const stateToken = getState().auth.token
     try {
@@ -34,7 +34,7 @@ export const fetchAddToCart = createAsyncThunk(
 )
 
 export const fetchDeleteFromCart = createAsyncThunk(
-  'deleteFromCart/fetchDeleteFromCart',
+  'cart/fetchDeleteFromCart',
   async function (id, { rejectWithValue, getState, dispatch }) {
     const stateToken = getState().auth.token
     try {
@@ -65,7 +65,7 @@ export const fetchDeleteFromCart = createAsyncThunk(
 )
 
 export const fetchGetAllFromCart = createAsyncThunk(
-  'getAllFromCart/fetchGetAllFromCart',
+  'cart/fetchGetAllFromCart',
   async function (_, { rejectWithValue, getState, dispatch }) {
     const stateToken = getState().auth.token
     try {
@@ -96,7 +96,7 @@ export const fetchGetAllFromCart = createAsyncThunk(
 )
 
 export const fetchDeletaCardFromCart = createAsyncThunk(
-  'deletaCardFromCart/fetchDeletaCardFromCart',
+  'cart/fetchDeletaCardFromCart',
   async function (id, { rejectWithValue, getState, dispatch }) {
     const stateToken = getState().auth.token
     try {
@@ -119,6 +119,29 @@ export const fetchDeletaCardFromCart = createAsyncThunk(
         total
       )
       dispatch(checkInCart(calculateQuantite))
+      return data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+export const fetchDeleteCart = createAsyncThunk(
+  'cart/fetchDeleteCart',
+  async function (_, { rejectWithValue, getState, dispatch }) {
+    const stateToken = getState().auth.token
+    try {
+      const respons = await fetch('/api/cart', {
+        method: 'DELETE',
+        headers: {
+          Authorization: stateToken
+        }
+      })
+      if (!respons.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await respons.json()
+      dispatch(checkInCart(0))
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -181,6 +204,18 @@ export const cartSlice = createSlice({
       state.cart = action.payload
     },
     [fetchDeletaCardFromCart.rejected]: (state, action) => {
+      state.status = 'rejected'
+      state.error = action.payload
+    },
+    [fetchDeleteCart.pending]: state => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [fetchDeleteCart.fulfilled]: (state, action) => {
+      state.status = 'resolved'
+      state.cart = action.payload
+    },
+    [fetchDeleteCart.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
     }

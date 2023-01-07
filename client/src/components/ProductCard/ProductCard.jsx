@@ -31,11 +31,6 @@ const ProductCard = ({
   const navigate = useNavigate()
   const { isAuthenticated } = useContext(AuthContext)
 
-  // logs
-  // console.log(viewForCart)
-  // console.log(isAuthenticated);
-  // logs
-
   const redirectToCardPage = () => {
     navigate(`/catalog/${ident}`)
   }

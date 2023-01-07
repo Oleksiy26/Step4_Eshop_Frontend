@@ -1,13 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard'
 import Title from '../../components/Title/Title'
 import { useForCart } from '../../hooks/useForCart'
 import SectionOrder from './SectionOrder'
 import './Other.scss'
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { checkLocation } from '../../store/location/location'
+import Loader from '../../components/Loader'
 
 const PageCart = () => {
   const products = useSelector(state => state.products)
@@ -25,26 +23,32 @@ const PageCart = () => {
       )}
       <SectionOrder
         items={token ? cardInCart.products : findItemsInCart()}
-        totalPrice={totalPrice}
+        totalPrice={totalPrice()}
         check={token ? cardInCart : cartCounter.inCart}
       />
       <Title subtitle='You may also like' />
-      <section className='d-flex gap-4 flex-column flex-md-row'>
-        {products
-          ? products.products
-              .slice(13, 17)
-              .map(item => (
-                <ProductCard
-                  ident={item.itemNo}
-                  price={item.currentPrice}
-                  photoUrl={item.imageUrls[0]}
-                  subClass={'set-item img-fluid overflow-auto flex-grow-1'}
-                  key={item._id}
-                  id={item._id}
-                />
-              ))
-          : null}
-      </section>
+      {products.products ? (
+        products.status === 'loading' ? (
+          <Loader />
+        ) : (
+          <section className='d-flex gap-4 flex-column flex-md-row'>
+            {products
+              ? products.products
+                  .slice(13, 17)
+                  .map(item => (
+                    <ProductCard
+                      ident={item.itemNo}
+                      price={item.currentPrice}
+                      photoUrl={item.imageUrls[0]}
+                      subClass={'set-item img-fluid overflow-auto flex-grow-1'}
+                      key={item._id}
+                      id={item._id}
+                    />
+                  ))
+              : null}
+          </section>
+        )
+      ) : null}
     </div>
   )
 }

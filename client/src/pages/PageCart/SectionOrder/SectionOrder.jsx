@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import Loader from '../../../components/Loader'
 import Title from '../../../components/Title'
 import { checkLocation } from '../../../store/location/location'
 import ButtonCheckout from '../ButtonCheckout/ButtonCheckout'
@@ -12,6 +13,8 @@ const SectionOrder = ({ items, totalPrice, check }) => {
   const dispatch = useDispatch()
   const location = useLocation()
   const locationCheckout = useSelector(state => state.location.locationCheckout)
+  const cardInCart = useSelector(state => state.cart)
+  const token = useSelector(state => state.auth.token)
 
   useEffect(() => {
     dispatch(checkLocation(location.pathname))
@@ -30,7 +33,15 @@ const SectionOrder = ({ items, totalPrice, check }) => {
             : styles.section_products + ' checkout'
         }
       >
-        <ContainerCart items={items} />
+        {token ? (
+          cardInCart.status === 'loading' ? (
+            <Loader />
+          ) : (
+            <ContainerCart items={items} />
+          )
+        ) : (
+          <ContainerCart items={items} />
+        )}
       </div>
       {check ? (
         <div

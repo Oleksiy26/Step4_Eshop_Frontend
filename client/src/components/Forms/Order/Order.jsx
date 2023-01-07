@@ -29,7 +29,7 @@ const validationSchema = yup.object().shape({
   adress: yup.string().required('Adress is required')
 })
 
-const Order = ({ createOrder }) => {
+const Order = ({ createOrder, button }) => {
   const sendValue = value => {
     return value
   }

@@ -12,6 +12,8 @@ import { fetchWishlist } from './store/wishlist/ActionCreator'
 import { useLocation } from 'react-router-dom'
 import { checkLocation } from './store/location/location'
 import { addToWishlist } from './store/wishlist/ActionCreator'
+import { fetchGetUser } from './store/user/userSlice'
+import Loader from './components/Loader'
 
 function App() {
   const dispatch = useDispatch()
@@ -20,6 +22,7 @@ function App() {
   const isAuthenticated = !!token
   const location = useLocation()
   useSelector(state => state.counter)
+  const counterInCart = useSelector(state => state.counter.inCart)
 
   useEffect(() => {
     dispatch(fetchProducts())
@@ -29,6 +32,7 @@ function App() {
     if (token) {
       dispatch(fetchGetAllFromCart())
       dispatch(fetchWishlist())
+      dispatch(fetchGetUser())
 
       const cards = JSON.parse(localStorage.getItem('cart'))
       if (JSON.parse(localStorage.getItem('cart'))) {
@@ -58,7 +62,7 @@ function App() {
       }}
     >
       <Header />
-      <AppRouter isAuthenticated={isAuthenticated} />
+      <AppRouter counterInCart={counterInCart} token={token} />
       {!locationLogin ? <Footer /> : null}
     </AuthContext.Provider>
   )

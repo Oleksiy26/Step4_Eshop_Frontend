@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchDeleteCart } from '../cart/cart'
 
 export const fetchMakeOrder = createAsyncThunk(
   'makeOrder/fetchMakeOrder',
-  async function (values, { rejectWithValue, getState }) {
+  async function (values, { rejectWithValue, getState, dispatch }) {
     const stateToken = getState().auth.token
-    const { value, cardInCart } = values
+    const customerId = getState().user.info._id
+
+    const { value } = values
     try {
       const respons = await fetch('/api/orders', {
         method: 'POST',
@@ -13,28 +16,26 @@ export const fetchMakeOrder = createAsyncThunk(
           Authorization: stateToken
         },
         body: JSON.stringify({
-          customerId: '6394e6a7ea1df5165ed781fe',
-          //   products: cardInCart.products,
+          customerId: customerId,
           email: value.email,
           mobile: value.phone,
           letterSubject: 'sdfs',
           letterHtml: 'sfedfs',
-          shipping: 'Kiev 50UAH',
-          paymentInfo: 'Credit card',
           status: 'not shipped',
-          canceled: false,
-          deliveryAddress: {
-            country: value.country,
-            city: value.city,
-            address: value.adress,
-            postal: value.zipCode
-          }
+          canceled: false
+          // deliveryAddress: {
+          //   country: value.country,
+          //   city: value.city,
+          //   address: value.adress,
+          //   postal: value.zipCode
+          // }
         })
       })
       if (!respons.ok) {
         throw new Error('Server Error!')
       }
       const data = await respons.json()
+      dispatch(fetchDeleteCart())
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -43,7 +44,7 @@ export const fetchMakeOrder = createAsyncThunk(
 )
 
 const initialState = {
-  order: '',
+  order: {},
   status: null,
   error: null
 }
