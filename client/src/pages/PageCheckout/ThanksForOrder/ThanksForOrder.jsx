@@ -1,8 +1,8 @@
 import React from 'react'
-import Button from '../../components/Button/Button'
-import styles from './PageThanksForOrder.module.scss'
+import Button from '../../../components/Button/Button'
+import styles from './ThanksForOrder.module.scss'
 
-const PageThanksForOrder = () => {
+const ThanksForOrder = () => {
   return (
     <div className={'container ' + styles.block}>
       <div className={styles.block_img}>
@@ -19,4 +19,4 @@ const PageThanksForOrder = () => {
   )
 }
 
-export default PageThanksForOrder
+export default ThanksForOrder

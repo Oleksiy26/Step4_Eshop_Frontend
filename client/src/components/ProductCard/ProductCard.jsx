@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import AddCartFavorit from './AddCartFavorit'
 import { useFunctionality } from '../../hooks/useFunctionality'
 import './ProductCard.scss'
 import BlockForCart from './BlocForCart/BlocForCart'
-import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -29,7 +28,6 @@ const ProductCard = ({
     clickDeleteCardInCart
   } = useFunctionality(id)
   const navigate = useNavigate()
-  const { isAuthenticated } = useContext(AuthContext)
 
   const redirectToCardPage = () => {
     navigate(`/catalog/${ident}`)

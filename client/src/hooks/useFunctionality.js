@@ -11,8 +11,6 @@ import {
   fetchDeletaCardFromCart,
   fetchDeleteFromCart
 } from '../store/cart/cart'
-import { checkLocation } from '../store/location/location'
-import { useLocation } from 'react-router-dom'
 
 export const useFunctionality = id => {
   const [inFav, setInFav] = useState(false)
@@ -54,7 +52,7 @@ export const useFunctionality = id => {
   }, [token ? (cardInCart, cardInFav) : null])
 
   const checkCards = id => {
-    if (cardInCart) {
+    if (cardInCart.products) {
       const arrCard = cardInCart.products.map(item => {
         return item.product
       })
