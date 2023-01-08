@@ -1,15 +1,18 @@
-import React from 'react';
-import DiscoverLink from '../../../components/DiscoverLink/DiscoverLink';
-import ProductCard from '../../../components/ProductCard';
-import Title from '../../../components/Title';
-import './index.scss';
+import React from "react";
+import { useSelector } from "react-redux";
+import DiscoverLink from "../../../components/DiscoverLink/DiscoverLink";
+import ProductCard from "../../../components/ProductCard";
+import Title from "../../../components/Title";
+import "./index.scss";
 
-const Sales = products => {
+const Sales = () => {
+  const products = useSelector((state) => state.products);
+
   return (
     <div className="container">
       <Title title="Sales and promotions" subtitle="Catch the best price" />
       <section className="sales">
-        {products.products.length !== 0
+        {products
           ? products.products
               .slice(12, 16)
               .map(item => (
@@ -19,7 +22,6 @@ const Sales = products => {
                   subClass={'sales-item'}
                   key={item._id}
                   id={item._id}
-                  itemNo={item.itemNo}
                 />
               ))
           : null}

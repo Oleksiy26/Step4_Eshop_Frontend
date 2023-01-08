@@ -3,7 +3,6 @@ import './ProductCard.scss';
 import { useDispatch } from 'react-redux';
 import { checkInCart, checkInFav } from '../../store/counter/counter';
 import AddCartFavorit from '../AddCartFavorit';
-import { NavLink } from 'react-router-dom';
 
 const checkValue = value => {
   return value != null;
@@ -33,7 +32,7 @@ export const clickFav = (id, setInFav, dispatch) => {
   }
 };
 
-const ProductCard = ({ currentPrice, photoUrl, subClass, id, itemNo = '/notapage' }) => {
+const ProductCard = ({ currentPrice, photoUrl, subClass, id }) => {
   const [inFav, setInFav] = useState(false);
   const [inCart, setInCart] = useState(false);
   const dispatch = useDispatch();
@@ -76,21 +75,19 @@ const ProductCard = ({ currentPrice, photoUrl, subClass, id, itemNo = '/notapage
 
   return (
     <div className={`set-card ${subClass}`}>
-      <NavLink to={'/catalog/' + itemNo}>
-        <div className="image-wrapper">
-          <img src={photoUrl} alt="girl" className="set-img" />
-        </div>
-        <div className="text-wrapper">
-          <h3 className="set-title">White lace set</h3>
-          <p className="set-price">{currentPrice} &euro;</p>
-        </div>
+      <div className="image-wrapper">
+        <img src={photoUrl} alt="girl" className="set-img" />
+      </div>
+      <div className="text-wrapper">
+        <h3 className="set-title">White lace set</h3>
+        <p className="set-price">{currentPrice} &euro;</p>
+      </div>
 
-        <div className="colors-wrapper">
-          <div className="color-square white"></div>
-          <div className="color-square black"></div>
-          <div className="color-square gray"></div>
-        </div>
-      </NavLink>
+      <div className="colors-wrapper">
+        <div className="color-square white"></div>
+        <div className="color-square black"></div>
+        <div className="color-square gray"></div>
+      </div>
       <AddCartFavorit
         cardId={id}
         inFav={inFav}

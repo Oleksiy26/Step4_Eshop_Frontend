@@ -48,7 +48,8 @@ export const PageItem = () => {
           <div className="d-flex gap-4">
             <p>Available Sizes: </p>
             <div className="d-flex gap-4">
-              {product !== undefined ? <p>{product.size}</p> : <p>No available sizes</p>}
+              {product !== undefined &&
+                product.sizes.split(',').map(el => <p key={el + itemNo}>{el}</p>)}
             </div>
           </div>
           <div className="d-flex align-items-center">
@@ -76,7 +77,6 @@ export const PageItem = () => {
                     subClass={'set-item'}
                     key={item._id}
                     id={item._id}
-                    itemNo={item.itemNo}
                   />
                 ))
             : null}

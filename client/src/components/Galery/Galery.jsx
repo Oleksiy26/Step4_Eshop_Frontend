@@ -42,7 +42,6 @@ const Galery = ({ numOfElem }) => {
                 photoUrl={item.imageUrls[0]}
                 key={item._id}
                 id={item._id}
-                itemNo={item.itemNo}
               />
             </li>
           ))}
