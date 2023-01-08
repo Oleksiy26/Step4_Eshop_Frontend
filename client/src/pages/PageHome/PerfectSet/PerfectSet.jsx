@@ -5,9 +5,7 @@ import ProductCard from '../../../components/ProductCard';
 import Title from '../../../components/Title';
 import './index.scss';
 
-const PerfectSet = () => {
-  const products = useSelector(state => state.products);
-
+const PerfectSet = products => {
   return (
     <div className="container">
       <Title title="new arrivals" subtitle="Choose your perfect set" />
@@ -22,6 +20,7 @@ const PerfectSet = () => {
                   subClass={'set-item'}
                   key={item._id}
                   id={item._id}
+                  itemNo={item.itemNo}
                 />
               ))
           : null}
