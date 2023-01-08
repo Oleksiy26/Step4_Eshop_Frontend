@@ -13,6 +13,7 @@ const ContainerFav = ({ items }) => {
               subClass={'set-item img-fluid overflow-auto flex-grow-1'}
               key={item._id}
               id={items._id}
+              itemNo={item.itemNo}
             />
           ))}
       </div>
