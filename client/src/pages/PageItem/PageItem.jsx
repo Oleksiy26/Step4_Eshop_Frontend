@@ -17,7 +17,7 @@ export const PageItem = () => {
   // console.log(products)
   const { card, isCardLoading, cardError } = useSelector(state => state.card)
 
-  const { imageUrls, name, currentPrice, sizes, color } = card
+  const { imageUrls, name, currentPrice, size, color } = card
   // console.log(card)
   // console.log('sizes: ', sizes)
 
@@ -57,9 +57,7 @@ export const PageItem = () => {
           <div className='d-flex gap-4'>
             <p>Available Sizes: </p>
             <div className='d-flex gap-4'>
-              {/*{card !== undefined &&*/}
-              {/*  sizes?.map((el) => <p key={el + itemNo}>{el}</p>)}*/}
-              {sizes}
+              {size ? <p>{size}</p> : <>No sizes</>}
             </div>
           </div>
           <div className='d-flex align-items-center'>
