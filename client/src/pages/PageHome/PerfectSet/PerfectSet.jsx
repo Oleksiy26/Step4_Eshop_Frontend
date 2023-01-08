@@ -3,11 +3,15 @@ import { useSelector } from 'react-redux'
 import DiscoverLink from '../../../components/DiscoverLink/DiscoverLink'
 import Loader from '../../../components/Loader'
 import ProductCard from '../../../components/ProductCard'
+import { getRandomRange } from '../../../components/RandomRange/randomRange'
 import Title from '../../../components/Title'
 import './index.scss'
 
 const PerfectSet = () => {
   const products = useSelector(state => state.products)
+
+  let arrayofProducts = products.products.length
+  let res = getRandomRange(0, arrayofProducts, 4)
   return (
     <div className='container'>
       <Title title='new arrivals' subtitle='Choose your perfect set' />
@@ -16,7 +20,7 @@ const PerfectSet = () => {
           <Loader />
         ) : (
           <section className='set'>
-            {products.products.slice(0, 3).map(item => (
+            {products.products.slice(res.start, res.end).map(item => (
               <ProductCard
                 ident={item.itemNo}
                 price={item.currentPrice}

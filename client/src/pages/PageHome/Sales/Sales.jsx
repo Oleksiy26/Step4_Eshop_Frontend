@@ -3,11 +3,15 @@ import { useSelector } from 'react-redux'
 import DiscoverLink from '../../../components/DiscoverLink/DiscoverLink'
 import Loader from '../../../components/Loader'
 import ProductCard from '../../../components/ProductCard'
+import { getRandomRange } from '../../../components/RandomRange/randomRange'
 import Title from '../../../components/Title'
 import './index.scss'
 
 const Sales = () => {
   const products = useSelector(state => state.products)
+
+  let arrayofProducts = products.products.length
+  let res = getRandomRange(0, arrayofProducts, 5)
 
   return (
     <div className='container'>
@@ -17,7 +21,7 @@ const Sales = () => {
           <Loader />
         ) : (
           <section className='sales'>
-            {products.products.slice(12, 16).map(item => (
+            {products.products.slice(res.start, res.end).map(item => (
               <ProductCard
                 ident={item.itemNo}
                 price={item.currentPrice}

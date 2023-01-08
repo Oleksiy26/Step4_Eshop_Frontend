@@ -6,6 +6,7 @@ import ProductCard from '../../components/ProductCard'
 import { fetchCard } from '../../store/card/ActionCreator'
 import AddCartFavorit from '../../components/ProductCard/AddCartFavorit'
 import './PageItem.scss'
+import { getRandomRange } from '../../components/RandomRange/randomRange'
 
 export const PageItem = () => {
   const { itemNo } = useParams()
@@ -13,7 +14,8 @@ export const PageItem = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
   // const product = useSelector((state) => state.products.products[id]);
-
+  let arrayofProducts = products.products.length
+  let res = getRandomRange(0, arrayofProducts, 5)
   // console.log(products)
   const { card, isCardLoading, cardError } = useSelector(state => state.card)
 
@@ -77,7 +79,7 @@ export const PageItem = () => {
         <div className='item-galery'>
           {products
             ? products.products
-                .slice(0, 5)
+                .slice(res.start, res.end)
                 .map(item => (
                   <ProductCard
                     ident={item.itemNo}
