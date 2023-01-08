@@ -3,19 +3,25 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 export const fetchFilterProducts = createAsyncThunk(
   'filters/fetchFilterProducts',
   async function (filtersData, { rejectWithValue }) {
-    const { categoryFilter, colorFilter, sizeFilter, sort } = filtersData
+    const {
+      categoryFilter,
+      colorFilter,
+      sizeFilter,
+      startPage,
+      perPage,
+      sort
+    } = filtersData
 
     try {
       const respons = await fetch(
-        `/api/products/filter?${categoryFilter}&${colorFilter}&${sizeFilter}&sort=${sort}`
+        `/api/products/filter?${categoryFilter}&${colorFilter}&${sizeFilter}&startPage=${startPage}&perPage=${perPage}&sort=${sort}`
       )
 
       if (!respons.ok) {
         throw new Error('Server Error!')
       }
       const data = await respons.json()
-
-      return data.products
+      return data
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -24,7 +30,8 @@ export const fetchFilterProducts = createAsyncThunk(
 
 const initialState = {
   startPage: 1,
-  perPage: 3,
+  perPage: 10,
+  totalPage: 0,
   products: [],
   status: null,
   error: null,
@@ -38,6 +45,9 @@ export const filterSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
+    settotalPage(state, action) {
+      state.totalPage = action.payload
+    },
     setstartPage(state, action) {
       state.startPage = action.payload
     },
@@ -70,7 +80,13 @@ export const filterSlice = createSlice({
   }
 })
 
-export const { setCategory, setColor, setSize, setSortType, setstartPage } =
-  filterSlice.actions
+export const {
+  setCategory,
+  setColor,
+  setSize,
+  setSortType,
+  setstartPage,
+  settotalPage
+} = filterSlice.actions
 
 export default filterSlice.reducer

@@ -1,4 +1,12 @@
 .pages {
-  margin: 20px 0;
-  justify-self: flex-end;
+  margin: 20px 0 20px 250px;
+  .page-number,
+  .start-page-number {
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #cddeed;
+  }
+  .start-page-number {
+    color: #2d4153;
+  }
 }

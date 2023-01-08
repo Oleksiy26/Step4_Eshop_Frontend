@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 
 import './Galery.scss'
 
-const Galery = ({ numOfElem }) => {
+const Galery = () => {
   // const { itemNo } = useParams()
 
   // console.log(itemNo)
@@ -20,11 +20,11 @@ const Galery = ({ numOfElem }) => {
   // console.log(card)
 
   const products = useSelector(state => state.filter.products)
+
+  console.log('products', products)
+
   const startPage = useSelector(state => state.filter.startPage)
   const perPage = useSelector(state => state.filter.perPage)
-  const totalCount = products.length
-  console.log(totalCount)
-  const slice = products.slice(0, numOfElem)
   const sort = useSelector(state => state.filter.sort.sortProperty)
   const color = useSelector(state => state.filter.colorName)
   const category = useSelector(state => state.filter.categoryName)
@@ -38,15 +38,30 @@ const Galery = ({ numOfElem }) => {
 
   useEffect(() => {
     dispatch(
-      fetchFilterProducts({ categoryFilter, colorFilter, sizeFilter, sort })
+      fetchFilterProducts({
+        categoryFilter,
+        colorFilter,
+        sizeFilter,
+        startPage,
+        perPage,
+        sort
+      })
     )
-  }, [dispatch, categoryFilter, colorFilter, sizeFilter, sort])
+  }, [
+    dispatch,
+    categoryFilter,
+    colorFilter,
+    sizeFilter,
+    startPage,
+    perPage,
+    sort
+  ])
 
   return (
     <ul className='content-list'>
-      {products.length ? (
+      {products.products ? (
         <>
-          {slice.map(item => (
+          {products.products.map(item => (
             <li key={item._id}>
               <ProductCard
                 ident={item.itemNo}
@@ -71,5 +86,3 @@ Galery.propTypes = {
 }
 
 export default Galery
-
-// productsQuantity

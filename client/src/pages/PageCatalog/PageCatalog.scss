@@ -39,11 +39,10 @@
   }
   &-controls {
     margin-top: 32px;
-    grid-template-columns: repeat(2 1fr);
-    display: grid;
+    grid-column: 2/3;
+    display: flex;
     align-items: center;
-    gap: 50px;
-    justify-content: center;
+    justify-content: flex-end;
   }
 }
 
