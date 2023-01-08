@@ -1,14 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './DiscoverLink.scss';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import './DiscoverLink.scss'
+import PropTypes from 'prop-types'
 
 const DiscoverLink = ({ subClass }) => {
   return (
     <div className={`${subClass} set-item4`}>
-      <Link to="/catalog" className="collection">
+      <Link to='/catalog' className='collection'>
         Discover
       </Link>
     </div>
-  );
-};
-export default DiscoverLink;
+  )
+}
+
+DiscoverLink.propTypes = {
+  subClass: PropTypes.string.isRequired
+}
+
+export default DiscoverLink

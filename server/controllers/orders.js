@@ -33,18 +33,23 @@ exports.placeOrder = async (req, res, next) => {
       order.customerId = req.body.customerId;
 
       cartProducts = await subtractProductsFromCart(order.customerId);
+      console.log(cartProducts)
     }
 
-    if ((!req.body.products || req.body.products.length < 1) && cartProducts.length < 1) {
+    if (
+      (!req.body.products || req.body.products.length < 1) &&
+      cartProducts.length < 1
+    ) {
       res
         .status(400)
         .json({ message: "The list of products is required, but absent!" });
     }
 
     if (cartProducts.length > 0) {
+      console.log(cartProducts)
       order.products = _.cloneDeep(cartProducts);
     } else {
-      order.products = JSON.parse(req.body.products);
+     order.products = JSON.parse(req.body.products);
     }
 
     order.totalSum = order.products.reduce(
@@ -60,7 +65,7 @@ exports.placeOrder = async (req, res, next) => {
     if (!productAvailibilityInfo.productsAvailibilityStatus) {
       res.json({
         message: "Some of your products are unavailable for now",
-        productAvailibilityInfo
+        productAvailibilityInfo,
       });
     } else {
       const subscriberMail = req.body.email;
@@ -77,14 +82,14 @@ exports.placeOrder = async (req, res, next) => {
       if (!letterSubject) {
         return res.status(400).json({
           message:
-            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
+            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter.",
         });
       }
 
       if (!letterHtml) {
         return res.status(400).json({
           message:
-            "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
+            "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter.",
         });
       }
 
@@ -96,38 +101,53 @@ exports.placeOrder = async (req, res, next) => {
 
       newOrder
         .save()
-        .then(async order => {
-          const mailResult = await sendMail(
-            subscriberMail,
-            letterSubject,
-            letterHtml,
-            res
-          );
+        .then(async (order) => {
+          console.log(order)
+          let mailResult = ''
 
-          for (item of order.products){
+          try{
+            mailResult = await sendMail(
+              subscriberMail,
+              letterSubject,
+              letterHtml,
+              res
+            );
+          } catch(err){
+            console.log(`Error happened with email send: "${err}" `)
+          }
+
+          for (item of order.products) {
             const id = item.product._id;
             const product = await Product.findOne({ _id: id });
             const productQuantity = product.quantity;
-            await Product.findOneAndUpdate({ _id: id }, { quantity: productQuantity - item.product.quantity }, { new: true })
+            await Product.findOneAndUpdate(
+              { _id: id },
+              { quantity: productQuantity - item.cartQuantity },
+              { new: true }
+            );
           }
 
-          res.json({ order, mailResult });
+          res.json({ 
+            order, 
+            mailResult 
+          });
         })
-        .catch(err =>
+        .catch((err) => {
           res.status(400).json({
-            message: `Error happened on server: "${err}" `
+            message: `Error happened on server: "${err}" `,
           })
+        }
         );
     }
   } catch (err) {
     res.status(400).json({
-      message: `Error happened on server: "${err}" `
+      message: `Error happened on server: "${err}" `,
     });
   }
 };
 
 exports.updateOrder = (req, res, next) => {
-  Order.findOne({ _id: req.params.id }).then(async currentOrder => {
+  Order.findOne({ _id: req.params.id }).then(async (currentOrder) => {
     if (!currentOrder) {
       return res
         .status(400)
@@ -167,7 +187,7 @@ exports.updateOrder = (req, res, next) => {
         if (!productAvailibilityInfo.productsAvailibilityStatus) {
           res.json({
             message: "Some of your products are unavailable for now",
-            productAvailibilityInfo
+            productAvailibilityInfo,
           });
         }
       }
@@ -186,14 +206,14 @@ exports.updateOrder = (req, res, next) => {
       if (!letterSubject) {
         return res.status(400).json({
           message:
-            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
+            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter.",
         });
       }
 
       if (!letterHtml) {
         return res.status(400).json({
           message:
-            "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
+            "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter.",
         });
       }
 
@@ -203,7 +223,7 @@ exports.updateOrder = (req, res, next) => {
         { new: true }
       )
         .populate("customerId")
-        .then(async order => {
+        .then(async (order) => {
           const mailResult = await sendMail(
             subscriberMail,
             letterSubject,
@@ -213,9 +233,9 @@ exports.updateOrder = (req, res, next) => {
 
           res.json({ order, mailResult });
         })
-        .catch(err =>
+        .catch((err) =>
           res.status(400).json({
-            message: `Error happened on server: "${err}" `
+            message: `Error happened on server: "${err}" `,
           })
         );
     }
@@ -223,7 +243,7 @@ exports.updateOrder = (req, res, next) => {
 };
 
 exports.cancelOrder = (req, res, next) => {
-  Order.findOne({ _id: req.params.id }).then(async currentOrder => {
+  Order.findOne({ _id: req.params.id }).then(async (currentOrder) => {
     if (!currentOrder) {
       return res
         .status(400)
@@ -243,14 +263,14 @@ exports.cancelOrder = (req, res, next) => {
       if (!letterSubject) {
         return res.status(400).json({
           message:
-            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
+            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter.",
         });
       }
 
       if (!letterHtml) {
         return res.status(400).json({
           message:
-            "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
+            "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter.",
         });
       }
 
@@ -260,7 +280,7 @@ exports.cancelOrder = (req, res, next) => {
         { new: true }
       )
         .populate("customerId")
-        .then(async order => {
+        .then(async (order) => {
           const mailResult = await sendMail(
             subscriberMail,
             letterSubject,
@@ -270,16 +290,16 @@ exports.cancelOrder = (req, res, next) => {
 
           res.json({ order, mailResult });
         })
-        .catch(err =>
+        .catch((err) =>
           res.status(400).json({
-            message: `Error happened on server: "${err}" `
+            message: `Error happened on server: "${err}" `,
           })
         );
     }
   });
 };
 exports.deleteOrder = (req, res, next) => {
-  Order.findOne({ _id: req.params.id }).then(async order => {
+  Order.findOne({ _id: req.params.id }).then(async (order) => {
     if (!order) {
       return res
         .status(400)
@@ -288,14 +308,14 @@ exports.deleteOrder = (req, res, next) => {
       const orderToDelete = await Order.findOne({ _id: req.params.id });
 
       Order.deleteOne({ _id: req.params.id })
-        .then(deletedCount =>
+        .then((deletedCount) =>
           res.status(200).json({
-            message: `Order witn id "${orderToDelete._id}" is successfully deletes from DB. Order Details: ${orderToDelete}`
+            message: `Order witn id "${orderToDelete._id}" is successfully deletes from DB. Order Details: ${orderToDelete}`,
           })
         )
-        .catch(err =>
+        .catch((err) =>
           res.status(400).json({
-            message: `Error happened on server: "${err}" `
+            message: `Error happened on server: "${err}" `,
           })
         );
     }
@@ -305,10 +325,10 @@ exports.deleteOrder = (req, res, next) => {
 exports.getOrders = (req, res, next) => {
   Order.find({ customerId: req.user.id })
     .populate("customerId")
-    .then(orders => res.json(orders))
-    .catch(err =>
+    .then((orders) => res.json(orders))
+    .catch((err) =>
       res.status(400).json({
-        message: `Error happened on server: "${err}" `
+        message: `Error happened on server: "${err}" `,
       })
     );
 };
@@ -316,10 +336,10 @@ exports.getOrders = (req, res, next) => {
 exports.getOrder = (req, res, next) => {
   Order.findOne({ orderNo: req.params.orderNo })
     .populate("customerId")
-    .then(order => res.json(order))
-    .catch(err =>
+    .then((order) => res.json(order))
+    .catch((err) =>
       res.status(400).json({
-        message: `Error happened on server: "${err}" `
+        message: `Error happened on server: "${err}" `,
       })
     );
 };

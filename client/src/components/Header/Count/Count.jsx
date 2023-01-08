@@ -1,10 +1,13 @@
-import React from "react";
-import styles from "./Count.module.scss"
+import React from 'react'
+import styles from './Count.module.scss'
+import PropTypes from 'prop-types'
 
-const Count = ({count}) => {
-    return (
-        <span className={styles.count}>{count}</span>
-    )
+const Count = ({ count }) => {
+  return <span className={styles.count}>{count}</span>
 }
 
-export default Count;
+Count.propTypes = {
+  onClick: PropTypes.number
+}
+
+export default Count

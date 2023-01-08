@@ -1,2 +1,2 @@
-import PerfectSet from './PerfectSet';
-export default PerfectSet;
+import PerfectSet from './PerfectSet'
+export default PerfectSet

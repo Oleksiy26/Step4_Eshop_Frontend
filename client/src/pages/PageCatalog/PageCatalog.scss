@@ -37,6 +37,13 @@
     display: grid;
     grid-template: 1fr / minmax(auto, 300px) minmax(auto, 1fr);
   }
+  &-controls {
+    margin-top: 32px;
+    grid-column: 2/3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }
 
 .content {
@@ -55,9 +62,6 @@
   }
   &-button {
     width: 280px;
-    grid-column: 2/3;
-    justify-self: center;
-    margin-top: 32px;
   }
 }
 

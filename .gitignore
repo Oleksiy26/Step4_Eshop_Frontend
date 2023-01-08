@@ -1,7 +1,7 @@
 node_modules
 .idea
 .VS_Code
-package-lock.json
+/package-lock.json
 /client/node_modules
 /server/node_modules
 

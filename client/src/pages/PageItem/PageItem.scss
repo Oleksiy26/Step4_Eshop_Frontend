@@ -16,3 +16,11 @@
   width: 400px;
   height: 400px;
 }
+
+.item-galery {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
+}
+
+// d-flex justify-content-center my-2

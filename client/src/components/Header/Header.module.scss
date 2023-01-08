@@ -9,6 +9,12 @@
   @media (max-width: 660px) {
     padding: 0 15px;
   }
+  // styles for new input
+  &__searchContainer {
+    position: relative;
+    top: 40px;
+  }
+  // styles for new input
   &__block {
     &_logo {
       border-right: 1px solid #dee6ed;
@@ -59,12 +65,8 @@
       justify-content: flex-end;
       height: 100%;
       align-items: center;
-      a {
+      svg {
         margin: 0 15px;
-        position: relative;
-        &:last-child {
-          margin-right: 30px;
-        }
         @media (max-width: 660px) {
           &:first-child {
             display: none;
@@ -73,6 +75,9 @@
             display: none;
           }
         }
+      }
+      a {
+        position: relative;
       }
     }
   }
