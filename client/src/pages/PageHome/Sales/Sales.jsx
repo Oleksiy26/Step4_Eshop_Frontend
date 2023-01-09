@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import DiscoverLink from '../../../components/DiscoverLink/DiscoverLink'
 import Loader from '../../../components/Loader'
@@ -9,9 +9,13 @@ import './index.scss'
 
 const Sales = () => {
   const products = useSelector(state => state.products)
+  const [productsCount, setProductCount] = useState(0)
+  const [randomRange, setRandomRange] = useState(0)
 
-  let arrayofProducts = products.products.length
-  let res = getRandomRange(0, arrayofProducts, 5)
+  useEffect(() => {
+    setProductCount(products.products.length)
+    setRandomRange(getRandomRange(0, productsCount, 5))
+  }, [products.products, productsCount])
 
   return (
     <div className='container'>
@@ -21,19 +25,21 @@ const Sales = () => {
           <Loader />
         ) : (
           <section className='sales'>
-            {products.products.slice(res.start, res.end).map(item => (
-              <ProductCard
-                ident={item.itemNo}
-                price={item.currentPrice}
-                photoUrl={item.imageUrls[0]}
-                subClass={'sales-item'}
-                key={item._id}
-                id={item._id}
-                nameCard={item.name}
-                color={item.color}
-                size={item.size}
-              />
-            ))}
+            {products.products
+              .slice(randomRange.start, randomRange.end)
+              .map(item => (
+                <ProductCard
+                  ident={item.itemNo}
+                  price={item.currentPrice}
+                  photoUrl={item.imageUrls[0]}
+                  subClass={'sales-item'}
+                  key={item._id}
+                  id={item._id}
+                  nameCard={item.name}
+                  color={item.color}
+                  size={item.size}
+                />
+              ))}
             <DiscoverLink subClass={'sales-link '} />
           </section>
         )
