@@ -22,6 +22,7 @@ function App() {
   const location = useLocation()
   useSelector(state => state.counter)
   const counterInCart = useSelector(state => state.counter.inCart)
+  const { favItems } = useSelector(state => state.wishlist)
 
   useEffect(() => {
     dispatch(fetchProducts())
@@ -33,23 +34,21 @@ function App() {
       dispatch(fetchWishlist())
       dispatch(fetchGetUser())
 
-      const cards = JSON.parse(localStorage.getItem('cart'))
       if (JSON.parse(localStorage.getItem('cart'))) {
-        cards.map(item => dispatch(fetchAddToCart(item)))
-        const favs = JSON.parse(localStorage.getItem('fav'))
-        if (cards) {
-          cards.map(item => {
-            dispatch(fetchAddToCart(item))
-          })
-          localStorage.removeItem('cart')
-        }
-        if (favs) {
-          favs.map(item => {
-            dispatch(addToWishlist(item))
-          })
-          localStorage.removeItem('fav')
-        }
+        const cards = JSON.parse(localStorage.getItem('cart'))
+        cards.map(item => {
+          dispatch(fetchAddToCart(item))
+        })
+        localStorage.removeItem('cart')
       }
+      if (JSON.parse(localStorage.getItem('fav'))) {
+        const favs = JSON.parse(localStorage.getItem('fav'))
+        favs.map(item => {
+          dispatch(addToWishlist(item))
+        })
+        localStorage.removeItem('fav')
+      }
+      if (favItems.products.products) console.log(favItems.products.products)
     }
   }, [dispatch, token, locationLogin, location.pathname])
 

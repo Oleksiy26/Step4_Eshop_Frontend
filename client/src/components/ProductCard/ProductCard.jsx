@@ -55,16 +55,12 @@ const ProductCard = ({
       <div className='info-wrapper'>
         <div className={`color-square ${color}`}></div>
         <span>Size: {size}</span>
-        {/* <div className="color-square black"></div>
-        <div className="color-square gray"></div> */}
       </div>
       <AddCartFavorit
         cardId={id}
         inFav={inFav}
         inCart={inCart}
-        // onClickFav={() => clickFav(id)}
         onClickFav={addItemToWishlist}
-        // onClickToCart={() => clickToCart(id)}
         onClickToCart={addItemToCart}
       />
     </div>

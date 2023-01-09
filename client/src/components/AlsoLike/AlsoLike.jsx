@@ -28,18 +28,16 @@ const AlsoLike = () => {
               ? products.products
                   .slice(randomRange.start, randomRange.end)
                   .map(item => (
-                    <>
-                      <ProductCard
-                        ident={item.itemNo}
-                        price={item.currentPrice}
-                        photoUrl={item.imageUrls[0]}
-                        key={item._id}
-                        id={item._id}
-                        nameCard={item.name}
-                        color={item.color}
-                        size={item.size}
-                      />
-                    </>
+                    <ProductCard
+                      ident={item.itemNo}
+                      price={item.currentPrice}
+                      photoUrl={item.imageUrls[0]}
+                      key={item._id}
+                      id={item._id}
+                      nameCard={item.name}
+                      color={item.color}
+                      size={item.size}
+                    />
                   ))
               : null}
           </section>

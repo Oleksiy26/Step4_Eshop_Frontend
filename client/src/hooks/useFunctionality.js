@@ -16,7 +16,6 @@ export const useFunctionality = id => {
   const [inFav, setInFav] = useState(false)
   const [inCart, setInCart] = useState(false)
   const auth = useContext(AuthContext)
-  const { isAuthenticated } = auth
   const dispatch = useDispatch()
   const token = useSelector(state => state.auth.token)
   const cardInCart = useSelector(state => state.cart.cart)
@@ -195,7 +194,6 @@ export const useFunctionality = id => {
     inCart,
     clickFav,
     clickToCart,
-    isAuthenticated,
     setInFav,
     clickDeleteCardInCart,
     clickAddInCart,
