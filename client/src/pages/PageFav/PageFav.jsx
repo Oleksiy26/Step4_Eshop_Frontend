@@ -35,10 +35,6 @@ const PageFav = () => {
     }
   }
 
-  useEffect(() => {
-    dispatch(fetchWishlist())
-  }, [])
-
   return (
     <div className='container'>
       <Title
@@ -54,8 +50,6 @@ const PageFav = () => {
       />
       {isItemsLoading ? (
         <Loader />
-      ) : itemsError ? (
-        <Errortext />
       ) : (
         <ContainerFav items={token ? favItems : findItemsFav()} />
       )}

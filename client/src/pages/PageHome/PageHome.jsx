@@ -15,7 +15,7 @@ const PageHome = () => {
 
   useEffect(() => {
     dispatch(checkLocation(location.pathname))
-  }, [])
+  }, [dispatch])
 
   return (
     <>

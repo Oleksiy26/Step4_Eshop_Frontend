@@ -48,7 +48,6 @@ function App() {
         })
         localStorage.removeItem('fav')
       }
-      if (favItems.products.products) console.log(favItems.products.products)
     }
   }, [dispatch, token, locationLogin, location.pathname])
 
