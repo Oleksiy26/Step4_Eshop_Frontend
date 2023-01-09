@@ -21,10 +21,6 @@ const Galery = () => {
 
   const products = useSelector(state => state.filter.products)
 
-  const pro = useSelector(state => state.products)
-
-  console.log(pro)
-
   const startPage = useSelector(state => state.filter.startPage)
   const perPage = useSelector(state => state.filter.perPage)
   const sort = useSelector(state => state.filter.sort.sortProperty)
