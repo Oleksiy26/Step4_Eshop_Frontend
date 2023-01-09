@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import DiscoverLink from '../DiscoverLink/DiscoverLink'
 import Loader from '../Loader'
 import ProductCard from '../ProductCard'
 import { getRandomRange } from '../RandomRange/randomRange'
@@ -27,16 +28,18 @@ const AlsoLike = () => {
               ? products.products
                   .slice(randomRange.start, randomRange.end)
                   .map(item => (
-                    <ProductCard
-                      ident={item.itemNo}
-                      price={item.currentPrice}
-                      photoUrl={item.imageUrls[0]}
-                      key={item._id}
-                      id={item._id}
-                      nameCard={item.name}
-                      color={item.color}
-                      size={item.size}
-                    />
+                    <>
+                      <ProductCard
+                        ident={item.itemNo}
+                        price={item.currentPrice}
+                        photoUrl={item.imageUrls[0]}
+                        key={item._id}
+                        id={item._id}
+                        nameCard={item.name}
+                        color={item.color}
+                        size={item.size}
+                      />
+                    </>
                   ))
               : null}
           </section>

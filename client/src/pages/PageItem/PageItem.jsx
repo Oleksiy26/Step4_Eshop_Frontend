@@ -26,7 +26,7 @@ export const PageItem = () => {
 
   useEffect(() => {
     dispatch(fetchCard(itemNo))
-  }, [])
+  }, [itemNo])
 
   const settings = {
     dots: true,
