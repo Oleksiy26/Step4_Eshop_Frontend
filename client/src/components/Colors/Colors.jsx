@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Checkbox from '../Checkbox'
 import './Colors.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { setColor } from '../../store/filter/filterSlice'
+import { setColor, setstartPage } from '../../store/filter/filterSlice'
 
 const Colors = () => {
   const products = useSelector(state => state.products)
@@ -19,6 +19,7 @@ const Colors = () => {
     } else {
       newChecked.splice(currentIndex, 1)
     }
+    dispatch(setstartPage(1))
     dispatch(setColor(newChecked))
   }
 
