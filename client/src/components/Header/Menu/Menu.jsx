@@ -4,9 +4,7 @@ import { ReactComponent as Close } from './svg/close.svg'
 import PropTypes from 'prop-types'
 import styles from './Menu.module.scss'
 
-const Menu = props => {
-  const { closeFunc } = props
-
+const Menu = ({ closeFunc }) => {
   const arr = [
     { option: 'New lingerie', link: '/' },
     { option: 'Sales', link: '/' },

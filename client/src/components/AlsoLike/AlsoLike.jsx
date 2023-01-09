@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import DiscoverLink from '../DiscoverLink/DiscoverLink'
+import ErrorText from '../ErrorText'
 import Loader from '../Loader'
 import ProductCard from '../ProductCard'
-import { getRandomRange } from '../RandomRange/randomRange'
 import Title from '../Title'
+import { getRandomRange } from '../../hooks/randomRange'
 
 const AlsoLike = () => {
   const products = useSelector(state => state.products)
@@ -22,6 +22,8 @@ const AlsoLike = () => {
       {products.products ? (
         products.status === 'loading' ? (
           <Loader />
+        ) : products.status === 'rejected' ? (
+          <ErrorText />
         ) : (
           <section className='sales'>
             {products
@@ -33,6 +35,7 @@ const AlsoLike = () => {
                       price={item.currentPrice}
                       photoUrl={item.imageUrls[0]}
                       key={item._id}
+                      subClass='sales-item'
                       id={item._id}
                       nameCard={item.name}
                       color={item.color}

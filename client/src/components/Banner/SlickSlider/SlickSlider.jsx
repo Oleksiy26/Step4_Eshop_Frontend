@@ -26,12 +26,13 @@ const SlickSlider = () => {
 
   return (
     <div className='container'>
-      <Slider {...settings}>
-        {slides &&
-          slides.slides.map(item =>
+      {slides && (
+        <Slider {...settings}>
+          {slides.slides.map(item =>
             item.imageUrl.map(url => <img src={url} />)
           )}
-      </Slider>
+        </Slider>
+      )}
     </div>
   )
 }

@@ -20,7 +20,6 @@ const Pagination = () => {
     }
   }
   const pages = []
-  console.log('array', pages)
   filler(pages, pagesCount)
   return (
     <div className='pages'>

@@ -22,11 +22,6 @@ const Title = ({ title, subtitle }) => {
   )
 }
 
-// Title.defaultProps = {
-//   title: 'Cards',
-//   subtitle: 'Your cards'
-// }
-
 Title.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string

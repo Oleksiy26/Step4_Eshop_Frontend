@@ -9,9 +9,9 @@
     text-transform: uppercase;
     color: #F5F8FA;
     padding: 20px 0;
+    border-radius: 0;
     &:hover {
         background-color: inherit;
-        border: 1px solid #476785;
         color: #476785;
     }
 }
