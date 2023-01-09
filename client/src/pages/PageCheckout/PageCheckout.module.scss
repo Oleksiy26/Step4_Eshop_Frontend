@@ -12,3 +12,11 @@
         align-items: center;
     }
 }
+.block {
+    display: flex;
+    flex-direction: column;
+    a {
+        align-self: center;
+        padding: 20px 80px;
+    }
+}

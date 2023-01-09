@@ -6,6 +6,7 @@ import ProductCard from '../../components/ProductCard'
 import { fetchCard } from '../../store/card/ActionCreator'
 import AddCartFavorit from '../../components/ProductCard/AddCartFavorit'
 import './PageItem.scss'
+import { getRandomRange } from '../../components/RandomRange/randomRange'
 
 export const PageItem = () => {
   const { itemNo } = useParams()
@@ -13,11 +14,12 @@ export const PageItem = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
   // const product = useSelector((state) => state.products.products[id]);
-
+  let arrayofProducts = products.products.length
+  let res = getRandomRange(0, arrayofProducts, 5)
   // console.log(products)
   const { card, isCardLoading, cardError } = useSelector(state => state.card)
 
-  const { imageUrls, name, currentPrice, sizes, color } = card
+  const { imageUrls, name, currentPrice, size, color } = card
   // console.log(card)
   // console.log('sizes: ', sizes)
 
@@ -57,9 +59,7 @@ export const PageItem = () => {
           <div className='d-flex gap-4'>
             <p>Available Sizes: </p>
             <div className='d-flex gap-4'>
-              {/*{card !== undefined &&*/}
-              {/*  sizes?.map((el) => <p key={el + itemNo}>{el}</p>)}*/}
-              {sizes}
+              {size ? <p>{size}</p> : <>No sizes</>}
             </div>
           </div>
           <div className='d-flex align-items-center'>
@@ -79,7 +79,7 @@ export const PageItem = () => {
         <div className='item-galery'>
           {products
             ? products.products
-                .slice(0, 5)
+                .slice(res.start, res.end)
                 .map(item => (
                   <ProductCard
                     ident={item.itemNo}

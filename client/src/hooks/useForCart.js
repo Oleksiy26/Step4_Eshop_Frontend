@@ -10,7 +10,7 @@ export const useForCart = () => {
     const totalPrice = 0
 
     if (token) {
-      if (cardInCart) {
+      if (cardInCart.products) {
         const prices = cardInCart.products.map(item => {
           return item.product.currentPrice * item.cartQuantity
         })

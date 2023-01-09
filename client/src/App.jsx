@@ -13,7 +13,6 @@ import { useLocation } from 'react-router-dom'
 import { checkLocation } from './store/location/location'
 import { addToWishlist } from './store/wishlist/ActionCreator'
 import { fetchGetUser } from './store/user/userSlice'
-import Loader from './components/Loader'
 
 function App() {
   const dispatch = useDispatch()
