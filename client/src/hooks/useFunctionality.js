@@ -148,7 +148,18 @@ export const useFunctionality = id => {
       dispatch(fetchDeleteFromCart(id))
     } else {
       const cart = JSON.parse(localStorage.getItem('cart'))
-      // cart.forEach(e,  => )
+      const arrayId = cart.map(el => {
+        return el === id ? el : null
+      })
+      const arrayWithoutId = cart.map(el => {
+        return el !== id ? el : null
+      })
+      const arrayWithoutIdFilter = arrayWithoutId.filter(checkValue)
+      const arrayIdFilter = arrayId.filter(checkValue)
+      const deleteId = arrayIdFilter.shift()
+      const newArrayCart = arrayWithoutIdFilter.concat(arrayIdFilter)
+      dispatch(checkInCart(newArrayCart.length))
+      localStorage.setItem('cart', JSON.stringify(newArrayCart))
     }
   }
 
