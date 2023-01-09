@@ -143,13 +143,29 @@ export const useFunctionality = id => {
     }
   }
 
-  const clickDeleteInCart = id => {
-    dispatch(fetchDeleteFromCart(id))
+  const clickDeleteCardInCart = id => {
+    if (token) {
+      dispatch(fetchDeleteFromCart(id))
+    } else {
+      const cart = JSON.parse(localStorage.getItem('cart'))
+      // cart.forEach(e,  => )
+    }
   }
 
-  const clickDeleteCardInCart = id => {
-    dispatch(fetchDeletaCardFromCart(id))
-    setInCart(false)
+  const clickDeleteProductInCart = id => {
+    if (token) {
+      dispatch(fetchDeletaCardFromCart(id))
+      setInCart(false)
+    } else {
+      const cart = JSON.parse(localStorage.getItem('cart'))
+      const newCart = cart.map(item => {
+        return item !== id ? item : null
+      })
+      const filter = newCart.filter(checkValue)
+      dispatch(checkInCart(filter.length))
+      localStorage.setItem('cart', JSON.stringify(filter))
+      setInCart(false)
+    }
   }
 
   const clickAddInCart = () => {
@@ -170,8 +186,8 @@ export const useFunctionality = id => {
     clickToCart,
     isAuthenticated,
     setInFav,
-    clickDeleteInCart,
+    clickDeleteCardInCart,
     clickAddInCart,
-    clickDeleteCardInCart
+    clickDeleteProductInCart
   }
 }

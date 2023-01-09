@@ -7,6 +7,7 @@ import { fetchCard } from '../../store/card/ActionCreator'
 import AddCartFavorit from '../../components/ProductCard/AddCartFavorit'
 import './PageItem.scss'
 import { getRandomRange } from '../../components/RandomRange/randomRange'
+import AlsoLike from '../../components/AlsoLike/AlsoLike'
 
 export const PageItem = () => {
   const { itemNo } = useParams()
@@ -75,25 +76,7 @@ export const PageItem = () => {
         </div>
       </div>
       <div className='item-galery-wrapper'>
-        <h1 className='pt-5'>You may also like</h1>
-        <div className='item-galery'>
-          {products
-            ? products.products
-                .slice(res.start, res.end)
-                .map(item => (
-                  <ProductCard
-                    ident={item.itemNo}
-                    price={item.currentPrice}
-                    photoUrl={item.imageUrls[0]}
-                    key={item._id}
-                    id={item._id}
-                    nameCard={item.name}
-                    color={item.color}
-                    size={item.size}
-                  />
-                ))
-            : null}
-        </div>
+        <AlsoLike />
       </div>
     </div>
   )

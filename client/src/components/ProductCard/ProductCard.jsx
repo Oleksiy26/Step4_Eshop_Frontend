@@ -23,9 +23,9 @@ const ProductCard = ({
     inCart,
     clickFav,
     clickToCart,
-    clickDeleteInCart,
+    clickDeleteCardInCart,
     clickAddInCart,
-    clickDeleteCardInCart
+    clickDeleteProductInCart
   } = useFunctionality(id)
   const navigate = useNavigate()
 
@@ -86,7 +86,7 @@ const ProductCard = ({
         <div>
           <span className='title'>Quantity</span>
           <BlockForCart
-            clickDelete={() => clickDeleteInCart(id)}
+            clickDelete={() => clickDeleteCardInCart(id)}
             clickAdd={() => clickAddInCart(id)}
             quantity={quantity}
           />
@@ -94,7 +94,7 @@ const ProductCard = ({
       </div>
       <div className='card_price'>
         <p>{price} &euro;</p>
-        <span onClick={() => clickDeleteCardInCart(id)}>Remove</span>
+        <span onClick={() => clickDeleteProductInCart(id)}>Remove</span>
       </div>
     </div>
   )
