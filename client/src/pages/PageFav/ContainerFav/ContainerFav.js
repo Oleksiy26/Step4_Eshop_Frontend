@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import ProductCard from '../../../components/ProductCard'
 import { useSelector } from 'react-redux'
 import { AuthContext } from '../../../context/AuthContext'
@@ -6,12 +6,12 @@ import PropTypes from 'prop-types'
 
 const ContainerFav = ({ items }) => {
   const { favItems } = useSelector(state => state.wishlist)
-  const { isAuthenticated } = useContext(AuthContext)
+  const token = useSelector(state => state.auth.token)
 
   return (
     <section className='container py-5'>
       <div className='d-flex gap-4 flex-column flex-md-row'>
-        {isAuthenticated
+        {token
           ? favItems.products.products
             ? favItems.products.products.map(product => (
                 <ProductCard

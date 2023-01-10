@@ -21,11 +21,9 @@ const PageFav = () => {
   const auth = useContext(AuthContext)
   const token = useSelector(state => state.auth.token)
 
-  const { isAuthenticated } = auth
-
   useEffect(() => {
     dispatch(checkLocation(location.pathname))
-  }, [dispatch, location.pathname])
+  }, [dispatch, location.pathname, favItems])
 
   const findItemsFav = () => {
     const itemsFav = JSON.parse(localStorage.getItem('fav'))
@@ -37,21 +35,19 @@ const PageFav = () => {
 
   return (
     <div className='container'>
-      <Title
-        subtitle={
-          isAuthenticated
-            ? favItems.products
-              ? 'Your favourite cards'
-              : 'No cards in favourites'
-            : favCounter.inFav
-            ? 'Your favourite cards'
-            : 'No cards in favourites'
-        }
-      />
       {isItemsLoading ? (
         <Loader />
       ) : (
-        <ContainerFav items={token ? favItems : findItemsFav()} />
+        <>
+          {favItems.products.products || favItems.products ? (
+            <>
+              <Title subtitle='Your favourite cards' />
+              <ContainerFav items={token ? favItems : findItemsFav()} />
+            </>
+          ) : (
+            <Title subtitle='No cards in favourites' />
+          )}
+        </>
       )}
     </div>
   )
