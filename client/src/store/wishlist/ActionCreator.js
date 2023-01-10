@@ -5,6 +5,7 @@ export const fetchWishlist = createAsyncThunk(
   'wishlist/fetchCard',
   async function (_, { rejectWithValue, dispatch, getState }) {
     const stateToken = getState().auth.token
+    console.log(stateToken)
     try {
       const response = await fetch(`/api/wishlist`, {
         method: 'GET',

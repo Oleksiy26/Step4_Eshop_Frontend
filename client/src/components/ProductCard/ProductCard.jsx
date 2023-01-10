@@ -23,9 +23,9 @@ const ProductCard = ({
     inCart,
     clickFav,
     clickToCart,
-    clickDeleteInCart,
+    clickDeleteCardInCart,
     clickAddInCart,
-    clickDeleteCardInCart
+    clickDeleteProductInCart
   } = useFunctionality(id)
   const navigate = useNavigate()
 
@@ -55,16 +55,12 @@ const ProductCard = ({
       <div className='info-wrapper'>
         <div className={`color-square ${color}`}></div>
         <span>Size: {size}</span>
-        {/* <div className="color-square black"></div>
-        <div className="color-square gray"></div> */}
       </div>
       <AddCartFavorit
         cardId={id}
         inFav={inFav}
         inCart={inCart}
-        // onClickFav={() => clickFav(id)}
         onClickFav={addItemToWishlist}
-        // onClickToCart={() => clickToCart(id)}
         onClickToCart={addItemToCart}
       />
     </div>
@@ -86,7 +82,7 @@ const ProductCard = ({
         <div>
           <span className='title'>Quantity</span>
           <BlockForCart
-            clickDelete={() => clickDeleteInCart(id)}
+            clickDelete={() => clickDeleteCardInCart(id)}
             clickAdd={() => clickAddInCart(id)}
             quantity={quantity}
           />
@@ -94,7 +90,7 @@ const ProductCard = ({
       </div>
       <div className='card_price'>
         <p>{price} &euro;</p>
-        <span onClick={() => clickDeleteCardInCart(id)}>Remove</span>
+        <span onClick={() => clickDeleteProductInCart(id)}>Remove</span>
       </div>
     </div>
   )

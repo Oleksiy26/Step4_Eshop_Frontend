@@ -6,8 +6,8 @@ import Loader from '../../../components/Loader'
 import Title from '../../../components/Title'
 import { checkLocation } from '../../../store/location/location'
 import ButtonCheckout from '../ButtonCheckout/ButtonCheckout'
-import ContainerCart from '../ContainerCart'
 import styles from '../PageCart.module.scss'
+import { ContainerCart } from '../ContainerCart/ContainerCart'
 
 const SectionOrder = ({ items, totalPrice, check }) => {
   const dispatch = useDispatch()

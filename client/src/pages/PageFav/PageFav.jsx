@@ -5,16 +5,17 @@ import { useDispatch } from 'react-redux'
 import { checkLocation } from '../../store/location/location'
 import { useLocation } from 'react-router-dom'
 import Title from '../../components/Title/Title'
-import {
-  addToWishlist,
-  fetchWishlist
-} from '../../store/wishlist/ActionCreator'
+import { fetchWishlist } from '../../store/wishlist/ActionCreator'
 import { AuthContext } from '../../context/AuthContext'
+import Loader from '../../components/Loader'
+import Errortext from '../../components/ErrorText'
 
 const PageFav = () => {
   const products = useSelector(state => state.products)
   const favCounter = useSelector(state => state.counter)
-  const { favItems, isItemsLoading } = useSelector(state => state.wishlist)
+  const { favItems, isItemsLoading, itemsError } = useSelector(
+    state => state.wishlist
+  )
   const dispatch = useDispatch()
   const location = useLocation()
   const auth = useContext(AuthContext)
@@ -34,10 +35,6 @@ const PageFav = () => {
     }
   }
 
-  useEffect(() => {
-    dispatch(fetchWishlist())
-  }, [])
-
   return (
     <div className='container'>
       <Title
@@ -51,8 +48,11 @@ const PageFav = () => {
             : 'No cards in favourites'
         }
       />
-      {isItemsLoading && <h1 style={{ textAlign: 'center' }}> Loading... </h1>}
-      <ContainerFav items={token ? favItems : findItemsFav()} />
+      {isItemsLoading ? (
+        <Loader />
+      ) : (
+        <ContainerFav items={token ? favItems : findItemsFav()} />
+      )}
     </div>
   )
 }

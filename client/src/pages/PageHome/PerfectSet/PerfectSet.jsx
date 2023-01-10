@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import DiscoverLink from '../../../components/DiscoverLink/DiscoverLink'
 import Loader from '../../../components/Loader'
 import ProductCard from '../../../components/ProductCard'
-import { getRandomRange } from '../../../components/RandomRange/randomRange'
 import Title from '../../../components/Title'
+import { getRandomRange } from '../../../hooks/randomRange'
 import './index.scss'
 
 const PerfectSet = () => {

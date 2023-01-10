@@ -16,7 +16,6 @@ export const useFunctionality = id => {
   const [inFav, setInFav] = useState(false)
   const [inCart, setInCart] = useState(false)
   const auth = useContext(AuthContext)
-  const { isAuthenticated } = auth
   const dispatch = useDispatch()
   const token = useSelector(state => state.auth.token)
   const cardInCart = useSelector(state => state.cart.cart)
@@ -143,13 +142,40 @@ export const useFunctionality = id => {
     }
   }
 
-  const clickDeleteInCart = id => {
-    dispatch(fetchDeleteFromCart(id))
+  const clickDeleteCardInCart = id => {
+    if (token) {
+      dispatch(fetchDeleteFromCart(id))
+    } else {
+      const cart = JSON.parse(localStorage.getItem('cart'))
+      const arrayId = cart.map(el => {
+        return el === id ? el : null
+      })
+      const arrayWithoutId = cart.map(el => {
+        return el !== id ? el : null
+      })
+      const arrayWithoutIdFilter = arrayWithoutId.filter(checkValue)
+      const arrayIdFilter = arrayId.filter(checkValue)
+      const deleteId = arrayIdFilter.shift()
+      const newArrayCart = arrayWithoutIdFilter.concat(arrayIdFilter)
+      dispatch(checkInCart(newArrayCart.length))
+      localStorage.setItem('cart', JSON.stringify(newArrayCart))
+    }
   }
 
-  const clickDeleteCardInCart = id => {
-    dispatch(fetchDeletaCardFromCart(id))
-    setInCart(false)
+  const clickDeleteProductInCart = id => {
+    if (token) {
+      dispatch(fetchDeletaCardFromCart(id))
+      setInCart(false)
+    } else {
+      const cart = JSON.parse(localStorage.getItem('cart'))
+      const newCart = cart.map(item => {
+        return item !== id ? item : null
+      })
+      const filter = newCart.filter(checkValue)
+      dispatch(checkInCart(filter.length))
+      localStorage.setItem('cart', JSON.stringify(filter))
+      setInCart(false)
+    }
   }
 
   const clickAddInCart = () => {
@@ -168,10 +194,9 @@ export const useFunctionality = id => {
     inCart,
     clickFav,
     clickToCart,
-    isAuthenticated,
     setInFav,
-    clickDeleteInCart,
+    clickDeleteCardInCart,
     clickAddInCart,
-    clickDeleteCardInCart
+    clickDeleteProductInCart
   }
 }

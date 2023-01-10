@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 const NavigatePanel = ({ startFrom }) => {
   const { navigate, pathNames, reNavigate } = useBreadCrumb()
+
   return (
     <div>
       <span

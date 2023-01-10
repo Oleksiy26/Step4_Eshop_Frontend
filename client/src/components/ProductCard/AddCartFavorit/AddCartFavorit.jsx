@@ -4,13 +4,7 @@ import './AddCartFavorit.scss'
 import Button from '../../Button/Button'
 import PropTypes from 'prop-types'
 
-const AddCartFavorit = ({
-  inFav,
-  inCart,
-  cardId,
-  onClickToCart,
-  onClickFav
-}) => {
+const AddCartFavorit = ({ inFav, inCart, onClickToCart, onClickFav }) => {
   return (
     <div className='set-hover'>
       <Button
@@ -18,9 +12,6 @@ const AddCartFavorit = ({
         className='set-addcart'
         text={!inCart ? 'Add to cart' : 'Delete from cart'}
       />
-      {/* <button className="set-addcart" onClick={onClickToCart}>
-        {!inCart ? 'Add to cart' : 'Delete from cart'}
-      </button> */}
       <div className='set-addfavorit'>
         <Favicon onClick={onClickFav} inFav={inFav} />
       </div>

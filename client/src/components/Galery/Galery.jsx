@@ -3,7 +3,6 @@ import ProductCard from '../ProductCard'
 // import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchFilterProducts } from '../../store/filter/filterSlice'
-import PropTypes from 'prop-types'
 
 import './Galery.scss'
 
@@ -77,10 +76,6 @@ const Galery = () => {
       ) : null}
     </ul>
   )
-}
-
-Galery.propTypes = {
-  numOfElem: PropTypes.number
 }
 
 export default Galery

@@ -29,7 +29,7 @@ const validationSchema = yup.object().shape({
   adress: yup.string().required('Adress is required')
 })
 
-const Order = ({ createOrder, button }) => {
+const Order = ({ createOrder }) => {
   const sendValue = value => {
     return value
   }
@@ -80,9 +80,8 @@ const Order = ({ createOrder, button }) => {
               {ShippingInformation.map(value => {
                 const { placeholder, name } = value
                 return (
-                  <div className={styles.block_input}>
+                  <div className={styles.block_input} key={name}>
                     <Field
-                      key={name}
                       name={name}
                       placeholder={placeholder}
                       component={Input}
@@ -101,6 +100,14 @@ const Order = ({ createOrder, button }) => {
       }}
     </Formik>
   )
+}
+
+Order.propTypes = {
+  createOrder: PropTypes.func
+}
+
+Order.defaultProps = {
+  createOrder: () => {}
 }
 
 export default Order
