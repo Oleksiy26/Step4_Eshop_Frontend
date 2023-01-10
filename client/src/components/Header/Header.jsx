@@ -12,6 +12,7 @@ import Burger from './Burger'
 import Count from './Count'
 import styles from './Header.module.scss'
 import { logout } from '../../store/tokenWork/tokenWork'
+import { checkInCart, checkInFav } from '../../store/counter/counter'
 
 const Header = () => {
   const [menu, setMenu] = useState(false)
@@ -27,6 +28,8 @@ const Header = () => {
 
   const logOut = () => {
     dispatch(logout())
+    dispatch(checkInCart(0))
+    dispatch(checkInFav(0))
     navigate('/')
   }
 

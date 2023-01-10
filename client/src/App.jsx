@@ -18,7 +18,6 @@ function App() {
   const dispatch = useDispatch()
   const token = useSelector(state => state.auth.token)
   const locationLogin = useSelector(state => state.location.locationLogin)
-  const isAuthenticated = !!token
   const location = useLocation()
   useSelector(state => state.counter)
   const counterInCart = useSelector(state => state.counter.inCart)
@@ -33,7 +32,11 @@ function App() {
       dispatch(fetchGetAllFromCart())
       dispatch(fetchWishlist())
       dispatch(fetchGetUser())
+    }
+  }, [dispatch, token, locationLogin, location])
 
+  useEffect(() => {
+    if (token) {
       if (JSON.parse(localStorage.getItem('cart'))) {
         const cards = JSON.parse(localStorage.getItem('cart'))
         cards.map(item => {
@@ -41,21 +44,32 @@ function App() {
         })
         localStorage.removeItem('cart')
       }
+
       if (JSON.parse(localStorage.getItem('fav'))) {
         const favs = JSON.parse(localStorage.getItem('fav'))
-        favs.map(item => {
-          dispatch(addToWishlist(item))
-        })
-        localStorage.removeItem('fav')
+        const arrayOfFovProducts = favItems.products.products
+        if (arrayOfFovProducts) {
+          const arrayOfId = arrayOfFovProducts.map(item => {
+            return item._id
+          })
+          const uniqueItemsFromLocalStorage = favs.filter(
+            item => !arrayOfId.includes(item)
+          )
+          if (uniqueItemsFromLocalStorage) {
+            uniqueItemsFromLocalStorage.map(item => {
+              dispatch(addToWishlist(item))
+            })
+          }
+          localStorage.removeItem('fav')
+        }
       }
     }
-  }, [dispatch, token, locationLogin, location.pathname])
+  }, [favItems, token])
 
   return (
     <AuthContext.Provider
       value={{
-        token,
-        isAuthenticated
+        token
       }}
     >
       <Header />
