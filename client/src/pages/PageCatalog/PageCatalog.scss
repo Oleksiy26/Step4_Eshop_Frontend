@@ -55,11 +55,7 @@
     justify-self: end;
   }
 
-  &-list {
-    display: grid;
-    gap: 48px;
-    grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
-  }
+ 
   &-button {
     width: 280px;
   }

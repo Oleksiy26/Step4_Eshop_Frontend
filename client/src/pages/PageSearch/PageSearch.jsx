@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { searchFor } from '../../store/searchProducts/ActionCreator'
-// import { searchIt } from '../../store/trySearch/ActionCreator'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard'
 import './PageSearch.scss'
@@ -8,26 +7,16 @@ import './PageSearch.scss'
 const PageSearch = () => {
   const [query, setQuery] = useState('')
   const { searchValues, isSearching } = useSelector(state => state.search)
-  // const { searchValues, isSearching } = useSelector(state => state.searchThem)
   const dispatch = useDispatch()
-  // console.log('query', query)
 
   const changer = async event => {
     event.preventDefault()
-    // console.log('query', query)
-    // dispatch(searchIt(query))
     dispatch(searchFor(query))
   }
-
-  // console.log('query 48: ', query)
 
   const changeMeQuery = event => {
     setQuery(event.target.value)
   }
-
-  console.log(!searchValues.length)
-  console.log(searchValues.length)
-  console.log('searchValues', searchValues)
 
   return (
     <>
@@ -66,5 +55,4 @@ const PageSearch = () => {
     </>
   )
 }
-
 export default PageSearch

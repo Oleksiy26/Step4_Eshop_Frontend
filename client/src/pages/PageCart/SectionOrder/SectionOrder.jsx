@@ -18,7 +18,7 @@ const SectionOrder = ({ items, totalPrice, check }) => {
 
   useEffect(() => {
     dispatch(checkLocation(location.pathname))
-  }, [dispatch])
+  }, [dispatch, location.pathname])
 
   return (
     <section
