@@ -1,3 +1,6 @@
+@import '../PageHome/PerfectSet/breakpoints.scss';
+@import '../PageHome/PerfectSet/variables.scss';
+
 .page {
   &__wrapper {
     margin-top: 60px;
@@ -6,6 +9,19 @@
     grid-template-columns: 2fr 2fr 1.5fr;
     gap: 50px;
     align-items: flex-end;
+
+    @include for-large-up {
+      gap: 20px;
+    }
+
+    @include for-medium-up {
+    }
+    @include for-small-up {
+      grid-template-columns: 1fr;
+      .last {
+        display: none;
+      }
+    }
   }
 
   &__content {
@@ -13,22 +29,33 @@
   }
   &__title {
     margin-bottom: 80px;
+
+    @include for-large-up {
+      margin-bottom: 40px;
+    }
+    @include for-medium-up {
+      margin-bottom: 10px;
+    }
   }
   &__text {
     margin-bottom: 48px;
+
+    @include for-large-up {
+      margin-bottom: 24px;
+    }
+    @include for-medium-up {
+      margin-bottom: 6px;
+    }
   }
 
   &__img {
     position: relative;
-    padding: 20% 0 85% 0;
+    padding: 30% 0 85% 0;
   }
   &__img img {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   &__button {

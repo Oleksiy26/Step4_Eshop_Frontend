@@ -25,7 +25,7 @@ const PageFav = () => {
 
   useEffect(() => {
     dispatch(checkLocation(location.pathname))
-  }, [])
+  }, [dispatch, location.pathname])
 
   const findItemsFav = () => {
     const itemsFav = JSON.parse(localStorage.getItem('fav'))

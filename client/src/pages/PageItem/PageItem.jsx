@@ -17,7 +17,7 @@ export const PageItem = () => {
 
   useEffect(() => {
     dispatch(fetchCard(itemNo))
-  }, [itemNo])
+  }, [dispatch, itemNo])
 
   const settings = {
     dots: true,
