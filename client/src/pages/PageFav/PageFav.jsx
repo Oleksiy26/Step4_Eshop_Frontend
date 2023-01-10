@@ -1,24 +1,21 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ContainerFav from './ContainerFav/ContainerFav'
 import { useDispatch } from 'react-redux'
 import { checkLocation } from '../../store/location/location'
 import { useLocation } from 'react-router-dom'
 import Title from '../../components/Title/Title'
-import { fetchWishlist } from '../../store/wishlist/ActionCreator'
-import { AuthContext } from '../../context/AuthContext'
 import Loader from '../../components/Loader'
 import Errortext from '../../components/ErrorText'
 
 const PageFav = () => {
   const products = useSelector(state => state.products)
-  const favCounter = useSelector(state => state.counter)
+  const favCounter = useSelector(state => state.counter.inFav)
   const { favItems, isItemsLoading, itemsError } = useSelector(
     state => state.wishlist
   )
   const dispatch = useDispatch()
   const location = useLocation()
-  const auth = useContext(AuthContext)
   const token = useSelector(state => state.auth.token)
 
   useEffect(() => {
@@ -35,18 +32,18 @@ const PageFav = () => {
 
   return (
     <div className='container'>
+      <Title
+        subtitle={
+          favCounter ? 'Your favourite cards' : 'No cards in favourites'
+        }
+      />
       {isItemsLoading ? (
         <Loader />
       ) : (
         <>
-          {favItems.products.products || favItems.products ? (
-            <>
-              <Title subtitle='Your favourite cards' />
-              <ContainerFav items={token ? favItems : findItemsFav()} />
-            </>
-          ) : (
-            <Title subtitle='No cards in favourites' />
-          )}
+          {(token ? favItems.products : findItemsFav()) ? (
+            <ContainerFav items={token ? favItems : findItemsFav()} />
+          ) : null}
         </>
       )}
     </div>
