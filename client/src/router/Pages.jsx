@@ -4,7 +4,6 @@ import PageCart from '../pages/PageCart/PageCart'
 import { PageItem } from '../pages/PageItem/PageItem'
 import PageFav from '../pages/PageFav'
 import PageCatalog from '../pages/PageCatalog'
-import PageSearch from '../pages/PageSearch/PageSearch'
 import PageCheckout from '../pages/PageCheckout'
 import { useSelector } from 'react-redux'
 
@@ -29,8 +28,7 @@ export const Pages = () => {
     { path: '/catalog', element: PageCatalog },
     { path: '/catalog/:itemNo', element: PageItem },
     { path: '/fav', element: PageFav },
-    { path: '/login', element: PageLogin },
-    { path: '/searching', element: PageSearch }
+    { path: '/login', element: PageLogin }
   ]
 
   return pagesList()

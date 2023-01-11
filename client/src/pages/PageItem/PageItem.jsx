@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import { fetchCard } from '../../store/card/ActionCreator'
 import AddCartFavorit from '../../components/ProductCard/AddCartFavorit'
@@ -8,15 +8,18 @@ import './PageItem.scss'
 import AlsoLike from '../../components/AlsoLike/AlsoLike'
 import Loader from '../../components/Loader'
 import Title from '../../components/Title'
+import { checkLocation } from '../../store/location/location'
 
 export const PageItem = () => {
   const { itemNo } = useParams()
   const dispatch = useDispatch()
   const { card, isCardLoading, cardError } = useSelector(state => state.card)
   const { imageUrls, name, currentPrice, size, color } = card
+  const location = useLocation()
 
   useEffect(() => {
     dispatch(fetchCard(itemNo))
+    dispatch(checkLocation(location.pathname))
   }, [dispatch, itemNo])
 
   const settings = {
@@ -66,7 +69,7 @@ export const PageItem = () => {
                 className={'colorSquare'}
               />
             </div>
-            <AddCartFavorit />
+            <AddCartFavorit subClasss='block_fav' />
           </div>
         </div>
       )}

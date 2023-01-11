@@ -4,9 +4,15 @@ import './AddCartFavorit.scss'
 import Button from '../../Button/Button'
 import PropTypes from 'prop-types'
 
-const AddCartFavorit = ({ inFav, inCart, onClickToCart, onClickFav }) => {
+const AddCartFavorit = ({
+  inFav,
+  inCart,
+  onClickToCart,
+  onClickFav,
+  subClasss
+}) => {
   return (
-    <div className='set-hover'>
+    <div className={'set-hover ' + subClasss}>
       <Button
         onClick={onClickToCart}
         className='set-addcart'

@@ -16,7 +16,8 @@ const ProductCard = ({
   quantity,
   color,
   ident,
-  size
+  size,
+  cart
 }) => {
   const {
     inFav,
@@ -65,7 +66,7 @@ const ProductCard = ({
       />
     </div>
   ) : (
-    <div className='card'>
+    <div className='card' onClick={!cart ? redirectToCardPage : null}>
       <div className='card_img'>
         <img src={photoUrl} alt={nameCard} className='set-img' />
       </div>
@@ -79,18 +80,22 @@ const ProductCard = ({
           <span className='title'>Color</span>
           <div className={`color-square ${color}`}></div>
         </div>
-        <div>
-          <span className='title'>Quantity</span>
-          <BlockForCart
-            clickDelete={() => clickDeleteCardInCart(id)}
-            clickAdd={() => clickAddInCart(id)}
-            quantity={quantity}
-          />
-        </div>
+        {cart && (
+          <div>
+            <span className='title'>Quantity</span>
+            <BlockForCart
+              clickDelete={() => clickDeleteCardInCart(id)}
+              clickAdd={() => clickAddInCart(id)}
+              quantity={quantity}
+            />
+          </div>
+        )}
       </div>
       <div className='card_price'>
         <p>{price} &euro;</p>
-        <span onClick={() => clickDeleteProductInCart(id)}>Remove</span>
+        {cart && (
+          <span onClick={() => clickDeleteProductInCart(id)}>Remove</span>
+        )}
       </div>
     </div>
   )
@@ -112,7 +117,8 @@ ProductCard.propTypes = {
   quantity: PropTypes.number,
   color: PropTypes.string,
   ident: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  cart: PropTypes.bool
 }
 
 export default ProductCard

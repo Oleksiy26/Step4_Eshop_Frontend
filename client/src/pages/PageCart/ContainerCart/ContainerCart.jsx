@@ -25,6 +25,7 @@ export const ContainerCart = ({ items }) => {
               color={item.product.color}
               size={item.product.size}
               viewForCart
+              cart
             />
           ))
         : items &&
@@ -40,6 +41,7 @@ export const ContainerCart = ({ items }) => {
               color={item.color}
               size={item.size}
               viewForCart
+              cart
             />
           ))}
     </div>
