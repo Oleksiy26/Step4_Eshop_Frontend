@@ -9,18 +9,22 @@ import AlsoLike from '../../components/AlsoLike/AlsoLike'
 import Loader from '../../components/Loader'
 import Title from '../../components/Title'
 import { checkLocation } from '../../store/location/location'
+import { useFunctionality } from '../../hooks/useFunctionality'
 
 export const PageItem = () => {
   const { itemNo } = useParams()
   const dispatch = useDispatch()
   const { card, isCardLoading, cardError } = useSelector(state => state.card)
-  const { imageUrls, name, currentPrice, size, color } = card
+  const { imageUrls, name, currentPrice, size, color, _id } = card
   const location = useLocation()
+  const { inFav, inCart, clickFav, clickToCart } = useFunctionality(_id)
 
   useEffect(() => {
     dispatch(fetchCard(itemNo))
     dispatch(checkLocation(location.pathname))
   }, [dispatch, itemNo])
+
+  useEffect(() => {}, [card])
 
   const settings = {
     dots: true,
@@ -31,6 +35,16 @@ export const PageItem = () => {
     autoplay: true,
     adaptiveHeight: true,
     arrows: false
+  }
+
+  const addItemToCart = event => {
+    event.stopPropagation()
+    clickToCart(_id)
+  }
+
+  const addItemToWishlist = event => {
+    event.stopPropagation()
+    clickFav(_id)
   }
 
   return (
@@ -69,7 +83,14 @@ export const PageItem = () => {
                 className={'colorSquare'}
               />
             </div>
-            <AddCartFavorit subClasss='block_fav' />
+            <AddCartFavorit
+              subClasss='block_fav'
+              cardId={_id}
+              inFav={inFav}
+              inCart={inCart}
+              onClickFav={addItemToWishlist}
+              onClickToCart={addItemToCart}
+            />
           </div>
         </div>
       )}
