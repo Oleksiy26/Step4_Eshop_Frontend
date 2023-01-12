@@ -3,23 +3,31 @@ import Favicon from './Favicon/Favicon'
 import './AddCartFavorit.scss'
 import Button from '../../Button/Button'
 import PropTypes from 'prop-types'
+import { useFunctionality } from '../../../hooks/useFunctionality'
 
-const AddCartFavorit = ({
-  inFav,
-  inCart,
-  onClickToCart,
-  onClickFav,
-  subClasss
-}) => {
+const AddCartFavorit = ({ subClasss, currentId }) => {
+  const { inFav, inCart, clickFav, clickToCart } = useFunctionality(currentId)
+
+  const addItemToCart = event => {
+    event.stopPropagation()
+    clickToCart(currentId)
+  }
+
+  const addItemToWishlist = event => {
+    event.stopPropagation()
+    clickFav(currentId)
+    console.log(currentId)
+  }
+
   return (
     <div className={'set-hover ' + subClasss}>
       <Button
-        onClick={onClickToCart}
+        onClick={addItemToCart}
         className='set-addcart'
         text={!inCart ? 'Add to cart' : 'Delete from cart'}
       />
       <div className='set-addfavorit'>
-        <Favicon onClick={onClickFav} inFav={inFav} />
+        <Favicon onClick={addItemToWishlist} inFav={inFav} />
       </div>
     </div>
   )
