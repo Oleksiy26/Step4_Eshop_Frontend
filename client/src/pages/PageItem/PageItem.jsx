@@ -40,7 +40,7 @@ export const PageItem = () => {
       ) : cardError ? (
         <Title subtitle='Smth wrong happened' />
       ) : (
-        <div className='my-5 d-flex gap-5 justify-content-center'>
+        <div className='my-5 d-flex flex-column flex-md-row gap-5 justify-content-center'>
           <div className='sliderImg'>
             {imageUrls ? (
               <Slider {...settings}>
