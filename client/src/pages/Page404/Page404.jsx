@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
-import './Page404.scss'
+import './index.scss'
 
 function Page404() {
   return (
@@ -15,14 +15,17 @@ function Page404() {
             <span className='page__text_heart'>&#10084;</span>
           </p>
           <Link to='/'>
-            <Button text='Go to Catalog' className='page__button' />
+            <Button
+              text='Go to Homepage'
+              className='page__button content-button'
+            />
           </Link>
         </div>
         <div className='page__img'>
           <img src='https://i.ibb.co/XVg4wMx/ard45.jpg' alt='girl' />
         </div>
-        <div className='page__img'>
-          <img src='https://i.ibb.co/XVg4wMx/ard45.jpg' alt='girl' />
+        <div className='page__img last'>
+          <img src='https://i.ibb.co/QjfvjDV/ard9654.jpg' alt='girl' />
         </div>
       </div>
     </div>

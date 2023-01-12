@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import AddCartFavorit from './AddCartFavorit'
 import { useFunctionality } from '../../hooks/useFunctionality'
 import './ProductCard.scss'
 import BlockForCart from './BlocForCart/BlocForCart'
-import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -17,19 +16,19 @@ const ProductCard = ({
   quantity,
   color,
   ident,
-  size
+  size,
+  cart
 }) => {
   const {
     inFav,
     inCart,
     clickFav,
     clickToCart,
-    clickDeleteInCart,
+    clickDeleteCardInCart,
     clickAddInCart,
-    clickDeleteCardInCart
+    clickDeleteProductInCart
   } = useFunctionality(id)
   const navigate = useNavigate()
-  const { isAuthenticated } = useContext(AuthContext)
 
   const redirectToCardPage = () => {
     navigate(`/catalog/${ident}`)
@@ -57,21 +56,17 @@ const ProductCard = ({
       <div className='info-wrapper'>
         <div className={`color-square ${color}`}></div>
         <span>Size: {size}</span>
-        {/* <div className="color-square black"></div>
-        <div className="color-square gray"></div> */}
       </div>
       <AddCartFavorit
         cardId={id}
         inFav={inFav}
         inCart={inCart}
-        // onClickFav={() => clickFav(id)}
         onClickFav={addItemToWishlist}
-        // onClickToCart={() => clickToCart(id)}
         onClickToCart={addItemToCart}
       />
     </div>
   ) : (
-    <div className='card'>
+    <div className='card' onClick={!cart ? redirectToCardPage : null}>
       <div className='card_img'>
         <img src={photoUrl} alt={nameCard} className='set-img' />
       </div>
@@ -85,18 +80,22 @@ const ProductCard = ({
           <span className='title'>Color</span>
           <div className={`color-square ${color}`}></div>
         </div>
-        <div>
-          <span className='title'>Quantity</span>
-          <BlockForCart
-            clickDelete={() => clickDeleteInCart(id)}
-            clickAdd={() => clickAddInCart(id)}
-            quantity={quantity}
-          />
-        </div>
+        {cart && (
+          <div>
+            <span className='title'>Quantity</span>
+            <BlockForCart
+              clickDelete={() => clickDeleteCardInCart(id)}
+              clickAdd={() => clickAddInCart(id)}
+              quantity={quantity}
+            />
+          </div>
+        )}
       </div>
       <div className='card_price'>
         <p>{price} &euro;</p>
-        <span onClick={() => clickDeleteCardInCart(id)}>Remove</span>
+        {cart && (
+          <span onClick={() => clickDeleteProductInCart(id)}>Remove</span>
+        )}
       </div>
     </div>
   )
@@ -118,7 +117,8 @@ ProductCard.propTypes = {
   quantity: PropTypes.number,
   color: PropTypes.string,
   ident: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  cart: PropTypes.bool
 }
 
 export default ProductCard

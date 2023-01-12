@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSize } from '../../store/filter/filterSlice'
+import { setSize, setstartPage } from '../../store/filter/filterSlice'
 import Checkbox from '../Checkbox'
 import './Sizes.scss'
 
@@ -18,6 +18,7 @@ const Sizes = () => {
     } else {
       newChecked.splice(currentIndex, 1)
     }
+    dispatch(setstartPage(1))
     dispatch(setSize(newChecked))
     console.log(newChecked)
   }

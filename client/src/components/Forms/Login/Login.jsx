@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useFetching } from '../../../hooks/useFetching'
+import React from 'react'
 import Button from '../../Button'
 import Input from '../Input'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
@@ -32,14 +31,7 @@ const validationSchema = yup.object().shape({
 })
 
 const Login = ({ changeAfterLogin }) => {
-  const { loading, request, error, clearError } = useFetching()
   const dispatch = useDispatch()
-
-  console.log(changeAfterLogin)
-
-  useEffect(() => {
-    clearError()
-  }, [error, clearError])
 
   const registerUser = value => {
     dispatch(fetchLogin(value))
@@ -66,9 +58,8 @@ const Login = ({ changeAfterLogin }) => {
             {SignInvalues.map(value => {
               const { placeholder, name } = value
               return (
-                <>
+                <div key={name}>
                   <Field
-                    key={name}
                     name={name}
                     placeholder={placeholder}
                     component={Input}
@@ -77,14 +68,10 @@ const Login = ({ changeAfterLogin }) => {
                   <span>
                     <ErrorMessage name={name} />
                   </span>
-                </>
+                </div>
               )
             })}
-            <Button
-              text='Create User'
-              disabled={!values.name || loading}
-              type='submit'
-            />
+            <Button text='Create User' disabled={!values.name} type='submit' />
           </Form>
         )
       }}
@@ -93,7 +80,7 @@ const Login = ({ changeAfterLogin }) => {
 }
 
 Login.propTypes = {
-  changeAfterLogin: PropTypes.bool.isRequired
+  changeAfterLogin: PropTypes.func
 }
 
 export default Login

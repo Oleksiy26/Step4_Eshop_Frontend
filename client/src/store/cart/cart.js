@@ -16,7 +16,6 @@ export const fetchAddToCart = createAsyncThunk(
         throw new Error('Server Error!')
       }
       const data = await respons.json()
-      console.log(data)
       const total = 0
       const quantity = data.products.map(item => {
         return item.cartQuantity
@@ -119,6 +118,7 @@ export const fetchDeletaCardFromCart = createAsyncThunk(
         total
       )
       dispatch(checkInCart(calculateQuantite))
+      // dispatch(fetchGetAllFromCart())
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -150,7 +150,7 @@ export const fetchDeleteCart = createAsyncThunk(
 )
 
 const initialState = {
-  cart: '',
+  cart: [],
   status: null,
   error: null
 }

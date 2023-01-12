@@ -1,30 +1,11 @@
 import React, { useEffect } from 'react'
 import ProductCard from '../ProductCard'
-// import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchFilterProducts } from '../../store/filter/filterSlice'
-import PropTypes from 'prop-types'
-
 import './Galery.scss'
 
 const Galery = () => {
-  // const { itemNo } = useParams()
-
-  // console.log(itemNo)
-
-  // const navigate = useNavigate()
-  // const products = useSelector((state) => state.products);
-  // console.log(products)
-
-  // const { card, isCardLoading, cardError } = useSelector((state) => state.card)
-  // console.log(card)
-
   const products = useSelector(state => state.filter.products)
-
-  const pro = useSelector(state => state.products)
-
-  console.log(pro)
-
   const startPage = useSelector(state => state.filter.startPage)
   const perPage = useSelector(state => state.filter.perPage)
   const sort = useSelector(state => state.filter.sort.sortProperty)
@@ -81,10 +62,6 @@ const Galery = () => {
       ) : null}
     </ul>
   )
-}
-
-Galery.propTypes = {
-  numOfElem: PropTypes.number
 }
 
 export default Galery

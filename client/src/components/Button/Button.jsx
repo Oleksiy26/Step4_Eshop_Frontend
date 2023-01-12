@@ -3,9 +3,7 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import './Button.scss'
 
-const Button = props => {
-  const { text, onClick, className, type, to, href } = props
-
+const Button = ({ text, onClick, className, type, to, href }) => {
   let Component
 
   if (href) {

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import styles from './ContainerCart.module.scss'
 import { useForCart } from '../../../hooks/useForCart'
 
-const ContainerCart = ({ items }) => {
+export const ContainerCart = ({ items }) => {
   const token = useSelector(state => state.auth.token)
   const { localQuantity } = useForCart()
 
@@ -25,6 +25,7 @@ const ContainerCart = ({ items }) => {
               color={item.product.color}
               size={item.product.size}
               viewForCart
+              cart
             />
           ))
         : items &&
@@ -40,6 +41,7 @@ const ContainerCart = ({ items }) => {
               color={item.color}
               size={item.size}
               viewForCart
+              cart
             />
           ))}
     </div>
@@ -53,4 +55,4 @@ ContainerCart.propTypes = {
   ])
 }
 
-export default ContainerCart
+// export default ContainerCart

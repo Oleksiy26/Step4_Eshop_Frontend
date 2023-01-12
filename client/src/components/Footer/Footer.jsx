@@ -2,34 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Footer.module.scss'
 import { ReactComponent as Logo } from './svg/logo.svg'
-
-const addresses = [
-  '21 Vasilkivska Street, 40611',
-  'Kyiv, Ukraine',
-  '098 954 11 22',
-  'femlingeriesoul@fems.ua'
-]
-
-const collections = [
-  { option: 'Collections', link: '/' },
-  { option: 'Catalogue', link: '/' },
-  { option: 'Gift cards', link: '/' },
-  { option: 'Garment care', link: '/' }
-]
-
-const categories = [
-  { option: 'Size guide', link: '/' },
-  { option: 'Garment care', link: '/' },
-  { option: 'Shipping  Returns', link: '/' },
-  { option: 'Delivery', link: '/' },
-  { option: 'Contact', link: '/' }
-]
-
-const media = [
-  { option: 'INSTAGRAM', link: '/' },
-  { option: 'FACEBOOK', link: '/' },
-  { option: 'TWITTER', link: '/' }
-]
+import { media, addresses, collections, categories } from './consts'
 
 const Footer = () => {
   return (
@@ -50,8 +23,7 @@ const Footer = () => {
               const { option, link } = collection
               return (
                 <NavLink key={option} to={link}>
-                  {' '}
-                  {option}{' '}
+                  {option}
                 </NavLink>
               )
             })}
@@ -64,8 +36,7 @@ const Footer = () => {
               const { option, link } = category
               return (
                 <NavLink key={option} to={link}>
-                  {' '}
-                  {option}{' '}
+                  {option}
                 </NavLink>
               )
             })}
@@ -78,8 +49,7 @@ const Footer = () => {
               const { option, link } = networks
               return (
                 <NavLink key={option} to={link}>
-                  {' '}
-                  {option}{' '}
+                  {option}
                 </NavLink>
               )
             })}

@@ -13,16 +13,15 @@ import { useLocation } from 'react-router-dom'
 import { checkLocation } from './store/location/location'
 import { addToWishlist } from './store/wishlist/ActionCreator'
 import { fetchGetUser } from './store/user/userSlice'
-import Loader from './components/Loader'
 
 function App() {
   const dispatch = useDispatch()
   const token = useSelector(state => state.auth.token)
   const locationLogin = useSelector(state => state.location.locationLogin)
-  const isAuthenticated = !!token
   const location = useLocation()
   useSelector(state => state.counter)
   const counterInCart = useSelector(state => state.counter.inCart)
+  const { favItems } = useSelector(state => state.wishlist)
 
   useEffect(() => {
     dispatch(fetchProducts())
@@ -33,32 +32,44 @@ function App() {
       dispatch(fetchGetAllFromCart())
       dispatch(fetchWishlist())
       dispatch(fetchGetUser())
+    }
+  }, [dispatch, token, locationLogin, location])
 
-      const cards = JSON.parse(localStorage.getItem('cart'))
+  useEffect(() => {
+    if (token) {
       if (JSON.parse(localStorage.getItem('cart'))) {
-        cards.map(item => dispatch(fetchAddToCart(item)))
+        const cards = JSON.parse(localStorage.getItem('cart'))
+        cards.map(item => {
+          dispatch(fetchAddToCart(item))
+        })
+        localStorage.removeItem('cart')
+      }
+
+      if (JSON.parse(localStorage.getItem('fav'))) {
         const favs = JSON.parse(localStorage.getItem('fav'))
-        if (cards) {
-          cards.map(item => {
-            dispatch(fetchAddToCart(item))
+        const arrayOfFovProducts = favItems.products.products
+        if (arrayOfFovProducts) {
+          const arrayOfId = arrayOfFovProducts.map(item => {
+            return item._id
           })
-          localStorage.removeItem('cart')
-        }
-        if (favs) {
-          favs.map(item => {
-            dispatch(addToWishlist(item))
-          })
+          const uniqueItemsFromLocalStorage = favs.filter(
+            item => !arrayOfId.includes(item)
+          )
+          if (uniqueItemsFromLocalStorage) {
+            uniqueItemsFromLocalStorage.map(item => {
+              dispatch(addToWishlist(item))
+            })
+          }
           localStorage.removeItem('fav')
         }
       }
     }
-  }, [dispatch, token, locationLogin, location.pathname])
+  }, [favItems, token])
 
   return (
     <AuthContext.Provider
       value={{
-        token,
-        isAuthenticated
+        token
       }}
     >
       <Header />

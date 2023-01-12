@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategory } from '../../store/filter/filterSlice'
+import { setCategory, setstartPage } from '../../store/filter/filterSlice'
 import Checkbox from '../Checkbox'
 import './Category.scss'
 
@@ -19,8 +19,8 @@ const Category = () => {
     } else {
       newChecked.splice(currentIndex, 1)
     }
+    dispatch(setstartPage(1))
     dispatch(setCategory(newChecked))
-    console.log(newChecked)
   }
 
   useEffect(() => {

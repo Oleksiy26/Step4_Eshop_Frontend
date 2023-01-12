@@ -23,4 +23,8 @@
   grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
 }
 
-// d-flex justify-content-center my-2
+.block_fav {
+  opacity: 1;
+  position: relative;
+  bottom: 0;
+}

@@ -68,8 +68,10 @@
   }
   &-addfavorit {
     background-color: #476785;
+    border: 1px solid #476785;
     &:hover {
       background-color: inherit;
+
     }
   }
 }

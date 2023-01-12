@@ -1,15 +1,11 @@
-import React, { useContext, useEffect } from 'react'
-import { useFetching } from '../../../hooks/useFetching'
-// import { AuthContext } from '../../../context/AuthContext'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import Button from '../../Button'
 import Input from '../Input'
 import * as yup from 'yup'
-import { useDispatch, useSelector } from 'react-redux'
-// import { login } from '../../../store/tokenWork/tokenWork';
+import { useDispatch } from 'react-redux'
 import { fetchSignIn } from '../../../store/signIn/signIn'
-// import { fetchCreateCart } from '../../../store/cart/cart';
 
 const initialValues = {
   loginOrEmail: '',
@@ -25,14 +21,8 @@ const validationSchema = yup.object().shape({
 })
 
 const SignIn = () => {
-  const { loading, error, clearError } = useFetching()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const token = useSelector(state => state.signIn.signIn)
-
-  useEffect(() => {
-    clearError()
-  }, [error, clearError])
 
   const loginUser = async value => {
     dispatch(fetchSignIn(value))
@@ -56,9 +46,8 @@ const SignIn = () => {
             {loginValues.map(value => {
               const { placeholder, name } = value
               return (
-                <>
+                <div key={name}>
                   <Field
-                    key={name}
                     name={name}
                     placeholder={placeholder}
                     id={name}
@@ -67,14 +56,10 @@ const SignIn = () => {
                   <span>
                     <ErrorMessage name={name} />
                   </span>
-                </>
+                </div>
               )
             })}
-            <Button
-              text='Sign in'
-              disabled={!values.name || loading}
-              type='submit'
-            />
+            <Button text='Sign in' disabled={!values.name} type='submit' />
           </Form>
         )
       }}

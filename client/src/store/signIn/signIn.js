@@ -20,7 +20,6 @@ export const fetchSignIn = createAsyncThunk(
       }
       const data = await respons.json()
       dispatch(login(data.token))
-      console.log(data)
       return data
     } catch (error) {
       return rejectWithValue(error.message)
