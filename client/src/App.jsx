@@ -10,22 +10,22 @@ import AppRouter from './router/AppRouter'
 import './styles/App.scss'
 import { fetchWishlist } from './store/wishlist/ActionCreator'
 import { useLocation } from 'react-router-dom'
-import { checkLocation } from './store/location/location'
 import { addToWishlist } from './store/wishlist/ActionCreator'
 import { fetchGetUser } from './store/user/userSlice'
+import { createBrowserHistory } from 'history'
+import { setLocation } from './store/location/location'
 
 function App() {
   const dispatch = useDispatch()
   const token = useSelector(state => state.auth.token)
-  const locationLogin = useSelector(state => state.location.locationLogin)
-  const location = useLocation()
-  useSelector(state => state.counter)
-  const counterInCart = useSelector(state => state.counter.inCart)
+  const locationHook = useLocation()
   const { favItems } = useSelector(state => state.wishlist)
+  const { location } = useSelector(state => state.location)
+  const history = createBrowserHistory()
 
   useEffect(() => {
+    dispatch(setLocation(history.location.pathname))
     dispatch(fetchProducts())
-    dispatch(checkLocation(location.pathname))
     const data = JSON.parse(localStorage.getItem('userToken'))
     if (data && data.token) dispatch(login(data.token))
     if (token) {
@@ -33,7 +33,7 @@ function App() {
       dispatch(fetchWishlist())
       dispatch(fetchGetUser())
     }
-  }, [dispatch, token, locationLogin, location])
+  }, [dispatch, token, locationHook])
 
   useEffect(() => {
     if (token) {
@@ -73,8 +73,8 @@ function App() {
       }}
     >
       <Header />
-      <AppRouter counterInCart={counterInCart} token={token} />
-      {!locationLogin ? <Footer /> : null}
+      <AppRouter />
+      {location !== '/login' ? <Footer /> : null}
     </AuthContext.Provider>
   )
 }

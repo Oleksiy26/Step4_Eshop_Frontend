@@ -16,7 +16,6 @@ const AddCartFavorit = ({ subClasss, currentId }) => {
   const addItemToWishlist = event => {
     event.stopPropagation()
     clickFav(currentId)
-    console.log(currentId)
   }
 
   return (
@@ -34,11 +33,8 @@ const AddCartFavorit = ({ subClasss, currentId }) => {
 }
 
 AddCartFavorit.propTypes = {
-  inFav: PropTypes.bool,
-  inCart: PropTypes.bool,
   cardId: PropTypes.string,
-  onClickToCart: PropTypes.func,
-  onClickFav: PropTypes.func
+  subClasss: PropTypes.string
 }
 
 export default AddCartFavorit

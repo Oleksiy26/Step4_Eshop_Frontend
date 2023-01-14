@@ -4,13 +4,13 @@ import styles from './Burger.module.scss'
 import PropTypes from 'prop-types'
 
 const Burger = ({ onClick }) => {
-  const locationMain = useSelector(state => state.location.locationMain)
+  const { location } = useSelector(state => state.location)
 
   return (
-    <div className={!locationMain ? styles.burger_page : styles.burger}>
+    <div className={location !== '/' ? styles.burger_page : styles.burger}>
       <div className={styles.burger_btn} onClick={onClick}>
-        <div></div>
-        <div></div>
+        <div className={styles.burger_btn_line} />
+        <div className={styles.burger_btn_line} />
       </div>
     </div>
   )

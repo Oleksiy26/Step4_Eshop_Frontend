@@ -6,20 +6,22 @@ import Button from '../../../components/Button/Button'
 const ButtonCheckout = () => {
   const token = useSelector(state => state.auth.token)
   const navigate = useNavigate()
-  const locationCheckout = useSelector(state => state.location.locationCheckout)
+  const { location } = useSelector(state => state.location)
 
   const cleck = () => {
     console.log('ok')
   }
 
   const navigateInCart = () => {
-    locationCheckout ? cleck() : navigate(token ? '/checkout' : '/login')
+    location === '/checkout'
+      ? cleck()
+      : navigate(token ? '/checkout' : '/login')
   }
 
   return (
     <Button
       onClick={navigateInCart}
-      text={locationCheckout ? 'Make an order' : 'Proceed to checkout'}
+      text={location === '/checkout' ? 'Make an order' : 'Proceed to checkout'}
     />
   )
 }

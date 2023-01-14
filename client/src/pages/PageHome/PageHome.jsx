@@ -1,22 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Banner from '../../components/Banner'
 import PerfectSet from './PerfectSet'
 import Sales from './Sales'
 import AboutUs from './AboutUs'
 import Instagram from './Instagram'
 import Menu from './Menu'
-import { useDispatch } from 'react-redux'
-import { checkLocation } from '../../store/location/location'
-import { useLocation } from 'react-router-dom'
 
 const PageHome = () => {
-  const dispatch = useDispatch()
-  const location = useLocation()
-
-  useEffect(() => {
-    dispatch(checkLocation(location.pathname))
-  }, [dispatch, location.pathname])
-
   return (
     <>
       <Menu />
