@@ -1,0 +1,10 @@
+@import '.././Colors/breakpoints.scss';
+@import '../../pages/PageHome/PerfectSet/variables.scss';
+
+.page {
+  &-sizes_list {
+    @include for-medium-up {
+      display: none;
+    }
+  }
+}

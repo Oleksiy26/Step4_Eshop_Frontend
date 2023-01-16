@@ -1,7 +1,18 @@
+@import './breakpoints.scss';
+@import '../../pages/PageHome/PerfectSet/variables.scss';
+
 .colors::before {
   left: 76px;
 }
 
 .colors::after {
   left: 76px;
+}
+.page {
+  &-colors_list {
+    @include for-medium-up {
+      display: none;
+    }
+  }
+  
 }

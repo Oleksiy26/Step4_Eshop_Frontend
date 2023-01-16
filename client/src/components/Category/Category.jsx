@@ -2,18 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCategory, setstartPage } from '../../store/filter/filterSlice'
 import Checkbox from '../Checkbox'
-import './Category.scss'
+import './index.scss'
 
 const Category = () => {
   const products = useSelector(state => state.products)
+  const categoryName = useSelector(state => state.filter.categoryName)
   const [categoryArr, setCategoryArr] = useState([])
-
   const dispatch = useDispatch()
-  const category = useSelector(state => state.filter.categoryName)
 
   const handleCategoryCheckbox = label => {
-    const currentIndex = category.indexOf(label)
-    const newChecked = [...category]
+    const currentIndex = categoryName.indexOf(label)
+    const newChecked = [...categoryName]
     if (currentIndex === -1) {
       newChecked.push(label)
     } else {

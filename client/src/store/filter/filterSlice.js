@@ -30,7 +30,7 @@ export const fetchFilterProducts = createAsyncThunk(
 
 const initialState = {
   startPage: 1,
-  perPage: 10,
+  perPage: 6,
   totalPage: 0,
   products: [],
   status: null,
@@ -47,6 +47,9 @@ export const filterSlice = createSlice({
   reducers: {
     settotalPage(state, action) {
       state.totalPage = action.payload
+    },
+    setperPage(state, action) {
+      state.perPage = action.payload
     },
     setstartPage(state, action) {
       state.startPage = action.payload
@@ -86,7 +89,8 @@ export const {
   setSize,
   setSortType,
   setstartPage,
-  settotalPage
+  settotalPage,
+  setperPage
 } = filterSlice.actions
 
 export default filterSlice.reducer

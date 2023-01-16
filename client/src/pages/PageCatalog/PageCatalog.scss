@@ -1,3 +1,6 @@
+@import './breakpoints.scss';
+@import '../../pages/PageHome/PerfectSet/variables.scss';
+
 .form-check-label {
   display: flex;
   gap: 8px;
@@ -34,15 +37,21 @@
   }
 
   &-wrapper {
-    display: grid;
-    grid-template: 1fr / minmax(auto, 300px) minmax(auto, 1fr);
+    @include for-medium-up {
+      display: grid;
+      grid-template: 1fr / minmax(auto, 240px) minmax(auto, 1fr);
+      justify-content: center;
+      row-gap: 32px;
+    }
+  }
+  &-sidebar {
+    grid-column: 1/2;
   }
   &-controls {
-    margin-top: 32px;
+    display: grid;
+    position: relative;
     grid-column: 2/3;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
   }
 }
 
@@ -54,10 +63,9 @@
   &-sort {
     justify-self: end;
   }
-
- 
   &-button {
     width: 280px;
+    justify-self: center;
   }
 }
 
@@ -71,7 +79,6 @@
   position: absolute;
   width: 8px;
   height: 2px;
-
   top: 12px;
   left: 70px;
   background-color: #2d4153;

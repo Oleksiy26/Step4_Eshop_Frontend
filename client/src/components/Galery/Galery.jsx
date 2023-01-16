@@ -1,23 +1,30 @@
 import React, { useEffect } from 'react'
 import ProductCard from '../ProductCard'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchFilterProducts } from '../../store/filter/filterSlice'
-import './Galery.scss'
+import { fetchFilterProducts, setperPage } from '../../store/filter/filterSlice'
+import './index.scss'
 
 const Galery = () => {
-  const products = useSelector(state => state.filter.products)
-  const startPage = useSelector(state => state.filter.startPage)
-  const perPage = useSelector(state => state.filter.perPage)
+  const { products, startPage, perPage, colorName, categoryName, sizeName } =
+    useSelector(state => state.filter)
   const sort = useSelector(state => state.filter.sort.sortProperty)
-  const color = useSelector(state => state.filter.colorName)
-  const category = useSelector(state => state.filter.categoryName)
-  const size = useSelector(state => state.filter.sizeName)
+  // const resolution = window.innerWidth
 
   const dispatch = useDispatch()
 
-  const categoryFilter = category.length ? `categories=${category}` : ''
-  const colorFilter = color.length ? `color=${color}` : ''
-  const sizeFilter = size.length ? `size=${size}` : ''
+  // const handlerResolutionChange = resolution => {
+  //   if (resolution < 992) {
+  //     dispatch(setperPage(perPage + 2))
+  //   }
+
+  //   return perPage
+  // }
+
+  // console.log(handlerResolutionChange(resolution))
+
+  const categoryFilter = categoryName.length ? `categories=${categoryName}` : ''
+  const colorFilter = colorName.length ? `color=${colorName}` : ''
+  const sizeFilter = sizeName.length ? `size=${sizeName}` : ''
 
   useEffect(() => {
     dispatch(
