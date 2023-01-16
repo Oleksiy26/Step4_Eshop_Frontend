@@ -37,34 +37,38 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      if (JSON.parse(localStorage.getItem('cart'))) {
-        const cards = JSON.parse(localStorage.getItem('cart'))
-        cards.map(item => {
-          dispatch(fetchAddToCart(item))
-        })
-        localStorage.removeItem('cart')
-      }
-
-      if (JSON.parse(localStorage.getItem('fav'))) {
-        const favs = JSON.parse(localStorage.getItem('fav'))
-        const arrayOfFovProducts = favItems.products.products
-        if (arrayOfFovProducts) {
-          const arrayOfId = arrayOfFovProducts.map(item => {
-            return item._id
-          })
-          const uniqueItemsFromLocalStorage = favs.filter(
-            item => !arrayOfId.includes(item)
-          )
-          if (uniqueItemsFromLocalStorage) {
-            uniqueItemsFromLocalStorage.map(item => {
-              dispatch(addToWishlist(item))
-            })
-          }
-          localStorage.removeItem('fav')
-        }
-      }
+      sedtItemsFromLocalStorage()
     }
   }, [favItems, token])
+
+  const sedtItemsFromLocalStorage = () => {
+    if (JSON.parse(localStorage.getItem('cart'))) {
+      const cards = JSON.parse(localStorage.getItem('cart'))
+      cards.map(item => {
+        dispatch(fetchAddToCart(item))
+      })
+      localStorage.removeItem('cart')
+    }
+
+    if (JSON.parse(localStorage.getItem('fav'))) {
+      const favs = JSON.parse(localStorage.getItem('fav'))
+      const arrayOfFovProducts = favItems.products.products
+      if (arrayOfFovProducts) {
+        const arrayOfId = arrayOfFovProducts.map(item => {
+          return item._id
+        })
+        const uniqueItemsFromLocalStorage = favs.filter(
+          item => !arrayOfId.includes(item)
+        )
+        if (uniqueItemsFromLocalStorage) {
+          uniqueItemsFromLocalStorage.map(item => {
+            dispatch(addToWishlist(item))
+          })
+        }
+        localStorage.removeItem('fav')
+      }
+    }
+  }
 
   return (
     <AuthContext.Provider
