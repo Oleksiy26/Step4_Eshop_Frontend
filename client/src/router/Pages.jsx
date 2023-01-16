@@ -5,31 +5,22 @@ import { PageItem } from '../pages/PageItem/PageItem'
 import PageFav from '../pages/PageFav'
 import PageCatalog from '../pages/PageCatalog'
 import PageCheckout from '../pages/PageCheckout'
-import { useSelector } from 'react-redux'
 
-export const Pages = () => {
-  const token = useSelector(state => state.auth.token)
+export const privateRoutes = [
+  { path: '/', element: PageHome },
+  { path: '/cart', element: PageCart },
+  { path: '/catalog', element: PageCatalog },
+  { path: '/catalog/:itemNo', element: PageItem },
+  { path: '/fav', element: PageFav },
+  { path: '/login', element: PageLogin },
+  { path: '/checkout', element: PageCheckout }
+]
 
-  const pagesList = () => {
-    if (token) {
-      const pushPAges = allPages.push({
-        path: '/checkout',
-        element: PageCheckout
-      })
-      return allPages
-    } else {
-      return allPages
-    }
-  }
-
-  const allPages = [
-    { path: '/', element: PageHome },
-    { path: '/cart', element: PageCart },
-    { path: '/catalog', element: PageCatalog },
-    { path: '/catalog/:itemNo', element: PageItem },
-    { path: '/fav', element: PageFav },
-    { path: '/login', element: PageLogin }
-  ]
-
-  return pagesList()
-}
+export const publicRoutes = [
+  { path: '/', element: PageHome },
+  { path: '/cart', element: PageCart },
+  { path: '/catalog', element: PageCatalog },
+  { path: '/catalog/:itemNo', element: PageItem },
+  { path: '/fav', element: PageFav },
+  { path: '/login', element: PageLogin }
+]

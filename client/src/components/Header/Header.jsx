@@ -15,20 +15,19 @@ import { logout } from '../../store/tokenWork/tokenWork'
 import { checkInCart, checkInFav } from '../../store/counter/counter'
 import SearchForm from '../Search'
 import { useEffect } from 'react'
-import { checkLocation } from '../../store/location/location'
 
 const Header = () => {
   const [menu, setMenu] = useState(false)
   const [searchView, setSearchView] = useState()
-  const counerInFav = useSelector(state => state.counter.inFav)
-  const counerInCart = useSelector(state => state.counter.inCart)
+  const { inFav, inCart } = useSelector(state => state.counter)
   const token = useSelector(state => state.auth.token)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const location = useSelector(state => state.location.payload)
+  const location = useSelector(state => state.location.location)
 
   useEffect(() => {
     setSearchView(false)
+    setMenu(false)
   }, [location])
 
   const clickMenu = () => {
@@ -65,11 +64,11 @@ const Header = () => {
           <Search onClick={() => clickSearch()} style={{ cursor: 'pointer' }} />
           <NavLink to='/fav'>
             <Fav />
-            {counerInFav ? <Count count={counerInFav} /> : null}
+            {inFav ? <Count count={inFav} /> : null}
           </NavLink>
           <NavLink to='/cart'>
             <Cart />
-            {counerInCart ? <Count count={counerInCart} /> : null}
+            {inCart ? <Count count={inCart} /> : null}
           </NavLink>
         </div>
         <Burger onClick={() => clickMenu()} />

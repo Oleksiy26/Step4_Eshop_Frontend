@@ -19,29 +19,16 @@ const ProductCard = ({
   size,
   cart
 }) => {
-  const {
-    inFav,
-    inCart,
-    clickFav,
-    clickToCart,
-    clickDeleteCardInCart,
-    clickAddInCart,
-    clickDeleteProductInCart
-  } = useFunctionality(id)
+  const { clickDeleteCardInCart, clickAddInCart, clickDeleteProductInCart } =
+    useFunctionality(id)
   const navigate = useNavigate()
 
   const redirectToCardPage = () => {
     navigate(`/catalog/${ident}`)
   }
 
-  const addItemToCart = event => {
-    event.stopPropagation()
-    clickToCart(id)
-  }
-
-  const addItemToWishlist = event => {
-    event.stopPropagation()
-    clickFav(id)
+  const sendId = id => {
+    return id
   }
 
   return !viewForCart ? (
@@ -57,13 +44,7 @@ const ProductCard = ({
         <div className={`color-square ${color}`}></div>
         <span>Size: {size}</span>
       </div>
-      <AddCartFavorit
-        cardId={id}
-        inFav={inFav}
-        inCart={inCart}
-        onClickFav={addItemToWishlist}
-        onClickToCart={addItemToCart}
-      />
+      <AddCartFavorit cardId={id} currentId={sendId(id)} />
     </div>
   ) : (
     <div className='card' onClick={!cart ? redirectToCardPage : null}>

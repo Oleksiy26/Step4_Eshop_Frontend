@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 const BlockForCart = ({ clickDelete, clickAdd, quantity }) => {
-  const locationCart = useSelector(state => state.location.locationCart)
+  const { location } = useSelector(state => state.location)
 
   return (
     <div className='quantity'>
-      {locationCart ? <Delete onClick={clickDelete} /> : null}
+      {location === '/cart' ? <Delete onClick={clickDelete} /> : null}
       <span>{quantity}</span>
-      {locationCart ? <Add onClick={clickAdd} /> : null}
+      {location === '/cart' ? <Add onClick={clickAdd} /> : null}
     </div>
   )
 }

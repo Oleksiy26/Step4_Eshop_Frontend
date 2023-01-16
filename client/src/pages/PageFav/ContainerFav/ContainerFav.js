@@ -1,7 +1,6 @@
 import React from 'react'
 import ProductCard from '../../../components/ProductCard'
 import { useSelector } from 'react-redux'
-import { AuthContext } from '../../../context/AuthContext'
 import PropTypes from 'prop-types'
 
 const ContainerFav = ({ items }) => {

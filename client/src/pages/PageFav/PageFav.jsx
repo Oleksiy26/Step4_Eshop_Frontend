@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import ContainerFav from './ContainerFav/ContainerFav'
-import { useDispatch } from 'react-redux'
-import { checkLocation } from '../../store/location/location'
-import { useLocation } from 'react-router-dom'
 import Title from '../../components/Title/Title'
 import Loader from '../../components/Loader'
 import Errortext from '../../components/ErrorText'
@@ -14,13 +11,7 @@ const PageFav = () => {
   const { favItems, isItemsLoading, itemsError } = useSelector(
     state => state.wishlist
   )
-  const dispatch = useDispatch()
-  const location = useLocation()
   const token = useSelector(state => state.auth.token)
-
-  useEffect(() => {
-    dispatch(checkLocation(location.pathname))
-  }, [dispatch, location.pathname, favItems])
 
   const findItemsFav = () => {
     const itemsFav = JSON.parse(localStorage.getItem('fav'))
