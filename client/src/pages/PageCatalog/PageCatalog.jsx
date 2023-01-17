@@ -11,7 +11,6 @@ import SortList from '../../components/SortList'
 import { setstartPage, setperPage } from '../../store/filter/filterSlice'
 import Pagination from '../../components/Pagination'
 import './PageCatalog.scss'
-import { useEffect } from 'react'
 
 const PageCatalog = () => {
   const { products, startPage, perPage } = useSelector(state => state.filter)
@@ -20,9 +19,6 @@ const PageCatalog = () => {
   const [sizesActive, setsizesActive] = useState(true)
   const [colorActive, setcolorActive] = useState(true)
   const [categoryActive, setcategoryActive] = useState(true)
-
-  console.log(useWindowSize())
-  console.log('sravnenie', useWindowSize() < 768)
 
   function useWindowSize() {
     const [displayWidth, setdisplayWidth] = useState(0)
@@ -36,8 +32,6 @@ const PageCatalog = () => {
     }, [])
     return displayWidth
   }
-
-  // useEffect(() => {}, [])
 
   const showColor = () => setcolorActive(!colorActive)
   const showSizes = () => setsizesActive(!sizesActive)

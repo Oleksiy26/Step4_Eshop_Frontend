@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
+import React, { useEffect } from 'react'
 import ProductCard from '../ProductCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchFilterProducts, setperPage } from '../../store/filter/filterSlice'
@@ -8,19 +8,8 @@ const Galery = () => {
   const { products, startPage, perPage, colorName, categoryName, sizeName } =
     useSelector(state => state.filter)
   const sort = useSelector(state => state.filter.sort.sortProperty)
-  // const resolution = window.innerWidth
 
   const dispatch = useDispatch()
-
-  // const handlerResolutionChange = resolution => {
-  //   if (resolution < 992) {
-  //     dispatch(setperPage(perPage + 2))
-  //   }
-
-  //   return perPage
-  // }
-
-  // console.log(handlerResolutionChange(resolution))
 
   const categoryFilter = categoryName.length ? `categories=${categoryName}` : ''
   const colorFilter = colorName.length ? `color=${colorName}` : ''
