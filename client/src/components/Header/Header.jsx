@@ -15,6 +15,7 @@ import { logout } from '../../store/tokenWork/tokenWork'
 import { checkInCart, checkInFav } from '../../store/counter/counter'
 import SearchForm from '../Search'
 import { useEffect } from 'react'
+import { clearStatus } from '../../store/signIn/signIn'
 
 const Header = () => {
   const [menu, setMenu] = useState(false)
@@ -42,6 +43,7 @@ const Header = () => {
     dispatch(logout())
     dispatch(checkInCart(0))
     dispatch(checkInFav(0))
+    dispatch(clearStatus())
     navigate('/')
   }
 

@@ -4,8 +4,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import Button from '../../Button'
 import Input from '../Input'
 import * as yup from 'yup'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchSignIn } from '../../../store/signIn/signIn'
+import { useEffect } from 'react'
 
 const initialValues = {
   loginOrEmail: '',
@@ -23,10 +24,18 @@ const validationSchema = yup.object().shape({
 const SignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { status } = useSelector(state => state.signIn)
 
-  const loginUser = async value => {
+  useEffect(() => {
+    if (status === 'rejected') {
+      alert('Wrong login or password. Try again.')
+    } else if (status === 'resolved') {
+      navigate('/')
+    }
+  }, [status])
+
+  const loginUser = value => {
     dispatch(fetchSignIn(value))
-    navigate('/')
   }
 
   const loginValues = [
