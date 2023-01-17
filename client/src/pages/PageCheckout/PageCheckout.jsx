@@ -9,6 +9,7 @@ import styles from './PageCheckout.module.scss'
 import Button from '../../components/Button'
 import AlsoLike from '../../components/AlsoLike'
 import ThanksForOrder from './ThanksForOrder'
+import { useEffect } from 'react'
 
 const PageCheckout = () => {
   const cardInCart = useSelector(state => state.cart.cart)
@@ -18,11 +19,14 @@ const PageCheckout = () => {
   const cartCounter = useSelector(state => state.counter)
   const [orderDone, setOrderDone] = useState(false)
 
-  const createOrder = async value => {
-    dispatch(fetchMakeOrder({ value, cardInCart }))
+  useEffect(() => {
     if (secuessOrder === 'resolved') {
       setOrderDone(true)
     }
+  }, [secuessOrder])
+
+  const createOrder = async value => {
+    dispatch(fetchMakeOrder({ value, cardInCart }))
   }
   return (
     <>

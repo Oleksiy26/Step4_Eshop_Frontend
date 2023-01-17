@@ -14,6 +14,7 @@ import { addToWishlist } from './store/wishlist/ActionCreator'
 import { fetchGetUser } from './store/user/userSlice'
 import { createBrowserHistory } from 'history'
 import { setLocation } from './store/location/location'
+import { ckearStatusOrder } from './store/order/order'
 
 function App() {
   const dispatch = useDispatch()
@@ -33,6 +34,7 @@ function App() {
       dispatch(fetchWishlist())
       dispatch(fetchGetUser())
     }
+    dispatch(ckearStatusOrder())
   }, [dispatch, token, locationHook, history.location.pathname])
 
   useEffect(() => {

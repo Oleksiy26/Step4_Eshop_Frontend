@@ -52,6 +52,11 @@ const initialState = {
 export const orderSlice = createSlice({
   name: 'makeOrder',
   initialState,
+  reducers: {
+    ckearStatusOrder: state => {
+      state.status = null
+    }
+  },
   extraReducers: {
     [fetchMakeOrder.pending]: state => {
       state.status = 'loading'
@@ -68,4 +73,5 @@ export const orderSlice = createSlice({
   }
 })
 
+export const { ckearStatusOrder } = orderSlice.actions
 export default orderSlice.reducer
