@@ -13,10 +13,7 @@ export const searchFor = createAsyncThunk(
           Connection: 'keep-alive',
           'Accept-Encoding': 'gzip, deflate, br',
           Accept: '*/*',
-          'Content-Type': 'application/json',
-          Authorization: `${
-            JSON.parse(localStorage.getItem(`userToken`)).token
-          }`
+          'Content-Type': 'application/json'
         }
       })
       if (!response.ok) {

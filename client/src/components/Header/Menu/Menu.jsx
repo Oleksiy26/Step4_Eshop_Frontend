@@ -6,11 +6,11 @@ import styles from './Menu.module.scss'
 
 const Menu = ({ closeFunc }) => {
   const arr = [
-    { option: 'New lingerie', link: '/' },
-    { option: 'Sales', link: '/' },
-    { option: 'Profile', link: '/' },
-    { option: 'Catalogue', link: '/' },
-    { option: 'Contact', link: '/' }
+    { option: 'New lingerie', link: '/catalog' },
+    { option: 'Sales', link: '/catalog' },
+    { option: 'Profile', link: '/catalog' },
+    { option: 'Catalogue', link: '/catalog' },
+    { option: 'Contact', link: '/catalog' }
   ]
 
   return (

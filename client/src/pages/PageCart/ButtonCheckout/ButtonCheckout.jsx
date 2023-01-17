@@ -8,22 +8,13 @@ const ButtonCheckout = () => {
   const navigate = useNavigate()
   const { location } = useSelector(state => state.location)
 
-  const cleck = () => {
-    console.log('ok')
-  }
-
   const navigateInCart = () => {
-    location === '/checkout'
-      ? cleck()
-      : navigate(token ? '/checkout' : '/login')
+    navigate(token ? '/checkout' : '/login')
   }
 
-  return (
-    <Button
-      onClick={navigateInCart}
-      text={location === '/checkout' ? 'Make an order' : 'Proceed to checkout'}
-    />
-  )
+  return location === '/cart' ? (
+    <Button onClick={navigateInCart} text='Proceed to checkout' />
+  ) : null
 }
 
 export default ButtonCheckout
