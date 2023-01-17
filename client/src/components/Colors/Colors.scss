@@ -8,11 +8,3 @@
 .colors::after {
   left: 76px;
 }
-.page {
-  &-colors_list {
-    @include for-medium-up {
-      display: none;
-    }
-  }
-  
-}

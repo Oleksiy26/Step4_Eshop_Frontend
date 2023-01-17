@@ -33,7 +33,7 @@ function App() {
       dispatch(fetchWishlist())
       dispatch(fetchGetUser())
     }
-  }, [dispatch, token, locationHook])
+  }, [dispatch, token, locationHook, history.location.pathname])
 
   useEffect(() => {
     if (token) {
