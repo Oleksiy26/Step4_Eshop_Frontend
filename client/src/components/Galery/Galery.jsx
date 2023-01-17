@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import ProductCard from '../ProductCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchFilterProducts, setperPage } from '../../store/filter/filterSlice'

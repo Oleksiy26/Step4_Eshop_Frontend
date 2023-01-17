@@ -4,7 +4,7 @@ import { setSize, setstartPage } from '../../store/filter/filterSlice'
 import Checkbox from '../Checkbox'
 import './index.scss'
 
-const Sizes = () => {
+const Sizes = ({ sizesActive }) => {
   const sizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
 
   const dispatch = useDispatch()
@@ -23,7 +23,8 @@ const Sizes = () => {
   }
   return (
     <ul className='page-sizes_list'>
-      {sizesArray &&
+      {sizesActive &&
+        sizesArray &&
         sizesArray.map((item, index) => {
           return (
             <li className='page-sizes_item' key={index}>

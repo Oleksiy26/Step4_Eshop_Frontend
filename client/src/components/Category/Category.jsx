@@ -4,7 +4,7 @@ import { setCategory, setstartPage } from '../../store/filter/filterSlice'
 import Checkbox from '../Checkbox'
 import './index.scss'
 
-const Category = () => {
+const Category = ({ categoryActive }) => {
   const products = useSelector(state => state.products)
   const categoryName = useSelector(state => state.filter.categoryName)
   const [categoryArr, setCategoryArr] = useState([])
@@ -30,7 +30,8 @@ const Category = () => {
 
   return (
     <ul className='page-filter_list'>
-      {categoryArr &&
+      {categoryActive &&
+        categoryArr &&
         categoryArr.map((item, index) => {
           return (
             <li className='page-filter_item' key={index}>
