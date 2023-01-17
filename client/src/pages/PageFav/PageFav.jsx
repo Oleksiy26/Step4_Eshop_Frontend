@@ -4,6 +4,7 @@ import ContainerFav from './ContainerFav/ContainerFav'
 import Title from '../../components/Title/Title'
 import Loader from '../../components/Loader'
 import Errortext from '../../components/ErrorText'
+import AlsoLike from '../../components/AlsoLike'
 
 const PageFav = () => {
   const products = useSelector(state => state.products)
@@ -23,18 +24,19 @@ const PageFav = () => {
 
   return (
     <div className='container'>
-      <Title
-        subtitle={
-          favCounter ? 'Your favourite cards' : 'No cards in favourites'
-        }
-      />
-      {isItemsLoading ? (
-        <Loader />
-      ) : (
+      {favCounter ? (
         <>
-          {(token ? favItems.products : findItemsFav()) ? (
+          <Title subtitle='Your favourite cards' />
+          {isItemsLoading ? (
+            <Loader />
+          ) : (token ? favItems.products : findItemsFav()) ? (
             <ContainerFav items={token ? favItems : findItemsFav()} />
           ) : null}
+        </>
+      ) : (
+        <>
+          <Title subtitle='No cards in favourites' />
+          <AlsoLike />
         </>
       )}
     </div>
