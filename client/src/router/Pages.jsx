@@ -12,6 +12,7 @@ export const privateRoutes = [
   { path: '/catalog', element: PageCatalog },
   { path: '/catalog/:itemNo', element: PageItem },
   { path: '/fav', element: PageFav },
+  { path: '/login', element: PageLogin },
   { path: '/checkout', element: PageCheckout }
 ]
 
