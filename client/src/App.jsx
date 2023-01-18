@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AuthContext } from './context/AuthContext'
+// import { AuthContext } from './context/AuthContext'
 import { fetchProducts } from './store/products/productSlice'
 import { login } from './store/tokenWork/tokenWork'
 import { fetchAddToCart, fetchGetAllFromCart } from './store/cart/cart'
@@ -73,15 +73,11 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider
-      value={{
-        token
-      }}
-    >
+    <>
       <Header />
       <AppRouter />
       {location !== '/login' ? <Footer /> : null}
-    </AuthContext.Provider>
+    </>
   )
 }
 

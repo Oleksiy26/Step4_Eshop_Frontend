@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkInCart, checkInFav } from '../store/counter/counter'
-import { AuthContext } from '../context/AuthContext'
 import {
   addToWishlist,
   deleteItemFromWishlist
@@ -15,7 +14,6 @@ import {
 export const useFunctionality = id => {
   const [inFav, setInFav] = useState(false)
   const [inCart, setInCart] = useState(false)
-  const auth = useContext(AuthContext)
   const dispatch = useDispatch()
   const token = useSelector(state => state.auth.token)
   const cardInCart = useSelector(state => state.cart.cart)
