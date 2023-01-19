@@ -6,16 +6,17 @@ import PropTypes from 'prop-types'
 import { useFunctionality } from '../../../hooks/useFunctionality'
 
 const AddCartFavorit = ({ subClasss, currentId }) => {
-  const { inFav, inCart, clickFav, clickToCart } = useFunctionality(currentId)
+  const { inFav, inCart, clickFav, clickToCart, actionOnCkickFavOrCart } =
+    useFunctionality(currentId)
 
   const addItemToCart = event => {
     event.stopPropagation()
-    clickToCart(currentId)
+    actionOnCkickFavOrCart(currentId, 'cart')
   }
 
   const addItemToWishlist = event => {
     event.stopPropagation()
-    clickFav(currentId)
+    actionOnCkickFavOrCart(currentId, 'fav')
   }
 
   return (
