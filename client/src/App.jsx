@@ -54,9 +54,9 @@ function App() {
 
     if (JSON.parse(localStorage.getItem('fav'))) {
       const favs = JSON.parse(localStorage.getItem('fav'))
-      const arrayOfFovProducts = favItems.products.products
-      if (arrayOfFovProducts) {
-        const arrayOfId = arrayOfFovProducts.map(item => {
+      const arrayOfFavProducts = favItems.products.products
+      if (arrayOfFavProducts) {
+        const arrayOfId = arrayOfFavProducts.map(item => {
           return item._id
         })
         const uniqueItemsFromLocalStorage = favs.filter(
@@ -67,6 +67,11 @@ function App() {
             dispatch(addToWishlist(item))
           })
         }
+        localStorage.removeItem('fav')
+      } else {
+        favs.map(item => {
+          dispatch(addToWishlist(item))
+        })
         localStorage.removeItem('fav')
       }
     }

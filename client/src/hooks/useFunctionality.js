@@ -18,10 +18,7 @@ export const useFunctionality = id => {
   const token = useSelector(state => state.auth.token)
   const cardInCart = useSelector(state => state.cart.cart)
   const cardInFav = useSelector(state => state.wishlist.favItems)
-
-  const checkValue = value => {
-    return value != null
-  }
+  let values
 
   useEffect(() => {
     if (!token) {
@@ -31,6 +28,10 @@ export const useFunctionality = id => {
       checkCards(id)
     }
   }, [token ? (cardInCart, cardInFav) : null])
+
+  const checkValue = value => {
+    return value != null
+  }
 
   const forFavActions = {
     localName: 'fav',
@@ -50,13 +51,16 @@ export const useFunctionality = id => {
     addInServer: fetchAddToCart
   }
 
-  const checkCardsFromLocalStorage = value => {
-    let values
+  const selectVarriable = value => {
     if (value === 'fav') {
-      values = forFavActions
+      return (values = forFavActions)
     } else if (value === 'cart') {
-      values = forCartActions
+      return (values = forCartActions)
     }
+  }
+
+  const checkCardsFromLocalStorage = value => {
+    selectVarriable(value)
     const { localName, counter, localState } = values
     const arrayFromLocalStorage = JSON.parse(localStorage.getItem(localName))
     if (arrayFromLocalStorage) {
@@ -94,12 +98,7 @@ export const useFunctionality = id => {
   }
 
   const actionOnCkickFavOrCart = (id, value) => {
-    let values
-    if (value === 'fav') {
-      values = forFavActions
-    } else if (value === 'cart') {
-      values = forCartActions
-    }
+    selectVarriable(value)
     const {
       localName,
       counter,
@@ -110,8 +109,8 @@ export const useFunctionality = id => {
     } = values
 
     if (!token) {
-      const array = JSON.parse(localStorage.getItem(localName))
-      if (array) {
+      if (localStorage.getItem(localName)) {
+        const array = JSON.parse(localStorage.getItem(localName))
         if (!array.includes(id)) {
           array.push(id)
           localStorage.setItem(localName, JSON.stringify(array))
@@ -129,14 +128,14 @@ export const useFunctionality = id => {
       } else {
         localStorage.setItem(localName, JSON.stringify([id]))
         localState(true)
-        counter(1)
+        dispatch(counter(1))
       }
     } else {
       if (valueLocalState) {
         dispatch(deleteInServer(id))
         localState(false)
       } else {
-        dispatch(addInServer)
+        dispatch(addInServer(id))
         localState(true)
       }
     }
