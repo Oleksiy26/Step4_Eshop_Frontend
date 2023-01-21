@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from '../../Button'
 import Input from '../Input'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as yup from 'yup'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchLogin } from '../../../store/login/login'
-import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 const initialValues = {
   email: '',
@@ -30,12 +31,27 @@ const validationSchema = yup.object().shape({
   login: yup.string().required('Login is required')
 })
 
-const Login = ({ changeAfterLogin }) => {
+const Login = () => {
   const dispatch = useDispatch()
+  const statusSignIn = useSelector(state => state.signIn.status)
+  const statusLogin = useSelector(state => state.login.status)
+  const navigate = useNavigate()
+  const [visibleError, setVisibleError] = useState(false)
+
+  useEffect(() => {
+    if (statusLogin === 'rejected') {
+      setVisibleError(true)
+    }
+  }, [statusLogin])
+
+  useEffect(() => {
+    if (statusSignIn === 'resolved') {
+      navigate('/')
+    }
+  }, [statusSignIn])
 
   const registerUser = value => {
     dispatch(fetchLogin(value))
-    changeAfterLogin(false)
   }
 
   const SignInvalues = [
@@ -71,16 +87,15 @@ const Login = ({ changeAfterLogin }) => {
                 </div>
               )
             })}
+            {visibleError && (
+              <span style={{ color: 'red' }}>User already exists</span>
+            )}
             <Button text='Create User' disabled={!values.name} type='submit' />
           </Form>
         )
       }}
     </Formik>
   )
-}
-
-Login.propTypes = {
-  changeAfterLogin: PropTypes.func
 }
 
 export default Login

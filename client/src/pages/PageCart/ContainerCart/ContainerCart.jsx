@@ -2,7 +2,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import ProductCard from '../../../components/ProductCard'
 import PropTypes from 'prop-types'
-import styles from './ContainerCart.module.scss'
 import { useForCart } from '../../../hooks/useForCart'
 
 export const ContainerCart = ({ items }) => {
@@ -10,7 +9,7 @@ export const ContainerCart = ({ items }) => {
   const { localQuantity } = useForCart()
 
   return (
-    <div className={styles.card}>
+    <div>
       {(token ? items.products && items.products : items && items).map(
         product => (
           <ProductCard
