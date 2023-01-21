@@ -11,39 +11,23 @@ export const ContainerCart = ({ items }) => {
 
   return (
     <div className={styles.card}>
-      {token
-        ? items &&
-          items.map(item => (
-            <ProductCard
-              price={item.product.currentPrice}
-              photoUrl={item.product.imageUrls[0]}
-              subClass={''}
-              key={item.product._id}
-              id={item.product._id}
-              nameCard={item.product.name}
-              quantity={item.cartQuantity}
-              color={item.product.color}
-              size={item.product.size}
-              viewForCart
-              cart
-            />
-          ))
-        : items &&
-          items.map(item => (
-            <ProductCard
-              price={item.currentPrice}
-              photoUrl={item.imageUrls[0]}
-              subClass={''}
-              key={item._id}
-              id={item._id}
-              nameCard={item.name}
-              quantity={localQuantity(`${item._id}`)}
-              color={item.color}
-              size={item.size}
-              viewForCart
-              cart
-            />
-          ))}
+      {(token ? items.products && items.products : items && items).map(
+        product => (
+          <ProductCard
+            price={(token ? product.product : product).currentPrice}
+            photoUrl={(token ? product.product : product).imageUrls[0]}
+            subClass={''}
+            key={(token ? product.product : product)._id}
+            id={(token ? product.product : product)._id}
+            nameCard={(token ? product.product : product).name}
+            quantity={token ? product.cartQuantity : localQuantity(product._id)}
+            color={(token ? product.product : product).color}
+            size={(token ? product.product : product).size}
+            viewForCart
+            cart
+          />
+        )
+      )}
     </div>
   )
 }
@@ -54,5 +38,3 @@ ContainerCart.propTypes = {
     PropTypes.object.isRequired
   ])
 }
-
-// export default ContainerCart
