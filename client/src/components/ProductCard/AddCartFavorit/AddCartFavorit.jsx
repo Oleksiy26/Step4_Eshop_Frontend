@@ -5,18 +5,17 @@ import Button from '../../Button/Button'
 import PropTypes from 'prop-types'
 import { useFunctionality } from '../../../hooks/useFunctionality'
 
-const AddCartFavorit = ({ subClasss, currentId }) => {
-  const { inFav, inCart, clickFav, clickToCart, actionOnCkickFavOrCart } =
-    useFunctionality(currentId)
+const AddCartFavorit = ({ subClasss, cardId }) => {
+  const { inFav, inCart, actionOnCkickFavOrCart } = useFunctionality(cardId)
 
   const addItemToCart = event => {
     event.stopPropagation()
-    actionOnCkickFavOrCart(currentId, 'cart')
+    actionOnCkickFavOrCart(cardId, 'cart')
   }
 
   const addItemToWishlist = event => {
     event.stopPropagation()
-    actionOnCkickFavOrCart(currentId, 'fav')
+    actionOnCkickFavOrCart(cardId, 'fav')
   }
 
   return (

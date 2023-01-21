@@ -41,7 +41,7 @@ function App() {
     if (token) {
       sedtItemsFromLocalStorage()
     }
-  }, [favItems, token])
+  }, [token])
 
   const sedtItemsFromLocalStorage = () => {
     if (JSON.parse(localStorage.getItem('cart'))) {
