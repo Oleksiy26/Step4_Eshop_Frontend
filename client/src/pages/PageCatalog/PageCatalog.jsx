@@ -49,17 +49,21 @@ const PageCatalog = () => {
       <Title subtitle='Catalogue' />
       <div className='page-wrapper'>
         <aside className='page-sidebar'>
-          <Title title='Category' showContent={showCategory} />
+          <Title
+            title='Category'
+            showContent={showCategory}
+            className={'active'}
+          />
           <Category
             categoryActive={
               useWindowSize() < 768 ? !categoryActive : categoryActive
             }
           />
-          <Title title='Colors' showContent={showColor} />
+          <Title title='Colors' showContent={showColor} className={'active'} />
           <Colors
             contentActive={useWindowSize() < 768 ? !colorActive : colorActive}
           />
-          <Title title='Sizes' showContent={showSizes} />
+          <Title title='Sizes' showContent={showSizes} className={'active'} />
           <Sizes
             sizesActive={useWindowSize() < 768 ? !sizesActive : sizesActive}
           />

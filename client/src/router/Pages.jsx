@@ -4,6 +4,8 @@ import { PageItem } from '../pages/PageItem/PageItem'
 import PageFav from '../pages/PageFav'
 import PageCatalog from '../pages/PageCatalog'
 import PageCheckout from '../pages/PageCheckout'
+import PageSignIn from '../pages/PageSignIn/PageSignIn'
+import PageLogin from '../pages/PageLogin/PageLogin'
 
 export const publicRoutes = [
   { path: '/', element: PageHome },
