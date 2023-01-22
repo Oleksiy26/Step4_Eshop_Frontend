@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkInCart, checkInFav } from '../store/counter/counter'
-import { AuthContext } from '../context/AuthContext'
 import {
   addToWishlist,
   deleteItemFromWishlist
@@ -15,40 +14,64 @@ import {
 export const useFunctionality = id => {
   const [inFav, setInFav] = useState(false)
   const [inCart, setInCart] = useState(false)
-  const auth = useContext(AuthContext)
   const dispatch = useDispatch()
   const token = useSelector(state => state.auth.token)
   const cardInCart = useSelector(state => state.cart.cart)
   const cardInFav = useSelector(state => state.wishlist.favItems)
+  let values
+
+  useEffect(() => {
+    if (!token) {
+      checkCardsFromLocalStorage('fav')
+      checkCardsFromLocalStorage('cart')
+    } else {
+      checkCards(id)
+    }
+  }, [token ? (cardInCart, cardInFav) : null])
 
   const checkValue = value => {
     return value != null
   }
 
-  useEffect(() => {
-    if (!token) {
-      const favorite = JSON.parse(localStorage.getItem('fav'))
-      if (favorite) {
-        dispatch(checkInFav(favorite.length))
-        favorite.forEach(item => {
-          if (item === id) {
-            setInFav(true)
-          }
-        })
-      }
-      const inCart = JSON.parse(localStorage.getItem('cart'))
-      if (inCart) {
-        dispatch(checkInCart(inCart.length))
-        inCart.forEach(item => {
-          if (item === id) {
-            setInCart(true)
-          }
-        })
-      }
-    } else {
-      checkCards(id)
+  const forFavActions = {
+    localName: 'fav',
+    counter: checkInFav,
+    localState: setInFav,
+    valueLocalState: inFav,
+    deleteInServer: deleteItemFromWishlist,
+    addInServer: addToWishlist
+  }
+
+  const forCartActions = {
+    localName: 'cart',
+    counter: checkInCart,
+    localState: setInCart,
+    valueLocalState: inCart,
+    deleteInServer: fetchDeleteFromCart,
+    addInServer: fetchAddToCart
+  }
+
+  const selectVarriable = value => {
+    if (value === 'fav') {
+      return (values = forFavActions)
+    } else if (value === 'cart') {
+      return (values = forCartActions)
     }
-  }, [token ? (cardInCart, cardInFav) : null])
+  }
+
+  const checkCardsFromLocalStorage = value => {
+    selectVarriable(value)
+    const { localName, counter, localState } = values
+    const arrayFromLocalStorage = JSON.parse(localStorage.getItem(localName))
+    if (arrayFromLocalStorage) {
+      dispatch(counter(arrayFromLocalStorage.length))
+      arrayFromLocalStorage.forEach(item => {
+        if (item === id) {
+          localState(true)
+        }
+      })
+    }
+  }
 
   const checkCards = id => {
     if (cardInCart.products) {
@@ -74,70 +97,46 @@ export const useFunctionality = id => {
     }
   }
 
-  const clickFav = id => {
-    if (!token) {
-      if (localStorage.getItem('fav')) {
-        const fav = JSON.parse(localStorage.getItem('fav'))
-        if (!fav.includes(id)) {
-          fav.push(id)
-          localStorage.setItem('fav', JSON.stringify(fav))
-          setInFav(true)
-          dispatch(checkInFav(fav.length))
-        } else {
-          const newFav = fav.map(item => {
-            return item !== id ? item : null
-          })
-          const filter = newFav.filter(checkValue)
-          dispatch(checkInFav(filter.length))
-          localStorage.setItem('fav', JSON.stringify(filter))
-          setInFav(false)
-        }
-      } else {
-        localStorage.setItem('fav', JSON.stringify([id]))
-        setInFav(true)
-        dispatch(checkInFav(1))
-      }
-    } else {
-      if (inFav) {
-        dispatch(deleteItemFromWishlist(id))
-        setInFav(false)
-      } else {
-        dispatch(addToWishlist(id))
-        setInFav(true)
-      }
-    }
-  }
+  const actionOnCkickFavOrCart = (id, value) => {
+    selectVarriable(value)
+    const {
+      localName,
+      counter,
+      localState,
+      valueLocalState,
+      deleteInServer,
+      addInServer
+    } = values
 
-  const clickToCart = id => {
     if (!token) {
-      if (localStorage.getItem('cart')) {
-        const cart = JSON.parse(localStorage.getItem('cart'))
-        if (!cart.includes(id)) {
-          cart.push(id)
-          localStorage.setItem('cart', JSON.stringify(cart))
-          setInCart(true)
-          dispatch(checkInCart(cart.length))
+      if (localStorage.getItem(localName)) {
+        const array = JSON.parse(localStorage.getItem(localName))
+        if (!array.includes(id)) {
+          array.push(id)
+          localStorage.setItem(localName, JSON.stringify(array))
+          localState(true)
+          dispatch(counter(array.length))
         } else {
-          const newCart = cart.map(item => {
+          const newArray = array.map(item => {
             return item !== id ? item : null
           })
-          const filter = newCart.filter(checkValue)
-          dispatch(checkInCart(filter.length))
-          localStorage.setItem('cart', JSON.stringify(filter))
-          setInCart(false)
+          const filter = newArray.filter(checkValue)
+          dispatch(counter(filter.length))
+          localStorage.setItem(localName, JSON.stringify(filter))
+          localState(false)
         }
       } else {
-        localStorage.setItem('cart', JSON.stringify([id]))
-        setInCart(true)
-        dispatch(checkInCart(1))
+        localStorage.setItem(localName, JSON.stringify([id]))
+        localState(true)
+        dispatch(counter(1))
       }
     } else {
-      if (inCart) {
-        dispatch(fetchDeleteFromCart(id))
-        setInCart(false)
+      if (valueLocalState) {
+        dispatch(deleteInServer(id))
+        localState(false)
       } else {
-        dispatch(fetchAddToCart(id))
-        setInCart(true)
+        dispatch(addInServer(id))
+        localState(true)
       }
     }
   }
@@ -192,11 +191,10 @@ export const useFunctionality = id => {
   return {
     inFav,
     inCart,
-    clickFav,
-    clickToCart,
     setInFav,
     clickDeleteCardInCart,
     clickAddInCart,
-    clickDeleteProductInCart
+    clickDeleteProductInCart,
+    actionOnCkickFavOrCart
   }
 }

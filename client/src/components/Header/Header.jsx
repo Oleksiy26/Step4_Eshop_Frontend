@@ -57,7 +57,7 @@ const Header = () => {
         </div>
         <div className={styles.header__block_svg}>
           {!token ? (
-            <NavLink to='/login'>
+            <NavLink to='/signin'>
               <User style={{ cursor: 'pointer' }} />
             </NavLink>
           ) : (

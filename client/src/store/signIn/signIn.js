@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { useNavigate } from 'react-router-dom'
 import { login } from '../tokenWork/tokenWork'
 
 export const fetchSignIn = createAsyncThunk(

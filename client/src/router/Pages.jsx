@@ -1,5 +1,4 @@
 import PageHome from '../pages/PageHome/PageHome'
-import PageLogin from '../pages/PageLogin/PageLogin'
 import PageCart from '../pages/PageCart/PageCart'
 import { PageItem } from '../pages/PageItem/PageItem'
 import PageFav from '../pages/PageFav'
@@ -12,6 +11,7 @@ export const publicRoutes = [
   { path: '/catalog', element: PageCatalog },
   { path: '/catalog/:itemNo', element: PageItem },
   { path: '/fav', element: PageFav },
+  { path: '/signin', element: PageSignIn },
   { path: '/login', element: PageLogin }
 ]
 

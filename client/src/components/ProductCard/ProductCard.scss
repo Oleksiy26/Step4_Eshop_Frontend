@@ -71,7 +71,6 @@
     border: 1px solid #476785;
     &:hover {
       background-color: inherit;
-
     }
   }
 }
@@ -81,6 +80,7 @@
   justify-content: space-between;
   flex-direction: row;
   height: 130px;
+  cursor: pointer;
   border: none;
   margin: 20px 0;
   &_img {
@@ -142,7 +142,7 @@
   }
   h3 {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 18px;
     color: #2D4153;
   }

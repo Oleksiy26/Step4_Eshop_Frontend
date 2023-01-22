@@ -21,6 +21,10 @@ const Pagination = () => {
     setPages(filler(pagesCount))
   }, [pagesCount])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [startPage])
+
   return (
     <div className='pages'>
       {pages.length &&

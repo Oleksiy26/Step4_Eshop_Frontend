@@ -7,6 +7,7 @@ import * as yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSignIn } from '../../../store/signIn/signIn'
 import { useEffect } from 'react'
+import { useState } from 'react'
 
 const initialValues = {
   loginOrEmail: '',
@@ -25,10 +26,11 @@ const SignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { status } = useSelector(state => state.signIn)
+  const [visibleError, setVisibleError] = useState(false)
 
   useEffect(() => {
     if (status === 'rejected') {
-      alert('Wrong login or password. Try again.')
+      setVisibleError(true)
     } else if (status === 'resolved') {
       navigate('/')
     }
@@ -68,6 +70,11 @@ const SignIn = () => {
                 </div>
               )
             })}
+            {visibleError && (
+              <span style={{ color: 'red' }}>
+                Wrong login or password. Try again.
+              </span>
+            )}
             <Button text='Sign in' disabled={!values.name} type='submit' />
           </Form>
         )

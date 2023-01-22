@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AuthContext } from './context/AuthContext'
+// import { AuthContext } from './context/AuthContext'
 import { fetchProducts } from './store/products/productSlice'
 import { login } from './store/tokenWork/tokenWork'
 import { fetchAddToCart, fetchGetAllFromCart } from './store/cart/cart'
@@ -41,7 +41,7 @@ function App() {
     if (token) {
       sedtItemsFromLocalStorage()
     }
-  }, [favItems, token])
+  }, [token])
 
   const sedtItemsFromLocalStorage = () => {
     if (JSON.parse(localStorage.getItem('cart'))) {
@@ -54,9 +54,9 @@ function App() {
 
     if (JSON.parse(localStorage.getItem('fav'))) {
       const favs = JSON.parse(localStorage.getItem('fav'))
-      const arrayOfFovProducts = favItems.products.products
-      if (arrayOfFovProducts) {
-        const arrayOfId = arrayOfFovProducts.map(item => {
+      const arrayOfFavProducts = favItems.products.products
+      if (arrayOfFavProducts) {
+        const arrayOfId = arrayOfFavProducts.map(item => {
           return item._id
         })
         const uniqueItemsFromLocalStorage = favs.filter(
@@ -68,20 +68,21 @@ function App() {
           })
         }
         localStorage.removeItem('fav')
+      } else {
+        favs.map(item => {
+          dispatch(addToWishlist(item))
+        })
+        localStorage.removeItem('fav')
       }
     }
   }
 
   return (
-    <AuthContext.Provider
-      value={{
-        token
-      }}
-    >
+    <>
       <Header />
       <AppRouter />
       {location !== '/login' ? <Footer /> : null}
-    </AuthContext.Provider>
+    </>
   )
 }
 
