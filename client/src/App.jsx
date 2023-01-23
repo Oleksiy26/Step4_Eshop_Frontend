@@ -23,58 +23,58 @@ function App() {
   const { favItems } = useSelector(state => state.wishlist)
   const { location } = useSelector(state => state.location)
   const history = createBrowserHistory()
+  const cardInCart = useSelector(state => state.cart.cart)
 
   useEffect(() => {
     dispatch(setLocation(history.location.pathname))
     dispatch(fetchProducts())
     const data = JSON.parse(localStorage.getItem('userToken'))
     if (data && data.token) dispatch(login(data.token))
-    if (token) {
-      dispatch(fetchGetAllFromCart())
-      dispatch(fetchWishlist())
-      dispatch(fetchGetUser())
-    }
     dispatch(ckearStatusOrder())
-  }, [dispatch, token, locationHook, history.location.pathname])
+  }, [dispatch, locationHook, history.location.pathname])
 
   useEffect(() => {
     if (token) {
+      dispatch(fetchWishlist())
+      dispatch(fetchGetUser())
       sedtItemsFromLocalStorage()
+      dispatch(fetchGetAllFromCart())
     }
   }, [token])
 
   const sedtItemsFromLocalStorage = () => {
     if (JSON.parse(localStorage.getItem('cart'))) {
       const cards = JSON.parse(localStorage.getItem('cart'))
-      cards.map(item => {
+      cards.forEach(item => {
         dispatch(fetchAddToCart(item))
       })
+
       localStorage.removeItem('cart')
     }
 
-    if (JSON.parse(localStorage.getItem('fav'))) {
-      const favs = JSON.parse(localStorage.getItem('fav'))
-      const arrayOfFavProducts = favItems.products.products
-      if (arrayOfFavProducts) {
-        const arrayOfId = arrayOfFavProducts.map(item => {
-          return item._id
-        })
-        const uniqueItemsFromLocalStorage = favs.filter(
-          item => !arrayOfId.includes(item)
-        )
-        if (uniqueItemsFromLocalStorage) {
-          uniqueItemsFromLocalStorage.map(item => {
-            dispatch(addToWishlist(item))
-          })
-        }
-        localStorage.removeItem('fav')
-      } else {
-        favs.map(item => {
-          dispatch(addToWishlist(item))
-        })
-        localStorage.removeItem('fav')
-      }
-    }
+    // if (JSON.parse(localStorage.getItem('fav'))) {
+    //   const favs = JSON.parse(localStorage.getItem('fav'))
+    //   const arrayOfFavProducts = favItems.products.products
+    //   if (arrayOfFavProducts) {
+    //     const arrayOfId = arrayOfFavProducts.map(item => {
+    //       return item._id
+    //     })
+    //     const uniqueItemsFromLocalStorage = favs.filter(
+    //       item => !arrayOfId.includes(item)
+    //     )
+    //     if (uniqueItemsFromLocalStorage) {
+    //       uniqueItemsFromLocalStorage.map(item => {
+    //         dispatch(addToWishlist(item))
+    //       })
+    //     }
+    //     localStorage.removeItem('fav')
+    //   } else {
+    //     favs.map(item => {
+    //       dispatch(addToWishlist(item))
+    //     })
+    //     localStorage.removeItem('fav')
+    //   }
+    // }
   }
 
   return (

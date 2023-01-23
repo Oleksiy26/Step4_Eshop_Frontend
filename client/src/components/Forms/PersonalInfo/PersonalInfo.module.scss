@@ -1,0 +1,13 @@
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  @media (max-width: 660px) {
+    grid-template-columns: 1fr;
+  }
+}
+.block {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}

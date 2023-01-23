@@ -43,8 +43,63 @@ export const fetchMakeOrder = createAsyncThunk(
   }
 )
 
+export const fetchMakeOrderForNoauth = createAsyncThunk(
+  'makeOrder/fetchMakeOrderForNoauth',
+  async function (values, { rejectWithValue, getState, dispatch }) {
+    const { value } = values
+    try {
+      const respons = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          products: [],
+          email: '',
+          mobile: '',
+          letterSubject: 'sdfs',
+          letterHtml: 'sfedfs',
+          status: 'not shipped',
+          canceled: false
+        })
+      })
+      if (!respons.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await respons.json()
+      return data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+export const getOrdersUser = createAsyncThunk(
+  'makeOrder/getOrdersUser',
+  async function (_, { rejectWithValue, getState, dispatch }) {
+    const stateToken = getState().auth.token
+    try {
+      const respons = await fetch('/api/orders', {
+        method: 'GET',
+        headers: {
+          Authorization: stateToken
+        }
+      })
+      if (!respons.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await respons.json()
+      console.log(data)
+      return data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
 const initialState = {
   order: {},
+  orders: {},
   status: null,
   error: null
 }
@@ -67,6 +122,18 @@ export const orderSlice = createSlice({
       state.order = action.payload
     },
     [fetchMakeOrder.rejected]: (state, action) => {
+      state.status = 'rejected'
+      state.error = action.payload
+    },
+    [getOrdersUser.pending]: state => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [getOrdersUser.fulfilled]: (state, action) => {
+      state.status = 'resolved'
+      state.orders = action.payload
+    },
+    [getOrdersUser.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
     }

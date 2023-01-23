@@ -1,10 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Title from '../../components/Title/Title'
 import { useForCart } from '../../hooks/useForCart'
 import SectionOrder from './SectionOrder'
 import './Other.scss'
 import AlsoLike from '../../components/AlsoLike'
+import BreadCrumbs from '../../components/BreadCrumbs'
+import { useEffect } from 'react'
+import { fetchGetAllFromCart } from '../../store/cart/cart'
 
 const PageCart = () => {
   const cardInCart = useSelector(state => state.cart.cart)
@@ -14,6 +17,7 @@ const PageCart = () => {
 
   return (
     <div className='container py-5 page'>
+      <BreadCrumbs startFrom='Home' />
       {!cartCounter.inCart ? (
         <>
           <Title subtitle='Your shopping cart is empty' />

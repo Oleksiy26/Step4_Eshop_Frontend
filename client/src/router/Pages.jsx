@@ -6,6 +6,7 @@ import PageCatalog from '../pages/PageCatalog'
 import PageCheckout from '../pages/PageCheckout'
 import PageSignIn from '../pages/PageSignIn/PageSignIn'
 import PageLogin from '../pages/PageLogin'
+import PageCabinet from '../pages/PageCabinet'
 
 export const privateRoutes = [
   { path: '/', element: PageHome },
@@ -14,7 +15,8 @@ export const privateRoutes = [
   { path: '/catalog/:itemNo', element: PageItem },
   { path: '/fav', element: PageFav },
   { path: '/checkout', element: PageCheckout },
-  { path: '/login', element: PageLogin }
+  { path: '/login', element: PageLogin },
+  { path: '/cabinet', element: PageCabinet }
 ]
 
 export const publicRoutes = [

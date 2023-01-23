@@ -1,6 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { checkInCart } from '../counter/counter'
 
+export const fetchCreateCart = createAsyncThunk(
+  'cart/fetchCreateCart',
+  async function (_, { rejectWithValue, getState }) {
+    const stateToken = getState().auth.token
+    try {
+      const respons = await fetch('/api/cart', {
+        method: 'POST',
+        headers: {
+          Authorization: stateToken
+        }
+      })
+      if (!respons.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await respons.json()
+      console.log(data)
+      return data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
 export const fetchAddToCart = createAsyncThunk(
   'cart/fetchAddToCart',
   async function (id, { rejectWithValue, getState, dispatch }) {
@@ -24,6 +47,7 @@ export const fetchAddToCart = createAsyncThunk(
         (accumulator, currentValue) => accumulator + currentValue,
         total
       )
+      dispatch(fetchGetAllFromCart())
       dispatch(checkInCart(calculateQuantite))
       return data
     } catch (error) {
@@ -216,6 +240,18 @@ export const cartSlice = createSlice({
       state.cart = action.payload
     },
     [fetchDeleteCart.rejected]: (state, action) => {
+      state.status = 'rejected'
+      state.error = action.payload
+    },
+    [fetchCreateCart.pending]: state => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [fetchCreateCart.fulfilled]: (state, action) => {
+      state.status = 'resolved'
+      state.cart = action.payload
+    },
+    [fetchCreateCart.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
     }

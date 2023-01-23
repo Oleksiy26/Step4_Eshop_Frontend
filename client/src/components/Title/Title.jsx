@@ -8,7 +8,7 @@ const Title = ({ title, subtitle, showContent }) => {
       {title && (
         <div className='row mt-5 active'>
           <div className='col text-uppercase secondaryColor'>
-            <h5 onClick={() => showContent()}> {title}</h5>
+            <h5> {title}</h5>
           </div>
         </div>
       )}

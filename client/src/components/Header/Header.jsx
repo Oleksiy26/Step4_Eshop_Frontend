@@ -56,13 +56,19 @@ const Header = () => {
           </NavLink>
         </div>
         <div className={styles.header__block_svg}>
-          {!token ? (
+          {/* {token ? (
             <NavLink to='/signin'>
               <User style={{ cursor: 'pointer' }} />
             </NavLink>
           ) : (
             <Logout style={{ cursor: 'pointer' }} onClick={() => logOut()} />
+          )} */}
+          {token && (
+            <Logout style={{ cursor: 'pointer' }} onClick={() => logOut()} />
           )}
+          <NavLink to={token ? '/cabinet' : '/signin'}>
+            <User style={{ cursor: 'pointer' }} />
+          </NavLink>
           <Search onClick={() => clickSearch()} style={{ cursor: 'pointer' }} />
           <NavLink to='/fav'>
             <Fav />
