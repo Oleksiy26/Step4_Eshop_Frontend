@@ -8,25 +8,30 @@ This repository contains the code for the Lingerie website, an online store that
 
 To run the project on your local machine, follow these steps:
 
-Clone the repository to your local machine
-Run npm i in the main folder, client folder, and server folder to install all dependencies
-Run npm run start to start the development server
-The website will be available at http://localhost:3000/
+1. Clone the repository to your local machine
+2. Run npm i in the main folder, client folder, and server folder to install all dependencies
+3. Run npm run start to start the development server
+4. The website will be available at http://localhost:3000/
+
+## Features
 
 ## Stack
 
-Front-End
-REACT
-REDUX-TOOLKIT
-SASS
-BOOTSTRAP
-FORMIK
-YUP
-Back-End
-NODE.JS
-MONGODB
-MONGOOSE
-EXPRESS.JS
+### Front-End
+
+1. REACT
+2. REDUX-TOOLKIT
+3. SASS
+4. BOOTSTRAP
+5. FORMIK
+6. YUP
+
+### Back-End
+
+1. NODE.JS
+2. MONGODB
+3. MONGOOSE
+4. EXPRESS.JS
 
 ## Contribution
 
