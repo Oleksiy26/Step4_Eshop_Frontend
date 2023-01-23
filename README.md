@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Lingerie
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lingerie is a fictional brand of women's lingerie that prides itself on offering a wide range of styles, sizes, and designs to cater to the diverse needs of women everywhere. The brand is known for its high-quality fabrics and attention to detail, ensuring that every piece is both comfortable and fashionable.
 
-## Available Scripts
+This repository contains the code for the Lingerie website, an online store that provides the end user with all the features needed for a great user experience. The website is built using a stack of technologies including React, Redux-Toolkit, SASS, Bootstrap, Formik, and Yup for the front-end and Node.js, MongoDB, Mongoose, and Express.js for the back-end.
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+To run the project on your local machine, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository to your local machine
+2. Run npm i in the main folder, client folder, and server folder to install all dependencies
+3. Run npm run start to start the development server
+4. The website will be available at http://localhost:3000/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- A shopping cart feature that allows a logged-in user to add, remove, and modify products using an API, and a non-logged-in user to use local storage.
+- Checkout page functionality for completing a purchase.
+- Asynchronous request registration to the server using Redux.
+- Redux location and token management.
+- A feature for transferring data from local storage to the server upon user login.
+- Filtering, pagination, and a "Load More" button feature on the catalog page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Stack
 
-### `npm run build`
+### Front-End
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. REACT
+2. REDUX-TOOLKIT
+3. SASS
+4. BOOTSTRAP
+5. FORMIK
+6. YUP
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Back-End
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. NODE.JS
+2. MONGODB
+3. MONGOOSE
+4. EXPRESS.JS
 
-### `npm run eject`
+## Contributors
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+[[mr-nazarii](https://github.com/mr-nazarii)]
+[[KaterinaShev](https://github.com/KaterinaShev)]
+[[Oleksiy26](https://github.com/Oleksiy26)]
+[[All1in](https://github.com/All1in)]
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contribution
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+If you wish to contribute to this project, please feel free to fork the repository and create pull requests.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License.
