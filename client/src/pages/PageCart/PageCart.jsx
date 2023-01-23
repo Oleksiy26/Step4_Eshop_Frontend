@@ -23,7 +23,7 @@ const PageCart = () => {
         <>
           <Title subtitle='Your cart' />
           <SectionOrder
-            items={token ? cardInCart.products : findItemsInCart()}
+            items={token ? cardInCart : findItemsInCart()}
             totalPrice={totalPrice()}
             check={token ? cardInCart : cartCounter.inCart}
           />

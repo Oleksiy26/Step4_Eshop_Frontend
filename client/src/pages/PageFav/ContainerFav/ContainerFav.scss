@@ -1,0 +1,6 @@
+.favorit-wrapper {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+  justify-content: center;
+}

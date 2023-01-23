@@ -1,34 +1,26 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import Loader from '../../../components/Loader'
 import Title from '../../../components/Title'
-import { checkLocation } from '../../../store/location/location'
 import ButtonCheckout from '../ButtonCheckout/ButtonCheckout'
 import styles from '../PageCart.module.scss'
 import { ContainerCart } from '../ContainerCart/ContainerCart'
+import { useSelector } from 'react-redux'
 
 const SectionOrder = ({ items, totalPrice, check }) => {
-  const dispatch = useDispatch()
-  const location = useLocation()
-  const locationCheckout = useSelector(state => state.location.locationCheckout)
   const cardInCart = useSelector(state => state.cart)
   const token = useSelector(state => state.auth.token)
 
-  useEffect(() => {
-    dispatch(checkLocation(location.pathname))
-  }, [dispatch, location.pathname])
+  const { location } = useSelector(state => state.location)
 
   return (
     <section
       className={
-        !locationCheckout ? styles.section : styles.section + ' checkout'
+        location !== '/checkout' ? styles.section : styles.section + ' checkout'
       }
     >
       <div
         className={
-          !locationCheckout
+          location !== '/checkout'
             ? styles.section_products
             : styles.section_products + ' checkout'
         }
@@ -46,7 +38,7 @@ const SectionOrder = ({ items, totalPrice, check }) => {
       {check ? (
         <div
           className={
-            !locationCheckout
+            location !== '/checkout'
               ? styles.section_totaly
               : styles.section_totaly + ' checkout'
           }

@@ -30,10 +30,6 @@ const validationSchema = yup.object().shape({
 })
 
 const Order = ({ createOrder }) => {
-  const sendValue = value => {
-    return value
-  }
-
   const PersonalDetails = [
     { placeholder: 'Email', name: 'email' },
     { placeholder: 'Phone', name: 'phone' }
@@ -50,7 +46,6 @@ const Order = ({ createOrder }) => {
       initialValues={initialValues}
       onSubmit={createOrder}
       validationSchema={validationSchema}
-      createOrder={sendValue}
     >
       {({ values }) => {
         return (
@@ -94,7 +89,11 @@ const Order = ({ createOrder }) => {
                 )
               })}
             </div>
-            <Button text='Create' type='submit' disabled={!values.name} />
+            <Button
+              text='Make an order'
+              type='submit'
+              disabled={!values.name}
+            />
           </Form>
         )
       }}

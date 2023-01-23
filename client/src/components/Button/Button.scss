@@ -1,17 +1,17 @@
 .btn {
-    cursor: pointer;
-    background-color: #476785;
-    border: 1px solid #476785;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #F5F8FA;
-    padding: 20px 0;
-    border-radius: 0;
-    &:hover {
-        background-color: inherit;
-        color: #476785;
-    }
+  cursor: pointer;
+  background-color: #476785;
+  border: 1px solid #476785;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #f5f8fa;
+  padding: 20px 0;
+  border-radius: 0;
+  &:hover {
+    background-color: inherit;
+    color: #476785;
+  }
 }

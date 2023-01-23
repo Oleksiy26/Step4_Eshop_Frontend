@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchSignIn } from '../signIn/signIn'
 
 export const fetchLogin = createAsyncThunk(
   'login/fetchLogin',
-  async function (value, { rejectWithValue }) {
+  async function (value, { rejectWithValue, dispatch }) {
     try {
       const respons = await fetch('/api/customers', {
         method: 'POST',
@@ -21,6 +22,9 @@ export const fetchLogin = createAsyncThunk(
         throw new Error('Server Error!')
       }
       const data = await respons.json()
+      dispatch(
+        fetchSignIn({ loginOrEmail: value.email, password: value.password })
+      )
       return data
     } catch (error) {
       return rejectWithValue(error.message)

@@ -19,53 +19,15 @@ const ProductCard = ({
   size,
   cart
 }) => {
-  const {
-    inFav,
-    inCart,
-    clickFav,
-    clickToCart,
-    clickDeleteCardInCart,
-    clickAddInCart,
-    clickDeleteProductInCart
-  } = useFunctionality(id)
+  const { clickDeleteCardInCart, clickAddInCart, clickDeleteProductInCart } =
+    useFunctionality(id)
   const navigate = useNavigate()
 
   const redirectToCardPage = () => {
     navigate(`/catalog/${ident}`)
   }
 
-  const addItemToCart = event => {
-    event.stopPropagation()
-    clickToCart(id)
-  }
-
-  const addItemToWishlist = event => {
-    event.stopPropagation()
-    clickFav(id)
-  }
-
-  return !viewForCart ? (
-    <div className={`set-card ${subClass}`} onClick={redirectToCardPage}>
-      <div className='image-wrapper'>
-        <img src={photoUrl} alt='girl' className='set-img' />
-      </div>
-      <div className='text-wrapper'>
-        <h3 className='set-title'>{nameCard}</h3>
-        <p className='set-price'>{price} &euro;</p>
-      </div>
-      <div className='info-wrapper'>
-        <div className={`color-square ${color}`}></div>
-        <span>Size: {size}</span>
-      </div>
-      <AddCartFavorit
-        cardId={id}
-        inFav={inFav}
-        inCart={inCart}
-        onClickFav={addItemToWishlist}
-        onClickToCart={addItemToCart}
-      />
-    </div>
-  ) : (
+  const cardForCart = (
     <div className='card' onClick={!cart ? redirectToCardPage : null}>
       <div className='card_img'>
         <img src={photoUrl} alt={nameCard} className='set-img' />
@@ -99,6 +61,25 @@ const ProductCard = ({
       </div>
     </div>
   )
+
+  const cardForPages = (
+    <div className={`set-card ${subClass}`} onClick={redirectToCardPage}>
+      <div className='image-wrapper'>
+        <img src={photoUrl} alt='girl' className='set-img' />
+      </div>
+      <div className='text-wrapper'>
+        <h3 className='set-title'>{nameCard}</h3>
+        <p className='set-price'>{price} &euro;</p>
+      </div>
+      <div className='info-wrapper'>
+        <div className={`color-square ${color}`}></div>
+        <span>Size: {size}</span>
+      </div>
+      <AddCartFavorit cardId={id} />
+    </div>
+  )
+
+  return viewForCart ? cardForCart : cardForPages
 }
 
 ProductCard.defaultProps = {

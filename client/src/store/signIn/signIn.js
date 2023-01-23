@@ -36,6 +36,11 @@ const initialState = {
 export const signInSlice = createSlice({
   name: 'signIn',
   initialState,
+  reducers: {
+    clearStatus: state => {
+      state.status = null
+    }
+  },
   extraReducers: {
     [fetchSignIn.pending]: state => {
       state.status = 'loading'
@@ -51,5 +56,7 @@ export const signInSlice = createSlice({
     }
   }
 })
+
+export const { clearStatus } = signInSlice.actions
 
 export default signInSlice.reducer

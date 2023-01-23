@@ -20,7 +20,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-end;
-      div {
+      &_line {
         height: 1.5px;
         background-color: #2d4153;
         &:first-child {

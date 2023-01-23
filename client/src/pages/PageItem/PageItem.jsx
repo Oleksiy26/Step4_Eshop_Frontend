@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import { fetchCard } from '../../store/card/ActionCreator'
 import AddCartFavorit from '../../components/ProductCard/AddCartFavorit'
@@ -8,19 +8,18 @@ import './PageItem.scss'
 import AlsoLike from '../../components/AlsoLike/AlsoLike'
 import Loader from '../../components/Loader'
 import Title from '../../components/Title'
-import { checkLocation } from '../../store/location/location'
 
 export const PageItem = () => {
   const { itemNo } = useParams()
   const dispatch = useDispatch()
   const { card, isCardLoading, cardError } = useSelector(state => state.card)
-  const { imageUrls, name, currentPrice, size, color } = card
-  const location = useLocation()
+  const { imageUrls, name, currentPrice, size, color, _id } = card
 
   useEffect(() => {
     dispatch(fetchCard(itemNo))
-    dispatch(checkLocation(location.pathname))
   }, [dispatch, itemNo])
+
+  useEffect(() => {}, [card])
 
   const settings = {
     dots: true,
@@ -31,6 +30,10 @@ export const PageItem = () => {
     autoplay: true,
     adaptiveHeight: true,
     arrows: false
+  }
+
+  const sendId = _id => {
+    return _id
   }
 
   return (
@@ -69,7 +72,11 @@ export const PageItem = () => {
                 className={'colorSquare'}
               />
             </div>
-            <AddCartFavorit subClasss='block_fav' />
+            <AddCartFavorit
+              subClasss='block_fav'
+              cardId={_id}
+              currentId={sendId(_id)}
+            />
           </div>
         </div>
       )}

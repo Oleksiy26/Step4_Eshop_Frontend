@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Checkbox from '../Checkbox'
-import './Colors.scss'
+import './index.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { setColor, setstartPage } from '../../store/filter/filterSlice'
 
-const Colors = () => {
+const Colors = ({ contentActive }) => {
   const products = useSelector(state => state.products)
+  const colorName = useSelector(state => state.filter.colorName)
   const [colorsFilters, setColorsFilters] = useState([])
-
   const dispatch = useDispatch()
-  const color = useSelector(state => state.filter.colorName)
 
   const handleColorCheckbox = label => {
-    const currentIndex = color.indexOf(label)
-    const newChecked = [...color]
+    const currentIndex = colorName.indexOf(label)
+    const newChecked = [...colorName]
     if (currentIndex === -1) {
       newChecked.push(label)
     } else {
@@ -31,7 +30,8 @@ const Colors = () => {
 
   return (
     <ul className='page-colors_list'>
-      {colorsFilters &&
+      {contentActive &&
+        colorsFilters &&
         colorsFilters.map((item, index) => {
           return (
             <li className='page-colors_item' key={index}>

@@ -5,11 +5,11 @@ import styles from './Menu.module.scss'
 const Menu = () => {
   return (
     <div className={styles.menu}>
-      <NavLink to='/'>New lingerie</NavLink>
-      <NavLink to='/'>Sales</NavLink>
-      <NavLink to='/'>Profile</NavLink>
+      <NavLink to='/catalog'>New lingerie</NavLink>
+      <NavLink to='/catalog'>Sales</NavLink>
+      <NavLink to='/catalog'>Profile</NavLink>
       <NavLink to='/catalog'>Catalogue</NavLink>
-      <NavLink to='/'>Contact</NavLink>
+      <NavLink to='/catalog'>Contact</NavLink>
     </div>
   )
 }
