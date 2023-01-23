@@ -42,10 +42,10 @@ To run the project on your local machine, follow these steps:
 
 ## Contributors
 
-[mr-nazarii](https://github.com/mr-nazarii)
-[KaterinaShev](https://github.com/KaterinaShev)
-[Oleksiy26](https://github.com/Oleksiy26)
-[All1in](https://github.com/All1in)
+[[mr-nazarii](https://github.com/mr-nazarii)]
+[[KaterinaShev](https://github.com/KaterinaShev)]
+[[Oleksiy26](https://github.com/Oleksiy26)]
+[[All1in](https://github.com/All1in)]
 
 ## Contribution
 
