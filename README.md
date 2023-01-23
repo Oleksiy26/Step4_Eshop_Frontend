@@ -15,6 +15,13 @@ To run the project on your local machine, follow these steps:
 
 ## Features
 
+- A shopping cart feature that allows a logged-in user to add, remove, and modify products using an API, and a non-logged-in user to use local storage.
+- Checkout page functionality for completing a purchase.
+- Asynchronous request registration to the server using Redux.
+- Redux location and token management.
+- A feature for transferring data from local storage to the server upon user login.
+- Filtering, pagination, and a "Load More" button feature on the catalog page.
+
 ## Stack
 
 ### Front-End
@@ -32,6 +39,13 @@ To run the project on your local machine, follow these steps:
 2. MONGODB
 3. MONGOOSE
 4. EXPRESS.JS
+
+## Contributors
+
+[mr-nazarii](https://github.com/mr-nazarii)
+[KaterinaShev](https://github.com/KaterinaShev)
+[Oleksiy26](https://github.com/Oleksiy26)
+[All1in](https://github.com/All1in)
 
 ## Contribution
 
