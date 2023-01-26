@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchDeleteCart } from '../cart/cart'
 
 export const fetchMakeOrder = createAsyncThunk(
-  'makeOrder/fetchMakeOrder',
+  'order/fetchMakeOrder',
   async function (values, { rejectWithValue, getState, dispatch }) {
     const stateToken = getState().auth.token
     const customerId = getState().user.info._id
@@ -43,25 +43,16 @@ export const fetchMakeOrder = createAsyncThunk(
   }
 )
 
-export const fetchMakeOrderForNoauth = createAsyncThunk(
-  'makeOrder/fetchMakeOrderForNoauth',
-  async function (values, { rejectWithValue, getState, dispatch }) {
-    const { value } = values
+export const getOrdersUser = createAsyncThunk(
+  'order/getOrdersUser',
+  async function (_, { rejectWithValue, getState, dispatch }) {
+    const stateToken = getState().auth.token
     try {
       const respons = await fetch('/api/orders', {
-        method: 'POST',
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          products: [],
-          email: '',
-          mobile: '',
-          letterSubject: 'sdfs',
-          letterHtml: 'sfedfs',
-          status: 'not shipped',
-          canceled: false
-        })
+          Authorization: stateToken
+        }
       })
       if (!respons.ok) {
         throw new Error('Server Error!')
@@ -74,13 +65,13 @@ export const fetchMakeOrderForNoauth = createAsyncThunk(
   }
 )
 
-export const getOrdersUser = createAsyncThunk(
-  'makeOrder/getOrdersUser',
-  async function (_, { rejectWithValue, getState, dispatch }) {
+export const fetchDeleteOrder = createAsyncThunk(
+  'order/fetchDeleteOrder',
+  async function (id, { rejectWithValue, getState, dispatch }) {
     const stateToken = getState().auth.token
     try {
-      const respons = await fetch('/api/orders', {
-        method: 'GET',
+      const respons = await fetch(`/api/orders/${id}`, {
+        method: 'DELETE',
         headers: {
           Authorization: stateToken
         }
@@ -105,7 +96,7 @@ const initialState = {
 }
 
 export const orderSlice = createSlice({
-  name: 'makeOrder',
+  name: 'order',
   initialState,
   reducers: {
     ckearStatusOrder: state => {
@@ -131,9 +122,21 @@ export const orderSlice = createSlice({
     },
     [getOrdersUser.fulfilled]: (state, action) => {
       state.status = 'resolved'
-      state.orders = action.payload
+      state.order = action.payload
     },
     [getOrdersUser.rejected]: (state, action) => {
+      state.status = 'rejected'
+      state.error = action.payload
+    },
+    [fetchDeleteOrder.pending]: state => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [fetchDeleteOrder.fulfilled]: (state, action) => {
+      state.status = 'resolved'
+      state.order = action.payload
+    },
+    [fetchDeleteOrder.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
     }

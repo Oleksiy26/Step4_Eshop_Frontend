@@ -62,11 +62,10 @@
 }
 
 .cards {
-  display: flex;
-  width: 100%;
-  &_block {
-    margin-right: 10px;
-  }
+  display: grid;
+  gap: 48px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+  justify-content: start;
 }
 .info {
   width: 100%;

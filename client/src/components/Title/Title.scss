@@ -1,4 +1,8 @@
-// .active:active  {
-//   display: block;
-// background-color: red;
-// }
+@import '.././Colors/breakpoints.scss';
+@import '../../pages/PageHome/PerfectSet/variables.scss';
+
+.active {
+  @include for-medium-up {
+    cursor: pointer;
+  }
+}

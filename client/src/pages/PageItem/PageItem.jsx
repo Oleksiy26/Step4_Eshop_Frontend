@@ -32,10 +32,6 @@ export const PageItem = () => {
     arrows: false
   }
 
-  const sendId = _id => {
-    return _id
-  }
-
   return (
     <div className='container'>
       {isCardLoading ? (
@@ -58,9 +54,9 @@ export const PageItem = () => {
             <h3>Available</h3>
             <h4 className='my-4'>{currentPrice && currentPrice}$</h4>
             <div className='d-flex gap-4'>
-              <p>Available Sizes: </p>
+              <p>Size: </p>
               <div className='d-flex gap-4'>
-                {size ? <p>{size}</p> : <>No sizes</>}
+                {size ? <p>{size}</p> : <>No size</>}
               </div>
             </div>
             <div className='d-flex align-items-center'>
@@ -75,7 +71,7 @@ export const PageItem = () => {
             <AddCartFavorit
               subClasss='block_fav'
               cardId={_id}
-              currentId={sendId(_id)}
+              currentId={_id}
             />
           </div>
         </div>

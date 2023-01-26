@@ -8,17 +8,6 @@ import PageSignIn from '../pages/PageSignIn/PageSignIn'
 import PageLogin from '../pages/PageLogin'
 import PageCabinet from '../pages/PageCabinet'
 
-export const privateRoutes = [
-  { path: '/', element: PageHome },
-  { path: '/cart', element: PageCart },
-  { path: '/catalog', element: PageCatalog },
-  { path: '/catalog/:itemNo', element: PageItem },
-  { path: '/fav', element: PageFav },
-  { path: '/checkout', element: PageCheckout },
-  { path: '/login', element: PageLogin },
-  { path: '/cabinet', element: PageCabinet }
-]
-
 export const publicRoutes = [
   { path: '/', element: PageHome },
   { path: '/cart', element: PageCart },
@@ -26,5 +15,11 @@ export const publicRoutes = [
   { path: '/catalog/:itemNo', element: PageItem },
   { path: '/fav', element: PageFav },
   { path: '/signin', element: PageSignIn },
-  { path: '/login', element: PageLogin }
+  { path: '/login', element: PageLogin },
+  { path: '/checkout', element: PageCheckout }
+]
+
+export const privateRoutes = [
+  ...publicRoutes,
+  { path: '/profile', element: PageCabinet }
 ]

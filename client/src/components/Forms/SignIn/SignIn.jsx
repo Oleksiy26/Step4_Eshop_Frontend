@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchSignIn } from '../../../store/signIn/signIn'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { fetchAddToCart, fetchGetAllFromCart } from '../../../store/cart/cart'
 
 const initialValues = {
   loginOrEmail: '',

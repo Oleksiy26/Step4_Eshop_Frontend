@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Title.scss'
 
-const Title = ({ title, subtitle, showContent }) => {
+const Title = ({ title, subtitle, showContent, className }) => {
   return (
     <>
       {title && (
-        <div className='row mt-5 active'>
+        <div className={`row mt-5 ${className}`}>
           <div className='col text-uppercase secondaryColor'>
             <h5> {title}</h5>
           </div>

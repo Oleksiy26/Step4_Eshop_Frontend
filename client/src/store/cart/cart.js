@@ -16,7 +16,39 @@ export const fetchCreateCart = createAsyncThunk(
         throw new Error('Server Error!')
       }
       const data = await respons.json()
-      console.log(data)
+      return data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+export const fetchUpdateCart = createAsyncThunk(
+  'cart/fetchAddToCart',
+  async function (value, { rejectWithValue, getState, dispatch }) {
+    const stateToken = getState().auth.token
+    try {
+      const respons = await fetch('/api/cart', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: stateToken
+        },
+        body: JSON.stringify({ products: value })
+      })
+      if (!respons.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await respons.json()
+      const total = 0
+      const quantity = data.products.map(item => {
+        return item.cartQuantity
+      })
+      const calculateQuantite = quantity.reduce(
+        (accumulator, currentValue) => accumulator + currentValue,
+        total
+      )
+      dispatch(checkInCart(calculateQuantite))
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -142,7 +174,6 @@ export const fetchDeletaCardFromCart = createAsyncThunk(
         total
       )
       dispatch(checkInCart(calculateQuantite))
-      // dispatch(fetchGetAllFromCart())
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -174,7 +205,7 @@ export const fetchDeleteCart = createAsyncThunk(
 )
 
 const initialState = {
-  cart: [],
+  cart: {},
   status: null,
   error: null
 }
@@ -243,15 +274,15 @@ export const cartSlice = createSlice({
       state.status = 'rejected'
       state.error = action.payload
     },
-    [fetchCreateCart.pending]: state => {
+    [fetchUpdateCart.pending]: state => {
       state.status = 'loading'
       state.error = null
     },
-    [fetchCreateCart.fulfilled]: (state, action) => {
+    [fetchUpdateCart.fulfilled]: (state, action) => {
       state.status = 'resolved'
       state.cart = action.payload
     },
-    [fetchCreateCart.rejected]: (state, action) => {
+    [fetchUpdateCart.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
     }

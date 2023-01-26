@@ -5,7 +5,7 @@ import Input from '../Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { fetchChecgePassword } from '../../../store/user/userSlice'
+import { fetchChangePassword } from '../../../store/user/userSlice'
 import styles from './ChangePassword.module.scss'
 import * as yup from 'yup'
 
@@ -20,7 +20,7 @@ const validationSchema = yup.object().shape({
 const ChangePassword = () => {
   const dispatch = useDispatch()
   const userInfo = useSelector(state => state.user.info)
-  const { statusChechePass } = useSelector(state => state.user)
+  const { statusChangePass } = useSelector(state => state.user)
   const [visibleError, setVisibleError] = useState(false)
   const [visibleResolve, setVisibleResolve] = useState(false)
 
@@ -29,16 +29,16 @@ const ChangePassword = () => {
   useEffect(() => {
     setVisibleError(false)
     setVisibleResolve(false)
-    if (statusChechePass === 'rejected') {
+    if (statusChangePass === 'rejected') {
       setVisibleError(true)
-    } else if (statusChechePass === 'resolved') {
+    } else if (statusChangePass === 'resolved') {
       setVisibleError(false)
       setVisibleResolve(true)
     }
-  }, [statusChechePass])
+  }, [statusChangePass])
 
   const updateValues = value => {
-    dispatch(fetchChecgePassword(value))
+    dispatch(fetchChangePassword(value))
   }
 
   const personalValues = [

@@ -47,8 +47,8 @@ export const fetchUpdateUser = createAsyncThunk(
   }
 )
 
-export const fetchChecgePassword = createAsyncThunk(
-  'user/fetchChecgePassword',
+export const fetchChangePassword = createAsyncThunk(
+  'user/fetchChangePassword',
   async function (value, { rejectWithValue, getState }) {
     const stateToken = getState().auth.token
     try {
@@ -75,7 +75,7 @@ export const fetchChecgePassword = createAsyncThunk(
 const initialState = {
   info: [],
   status: null,
-  statusChechePass: null,
+  statusChangePass: null,
   statusUpdate: null,
   error: null
 }
@@ -108,16 +108,16 @@ export const userSlice = createSlice({
       state.statusUpdate = 'rejected'
       state.error = action.payload
     },
-    [fetchChecgePassword.pending]: state => {
-      state.statusChechePass = 'loading'
+    [fetchChangePassword.pending]: state => {
+      state.statusChangePass = 'loading'
       state.error = null
     },
-    [fetchChecgePassword.fulfilled]: (state, action) => {
-      state.statusChechePass = 'resolved'
+    [fetchChangePassword.fulfilled]: (state, action) => {
+      state.statusChangePass = 'resolved'
       state.info = action.payload
     },
-    [fetchChecgePassword.rejected]: (state, action) => {
-      state.statusChechePass = 'rejected'
+    [fetchChangePassword.rejected]: (state, action) => {
+      state.statusChangePass = 'rejected'
       state.error = action.payload
     }
   }

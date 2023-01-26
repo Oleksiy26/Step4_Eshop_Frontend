@@ -1,13 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Title from '../../components/Title/Title'
 import { useForCart } from '../../hooks/useForCart'
 import SectionOrder from './SectionOrder'
 import './Other.scss'
 import AlsoLike from '../../components/AlsoLike'
 import BreadCrumbs from '../../components/BreadCrumbs'
-import { useEffect } from 'react'
-import { fetchGetAllFromCart } from '../../store/cart/cart'
 
 const PageCart = () => {
   const cardInCart = useSelector(state => state.cart.cart)
