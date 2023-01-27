@@ -35,6 +35,15 @@
 .container {
   display: flex;
   flex-direction: column;
+  position: relative;
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    background-color: #dee6ed;
+    bottom: 0;
+  }
 }
 .information {
   display: flex;
@@ -51,6 +60,7 @@
     padding-left: 0;
     width: 50px;
     text-align: left;
+    cursor: pointer;
   }
   span {
     font-size: 14px;
@@ -62,12 +72,66 @@
 }
 
 .cards {
-  display: grid;
-  gap: 48px;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
-  justify-content: start;
+  height: 180px;
+  overflow: scroll;
+  width: 60%;
+  @media (max-width: 450px) {
+    width: 100%;
+  }
 }
 .info {
   width: 100%;
   height: 100%;
+}
+.container_cards {
+  display: flex;
+  justify-content: space-between;
+  &_info {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &_block {
+      &:last-child {
+        display: flex;
+        @media (max-width: 450px) {
+          margin-top: 10px;
+        }
+      }
+      div {
+        display: flex;
+        &:last-child {
+          align-items: end;
+        }
+      }
+    }
+    span {
+      font-size: 12px;
+      line-height: 15px;
+      text-align: center;
+      color: #2d4153;
+      padding: 0 10px;
+      margin: 3px 0;
+      &:first-child {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #97a9ba;
+        padding-left: 0;
+        width: 60px;
+        text-align: left;
+      }
+    }
+    p {
+      font-size: 12px;
+      line-height: 15px;
+      text-align: center;
+      color: #2d4153;
+      margin: 0;
+    }
+  }
+  @media (max-width: 450px) {
+    flex-direction: column;
+    
+  }
 }

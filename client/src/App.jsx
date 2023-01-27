@@ -15,7 +15,8 @@ import { useLocation } from 'react-router-dom'
 import { fetchGetUser } from './store/user/userSlice'
 import { createBrowserHistory } from 'history'
 import { setLocation } from './store/location/location'
-import { ckearStatusOrder } from './store/order/order'
+import { clearStatusOrder } from './store/order/order'
+import { clearStatus } from './store/signIn/signIn'
 
 function App() {
   const dispatch = useDispatch()
@@ -31,7 +32,8 @@ function App() {
     dispatch(fetchProducts())
     const data = JSON.parse(localStorage.getItem('userToken'))
     if (data && data.token) dispatch(login(data.token))
-    dispatch(ckearStatusOrder())
+    dispatch(clearStatusOrder())
+    dispatch(clearStatus())
   }, [dispatch, locationHook, history.location.pathname])
 
   useEffect(() => {

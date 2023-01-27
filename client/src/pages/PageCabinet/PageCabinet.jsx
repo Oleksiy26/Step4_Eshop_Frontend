@@ -60,40 +60,63 @@ const PageCabinet = () => {
           )}
           {orderVis && (
             <>
-              <Title subtitle={order ? 'My orders' : 'No orders'} />
-              {console.log(order)}
-              {order &&
+              <Title
+                subtitle={order.length !== 0 ? 'My orders' : 'No orders'}
+              />
+              {order.length !== 0 &&
                 order.map(item => (
                   <div key={item._id}>
-                    <Title title={`${'Order number ' + item._id}`} />
+                    <Title title={`${'№ ' + item._id}`} />
                     <div className={styles.container}>
                       <div className={styles.information}>
                         <div className={styles.information_all}>
-                          <p>Totalsum:</p>
                           <span>{item.totalSum}$</span>
                         </div>
-                        <div className={styles.information_all}>
-                          <p>Status:</p>
-                          <span>{item.status}</span>
-                        </div>
-                        <div>
-                          {/* <span onClick={() => deleteOrder(item._id)}>
-                            delete
-                          </span> */}
-                        </div>
                       </div>
-                      <div className={styles.cards}>
-                        {item.products.map(prod => (
-                          <ProductCard
-                            key={prod._id}
-                            photoUrl={prod.product.imageUrls[0]}
-                            nameCard={prod.product.name}
-                            size={prod.product.size}
-                            ident={prod.product.itemNo}
-                            subClass={' img-fluid overflow-auto flex-grow-1'}
-                            vievForOrders
-                          />
-                        ))}
+                      <div className={styles.container_cards}>
+                        <div className={styles.cards}>
+                          {item.products.map(prod => (
+                            <ProductCard
+                              key={prod._id}
+                              photoUrl={prod.product.imageUrls[0]}
+                              nameCard={prod.product.name}
+                              size={prod.product.size}
+                              ident={prod.product.itemNo}
+                              subClass={' img-fluid overflow-auto flex-grow-1'}
+                              color={prod.product.color}
+                              quantity={prod.cartQuantity}
+                              vievForOrders
+                            />
+                          ))}
+                        </div>
+
+                        <div className={styles.container_cards_info}>
+                          <div className={styles.container_cards_info_block}>
+                            <div>
+                              <span>{item.date}</span>
+                            </div>
+                            <div>
+                              <span className='title'>status:</span>
+                              <span>{item.status}</span>
+                            </div>
+                            <div>
+                              <span className='title'>mail:</span>
+                              <span>{item.email} </span>
+                            </div>
+                            <div>
+                              <span className='title'>mobile:</span>
+                              <span>{item.mobile} </span>
+                            </div>
+                          </div>
+                          <div className={styles.container_cards_info_block}>
+                            <p
+                              onClick={() => deleteOrder(item._id)}
+                              style={{ cursor: 'pointer' }}
+                            >
+                              DELETE ORDER
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

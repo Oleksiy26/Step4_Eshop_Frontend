@@ -80,7 +80,7 @@ export const fetchDeleteOrder = createAsyncThunk(
         throw new Error('Server Error!')
       }
       const data = await respons.json()
-      console.log(data)
+      dispatch(getOrdersUser())
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -90,7 +90,6 @@ export const fetchDeleteOrder = createAsyncThunk(
 
 const initialState = {
   order: {},
-  orders: {},
   status: null,
   error: null
 }
@@ -99,7 +98,7 @@ export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    ckearStatusOrder: state => {
+    clearStatusOrder: state => {
       state.status = null
     }
   },
@@ -134,7 +133,7 @@ export const orderSlice = createSlice({
     },
     [fetchDeleteOrder.fulfilled]: (state, action) => {
       state.status = 'resolved'
-      state.order = action.payload
+      // state.order = action.payload
     },
     [fetchDeleteOrder.rejected]: (state, action) => {
       state.status = 'rejected'
@@ -143,5 +142,5 @@ export const orderSlice = createSlice({
   }
 })
 
-export const { ckearStatusOrder } = orderSlice.actions
+export const { clearStatusOrder } = orderSlice.actions
 export default orderSlice.reducer

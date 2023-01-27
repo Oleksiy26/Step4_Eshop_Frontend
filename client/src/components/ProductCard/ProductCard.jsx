@@ -80,16 +80,28 @@ const ProductCard = ({
     </div>
   )
   const cardForOrders = (
-    <div className={`set-card ${subClass}`} onClick={redirectToCardPage}>
-      <div className='image-wrapper'>
-        <img src={photoUrl} alt='girl' className='set-img' />
+    <div className='card' onClick={!cart ? redirectToCardPage : null}>
+      <div className='card_img'>
+        <img src={photoUrl} alt={nameCard} className='set-img' />
       </div>
-      <div className='text-wrapper'>
-        <h3 className='set-title'>{nameCard}</h3>
-      </div>
-      <div className='info-wrapper'>
-        <div className={`color-square ${color}`}></div>
-        <span>Size: {size}</span>
+      <div className='card_info'>
+        <h3>{nameCard}</h3>
+        <div>
+          <span className='title'>Price</span>
+          <span>{price} $</span>
+        </div>
+        <div>
+          <span className='title'>Size</span>
+          <span>{size}</span>
+        </div>
+        <div>
+          <span className='title'>Color</span>
+          <span className={`color-square ${color}`}></span>
+        </div>
+        <div>
+          <span className='title'>Quantity</span>
+          <span>{quantity}</span>
+        </div>
       </div>
     </div>
   )
