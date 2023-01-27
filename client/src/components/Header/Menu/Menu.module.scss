@@ -43,10 +43,11 @@
             div {
                 display: flex;
                 flex-direction: column;
-                justify-content: space-evenly;
+                justify-content: start;
                 align-items: flex-end;
                 height: 100%;
                 a {
+                    margin: 25px 0;
                     font-weight: 400;
                     font-size: 42px;
                     line-height: 54px;

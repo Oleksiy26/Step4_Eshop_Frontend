@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchDeleteCart } from '../cart/cart'
 
 export const fetchMakeOrder = createAsyncThunk(
-  'makeOrder/fetchMakeOrder',
+  'order/fetchMakeOrder',
   async function (values, { rejectWithValue, getState, dispatch }) {
     const stateToken = getState().auth.token
     const customerId = getState().user.info._id
@@ -43,14 +43,60 @@ export const fetchMakeOrder = createAsyncThunk(
   }
 )
 
+export const getOrdersUser = createAsyncThunk(
+  'order/getOrdersUser',
+  async function (_, { rejectWithValue, getState, dispatch }) {
+    const stateToken = getState().auth.token
+    try {
+      const respons = await fetch('/api/orders', {
+        method: 'GET',
+        headers: {
+          Authorization: stateToken
+        }
+      })
+      if (!respons.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await respons.json()
+      return data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+export const fetchDeleteOrder = createAsyncThunk(
+  'order/fetchDeleteOrder',
+  async function (id, { rejectWithValue, getState, dispatch }) {
+    const stateToken = getState().auth.token
+    try {
+      const respons = await fetch(`/api/orders/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: stateToken
+        }
+      })
+      if (!respons.ok) {
+        throw new Error('Server Error!')
+      }
+      const data = await respons.json()
+      console.log(data)
+      return data
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
 const initialState = {
   order: {},
+  orders: {},
   status: null,
   error: null
 }
 
 export const orderSlice = createSlice({
-  name: 'makeOrder',
+  name: 'order',
   initialState,
   reducers: {
     ckearStatusOrder: state => {
@@ -67,6 +113,30 @@ export const orderSlice = createSlice({
       state.order = action.payload
     },
     [fetchMakeOrder.rejected]: (state, action) => {
+      state.status = 'rejected'
+      state.error = action.payload
+    },
+    [getOrdersUser.pending]: state => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [getOrdersUser.fulfilled]: (state, action) => {
+      state.status = 'resolved'
+      state.order = action.payload
+    },
+    [getOrdersUser.rejected]: (state, action) => {
+      state.status = 'rejected'
+      state.error = action.payload
+    },
+    [fetchDeleteOrder.pending]: state => {
+      state.status = 'loading'
+      state.error = null
+    },
+    [fetchDeleteOrder.fulfilled]: (state, action) => {
+      state.status = 'resolved'
+      state.order = action.payload
+    },
+    [fetchDeleteOrder.rejected]: (state, action) => {
       state.status = 'rejected'
       state.error = action.payload
     }

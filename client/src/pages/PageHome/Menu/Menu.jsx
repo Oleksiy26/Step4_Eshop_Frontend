@@ -7,9 +7,9 @@ const Menu = () => {
     <div className={styles.menu}>
       <NavLink to='/catalog'>New lingerie</NavLink>
       <NavLink to='/catalog'>Sales</NavLink>
-      <NavLink to='/catalog'>Profile</NavLink>
+      <NavLink to='/profile'>Profile</NavLink>
       <NavLink to='/catalog'>Catalogue</NavLink>
-      <NavLink to='/catalog'>Contact</NavLink>
+      <NavLink to='#contact'>Contact</NavLink>
     </div>
   )
 }

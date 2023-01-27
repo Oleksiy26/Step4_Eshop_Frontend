@@ -14,12 +14,11 @@ function Page404() {
             Choose something else from our catalog{' '}
             <span className='page__text_heart'>&#10084;</span>
           </p>
-          <Link to='/'>
-            <Button
-              text='Go to Homepage'
-              className='page__button content-button'
-            />
-          </Link>
+          <Button
+            to='/'
+            text='Go to Homepage'
+            className='page__button content-button'
+          />
         </div>
         <div className='page__img'>
           <img src='https://i.ibb.co/XVg4wMx/ard45.jpg' alt='girl' />

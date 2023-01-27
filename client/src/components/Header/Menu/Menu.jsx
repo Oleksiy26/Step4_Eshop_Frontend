@@ -8,7 +8,7 @@ const Menu = ({ closeFunc }) => {
   const arr = [
     { option: 'New lingerie', link: '/catalog' },
     { option: 'Sales', link: '/catalog' },
-    { option: 'Profile', link: '/catalog' },
+    { option: 'Profile', link: '/profile' },
     { option: 'Catalogue', link: '/catalog' },
     { option: 'Contact', link: '/catalog' }
   ]

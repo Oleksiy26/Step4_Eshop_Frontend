@@ -13,6 +13,7 @@ const ProductCard = ({
   id,
   nameCard,
   viewForCart,
+  vievForOrders,
   quantity,
   color,
   ident,
@@ -78,8 +79,26 @@ const ProductCard = ({
       <AddCartFavorit cardId={id} />
     </div>
   )
+  const cardForOrders = (
+    <div className={`set-card ${subClass}`} onClick={redirectToCardPage}>
+      <div className='image-wrapper'>
+        <img src={photoUrl} alt='girl' className='set-img' />
+      </div>
+      <div className='text-wrapper'>
+        <h3 className='set-title'>{nameCard}</h3>
+      </div>
+      <div className='info-wrapper'>
+        <div className={`color-square ${color}`}></div>
+        <span>Size: {size}</span>
+      </div>
+    </div>
+  )
 
-  return viewForCart ? cardForCart : cardForPages
+  return viewForCart
+    ? cardForCart
+    : vievForOrders
+    ? cardForOrders
+    : cardForPages
 }
 
 ProductCard.defaultProps = {

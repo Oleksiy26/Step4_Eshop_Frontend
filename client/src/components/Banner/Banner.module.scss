@@ -68,7 +68,10 @@
         }   
         @media (max-width: 991px) {
             font-size: 40px;
-        }       
+        }  
+        @media (max-width: 460px) {
+            font-size: 35px;
+        }     
     }
     @media (max-width: 1900px) {
         right: 3%;
