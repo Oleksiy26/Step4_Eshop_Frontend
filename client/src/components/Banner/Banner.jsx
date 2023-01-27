@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const Banner = () => {
   const navigate = useNavigate()
   const redirectCatalog = () => {
-    navigate('/catalog')
+    navigate('/catalog/filter')
   }
 
   return (
@@ -26,7 +26,7 @@ const Banner = () => {
         text='Go to catalog'
         className={styles.btn}
         onClick={redirectCatalog}
-        to='/catalog'
+        to='/catalog/filter'
       />
     </div>
   )

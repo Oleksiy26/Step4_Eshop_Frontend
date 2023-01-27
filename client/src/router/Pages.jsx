@@ -10,8 +10,8 @@ import PageLogin from '../pages/PageLogin/PageLogin'
 export const publicRoutes = [
   { path: '/', element: PageHome },
   { path: '/cart', element: PageCart },
-  { path: '/catalog', element: PageCatalog },
-  { path: '/catalog/:itemNo', element: PageItem },
+  { path: '/catalog/filter', element: PageCatalog },
+  { path: '/products/:itemNo', element: PageItem },
   { path: '/fav', element: PageFav },
   { path: '/signin', element: PageSignIn },
   { path: '/login', element: PageLogin }

@@ -8,7 +8,7 @@ const Sizes = ({ sizesActive }) => {
   const sizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
 
   const dispatch = useDispatch()
-  const sizeName = useSelector(state => state.filter.sizeName)
+  const sizeName = useSelector(state => state.filter.size)
 
   const handleSizeCheckbox = label => {
     const currentIndex = sizeName.indexOf(label)

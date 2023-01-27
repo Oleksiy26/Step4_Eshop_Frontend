@@ -9,12 +9,12 @@ export const fetchFilterProducts = createAsyncThunk(
       sizeFilter,
       startPage,
       perPage,
-      sort
+      sortFilter
     } = filtersData
 
     try {
       const respons = await fetch(
-        `/api/products/filter?${categoryFilter}&${colorFilter}&${sizeFilter}&startPage=${startPage}&perPage=${perPage}&sort=${sort}`
+        `/api/products/filter?startPage=${startPage}&perPage=${perPage}${categoryFilter}${colorFilter}${sizeFilter}${sortFilter}`
       )
 
       if (!respons.ok) {
@@ -35,10 +35,10 @@ const initialState = {
   products: [],
   status: null,
   error: null,
-  categoryName: [],
-  colorName: [],
-  sizeName: '',
-  sort: { sortName: '', sortProperty: '' }
+  categories: [],
+  color: [],
+  size: [],
+  sort: { sortName: '', sortProperty: [] }
 }
 
 export const filterSlice = createSlice({
@@ -55,16 +55,27 @@ export const filterSlice = createSlice({
       state.startPage = action.payload
     },
     setCategory(state, action) {
-      state.categoryName = action.payload
+      state.categories = action.payload
     },
     setColor(state, action) {
-      state.colorName = action.payload
+      state.color = action.payload
     },
     setSize(state, action) {
-      state.sizeName = action.payload
+      state.size = action.payload
     },
     setSortType(state, action) {
       state.sort = action.payload
+    },
+    setFilters(state, action) {
+      state.startPage = action.payload.startPage
+      state.perPage = action.payload.perPage
+      state.categories = action.payload.categories
+      // state.color = action.payload.color
+      // state.size = action.payload.size
+      // state.sort = action.payload.sort
+    },
+    setInitialState(state) {
+      state = initialState
     }
   },
   extraReducers: {
@@ -90,7 +101,9 @@ export const {
   setSortType,
   setstartPage,
   settotalPage,
-  setperPage
+  setperPage,
+  setFilters,
+  setInitialState
 } = filterSlice.actions
 
 export default filterSlice.reducer

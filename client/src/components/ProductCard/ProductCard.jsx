@@ -24,7 +24,7 @@ const ProductCard = ({
   const navigate = useNavigate()
 
   const redirectToCardPage = () => {
-    navigate(`/catalog/${ident}`)
+    navigate(`/products/${ident}`)
   }
 
   const cardForCart = (

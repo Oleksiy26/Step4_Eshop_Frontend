@@ -1,19 +1,66 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ProductCard from '../ProductCard'
+import qs from 'qs'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchFilterProducts, setperPage } from '../../store/filter/filterSlice'
+import {
+  fetchFilterProducts,
+  setFilters,
+  setInitialState
+} from '../../store/filter/filterSlice'
+import { useNavigate } from 'react-router-dom'
 import './index.scss'
+import { sortOptions } from '../SortList/SortList'
 
 const Galery = () => {
-  const { products, startPage, perPage, colorName, categoryName, sizeName } =
-    useSelector(state => state.filter)
+  const { products, startPage, perPage, color, categories, size } = useSelector(
+    state => state.filter
+  )
   const sort = useSelector(state => state.filter.sort.sortProperty)
 
+  // const isSearch = useRef(false)
+  const isAssembled = useRef(false)
+
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const categoryFilter = categoryName.length ? `categories=${categoryName}` : ''
-  const colorFilter = colorName.length ? `color=${colorName}` : ''
-  const sizeFilter = sizeName.length ? `size=${sizeName}` : ''
+  const categoryFilter = categories.length ? `&categories=${categories}` : ''
+  const colorFilter = color.length ? `&color=${color}` : ''
+  const sizeFilter = size.length ? `&size=${size}` : ''
+  const sortFilter = sort ? `&sort=${sort}` : ''
+
+  useEffect(() => {
+    return () => {
+      dispatch(setInitialState())
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    if (window.location.search) {
+      const filterParams = qs.parse(window.location.search.substring(1))
+      const sort = sortOptions.find(
+        obj => obj.sortProperty === filterParams.sortProperty
+      )
+      console.log(window.location.search)
+      dispatch(setFilters({ ...filterParams, sort }))
+    }
+  }, [dispatch, sort])
+
+  useEffect(() => {
+    if (isAssembled.current) {
+      const queryString = qs.stringify({
+        startPage,
+        perPage,
+        categories,
+        color,
+        size,
+        sort
+      })
+
+      console.log('use effect', queryString)
+      navigate(`?${queryString}`)
+    }
+    isAssembled.current = true
+  }, [categories, color, navigate, perPage, size, sort, startPage])
 
   useEffect(() => {
     dispatch(
@@ -23,17 +70,17 @@ const Galery = () => {
         sizeFilter,
         startPage,
         perPage,
-        sort
+        sortFilter
       })
     )
   }, [
     dispatch,
+    startPage,
+    perPage,
     categoryFilter,
     colorFilter,
     sizeFilter,
-    startPage,
-    perPage,
-    sort
+    sortFilter
   ])
 
   return (
