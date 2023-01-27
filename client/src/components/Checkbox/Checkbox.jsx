@@ -9,7 +9,6 @@ const Checkbox = ({
   onChangeCheckbox,
   isActive
 }) => {
-  console.log('checkbox', label)
   return (
     <>
       <div className='form-check' onChange={onChangeCheckbox}>
@@ -18,7 +17,7 @@ const Checkbox = ({
           type='checkbox'
           value={label}
           id={id}
-          checked={isActive}
+          defaultChecked={isActive}
         />
         <label className='form-check-label' htmlFor={id}>
           {colorSquare && (

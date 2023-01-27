@@ -40,6 +40,7 @@ const Colors = ({ contentActive }) => {
                 id='flexCheckDefault'
                 colorSquare
                 classForSquare={item.toLowerCase()}
+                isActive={colorName.includes(item)}
                 onChangeCheckbox={() => handleColorCheckbox(item)}
               />
             </li>

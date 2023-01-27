@@ -23,10 +23,6 @@ const Category = ({ categoryActive }) => {
   }
 
   useEffect(() => {
-    console.log('categories use effect', categories)
-  }, [categories])
-
-  useEffect(() => {
     const categoryArr = products.products.map(item => item.categories)
     const existingCategory = new Set(categoryArr)
     setCategoryArr(Array.from(existingCategory))

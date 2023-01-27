@@ -21,6 +21,7 @@ const Sizes = ({ sizesActive }) => {
     dispatch(setstartPage(1))
     dispatch(setSize(newChecked))
   }
+
   return (
     <ul className='page-sizes_list'>
       {sizesActive &&
@@ -32,6 +33,7 @@ const Sizes = ({ sizesActive }) => {
                 label={item}
                 id='flexCheckDefault'
                 onChangeCheckbox={() => handleSizeCheckbox(item)}
+                isActive={sizeName.includes(item)}
               />
             </li>
           )
