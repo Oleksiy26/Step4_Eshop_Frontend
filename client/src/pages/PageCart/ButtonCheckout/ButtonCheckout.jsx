@@ -9,7 +9,7 @@ const ButtonCheckout = () => {
   const { location } = useSelector(state => state.location)
 
   const navigateInCart = () => {
-    navigate(token ? '/checkout' : '/login')
+    navigate(token ? '/checkout' : '/checkout')
   }
 
   return location === '/cart' ? (

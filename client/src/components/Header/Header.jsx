@@ -31,6 +31,12 @@ const Header = () => {
     setMenu(false)
   }, [location])
 
+  useEffect(() => {
+    menu
+      ? document.body.classList.add('body_active')
+      : document.body.classList.remove('body_active')
+  }, [menu])
+
   const clickMenu = () => {
     setMenu(!menu)
   }
@@ -56,13 +62,12 @@ const Header = () => {
           </NavLink>
         </div>
         <div className={styles.header__block_svg}>
-          {!token ? (
-            <NavLink to='/signin'>
-              <User style={{ cursor: 'pointer' }} />
-            </NavLink>
-          ) : (
+          {token && (
             <Logout style={{ cursor: 'pointer' }} onClick={() => logOut()} />
           )}
+          <NavLink to={token ? '/profile' : '/signin'}>
+            <User style={{ cursor: 'pointer' }} />
+          </NavLink>
           <Search onClick={() => clickSearch()} style={{ cursor: 'pointer' }} />
           <NavLink to='/fav'>
             <Fav />

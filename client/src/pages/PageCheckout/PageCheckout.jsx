@@ -10,6 +10,7 @@ import Button from '../../components/Button'
 import AlsoLike from '../../components/AlsoLike'
 import ThanksForOrder from './ThanksForOrder'
 import { useEffect } from 'react'
+import LoggedBlock from '../../components/LoggedBlock'
 
 const PageCheckout = () => {
   const cardInCart = useSelector(state => state.cart.cart)
@@ -18,6 +19,7 @@ const PageCheckout = () => {
   const secuessOrder = useSelector(state => state.order.status)
   const cartCounter = useSelector(state => state.counter)
   const [orderDone, setOrderDone] = useState(false)
+  const token = useSelector(state => state.auth.token)
 
   useEffect(() => {
     if (secuessOrder === 'resolved') {
@@ -28,7 +30,7 @@ const PageCheckout = () => {
   const createOrder = async value => {
     dispatch(fetchMakeOrder({ value, cardInCart }))
   }
-  return (
+  return token ? (
     <>
       {orderDone ? (
         <ThanksForOrder />
@@ -42,7 +44,7 @@ const PageCheckout = () => {
             <div className={styles.checkout_block}>
               <Title title='your order' />
               <SectionOrder
-                items={cardInCart.products}
+                items={cardInCart}
                 totalPrice={totalPrice()}
                 check={cardInCart}
               />
@@ -57,6 +59,8 @@ const PageCheckout = () => {
         </div>
       )}
     </>
+  ) : (
+    <LoggedBlock checkout />
   )
 }
 

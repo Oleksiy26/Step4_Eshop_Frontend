@@ -8,28 +8,25 @@ const ContainerFav = ({ items }) => {
   const token = useSelector(state => state.auth.token)
 
   return (
-    <section className='container py-5'>
-      <div className='favorit-wrapper'>
-        {console.log(items)}
-        {(token
-          ? items.products.products && items.products.products
-          : items && items
-        ).map(product => (
-          <ProductCard
-            item={product}
-            ident={product.itemNo}
-            price={product.currentPrice}
-            photoUrl={product.imageUrls[1]}
-            subClass={' img-fluid overflow-auto flex-grow-1'}
-            key={product._id}
-            id={product._id}
-            nameCard={product.name}
-            size={product.size}
-            color={product.color}
-          />
-        ))}
-      </div>
-    </section>
+    <div className='favorit-wrapper'>
+      {(token
+        ? items.products.products && items.products.products
+        : items && items
+      ).map(product => (
+        <ProductCard
+          item={product}
+          ident={product.itemNo}
+          price={product.currentPrice}
+          photoUrl={product.imageUrls[1]}
+          subClass={' img-fluid overflow-auto flex-grow-1'}
+          key={product._id}
+          id={product._id}
+          nameCard={product.name}
+          size={product.size}
+          color={product.color}
+        />
+      ))}
+    </div>
   )
 }
 

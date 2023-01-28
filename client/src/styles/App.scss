@@ -8,6 +8,9 @@ li {
 a {
   text-decoration: none;
   color: inherit;
+  &:hover {
+    color: #2d4153;
+  }
 }
 .secondaryColor {
   color: #97a9ba;
@@ -27,4 +30,10 @@ a {
 
 .aboutImg {
   height: 340px;
+}
+#root {
+  position: relative;
+}
+.body_active {
+  overflow: hidden;
 }

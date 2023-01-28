@@ -5,6 +5,7 @@ import { useForCart } from '../../hooks/useForCart'
 import SectionOrder from './SectionOrder'
 import './Other.scss'
 import AlsoLike from '../../components/AlsoLike'
+import BreadCrumbs from '../../components/BreadCrumbs'
 
 const PageCart = () => {
   const cardInCart = useSelector(state => state.cart.cart)
@@ -14,6 +15,7 @@ const PageCart = () => {
 
   return (
     <div className='container py-5 page'>
+      <BreadCrumbs startFrom='Home' />
       {!cartCounter.inCart ? (
         <>
           <Title subtitle='Your shopping cart is empty' />

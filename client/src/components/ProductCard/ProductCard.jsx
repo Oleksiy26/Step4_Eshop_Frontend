@@ -13,6 +13,7 @@ const ProductCard = ({
   id,
   nameCard,
   viewForCart,
+  vievForOrders,
   quantity,
   color,
   ident,
@@ -24,7 +25,7 @@ const ProductCard = ({
   const navigate = useNavigate()
 
   const redirectToCardPage = () => {
-    navigate(`/catalog/${ident}`)
+    navigate(`/products/${ident}`)
   }
 
   const cardForCart = (
@@ -78,8 +79,38 @@ const ProductCard = ({
       <AddCartFavorit cardId={id} />
     </div>
   )
+  const cardForOrders = (
+    <div className='card' onClick={!cart ? redirectToCardPage : null}>
+      <div className='card_img'>
+        <img src={photoUrl} alt={nameCard} className='set-img' />
+      </div>
+      <div className='card_info'>
+        <h3>{nameCard}</h3>
+        <div>
+          <span className='title'>Price</span>
+          <span>{price} $</span>
+        </div>
+        <div>
+          <span className='title'>Size</span>
+          <span>{size}</span>
+        </div>
+        <div>
+          <span className='title'>Color</span>
+          <span className={`color-square ${color}`}></span>
+        </div>
+        <div>
+          <span className='title'>Quantity</span>
+          <span>{quantity}</span>
+        </div>
+      </div>
+    </div>
+  )
 
-  return viewForCart ? cardForCart : cardForPages
+  return viewForCart
+    ? cardForCart
+    : vievForOrders
+    ? cardForOrders
+    : cardForPages
 }
 
 ProductCard.defaultProps = {

@@ -6,13 +6,13 @@ import './index.scss'
 
 const Category = ({ categoryActive }) => {
   const products = useSelector(state => state.products)
-  const categoryName = useSelector(state => state.filter.categoryName)
+  const categories = useSelector(state => state.filter.categories)
   const [categoryArr, setCategoryArr] = useState([])
   const dispatch = useDispatch()
 
   const handleCategoryCheckbox = label => {
-    const currentIndex = categoryName.indexOf(label)
-    const newChecked = [...categoryName]
+    const currentIndex = categories.indexOf(label)
+    const newChecked = [...categories]
     if (currentIndex === -1) {
       newChecked.push(label)
     } else {
@@ -38,6 +38,7 @@ const Category = ({ categoryActive }) => {
               <Checkbox
                 label={item}
                 id='flexCheckDefault'
+                isActive={categories.includes(item)}
                 onChangeCheckbox={() => handleCategoryCheckbox(item)}
               />
             </li>

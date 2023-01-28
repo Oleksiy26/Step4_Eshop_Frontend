@@ -3,15 +3,16 @@ import './SortList.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSortType } from '../../store/filter/filterSlice'
 
+export const sortOptions = [
+  { sortName: 'Price: Low to High', sortProperty: '+currentPrice' },
+  { sortName: 'Price: High to Low', sortProperty: '-currentPrice' }
+]
+
 const SortList = () => {
   const [sortActive, setSortActive] = useState(false)
   const dispatch = useDispatch()
   const sort = useSelector(state => state.filter.sort)
 
-  const sortOptions = [
-    { sortName: 'Price: Low to High', sortProperty: '+currentPrice' },
-    { sortName: 'Price: High to Low', sortProperty: '-currentPrice' }
-  ]
   // const sortOption = sortOptions[selected].sortName;
 
   const onSelected = sort => {

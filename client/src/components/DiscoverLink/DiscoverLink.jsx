@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 const DiscoverLink = ({ subClass }) => {
   return (
     <div className={`${subClass} set-item4`}>
-      <Link to='/catalog' className='collection'>
+      <Link to='/catalog/filter' className='collection'>
         Discover
       </Link>
     </div>

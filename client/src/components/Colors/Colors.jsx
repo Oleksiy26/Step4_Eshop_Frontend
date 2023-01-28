@@ -6,7 +6,7 @@ import { setColor, setstartPage } from '../../store/filter/filterSlice'
 
 const Colors = ({ contentActive }) => {
   const products = useSelector(state => state.products)
-  const colorName = useSelector(state => state.filter.colorName)
+  const colorName = useSelector(state => state.filter.color)
   const [colorsFilters, setColorsFilters] = useState([])
   const dispatch = useDispatch()
 
@@ -40,6 +40,7 @@ const Colors = ({ contentActive }) => {
                 id='flexCheckDefault'
                 colorSquare
                 classForSquare={item.toLowerCase()}
+                isActive={colorName.includes(item)}
                 onChangeCheckbox={() => handleColorCheckbox(item)}
               />
             </li>

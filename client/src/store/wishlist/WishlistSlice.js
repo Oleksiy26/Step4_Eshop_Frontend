@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   fetchWishlist,
   addToWishlist,
-  deleteItemFromWishlist
+  deleteItemFromWishlist,
+  fetchUpdateWishlist
 } from './ActionCreator'
 
 const initialState = {
@@ -52,6 +53,18 @@ export const WishlistSlice = createSlice({
       state.favItems.products = action.payload
     },
     [deleteItemFromWishlist.rejected]: (state, action) => {
+      state.isItemsLoading = false
+      state.itemsError = action.payload
+    },
+    [fetchUpdateWishlist.pending]: state => {
+      state.isItemsLoading = true
+    },
+    [fetchUpdateWishlist.fulfilled]: (state, action) => {
+      state.isItemsLoading = false
+      state.itemsError = ''
+      state.favItems.products = action.payload
+    },
+    [fetchUpdateWishlist.rejected]: (state, action) => {
       state.isItemsLoading = false
       state.itemsError = action.payload
     }

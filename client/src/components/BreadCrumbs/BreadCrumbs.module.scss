@@ -1,0 +1,12 @@
+.link_f {
+  color: #2d4153;
+  &_symbol {
+    color: #97a9ba;
+  }
+}
+.link {
+  color: #97a9ba;
+  &:hover {
+    color: #2d4153;
+  }
+}
