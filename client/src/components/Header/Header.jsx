@@ -16,6 +16,7 @@ import { checkInCart, checkInFav } from '../../store/counter/counter'
 import SearchForm from '../Search'
 import { useEffect } from 'react'
 import { clearStatus } from '../../store/signIn/signIn'
+import { useRef } from 'react'
 
 const Header = () => {
   const [menu, setMenu] = useState(false)
@@ -25,6 +26,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useSelector(state => state.location.location)
+  const tooltipRef = useRef(null)
 
   useEffect(() => {
     setSearchView(false)
@@ -44,6 +46,18 @@ const Header = () => {
   const clickSearch = () => {
     setSearchView(!searchView)
   }
+
+  useEffect(() => {
+    if (searchView) {
+      const handleClick = e => {
+        if (!tooltipRef.current.contains(e.target)) {
+          clickSearch()
+        }
+      }
+      document.addEventListener('mousedown', handleClick)
+      return () => document.removeEventListener('mousedown', handleClick)
+    }
+  }, [searchView])
 
   const logOut = () => {
     dispatch(logout())
@@ -81,7 +95,7 @@ const Header = () => {
         <Burger onClick={() => clickMenu()} />
       </header>
       {menu && <Menu closeFunc={() => clickMenu()} />}
-      {searchView && <SearchForm />}
+      {searchView && <SearchForm reff={tooltipRef} />}
     </>
   )
 }
