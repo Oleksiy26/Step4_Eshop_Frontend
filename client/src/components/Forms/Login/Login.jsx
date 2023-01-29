@@ -37,6 +37,7 @@ const Login = () => {
   const statusLogin = useSelector(state => state.login.status)
   const navigate = useNavigate()
   const [visibleError, setVisibleError] = useState(false)
+  const token = useSelector(state => state.auth.token)
 
   useEffect(() => {
     if (statusLogin === 'rejected') {
@@ -45,10 +46,10 @@ const Login = () => {
   }, [statusLogin])
 
   useEffect(() => {
-    if (statusSignIn === 'resolved') {
+    if (statusSignIn === 'resolved' || token) {
       navigate('/')
     }
-  }, [statusSignIn])
+  }, [statusSignIn, token])
 
   const registerUser = value => {
     dispatch(fetchLogin(value))

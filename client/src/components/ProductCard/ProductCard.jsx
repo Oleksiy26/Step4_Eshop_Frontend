@@ -29,7 +29,7 @@ const ProductCard = ({
   }
 
   const cardForCart = (
-    <div className='card' onClick={!cart ? redirectToCardPage : null}>
+    <div className='card' style={{ cursor: 'auto' }}>
       <div className='card_img'>
         <img src={photoUrl} alt={nameCard} className='set-img' />
       </div>

@@ -4,7 +4,6 @@ import styles from './Input.module.scss'
 
 const Input = ({ value, placeholder, name, id, type, field }) => {
   const { onChange, onBlur } = field
-  console.log(field)
   return (
     <input
       className={styles.input}

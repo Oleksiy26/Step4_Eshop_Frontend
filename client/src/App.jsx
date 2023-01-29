@@ -28,9 +28,7 @@ function App() {
   const { location } = useSelector(state => state.location)
   const history = createBrowserHistory()
   const cardInCart = useSelector(state => state.cart.cart)
-  const refff = useRef(null)
   useEffect(() => {
-    console.log(refff)
     dispatch(setLocation(history.location.pathname))
     dispatch(fetchProducts())
     if (localStorage.getItem('userToken')) {
@@ -38,7 +36,7 @@ function App() {
       dispatch(login(data.token))
     }
     dispatch(clearStatusOrder())
-    dispatch(clearStatus())
+    // dispatch(clearStatus())
   }, [dispatch, locationHook, history.location.pathname])
 
   useEffect(() => {
@@ -108,7 +106,7 @@ function App() {
   return (
     <>
       <Header />
-      <AppRouter ref={refff} />
+      <AppRouter />
       {location !== '/login' ? <Footer /> : null}
       <UpToTop />
     </>

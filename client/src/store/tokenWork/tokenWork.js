@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { clearStatus } from '../signIn/signIn'
 
 const initialState = {
   token: ''
