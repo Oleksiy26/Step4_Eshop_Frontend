@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchFor } from '../../store/searchProducts/ActionCreator'
 import ProductCard from '../ProductCard'
 import styles from './Search.module.scss'
 import Loader from '../Loader'
 
-const SearchForm = () => {
+const SearchForm = ({ reff }) => {
   const [query, setQuery] = useState('')
   const { searchValues, isSearching } = useSelector(state => state.search)
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const SearchForm = () => {
   }
 
   return (
-    <div className={styles.block}>
+    <div className={styles.block} ref={reff}>
       <div className={styles.block_content}>
         <div>
           <input

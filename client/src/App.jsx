@@ -30,8 +30,10 @@ function App() {
   useEffect(() => {
     dispatch(setLocation(history.location.pathname))
     dispatch(fetchProducts())
-    const data = JSON.parse(localStorage.getItem('userToken'))
-    if (data && data.token) dispatch(login(data.token))
+    if (localStorage.getItem('userToken')) {
+      const data = JSON.parse(localStorage.getItem('userToken'))
+      dispatch(login(data.token))
+    }
     dispatch(clearStatusOrder())
     dispatch(clearStatus())
   }, [dispatch, locationHook, history.location.pathname])
@@ -58,7 +60,7 @@ function App() {
       let arrayOfCards = []
       let result = {}
 
-      if (cardInCart) {
+      if (cardInCart.products) {
         if (cardInCart.products !== 0) {
           cardInCart.products.forEach(item => {
             let step
