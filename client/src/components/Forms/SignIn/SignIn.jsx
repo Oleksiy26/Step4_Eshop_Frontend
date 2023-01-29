@@ -63,6 +63,7 @@ const SignIn = () => {
                     placeholder={placeholder}
                     id={name}
                     component={Input}
+                    type={name === 'password' ? 'password' : 'text'}
                   />
                   <span>
                     <ErrorMessage name={name} />

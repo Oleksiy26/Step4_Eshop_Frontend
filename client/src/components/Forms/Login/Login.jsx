@@ -80,6 +80,7 @@ const Login = () => {
                     placeholder={placeholder}
                     component={Input}
                     id={name}
+                    type={name === 'password' ? 'password' : 'text'}
                   />
                   <span>
                     <ErrorMessage name={name} />
