@@ -40,7 +40,8 @@ const PageCatalog = () => {
   const dispatch = useDispatch()
 
   const LoadMore = () => {
-    dispatch(setperPage(perPage + 3))
+    dispatch(setstartPage(1))
+    dispatch(setperPage(+perPage + 3))
   }
 
   return (

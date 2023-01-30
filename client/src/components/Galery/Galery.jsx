@@ -17,7 +17,7 @@ const Galery = () => {
   )
   const sort = useSelector(state => state.filter.sort.sortProperty)
 
-  // const isSearch = useRef(false)
+  const isSearch = useRef(false)
   const isAssembled = useRef(false)
 
   const navigate = useNavigate()
@@ -40,9 +40,10 @@ const Galery = () => {
       const sort = sortOptions.find(
         obj => obj.sortProperty === filterParams.sortProperty
       )
-      console.log(window.location.search)
+      console.log(filterParams)
       dispatch(setFilters({ ...filterParams, sort }))
     }
+    isSearch.current = true
   }, [dispatch, sort])
 
   useEffect(() => {
@@ -63,16 +64,18 @@ const Galery = () => {
   }, [categories, color, navigate, perPage, size, sort, startPage])
 
   useEffect(() => {
-    dispatch(
-      fetchFilterProducts({
-        categoryFilter,
-        colorFilter,
-        sizeFilter,
-        startPage,
-        perPage,
-        sortFilter
-      })
-    )
+    if (isSearch.current) {
+      dispatch(
+        fetchFilterProducts({
+          categoryFilter,
+          colorFilter,
+          sizeFilter,
+          startPage,
+          perPage,
+          sortFilter
+        })
+      )
+    }
   }, [
     dispatch,
     startPage,

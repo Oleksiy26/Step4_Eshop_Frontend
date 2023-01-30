@@ -70,8 +70,10 @@ export const filterSlice = createSlice({
       state.startPage = action.payload.startPage
       state.perPage = action.payload.perPage
       state.categories = action.payload.categories
-      state.color = action.payload.color
-      state.size = action.payload.size
+        ? action.payload.categories
+        : []
+      state.color = action.payload.color ? action.payload.color : []
+      state.size = action.payload.size ? action.payload.size : []
       // state.sort = action.payload.sort
     },
     setInitialState(state) {
