@@ -21,17 +21,24 @@ export const useForCart = () => {
         return calculatePrice
       }
     } else {
-      if (JSON.parse(localStorage.getItem('cart'))) {
-        const itemsInCart = findItemsInCart()
-        const prices = itemsInCart.map(item => {
-          return item.currentPrice
+      const itemsinCart = JSON.parse(localStorage.getItem('cart'))
+      const array = []
+
+      if (itemsinCart) {
+        products.products.forEach(item => {
+          itemsinCart.forEach(el => {
+            return item._id === el ? array.push(item) : null
+          })
         })
-        const calculatePrice = prices.reduce(
-          (accumulator, currentValue) => accumulator + currentValue,
-          totalPrice
-        )
-        return calculatePrice
       }
+      const prices = array.map(product => {
+        return product.currentPrice
+      })
+      const calculateTotalPrice = prices.reduce(
+        (accumulator, currentValue) => accumulator + currentValue,
+        totalPrice
+      )
+      return calculateTotalPrice
     }
   }
 

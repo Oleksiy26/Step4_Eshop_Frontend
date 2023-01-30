@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { createRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from './store/products/productSlice'
 import { login } from './store/tokenWork/tokenWork'
@@ -17,6 +17,8 @@ import { createBrowserHistory } from 'history'
 import { setLocation } from './store/location/location'
 import { clearStatusOrder } from './store/order/order'
 import { clearStatus } from './store/signIn/signIn'
+import UpToTop from './components/UpToTop/UpToTop'
+import { useRef } from 'react'
 
 function App() {
   const dispatch = useDispatch()
@@ -26,7 +28,6 @@ function App() {
   const { location } = useSelector(state => state.location)
   const history = createBrowserHistory()
   const cardInCart = useSelector(state => state.cart.cart)
-
   useEffect(() => {
     dispatch(setLocation(history.location.pathname))
     dispatch(fetchProducts())
@@ -35,7 +36,7 @@ function App() {
       dispatch(login(data.token))
     }
     dispatch(clearStatusOrder())
-    dispatch(clearStatus())
+    // dispatch(clearStatus())
   }, [dispatch, locationHook, history.location.pathname])
 
   useEffect(() => {
@@ -107,6 +108,7 @@ function App() {
       <Header />
       <AppRouter />
       {location !== '/login' ? <Footer /> : null}
+      <UpToTop />
     </>
   )
 }

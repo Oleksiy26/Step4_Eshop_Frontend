@@ -39,6 +39,7 @@ export const signInSlice = createSlice({
   reducers: {
     clearStatus: state => {
       state.status = null
+      state.signIn = ''
     }
   },
   extraReducers: {

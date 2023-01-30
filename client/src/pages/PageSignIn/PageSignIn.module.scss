@@ -12,10 +12,14 @@
     height: 100%;
     justify-content: center;
     &_content {
+      width: 350px;
       height: 390px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      @media (max-width: 400px) {
+        width: 300px;
+      }
     }
     @media (max-width: 760px) {
       border-right: none;
@@ -33,9 +37,13 @@
     justify-content: center;
     &_content {
       height: 390px;
+      width: 350px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      @media (max-width: 400px) {
+        width: 300px;
+      }
     }
     ul li {
       position: relative;

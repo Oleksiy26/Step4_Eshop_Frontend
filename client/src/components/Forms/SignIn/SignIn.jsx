@@ -16,25 +16,23 @@ const initialValues = {
 
 const validationSchema = yup.object().shape({
   loginOrEmail: yup.string().required('Is required'),
-  password: yup
-    .string()
-    .required('No password provided.')
-    .min(8, 'Password is too short')
+  password: yup.string().required('No password provided')
 })
 
 const SignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { status } = useSelector(state => state.signIn)
+  const status = useSelector(state => state.signIn.status)
   const [visibleError, setVisibleError] = useState(false)
+  const token = useSelector(state => state.auth.token)
 
   useEffect(() => {
-    if (status === 'rejected') {
-      setVisibleError(true)
-    } else if (status === 'resolved') {
+    if (status === 'resolved' || token) {
       navigate('/')
+    } else if (status === 'rejected') {
+      setVisibleError(true)
     }
-  }, [status])
+  }, [status, token])
 
   const loginUser = value => {
     dispatch(fetchSignIn(value))
@@ -63,6 +61,7 @@ const SignIn = () => {
                     placeholder={placeholder}
                     id={name}
                     component={Input}
+                    type={name === 'password' ? 'password' : 'text'}
                   />
                   <span>
                     <ErrorMessage name={name} />
