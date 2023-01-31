@@ -47,4 +47,5 @@ const Category = ({ categoryActive }) => {
     </ul>
   )
 }
+
 export default Category

@@ -79,7 +79,7 @@ const ChangePassword = () => {
               {personalValues.map(value => {
                 const { placeholder, name } = value
                 return (
-                  <div key={name}>
+                  <div key={name} className={styles.block_input}>
                     <Field
                       name={name}
                       placeholder={placeholder}

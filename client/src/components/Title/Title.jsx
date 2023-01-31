@@ -6,14 +6,14 @@ const Title = ({ title, subtitle, showContent, className }) => {
   return (
     <>
       {title && (
-        <div className={`row mt-5 ${className}`}>
+        <div className={`row mt-4 ${className}`}>
           <div className='col text-uppercase secondaryColor'>
             <h5 onClick={() => showContent()}> {title}</h5>
           </div>
         </div>
       )}
       {subtitle && (
-        <div className='row my-5'>
+        <div className='row my-4'>
           <div className='col'>
             <h2 className='fs-1'>{subtitle}</h2>
           </div>

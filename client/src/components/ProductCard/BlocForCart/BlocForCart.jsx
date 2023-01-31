@@ -10,7 +10,7 @@ const BlockForCart = ({ clickDelete, clickAdd, quantity }) => {
   return (
     <div className='quantity'>
       {location === '/cart' ? <Delete onClick={clickDelete} /> : null}
-      <span>{quantity}</span>
+      <span style={{ padding: '0 10px' }}>{quantity}</span>
       {location === '/cart' ? <Add onClick={clickAdd} /> : null}
     </div>
   )

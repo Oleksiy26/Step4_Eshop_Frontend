@@ -21,10 +21,10 @@ function Page404() {
           />
         </div>
         <div className='page__img'>
-          <img src='https://i.ibb.co/XVg4wMx/ard45.jpg' alt='girl' />
+          <img src='https://i.ibb.co/y639BtB/ard9662.jpg' alt='girl' />
         </div>
         <div className='page__img last'>
-          <img src='https://i.ibb.co/QjfvjDV/ard9654.jpg' alt='girl' />
+          <img src='https://i.ibb.co/fQmhBH4/ard65.jpg' alt='girl' />
         </div>
       </div>
     </div>
