@@ -39,7 +39,6 @@ export const fetchUpdateUser = createAsyncThunk(
         throw new Error('Server Error!')
       }
       const data = await respons.json()
-      console.log(data)
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -64,7 +63,6 @@ export const fetchChangePassword = createAsyncThunk(
         throw new Error('Server Error!')
       }
       const data = await respons.json()
-      console.log(data)
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -83,6 +81,14 @@ const initialState = {
 export const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    clearStatusUpdate: state => {
+      state.statusUpdate = null
+    },
+    clearStatusPass: state => {
+      state.statusChangePass = null
+    }
+  },
   extraReducers: {
     [fetchGetUser.pending]: state => {
       state.status = 'loading'
@@ -123,4 +129,5 @@ export const userSlice = createSlice({
   }
 })
 
+export const { clearStatusUpdate, clearStatusPass } = userSlice.actions
 export default userSlice.reducer

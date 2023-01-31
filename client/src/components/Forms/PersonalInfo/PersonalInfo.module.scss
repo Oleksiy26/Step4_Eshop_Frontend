@@ -7,7 +7,11 @@
   }
 }
 .block {
+  height: 80px;
   display: flex;
-  justify-content: start;
+  justify-content: end;
   flex-direction: column;
+  &_input {
+    height: 73px;
+  }
 }

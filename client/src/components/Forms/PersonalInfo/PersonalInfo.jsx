@@ -7,28 +7,51 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import styles from './PersonalInfo.module.scss'
-import { fetchUpdateUser } from '../../../store/user/userSlice'
+import {
+  clearStatusUpdate,
+  fetchUpdateUser
+} from '../../../store/user/userSlice'
+import ErrorText from '../../TextRequests/TextRequests'
 
+const phoneRegExp =
+  /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
 const validationSchema = yup.object().shape({
-  name: yup.string().required('Is required'),
-  password: yup
+  email: yup
     .string()
-    .required('No password provided.')
-    .min(8, 'Password is too short')
+    .email('Not an Email')
+    .required('Email is a required field')
+    .min(8, 'Too short'),
+  firstName: yup.string().required('Name is required'),
+  lastName: yup.string().required('LastName is required'),
+  telephone: yup
+    .string()
+    .required('required')
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .min(10, 'too short')
+    .max(13, 'too long')
 })
 
 const PersonalInfo = () => {
   const dispatch = useDispatch()
-  const userInfo = useSelector(state => state.user.info)
-  const { statusUpdate } = useSelector(state => state.user)
-  const initialValues = {}
+  const { info, statusUpdate } = useSelector(state => state.user)
   const [visibleError, setVisibleError] = useState(false)
+  const [visibleSuccess, setVisibleSuccess] = useState(false)
+  const { location } = useSelector(state => state.location)
 
   useEffect(() => {
-    setVisibleError(false)
-    console.log(userInfo)
+    dispatch(clearStatusUpdate())
+  }, [location])
+
+  useEffect(() => {
     if (statusUpdate === 'rejected') {
       setVisibleError(true)
+      setVisibleSuccess(false)
+    } else if (statusUpdate === 'resolved') {
+      setVisibleSuccess(true)
+      setVisibleError(false)
+    } else {
+      setVisibleSuccess(false)
+      setVisibleError(false)
     }
   }, [statusUpdate])
 
@@ -36,39 +59,57 @@ const PersonalInfo = () => {
     dispatch(fetchUpdateUser(value))
   }
 
+  const initialValues = {
+    firstName: info.firstName,
+    lastName: info.lastName,
+    email: info.email,
+    telephone: info.telephone
+  }
+
   const personalValues = [
     {
-      placeholder: `${userInfo.firstName}`,
+      placeholder: 'firstName',
       name: 'firstName',
-      value: `${userInfo.firstName}`
+      value: initialValues.firstName ? `${initialValues.firstName}` : null
     },
-    { placeholder: `${userInfo.lastName}`, name: 'lastName' },
-    { placeholder: `${userInfo.email}`, name: 'email' },
     {
-      placeholder: `${userInfo.telephone ? userInfo.telephone : 'telephone'}`,
-      name: 'telephone'
+      placeholder: 'lastName',
+      name: 'lastName',
+      value: initialValues.lastName ? `${initialValues.lastName}` : null
+    },
+    {
+      placeholder: 'email',
+      name: 'email',
+      value: initialValues.email ? `${initialValues.email}` : null
+    },
+    {
+      placeholder: 'telephone',
+      name: 'telephone',
+      value: initialValues.telephone ? `${initialValues.telephone}` : null
     }
   ]
 
   return (
-    userInfo && (
+    info && (
       <Formik
         initialValues={initialValues}
         onSubmit={updateValues}
-        //   validationSchema={validationSchema}
+        enableReinitialize={true}
+        validationSchema={validationSchema}
       >
         {({ values }) => {
           return (
             <Form className={styles.form}>
-              {personalValues.map(value => {
-                const { placeholder, name } = value
+              {personalValues.map(values => {
+                const { placeholder, name, value } = values
                 return (
-                  <div key={name}>
+                  <div key={name} className={styles.block_input}>
                     <Field
                       name={name}
                       placeholder={placeholder}
                       id={name}
                       component={Input}
+                      value={value}
                     />
                     <span>
                       <ErrorMessage name={name} />
@@ -78,9 +119,10 @@ const PersonalInfo = () => {
               })}
               <div className={styles.block}>
                 {visibleError && (
-                  <p style={{ color: 'red' }}>
-                    Something went wrong. Try again
-                  </p>
+                  <ErrorText text='Something went wrong. Try again' />
+                )}
+                {visibleSuccess && (
+                  <ErrorText resolveText text='Personal info was changed' />
                 )}
                 <Button
                   text='Update info'

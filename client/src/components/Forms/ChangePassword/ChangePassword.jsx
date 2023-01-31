@@ -5,9 +5,13 @@ import Input from '../Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { fetchChangePassword } from '../../../store/user/userSlice'
+import {
+  clearStatusPass,
+  fetchChangePassword
+} from '../../../store/user/userSlice'
 import styles from './ChangePassword.module.scss'
 import * as yup from 'yup'
+import ErrorText from '../../TextRequests/TextRequests'
 
 const validationSchema = yup.object().shape({
   newPassword: yup
@@ -21,21 +25,34 @@ const ChangePassword = () => {
   const dispatch = useDispatch()
   const userInfo = useSelector(state => state.user.info)
   const { statusChangePass } = useSelector(state => state.user)
+  const [visibleErrorMatch, setVisibleErrorMatch] = useState(false)
   const [visibleError, setVisibleError] = useState(false)
   const [visibleResolve, setVisibleResolve] = useState(false)
+  const { location } = useSelector(state => state.location)
 
   const initialValues = { newPassword: '', password: '' }
 
   useEffect(() => {
-    setVisibleError(false)
-    setVisibleResolve(false)
-    if (statusChangePass === 'rejected') {
-      setVisibleError(true)
+    dispatch(clearStatusPass())
+  }, [location])
+
+  useEffect(() => {
+    if (userInfo.password === 'Password does not match') {
+      setVisibleErrorMatch(true)
+      setVisibleError(false)
+      setVisibleResolve(false)
     } else if (statusChangePass === 'resolved') {
       setVisibleError(false)
       setVisibleResolve(true)
+    } else if (statusChangePass === 'rejected') {
+      setVisibleResolve(false)
+      setVisibleError(true)
+    } else {
+      setVisibleErrorMatch(false)
+      setVisibleError(false)
+      setVisibleResolve(false)
     }
-  }, [statusChangePass])
+  }, [statusChangePass, userInfo])
 
   const updateValues = value => {
     dispatch(fetchChangePassword(value))
@@ -68,6 +85,7 @@ const ChangePassword = () => {
                       placeholder={placeholder}
                       id={name}
                       component={Input}
+                      type='password'
                     />
                     <span>
                       <ErrorMessage name={name} />
@@ -76,12 +94,13 @@ const ChangePassword = () => {
                 )
               })}
               <div className={styles.block}>
-                {visibleError && (
-                  <p style={{ color: 'red' }}>
-                    Something went wrong. Try again.
-                  </p>
+                {visibleErrorMatch && (
+                  <ErrorText text='Password does not match, try again' />
                 )}
-                {visibleResolve && <p>Password was change</p>}
+                {visibleError && <ErrorText text='Smth wrong happened' />}
+                {visibleResolve && (
+                  <ErrorText resolveText text='Password successfully changed' />
+                )}
                 <Button
                   text='Change Password'
                   disabled={!values.name}

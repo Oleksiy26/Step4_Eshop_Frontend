@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import ContainerFav from './ContainerFav/ContainerFav'
 import Title from '../../components/Title/Title'
 import Loader from '../../components/Loader'
-import Errortext from '../../components/ErrorText'
 import AlsoLike from '../../components/AlsoLike'
 
 const PageFav = () => {

@@ -6,15 +6,7 @@ import * as yup from 'yup'
 import PropTypes from 'prop-types'
 import Title from '../../Title'
 import styles from './Order.module.scss'
-
-const initialValues = {
-  email: '',
-  phone: '',
-  country: '',
-  city: '',
-  zipCode: '',
-  adress: ''
-}
+import { useSelector } from 'react-redux'
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -30,9 +22,26 @@ const validationSchema = yup.object().shape({
 })
 
 const Order = ({ createOrder }) => {
+  const userInfo = useSelector(state => state.user.info)
+  const initialValues = {
+    email: userInfo.email,
+    phone: userInfo.telephone,
+    country: '',
+    city: '',
+    zipCode: '',
+    adress: ''
+  }
   const PersonalDetails = [
-    { placeholder: 'Email', name: 'email' },
-    { placeholder: 'Phone', name: 'phone' }
+    {
+      placeholder: `${userInfo.email}`,
+      name: 'email',
+      value: `${userInfo.email}`
+    },
+    {
+      placeholder: `${userInfo.telephone ? userInfo.telephone : 'telephone'}`,
+      name: 'phone',
+      value: `${userInfo.telephone ? userInfo.telephone : null}`
+    }
   ]
   const ShippingInformation = [
     { placeholder: 'Country', name: 'country' },
@@ -46,22 +55,24 @@ const Order = ({ createOrder }) => {
       initialValues={initialValues}
       onSubmit={createOrder}
       validationSchema={validationSchema}
+      enableReinitialize={true}
     >
       {({ values }) => {
         return (
           <Form>
             <Title title='personal details' />
             <div className={styles.block}>
-              {PersonalDetails.map(value => {
-                const { placeholder, name } = value
+              {PersonalDetails.map(values => {
+                const { placeholder, name, value } = values
                 return (
-                  <div className={styles.block_input}>
+                  <div className={styles.block_input} key={name}>
                     <Field
                       key={name}
                       name={name}
                       placeholder={placeholder}
                       component={Input}
                       id={name}
+                      value={value}
                     />
                     <span>
                       <ErrorMessage name={name} />
