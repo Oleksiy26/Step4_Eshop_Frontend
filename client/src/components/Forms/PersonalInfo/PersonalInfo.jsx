@@ -70,22 +70,22 @@ const PersonalInfo = () => {
     {
       placeholder: 'firstName',
       name: 'firstName',
-      value: initialValues.firstName ? `${initialValues.firstName}` : null
+      value: initialValues.firstName ? initialValues.firstName : null
     },
     {
       placeholder: 'lastName',
       name: 'lastName',
-      value: initialValues.lastName ? `${initialValues.lastName}` : null
+      value: initialValues.lastName ? initialValues.lastName : null
     },
     {
       placeholder: 'email',
       name: 'email',
-      value: initialValues.email ? `${initialValues.email}` : null
+      value: initialValues.email ? initialValues.email : null
     },
     {
       placeholder: 'telephone',
       name: 'telephone',
-      value: initialValues.telephone ? `${initialValues.telephone}` : null
+      value: initialValues.telephone ? initialValues.telephone : null
     }
   ]
 

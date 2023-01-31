@@ -18,7 +18,7 @@ export const fetchMakeOrder = createAsyncThunk(
         body: JSON.stringify({
           customerId: customerId,
           email: value.email,
-          mobile: value.phone,
+          mobile: value.telephone,
           letterSubject: 'sdfs',
           letterHtml: 'sfedfs',
           status: 'not shipped',

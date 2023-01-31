@@ -8,13 +8,21 @@ import Title from '../../Title'
 import styles from './Order.module.scss'
 import { useSelector } from 'react-redux'
 
+const phoneRegExp =
+  /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
+
 const validationSchema = yup.object().shape({
   email: yup
     .string()
     .email('Not an Email')
     .required('Email is a required field')
     .min(8, 'Too short'),
-  phone: yup.number().required('Phone is required'),
+  telephone: yup
+    .string()
+    .required('required')
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .min(10, 'too short')
+    .max(13, 'too long'),
   country: yup.string().required('Country is required'),
   city: yup.string().required('Sity is required'),
   zipCode: yup.number().required('ZIP Code is required').min(4, 'Too short'),
@@ -23,24 +31,26 @@ const validationSchema = yup.object().shape({
 
 const Order = ({ createOrder }) => {
   const userInfo = useSelector(state => state.user.info)
+
   const initialValues = {
     email: userInfo.email,
-    phone: userInfo.telephone,
+    telephone: userInfo.telephone,
     country: '',
     city: '',
     zipCode: '',
     adress: ''
   }
+
   const PersonalDetails = [
     {
-      placeholder: `${userInfo.email}`,
+      placeholder: 'email',
       name: 'email',
-      value: `${userInfo.email}`
+      value: initialValues.email ? initialValues.email : null
     },
     {
-      placeholder: `${userInfo.telephone ? userInfo.telephone : 'telephone'}`,
+      placeholder: 'telephone',
       name: 'phone',
-      value: `${userInfo.telephone ? userInfo.telephone : null}`
+      value: initialValues.telephone ? `${initialValues.telephone}` : null
     }
   ]
   const ShippingInformation = [
