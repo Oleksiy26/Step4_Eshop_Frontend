@@ -9,6 +9,7 @@
 
     @include for-large-up {
       gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     }
   }
 }
