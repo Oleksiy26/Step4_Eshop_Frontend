@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import ContainerFav from './ContainerFav/ContainerFav'
 import Title from '../../components/Title/Title'
 import Loader from '../../components/Loader'
-import Errortext from '../../components/ErrorText'
 import AlsoLike from '../../components/AlsoLike'
+import BreadCrumbs from '../../components/BreadCrumbs'
 
 const PageFav = () => {
   const products = useSelector(state => state.products)
@@ -23,7 +23,8 @@ const PageFav = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='container page'>
+      <BreadCrumbs startFrom='Home' />
       {favCounter ? (
         <>
           <Title subtitle='Your favourite cards' />

@@ -9,7 +9,7 @@ const Menu = () => {
       <NavLink to='/catalog/filter'>Sales</NavLink>
       <NavLink to='/profile'>Profile</NavLink>
       <NavLink to='/catalog/filter'>Catalogue</NavLink>
-      <NavLink to='#contact'>Contact</NavLink>
+      <NavLink to='/catalog/filter'>Contact</NavLink>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import './PageItem.scss'
 import AlsoLike from '../../components/AlsoLike/AlsoLike'
 import Loader from '../../components/Loader'
 import Title from '../../components/Title'
+import BreadCrumbs from '../../components/BreadCrumbs'
 
 export const PageItem = () => {
   const { itemNo } = useParams()
@@ -33,7 +34,8 @@ export const PageItem = () => {
   }
 
   return (
-    <div className='container'>
+    <div className='container page'>
+      <BreadCrumbs startFrom='Home' />
       {isCardLoading ? (
         <Loader />
       ) : cardError ? (

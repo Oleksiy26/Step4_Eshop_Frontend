@@ -14,7 +14,7 @@ const ThanksForOrder = () => {
       </div>
       <div className={styles.block_text}>
         <Title subtitle='Thanks for the order' />
-        <Button text='Continue shopping' to='/' />
+        <Button text='Continue shopping' to='/catalog/filter' />
       </div>
     </div>
   )

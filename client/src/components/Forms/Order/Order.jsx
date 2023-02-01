@@ -6,15 +6,10 @@ import * as yup from 'yup'
 import PropTypes from 'prop-types'
 import Title from '../../Title'
 import styles from './Order.module.scss'
+import { useSelector } from 'react-redux'
 
-const initialValues = {
-  email: '',
-  phone: '',
-  country: '',
-  city: '',
-  zipCode: '',
-  adress: ''
-}
+const phoneRegExp =
+  /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -22,7 +17,12 @@ const validationSchema = yup.object().shape({
     .email('Not an Email')
     .required('Email is a required field')
     .min(8, 'Too short'),
-  phone: yup.number().required('Phone is required'),
+  telephone: yup
+    .string()
+    .required('required')
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .min(10, 'too short')
+    .max(13, 'too long'),
   country: yup.string().required('Country is required'),
   city: yup.string().required('Sity is required'),
   zipCode: yup.number().required('ZIP Code is required').min(4, 'Too short'),
@@ -30,9 +30,28 @@ const validationSchema = yup.object().shape({
 })
 
 const Order = ({ createOrder }) => {
+  const userInfo = useSelector(state => state.user.info)
+
+  const initialValues = {
+    email: userInfo.email,
+    telephone: userInfo.telephone,
+    country: '',
+    city: '',
+    zipCode: '',
+    adress: ''
+  }
+
   const PersonalDetails = [
-    { placeholder: 'Email', name: 'email' },
-    { placeholder: 'Phone', name: 'phone' }
+    {
+      placeholder: 'email',
+      name: 'email',
+      value: initialValues.email ? initialValues.email : null
+    },
+    {
+      placeholder: 'telephone',
+      name: 'phone',
+      value: initialValues.telephone ? `${initialValues.telephone}` : null
+    }
   ]
   const ShippingInformation = [
     { placeholder: 'Country', name: 'country' },
@@ -46,22 +65,24 @@ const Order = ({ createOrder }) => {
       initialValues={initialValues}
       onSubmit={createOrder}
       validationSchema={validationSchema}
+      enableReinitialize={true}
     >
       {({ values }) => {
         return (
           <Form>
             <Title title='personal details' />
             <div className={styles.block}>
-              {PersonalDetails.map(value => {
-                const { placeholder, name } = value
+              {PersonalDetails.map(values => {
+                const { placeholder, name, value } = values
                 return (
-                  <div className={styles.block_input}>
+                  <div className={styles.block_input} key={name}>
                     <Field
                       key={name}
                       name={name}
                       placeholder={placeholder}
                       component={Input}
                       id={name}
+                      value={value}
                     />
                     <span>
                       <ErrorMessage name={name} />
