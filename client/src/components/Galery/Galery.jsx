@@ -5,16 +5,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchFilterProducts,
   setFilters,
-  setInitialState
+  setInitialState,
+  setstartPage
 } from '../../store/filter/filterSlice'
 import { useNavigate } from 'react-router-dom'
 import './index.scss'
 import { sortOptions } from '../SortList/SortList'
 
 const Galery = () => {
-  const { products, startPage, perPage, color, categories, size } = useSelector(
-    state => state.filter
-  )
+  const {
+    products,
+    startPage,
+    perPage,
+    color,
+    categories,
+    size,
+    minPrice,
+    maxPrice
+  } = useSelector(state => state.filter)
   const sort = useSelector(state => state.filter.sort.sortProperty)
 
   const isSearch = useRef(false)
@@ -38,13 +46,13 @@ const Galery = () => {
     if (window.location.search) {
       const filterParams = qs.parse(window.location.search.substring(1))
       const sort = sortOptions.find(
-        obj => obj.sortProperty === filterParams.sortProperty
+        obj => obj.sortProperty === filterParams.sort
       )
-      console.log(filterParams)
+      console.log(sortOptions)
       dispatch(setFilters({ ...filterParams, sort }))
     }
     isSearch.current = true
-  }, [dispatch, sort])
+  }, [dispatch])
 
   useEffect(() => {
     if (isAssembled.current) {
@@ -54,14 +62,26 @@ const Galery = () => {
         categories,
         color,
         size,
-        sort
+        sort,
+        minPrice,
+        maxPrice
       })
 
       console.log('use effect', queryString)
       navigate(`?${queryString}`)
     }
     isAssembled.current = true
-  }, [categories, color, navigate, perPage, size, sort, startPage])
+  }, [
+    categories,
+    color,
+    maxPrice,
+    minPrice,
+    navigate,
+    perPage,
+    size,
+    sort,
+    startPage
+  ])
 
   useEffect(() => {
     if (isSearch.current) {
@@ -72,7 +92,9 @@ const Galery = () => {
           sizeFilter,
           startPage,
           perPage,
-          sortFilter
+          sortFilter,
+          minPrice,
+          maxPrice
         })
       )
     }
@@ -83,7 +105,9 @@ const Galery = () => {
     categoryFilter,
     colorFilter,
     sizeFilter,
-    sortFilter
+    sortFilter,
+    minPrice,
+    maxPrice
   ])
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCategory, setstartPage } from '../../store/filter/filterSlice'
+import PropTypes from 'prop-types'
 import Checkbox from '../Checkbox'
 import './index.scss'
 
@@ -47,4 +48,9 @@ const Category = ({ categoryActive }) => {
     </ul>
   )
 }
+
+Category.propTypes = {
+  categoryActive: PropTypes.bool
+}
+
 export default Category

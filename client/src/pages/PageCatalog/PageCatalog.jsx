@@ -8,12 +8,22 @@ import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import Button from '../../components/Button'
 import Galery from '../../components/Galery'
 import SortList from '../../components/SortList'
-import { setstartPage, setperPage } from '../../store/filter/filterSlice'
+import {
+  setstartPage,
+  setperPage,
+  setMinPrice,
+  setMaxPrice
+} from '../../store/filter/filterSlice'
 import Pagination from '../../components/Pagination'
+
 import './PageCatalog.scss'
+import MinMaxFilter from '../../components/MinMaxFilter'
 
 const PageCatalog = () => {
-  const { products, startPage, perPage } = useSelector(state => state.filter)
+  const { products, startPage, perPage, minPrice, maxPrice } = useSelector(
+    state => state.filter
+  )
+
   const pagesCount = Math.ceil(products.productsQuantity / perPage)
 
   const [sizesActive, setsizesActive] = useState(true)
@@ -38,6 +48,19 @@ const PageCatalog = () => {
   const showCategory = () => setcategoryActive(!categoryActive)
 
   const dispatch = useDispatch()
+
+  const handleChangeMin = event => {
+    dispatch(setMinPrice(event.target.value))
+  }
+  const handleChangeMax = event => {
+    dispatch(setMaxPrice(event.target.value))
+  }
+
+  const handleInput = event => {
+    dispatch(setMinPrice(event[0]))
+    dispatch(setMaxPrice(event[1]))
+    dispatch(setstartPage(1))
+  }
 
   const LoadMore = () => {
     dispatch(setstartPage(1))
@@ -68,6 +91,13 @@ const PageCatalog = () => {
           <Sizes
             sizesActive={useWindowSize() < 768 ? !sizesActive : sizesActive}
           />
+          <MinMaxFilter
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            onChange={event => handleInput(event)}
+            onChangeInputMin={event => handleChangeMin(event)}
+            onChangeInputMax={event => handleChangeMax(event)}
+          />
         </aside>
         <section className='content cards'>
           <SortList />
@@ -81,7 +111,7 @@ const PageCatalog = () => {
               onClick={LoadMore}
             />
           )}
-          <Pagination />
+          {startPage <= pagesCount && <Pagination />}
         </section>
       </div>
     </div>
