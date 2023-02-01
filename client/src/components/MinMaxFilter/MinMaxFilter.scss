@@ -3,25 +3,31 @@
 
 .price {
   &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 48px;
   }
   &-input {
+    &_width {
+      max-width: 48px;
+    }
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    gap: 8px;
+    justify-content: center;
     margin-bottom: 24px;
   }
 }
+
 .range-slider {
   width: 200px;
-}
-
-.range-slider .range-slider__range {
-  background-color: #2d4153;
-}
-.range-slider .range-slider__thumb {
-  background-color: #2d4153;
-}
-input {
-  max-width: 40px;
+  & &__range {
+    background-color: #476785;
+  }
+  & &__thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #476785;
+  }
 }

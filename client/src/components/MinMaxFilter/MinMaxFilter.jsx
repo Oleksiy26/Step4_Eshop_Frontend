@@ -15,8 +15,21 @@ const MinMaxFilter = ({
   return (
     <div className='price-wrapper'>
       <div className='price-input'>
-        <input type='text' value={minPrice} onChange={onChangeInputMin} />
-        <input type='text' value={maxPrice} onChange={onChangeInputMax} />
+        <span className='price-input_text'>from</span>
+        <input
+          type='text'
+          className='price-input_min price-input_width'
+          value={minPrice}
+          onChange={onChangeInputMin}
+        />
+        <span className='price-input_text'>to</span>
+        <input
+          type='text'
+          className='price-input_min price-input_width'
+          value={maxPrice}
+          onChange={onChangeInputMax}
+        />
+        <span className='price-input_text'>EUR</span>
       </div>
       <RangeSlider
         min={0}
