@@ -5,8 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchFilterProducts,
   setFilters,
-  setInitialState,
-  setstartPage
+  setInitialState
 } from '../../store/filter/filterSlice'
 import { useNavigate } from 'react-router-dom'
 import './index.scss'
@@ -48,7 +47,7 @@ const Galery = () => {
       const sort = sortOptions.find(
         obj => obj.sortProperty === filterParams.sort
       )
-      console.log(sortOptions)
+
       dispatch(setFilters({ ...filterParams, sort }))
     }
     isSearch.current = true
@@ -67,7 +66,6 @@ const Galery = () => {
         maxPrice
       })
 
-      console.log('use effect', queryString)
       navigate(`?${queryString}`)
     }
     isAssembled.current = true
