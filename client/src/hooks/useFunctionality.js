@@ -27,7 +27,7 @@ export const useFunctionality = id => {
     } else {
       checkCards(id)
     }
-  }, [token ? (cardInCart, cardInFav) : null])
+  }, [token, token ? (cardInCart, cardInFav) : null])
 
   const checkValue = value => {
     return value != null
