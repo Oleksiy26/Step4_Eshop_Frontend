@@ -28,7 +28,7 @@ const PageCatalog = () => {
   const [sizesActive, setsizesActive] = useState(true)
   const [colorActive, setcolorActive] = useState(true)
   const [categoryActive, setcategoryActive] = useState(true)
-  // const [filtersIsOpen, setfiltersIsOpen] = useState(false)
+  const [filtersIsOpen, setfiltersIsOpen] = useState(true)
 
   function useWindowSize() {
     const [displayWidth, setdisplayWidth] = useState(0)
@@ -46,11 +46,12 @@ const PageCatalog = () => {
   const showColor = () => setcolorActive(!colorActive)
   const showSizes = () => setsizesActive(!sizesActive)
   const showCategory = () => setcategoryActive(!categoryActive)
-  // const showFilters = () => setfiltersIsOpen(!filtersIsOpen)
+  const showFilters = () => setfiltersIsOpen(filtersIsOpen => !filtersIsOpen)
 
   const dispatch = useDispatch()
   useEffect(() => {
     currentWidth < 768 ? dispatch(setperPage(2)) : dispatch(setperPage(6))
+    currentWidth < 768 ? setfiltersIsOpen(false) : setfiltersIsOpen(true)
   }, [currentWidth, dispatch])
 
   const handleChangeMin = event => {
@@ -76,40 +77,44 @@ const PageCatalog = () => {
       <BreadCrumbs startFrom='Home' />
       <Title subtitle='Catalogue' />
       <div className='page-wrapper'>
-        {/* <Title
+        <Title
           title='Filters box'
           showContent={showFilters}
           className={'filtering'}
-        /> */}
-        {/* {!filtersIsOpen && ( */}
-        <aside className='page-sidebar'>
-          <Title
-            title='Category'
-            showContent={showCategory}
-            className={'active'}
-          />
-          <Category
-            categoryActive={
-              currentWidth < 768 ? !categoryActive : categoryActive
-            }
-          />
-          <Title title='Colors' showContent={showColor} className={'active'} />
-          <Colors
-            contentActive={currentWidth < 768 ? !colorActive : colorActive}
-          />
-          <Title title='Sizes' showContent={showSizes} className={'active'} />
-          <Sizes
-            sizesActive={currentWidth < 768 ? !sizesActive : sizesActive}
-          />
-          <MinMaxFilter
-            minPrice={minPrice}
-            maxPrice={maxPrice}
-            onChange={event => handleInput(event)}
-            onChangeInputMin={event => handleChangeMin(event)}
-            onChangeInputMax={event => handleChangeMax(event)}
-          />
-        </aside>
-        {/* )} */}
+        />
+        {filtersIsOpen && (
+          <aside className='page-sidebar'>
+            <Title
+              title='Category'
+              showContent={showCategory}
+              className={'active'}
+            />
+            <Category
+              categoryActive={
+                currentWidth < 768 ? !categoryActive : categoryActive
+              }
+            />
+            <Title
+              title='Colors'
+              showContent={showColor}
+              className={'active'}
+            />
+            <Colors
+              contentActive={currentWidth < 768 ? !colorActive : colorActive}
+            />
+            <Title title='Sizes' showContent={showSizes} className={'active'} />
+            <Sizes
+              sizesActive={currentWidth < 768 ? !sizesActive : sizesActive}
+            />
+            <MinMaxFilter
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              onChange={event => handleInput(event)}
+              onChangeInputMin={event => handleChangeMin(event)}
+              onChangeInputMax={event => handleChangeMax(event)}
+            />
+          </aside>
+        )}
         <section className='content cards'>
           <SortList />
           <Galery />

@@ -40,8 +40,8 @@ const initialState = {
   categories: [],
   color: [],
   size: [],
-  minPrice: 0,
-  maxPrice: 100,
+  minPrice: '0',
+  maxPrice: '100',
   sort: { sortName: '', sortProperty: [] }
 }
 
