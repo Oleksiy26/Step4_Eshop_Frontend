@@ -29,12 +29,22 @@ const ProductCard = ({
   }
 
   const cardForCart = (
-    <div className='card' style={{ cursor: 'auto' }}>
+    <div
+      className='card'
+      onClick={cart ? null : redirectToCardPage}
+      style={cart ? { cursor: 'auto' } : { cursor: 'pointer' }}
+    >
       <div className='card_img'>
         <img src={photoUrl} alt={nameCard} className='set-img' />
       </div>
       <div className='card_info'>
-        <h3>{nameCard}</h3>
+        <h3
+          onClick={cart ? redirectToCardPage : null}
+          style={cart ? { cursor: 'pointer' } : null}
+          className='title_hover'
+        >
+          {nameCard}
+        </h3>
         <div>
           <span className='title'>Size</span>
           <span>{size}</span>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
 import './index.scss'
 
@@ -21,10 +20,10 @@ function Page404() {
           />
         </div>
         <div className='page__img'>
-          <img src='https://i.ibb.co/y639BtB/ard9662.jpg' alt='girl' />
+          <img src='https://kept.com.ua/image/20D9/ard9662.jpeg' alt='girl' />
         </div>
         <div className='page__img last'>
-          <img src='https://i.ibb.co/fQmhBH4/ard65.jpg' alt='girl' />
+          <img src='https://kept.com.ua/image/20Da/dotuk-69.jpg' alt='girl' />
         </div>
       </div>
     </div>
