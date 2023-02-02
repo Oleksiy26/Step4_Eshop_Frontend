@@ -22,6 +22,7 @@ export const ContainerCart = ({ items }) => {
             quantity={token ? product.cartQuantity : localQuantity(product._id)}
             color={(token ? product.product : product).color}
             size={(token ? product.product : product).size}
+            ident={(token ? product.product : product).itemNo}
             viewForCart
             cart
           />

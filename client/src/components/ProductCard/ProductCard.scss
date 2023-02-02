@@ -99,20 +99,24 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 15px;
-      color: #97A9BA;
+      color: #97a9ba;
       padding-left: 0;
       width: 60px;
       text-align: left;
+      &_hover {
+        &:hover {
+          color: #97a9ba;
+        }
+      }
     }
     svg {
       cursor: pointer;
-
     }
     span {
       font-size: 14px;
       line-height: 18px;
       text-align: center;
-      color: #2D4153;
+      color: #2d4153;
     }
     div {
       display: flex;
@@ -131,8 +135,8 @@
     span {
       font-weight: 400;
       font-size: 12px;
-      line-height: 15px;      
-      color: #97A9BA;
+      line-height: 15px;
+      color: #97a9ba;
       cursor: pointer;
       &:hover {
         text-decoration-line: underline;
@@ -143,6 +147,6 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 18px;
-    color: #2D4153;
+    color: #2d4153;
   }
 }
