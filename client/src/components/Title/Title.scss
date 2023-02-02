@@ -6,3 +6,15 @@
     cursor: pointer;
   }
 }
+.mt-4 {
+  @include for-medium-up {
+    margin-top: 0 !important;
+  }
+}
+
+.filtering {
+  display: none;
+  @include for-medium-up {
+    display: block;
+  }
+}
