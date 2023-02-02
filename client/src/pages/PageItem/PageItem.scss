@@ -3,21 +3,20 @@
   width: 20px;
   height: 20px;
   border: 2px solid lightgray;
-  margin-left: 76px;
-}
-
-.slider {
-  width: 400px;
-  height: 400px;
+  margin-left: 17px;
 }
 
 .sliderImg {
   object-fit: cover;
   width: 400px;
-  height: 400px;
+  height: 550px;
 
   @media (max-width: 768px) {
     width: 100%;
+  }
+  @media (max-width: 468px) {
+    width: 100%;
+    height: 450px;
   }
 
 }
