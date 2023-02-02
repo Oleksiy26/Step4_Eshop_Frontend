@@ -11,6 +11,11 @@
     h1 {
         margin-bottom: 100px;
     }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
     &_text {
         display: flex;
         flex-direction: column;
@@ -23,9 +28,4 @@
     @media (max-width: 800px) {
         grid: none;
     }
-}
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
