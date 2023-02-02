@@ -15,7 +15,8 @@
   "scripts": {
     "start-client": "npm start --prefix client",
     "start-server": "npm start --prefix server",
-    "start": "npm-run-all -p start-server start-client"
+    "start": "npm-run-all -p start-server start-client",
+    "build": "react-scripts build"
   },
   "repository": {
     "type": "git",
