@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import ResetFilters from '../ResetFilters'
 import ProductCard from '../ProductCard'
 import qs from 'qs'
 import { useSelector, useDispatch } from 'react-redux'
@@ -35,11 +36,11 @@ const Galery = () => {
   const sizeFilter = size.length ? `&size=${size}` : ''
   const sortFilter = sort ? `&sort=${sort}` : ''
 
-  useEffect(() => {
-    return () => {
-      dispatch(setInitialState())
-    }
-  }, [dispatch])
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(setInitialState())
+  //   }
+  // }, [dispatch])
 
   useEffect(() => {
     if (window.location.search) {
@@ -111,22 +112,26 @@ const Galery = () => {
   return (
     <ul className='content-list'>
       {products.products ? (
-        <>
-          {products.products.map(item => (
-            <li key={item._id}>
-              <ProductCard
-                ident={item.itemNo}
-                price={item.currentPrice}
-                photoUrl={item.imageUrls[0]}
-                key={item._id}
-                id={item._id}
-                nameCard={item.name}
-                color={item.color}
-                size={item.size}
-              />
-            </li>
-          ))}
-        </>
+        products.productsQuantity === 0 ? (
+          <ResetFilters />
+        ) : (
+          <>
+            {products.products.map(item => (
+              <li key={item._id}>
+                <ProductCard
+                  ident={item.itemNo}
+                  price={item.currentPrice}
+                  photoUrl={item.imageUrls[0]}
+                  key={item._id}
+                  id={item._id}
+                  nameCard={item.name}
+                  color={item.color}
+                  size={item.size}
+                />
+              </li>
+            ))}
+          </>
+        )
       ) : null}
     </ul>
   )

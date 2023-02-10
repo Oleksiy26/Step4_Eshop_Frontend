@@ -12,7 +12,6 @@ const MinMaxFilter = ({
   onChangeInputMin,
   onChangeInputMax
 }) => {
-  console.log(minPrice)
   return (
     <div className='price-wrapper'>
       <div className='price-input'>
