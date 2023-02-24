@@ -1,16 +1,14 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setInitialState, setstartPage } from '../../store/filter/filterSlice'
 import Button from '../Button'
 import './ResetFilters.scss'
 
 const ResetFilters = () => {
   const dispatch = useDispatch()
-  const xxx = useSelector(state => state.filter)
-  console.log('filters', xxx)
 
   const handlerResetFilters = () => {
-    dispatch(setstartPage(1))
+    // dispatch(setstartPage(1))
     dispatch(setInitialState())
   }
 

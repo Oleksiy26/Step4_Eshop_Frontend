@@ -38,7 +38,6 @@ const Category = ({ categoryActive }) => {
             <li className='page-filter_item' key={index}>
               <Checkbox
                 label={item}
-                id='flexCheckDefault'
                 isActive={categories.includes(item)}
                 onChangeCheckbox={() => handleCategoryCheckbox(item)}
               />

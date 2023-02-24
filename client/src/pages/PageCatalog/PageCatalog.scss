@@ -56,12 +56,13 @@
 }
 
 .content {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   &.cards {
     position: relative;
   }
   &-sort {
-    justify-self: end;
+    align-self: end;
   }
   &-button {
     width: 280px;

@@ -1,10 +1,10 @@
 .content {
   &-sort-list {
-    justify-self: end;
+    align-self: end;
     position: absolute;
     z-index: 10000;
     background-color: #ffffff;
-    top: 39px;
+    top: 34px;
     padding: 10px 11px;
     &-sort-item {
       margin-bottom: 20px;
@@ -23,7 +23,7 @@
     width: 7px;
     height: 2px;
     transform: rotate(45deg);
-    top: 13px;
+    top: 10px;
     left: 52px;
     background-color: #2d4153;
   }
@@ -33,7 +33,7 @@
     position: absolute;
     width: 7px;
     height: 2px;
-    top: 13px;
+    top: 10px;
     left: 56px;
     transform: rotate(-45deg);
     background-color: #2d4153;

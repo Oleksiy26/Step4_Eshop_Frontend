@@ -83,7 +83,14 @@ export const filterSlice = createSlice({
       state.maxPrice = action.payload.maxPrice
     },
     setInitialState(state) {
+      state.startPage = 1
+      state.perPage = 6
+      state.categories = []
+      state.color = []
       state.size = []
+      state.minPrice = '0'
+      state.maxPrice = '100'
+      state.sort = []
     },
     setMinPrice(state, action) {
       state.minPrice = action.payload

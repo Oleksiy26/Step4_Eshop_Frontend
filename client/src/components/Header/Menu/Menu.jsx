@@ -24,7 +24,12 @@ const Menu = ({ closeFunc }) => {
           <div>
             {arr.map(value => {
               const { option, link } = value
-              return <NavLink to={link}> {option} </NavLink>
+              return (
+                <NavLink to={link} key={option}>
+                  {' '}
+                  {option}{' '}
+                </NavLink>
+              )
             })}
           </div>
         </div>

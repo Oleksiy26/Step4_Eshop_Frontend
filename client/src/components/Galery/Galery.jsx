@@ -3,11 +3,7 @@ import ResetFilters from '../ResetFilters'
 import ProductCard from '../ProductCard'
 import qs from 'qs'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  fetchFilterProducts,
-  setFilters,
-  setInitialState
-} from '../../store/filter/filterSlice'
+import { fetchFilterProducts, setFilters } from '../../store/filter/filterSlice'
 import { useNavigate } from 'react-router-dom'
 import './index.scss'
 import { sortOptions } from '../SortList/SortList'
@@ -35,12 +31,6 @@ const Galery = () => {
   const colorFilter = color.length ? `&color=${color}` : ''
   const sizeFilter = size.length ? `&size=${size}` : ''
   const sortFilter = sort ? `&sort=${sort}` : ''
-
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(setInitialState())
-  //   }
-  // }, [dispatch])
 
   useEffect(() => {
     if (window.location.search) {

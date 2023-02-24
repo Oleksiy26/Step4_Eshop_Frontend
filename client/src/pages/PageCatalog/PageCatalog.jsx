@@ -127,7 +127,7 @@ const PageCatalog = () => {
               onClick={LoadMore}
             />
           )}
-          {pagesCount !== 1 && <Pagination />}
+          {pagesCount !== 1 && pagesCount !== 0 && <Pagination />}
         </section>
       </div>
     </div>

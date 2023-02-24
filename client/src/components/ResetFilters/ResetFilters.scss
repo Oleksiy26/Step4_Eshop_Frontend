@@ -1,5 +1,6 @@
-// .reset {
-//   &-wrapper {
-//     justify-self: center;
-//   }
-// }
+.reset {
+  &-wrapper {
+    margin-top: 48px;
+    grid-column: none;
+  }
+}

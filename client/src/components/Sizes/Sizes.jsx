@@ -9,7 +9,6 @@ const Sizes = ({ sizesActive }) => {
 
   const dispatch = useDispatch()
   const sizeName = useSelector(state => state.filter.size)
-  console.log('sizes', sizeName)
 
   const handleSizeCheckbox = label => {
     const currentIndex = sizeName.indexOf(label)
@@ -19,6 +18,7 @@ const Sizes = ({ sizesActive }) => {
     } else {
       newChecked.splice(currentIndex, 1)
     }
+
     dispatch(setstartPage(1))
     dispatch(setSize(newChecked))
   }
@@ -32,7 +32,6 @@ const Sizes = ({ sizesActive }) => {
             <li className='page-sizes_item' key={index}>
               <Checkbox
                 label={item}
-                id='flexCheckDefault'
                 onChangeCheckbox={() => handleSizeCheckbox(item)}
                 isActive={sizeName.includes(item)}
               />

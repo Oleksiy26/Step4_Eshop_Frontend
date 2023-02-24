@@ -37,7 +37,6 @@ const Colors = ({ contentActive }) => {
             <li className='page-colors_item' key={index}>
               <Checkbox
                 label={item}
-                id='flexCheckDefault'
                 colorSquare
                 classForSquare={item.toLowerCase()}
                 isActive={colorName.includes(item)}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 const Checkbox = ({
@@ -9,12 +9,6 @@ const Checkbox = ({
   onChangeCheckbox,
   isActive
 }) => {
-  // const [isChecked, setIsChecked] = useState(false)
-
-  // useEffect(() => {
-  //   setIsChecked(isActive)
-  // }, [isActive])
-  console.log('checkbox', isActive)
   return (
     <>
       <div className='form-check'>
@@ -22,7 +16,6 @@ const Checkbox = ({
           className='form-check-input'
           type='checkbox'
           value={label}
-          id={id}
           checked={isActive}
           onChange={onChangeCheckbox}
         />
